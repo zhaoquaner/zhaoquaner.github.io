@@ -5,7 +5,7 @@ const ap = new APlayer({
     audio: [{
         name: 'Young For You',
         artist: 'GALA',
-        url: 'https://music.163.com/outchain/player?type=2&id=1304931036',
+        url: '/audio/lastdance.mp3',
         cover: '/img/default.png',
     }]
 });
