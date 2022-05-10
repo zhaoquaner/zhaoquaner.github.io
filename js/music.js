@@ -1,9 +1,9 @@
 const ap = new APlayer({
     container: document.getElementById('aplayer'),
-    mini: true,
+    fixed: true,
     autoplay:true,
     loop:'one',
-   	volume:0.4,
+   	volume:0.2,
    	theme: '#eeeeee',
     audio: [{
         name: 'Last Dance',
