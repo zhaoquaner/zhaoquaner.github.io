@@ -11,3 +11,8 @@ const ap = new APlayer({
         cover: '',
     }]
 });
+
+$(".nav-link")[5].click(function() {
+	alert("音乐播放");
+	ap.play();
+})
