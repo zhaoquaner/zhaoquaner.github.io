@@ -12,4 +12,3 @@ const ap = new APlayer({
     }]
 });
 
-ap.play();
