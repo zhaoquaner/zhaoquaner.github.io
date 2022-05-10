@@ -13,6 +13,6 @@ const ap = new APlayer({
 });
 
 document.getElementsByClassName("nav-link")[5].onclick = function() {
-	lert("音乐播放");
+	alert("音乐播放");
 	ap.play();
 }
