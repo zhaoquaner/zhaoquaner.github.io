@@ -16,12 +16,12 @@
   <meta name="author" content="ZhaoXin">
   <meta name="keywords" content="">
   
-    <meta name="description" content="2-IOC 概念 ​ 控制反转(IOC)，是一种概念，一种思想。指将传统上由程序代码直接操纵的对象的调用权交给容器，通过容器来实现对象的装配和管理。控制反转指的就是 对对象控制权的转移，从程序代码本身反转到了外部容器。通过容器实现对象的创建、属性赋值、依赖的管理。 IOC是一种思想，它的实现方法有很多，比较流行的是依赖注入(Dependency Injection) ，也叫DI，应用广">
+    <meta name="description" content="2-IOC概念​        控制反转(IOC)，是一种概念，一种思想。指将传统上由程序代码直接操纵的对象的调用权交给容器，通过容器来实现对象的装配和管理。控制反转指的就是 对对象控制权的转移，从程序代码本身反转到了外部容器。通过容器实现对象的创建、属性赋值、依赖的管理。 IOC是一种思想，它的实现方法有很多，比较流行的是依赖注入(Dependency Injection) ，也叫DI，应用广泛">
 <meta property="og:type" content="article">
 <meta property="og:title" content="2-IOC">
 <meta property="og:url" content="https://zhaoquaner.github.io/2022/05/10/Spring/2-IOC/index.html">
 <meta property="og:site_name" content="赵圈儿的博客">
-<meta property="og:description" content="2-IOC 概念 ​ 控制反转(IOC)，是一种概念，一种思想。指将传统上由程序代码直接操纵的对象的调用权交给容器，通过容器来实现对象的装配和管理。控制反转指的就是 对对象控制权的转移，从程序代码本身反转到了外部容器。通过容器实现对象的创建、属性赋值、依赖的管理。 IOC是一种思想，它的实现方法有很多，比较流行的是依赖注入(Dependency Injection) ，也叫DI，应用广">
+<meta property="og:description" content="2-IOC概念​        控制反转(IOC)，是一种概念，一种思想。指将传统上由程序代码直接操纵的对象的调用权交给容器，通过容器来实现对象的装配和管理。控制反转指的就是 对对象控制权的转移，从程序代码本身反转到了外部容器。通过容器实现对象的创建、属性赋值、依赖的管理。 IOC是一种思想，它的实现方法有很多，比较流行的是依赖注入(Dependency Injection) ，也叫DI，应用广泛">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://crayon-1302863897.cos.ap-beijing.myqcloud.com/image/image-20201024172618382.png">
 <meta property="article:published_time" content="2022-05-09T16:00:00.000Z">
@@ -259,41 +259,17 @@
             <h1 style="display: none">2-IOC</h1>
             
             <div class="markdown-body">
-              <h1 id="ioc">2-IOC</h1>
-<h2 id="概念">概念</h2>
-<p>​
-控制反转(IOC)，是一种概念，一种思想。指将传统上由程序代码直接操纵的对象的调用权交给容器，通过容器来实现对象的装配和管理。控制反转指的就是
-对对象控制权的转移，从程序代码本身反转到了外部容器。通过容器实现对象的创建、属性赋值、依赖的管理。</p>
-<p>IOC是一种思想，它的实现方法有很多，比较流行的是依赖注入(Dependency
-Injection) ，也叫DI，应用广泛。</p>
+              <h1 id="2-IOC"><a href="#2-IOC" class="headerlink" title="2-IOC"></a>2-IOC</h1><h2 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h2><p>​        控制反转(IOC)，是一种概念，一种思想。指将传统上由程序代码直接操纵的对象的调用权交给容器，通过容器来实现对象的装配和管理。控制反转指的就是 对对象控制权的转移，从程序代码本身反转到了外部容器。通过容器实现对象的创建、属性赋值、依赖的管理。</p>
+<p>IOC是一种思想，它的实现方法有很多，比较流行的是依赖注入(Dependency Injection) ，也叫DI，应用广泛。</p>
 <p>如何理解IOC(截取知乎上一篇文章的核心部分):</p>
 <blockquote>
-<p>ioc的思想最核⼼的地⽅在于，资源不由使⽤资源的双⽅管理，⽽由不使⽤资源的第三⽅管理，这
-可以带来很多好处。第⼀，资源集中管理，实现资源的可配置和易管理。第⼆，降低了使⽤资源
-双⽅的依赖程度，也就是我们说的耦合度。
-也就是说，甲⽅要达成某种⽬的不需要直接依赖⼄⽅，它只需要达到的⽬的告诉第三⽅机构就可
-以了，⽐如甲⽅需要⼀双袜⼦，⽽⼄⽅它卖⼀双袜⼦，它要把袜⼦卖出去，并不需要⾃⼰去直接
-找到⼀个卖家来完成袜⼦的卖出。它也只需要找第三⽅，告诉别⼈我要卖⼀双袜⼦。这下好了，
-甲⼄双⽅进⾏交易活动，都不需要⾃⼰直接去找卖家，相当于程序内部开放接⼝，卖家由第三⽅
-作为参数传⼊。甲⼄互相不依赖，⽽且只有在进⾏交易活动的时候，甲才和⼄产⽣联系。反之亦
-然。这样做什么好处么呢，甲⼄可以在对⽅不真实存在的情况下独⽴存在，⽽且保证不交易时候
-⽆联系，想交易的时候可以很容易的产⽣联系。甲⼄交易活动不需要双⽅⻅⾯，避免了双⽅的互
-不信任造成交易失败的问题。因为交易由第三⽅来负责联系，⽽且甲⼄都认为第三⽅可靠。那么
-交易就能很可靠很灵活的产⽣和进⾏了。这就是ioc的核⼼思想。⽣活中这种例⼦⽐⽐皆是，⽀付
-宝在整个淘宝体系⾥就是庞⼤的ioc容器，交易双⽅之外的第三⽅，提供可靠性可依赖可灵活变更
-交易⽅的资源管理中⼼。另外⼈事代理也是，雇佣机构和个⼈之外的第三⽅。
-=update=
-在以上的描述中，诞⽣了两个专业词汇，依赖注⼊和控制反转所谓的依赖注⼊，则是，甲⽅开放
-接⼝，在它需要的时候，能够讲⼄⽅传递进来(注⼊)所谓的控制反转，甲⼄双⽅不相互依赖，交易
-活动的进⾏不依赖于甲⼄任何⼀⽅，整个活动的进⾏由第三⽅负责管理。</p>
+<p>ioc的思想最核⼼的地⽅在于，资源不由使⽤资源的双⽅管理，⽽由不使⽤资源的第三⽅管理，这<br>可以带来很多好处。第⼀，资源集中管理，实现资源的可配置和易管理。第⼆，降低了使⽤资源<br>双⽅的依赖程度，也就是我们说的耦合度。<br>也就是说，甲⽅要达成某种⽬的不需要直接依赖⼄⽅，它只需要达到的⽬的告诉第三⽅机构就可<br>以了，⽐如甲⽅需要⼀双袜⼦，⽽⼄⽅它卖⼀双袜⼦，它要把袜⼦卖出去，并不需要⾃⼰去直接<br>找到⼀个卖家来完成袜⼦的卖出。它也只需要找第三⽅，告诉别⼈我要卖⼀双袜⼦。这下好了，<br>甲⼄双⽅进⾏交易活动，都不需要⾃⼰直接去找卖家，相当于程序内部开放接⼝，卖家由第三⽅<br>作为参数传⼊。甲⼄互相不依赖，⽽且只有在进⾏交易活动的时候，甲才和⼄产⽣联系。反之亦<br>然。这样做什么好处么呢，甲⼄可以在对⽅不真实存在的情况下独⽴存在，⽽且保证不交易时候<br>⽆联系，想交易的时候可以很容易的产⽣联系。甲⼄交易活动不需要双⽅⻅⾯，避免了双⽅的互<br>不信任造成交易失败的问题。因为交易由第三⽅来负责联系，⽽且甲⼄都认为第三⽅可靠。那么<br>交易就能很可靠很灵活的产⽣和进⾏了。这就是ioc的核⼼思想。⽣活中这种例⼦⽐⽐皆是，⽀付<br>宝在整个淘宝体系⾥就是庞⼤的ioc容器，交易双⽅之外的第三⽅，提供可靠性可依赖可灵活变更<br>交易⽅的资源管理中⼼。另外⼈事代理也是，雇佣机构和个⼈之外的第三⽅。<br>=update=<br>在以上的描述中，诞⽣了两个专业词汇，依赖注⼊和控制反转所谓的依赖注⼊，则是，甲⽅开放<br>接⼝，在它需要的时候，能够讲⼄⽅传递进来(注⼊)所谓的控制反转，甲⼄双⽅不相互依赖，交易<br>活动的进⾏不依赖于甲⼄任何⼀⽅，整个活动的进⾏由第三⽅负责管理。</p>
 </blockquote>
-<h3 id="什么是依赖">什么是依赖</h3>
-<p>classA中有classB的实例，那么在classA中调用classB的方法完成实例，那么classA对classB有依赖。</p>
+<h3 id="什么是依赖"><a href="#什么是依赖" class="headerlink" title="什么是依赖"></a>什么是依赖</h3><p>classA中有classB的实例，那么在classA中调用classB的方法完成实例，那么classA对classB有依赖。</p>
 <p>依赖注入：是指，在程序运行过程中，若需要调用另一个对象协助时，无须再代码中创建，而是依赖于外部容器，由外部容器创建后传递给程序。</p>
 <p>Spring的依赖注入对调用者和被调用者几乎没有任何要求，完全支持对象之间依赖关系的管理。</p>
 <p>IOC的另一个体现是在使用Servlet时，没有创建过Servlet对象，而是由Tomcat来创建，所以也叫Tomcat容器。</p>
-<h2 id="创建对象">创建对象</h2>
-<p>在spring中，把Java对象叫做bean。</p>
+<h2 id="创建对象"><a href="#创建对象" class="headerlink" title="创建对象"></a>创建对象</h2><p>在spring中，把Java对象叫做bean。</p>
 <p>在使用maven管理项目时，在main目录下，创建resources目录，在该目录下创建spring的配置文件beans.xml。</p>
 <p>在这个配置文件中，配置spring需要创建的类对象。格式为：</p>
 <figure class="highlight xml"><table><tr><td class="gutter"><div class="code-wrapper"><pre><span class="line">1</span><br></pre></div></td><td class="code"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">bean</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;&quot;</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;&quot;</span> /&gt;</span><br></code></pre></td></tr></table></figure>
@@ -303,22 +279,17 @@ Injection) ，也叫DI，应用广泛。</p>
 <p>class是对应类的全限定名称(不能是接口，只能是类)。</p>
 <p>在spring框架中，有一个map，存放创建的对象，key和value分别是id和创建的对象。</p>
 <p>例如有一个org.example.Test类，要让Spring去自动创建它，在配置文件beans.xml中应这样写：</p>
-<p><code>&lt;bean id="test" class="org.example.Test" /&gt;</code></p>
-<h2
-id="创建容器对象applicationcontext">创建容器对象ApplicationContext</h2>
-<p>spring帮我们创建好对象后，我们要使用ApplicationContext来获取对象，进行使用，它就表示spring容器。ApplicationContext是一个接口，最常用的实现类是ClassPathXmlApplicationContext，创建该类对象时有一个参数，是配置文件的路径。</p>
+<p><code>&lt;bean id=&quot;test&quot; class=&quot;org.example.Test&quot; /&gt;</code></p>
+<h2 id="创建容器对象ApplicationContext"><a href="#创建容器对象ApplicationContext" class="headerlink" title="创建容器对象ApplicationContext"></a>创建容器对象ApplicationContext</h2><p>spring帮我们创建好对象后，我们要使用ApplicationContext来获取对象，进行使用，它就表示spring容器。ApplicationContext是一个接口，最常用的实现类是ClassPathXmlApplicationContext，创建该类对象时有一个参数，是配置文件的路径。</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-type">String</span> <span class="hljs-variable">config</span> <span class="hljs-operator">=</span> <span class="hljs-string">&quot;beans.xml&quot;</span>;<br><span class="hljs-type">ApplicationContext</span> <span class="hljs-variable">ac</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">ClassPathXmlApplicationContext</span>(config);<br></code></pre></td></tr></table></figure>
 <p><img src="https://crayon-1302863897.cos.ap-beijing.myqcloud.com/image/image-20201024172618382.png" srcset="/img/loading.gif" lazyload alt="image-20201024172618382" style="zoom:50%;" /></p>
-<p>这是例子项目的目录结构，beans.xml在resources目录下，在编译后，会在classes目录下，也就是类的根目录，所以变量config直接写"beans.xml"即可。</p>
+<p>这是例子项目的目录结构，beans.xml在resources目录下，在编译后，会在classes目录下，也就是类的根目录，所以变量config直接写”beans.xml”即可。</p>
 <p>在创建ApplicationContext时，读取beans.xml文件时当读取到一个bean标签，就会创建一个对象。</p>
 <p>然后使用该对象的getBean()方法来获取要使用的对象。该方法有多种重载形式，可以使用对象id作为参数来获取对象。并进行类型强制转换。</p>
 <p>这种方法在后面慢慢就不会使用，但刚开始需要这样来获取。</p>
-<h2 id="使用容器对象获取对象信息">使用容器对象获取对象信息</h2>
-<p>可以使用ApplicationContext的方法来获取对象信息</p>
-<h3 id="获取创建的对象数量">获取创建的对象数量</h3>
-<p>使用getBeanDefinitionCount()方法来获取，返回值是int类型</p>
-<h3 id="获取创建对象的名称id">获取创建对象的名称(ID)</h3>
-<p>使用getBeanDefinitionNames()来获取，返回值是String数组</p>
+<h2 id="使用容器对象获取对象信息"><a href="#使用容器对象获取对象信息" class="headerlink" title="使用容器对象获取对象信息"></a>使用容器对象获取对象信息</h2><p>可以使用ApplicationContext的方法来获取对象信息</p>
+<h3 id="获取创建的对象数量"><a href="#获取创建的对象数量" class="headerlink" title="获取创建的对象数量"></a>获取创建的对象数量</h3><p>使用getBeanDefinitionCount()方法来获取，返回值是int类型</p>
+<h3 id="获取创建对象的名称-ID"><a href="#获取创建对象的名称-ID" class="headerlink" title="获取创建对象的名称(ID)"></a>获取创建对象的名称(ID)</h3><p>使用getBeanDefinitionNames()来获取，返回值是String数组</p>
 
             </div>
             <hr>
@@ -396,7 +367,7 @@ id="创建容器对象applicationcontext">创建容器对象ApplicationContext</
     
       <div class="col-lg-7 mx-auto nopadding-x-md">
         <div class="container custom mx-auto">
-          <link rel="stylesheet" href="/js/aplayer/APlayer.min.css"> <div id="aplayer"></div> <script src="/js/aplayer/APlayer.min.js"></script>
+          <link rel="stylesheet" href="/js/aplayer/APlayer.min.css"> <div id="aplayer" style="display:none"></div> <script src="/js/aplayer/APlayer.min.js"></script>
         </div>
       </div>
     
