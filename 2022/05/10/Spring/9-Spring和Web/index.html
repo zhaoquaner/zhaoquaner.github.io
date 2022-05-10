@@ -249,33 +249,20 @@
 <p>可以自定义全局作用域监听器接口实现类，也可以使用spring的一个模块spring-web提供的实现类ContextLoaderListener。</p>
 <h2 id="使用步骤"><a href="#使用步骤" class="headerlink" title="使用步骤"></a>使用步骤</h2><h3 id="加入依赖"><a href="#加入依赖" class="headerlink" title="加入依赖"></a>加入依赖</h3><p>首先加入spring-web依赖</p>
 <figure class="highlight xml"><table><tr><td class="gutter"><div class="code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></div></td><td class="code"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>org.springframework<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>spring-web<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">version</span>&gt;</span>5.3.1<span class="hljs-tag">&lt;/<span class="hljs-name">version</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span><br></code></pre></td></tr></table></figure>
-
 <h3 id="在web配置文件web-xml中注册监听器"><a href="#在web配置文件web-xml中注册监听器" class="headerlink" title="在web配置文件web.xml中注册监听器"></a>在web配置文件web.xml中注册监听器</h3><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs xml">  <span class="hljs-tag">&lt;<span class="hljs-name">listener-class</span>&gt;</span><br>    org.springframework.web.context.ContextLoader<br>  <span class="hljs-tag">&lt;/<span class="hljs-name">listener-class</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">listener</span>&gt;</span><br></code></pre></td></tr></table></figure>
-
-
-
 <h3 id="在web配置文件web-xml文件中指定spring配置文件路径"><a href="#在web配置文件web-xml文件中指定spring配置文件路径" class="headerlink" title="在web配置文件web.xml文件中指定spring配置文件路径"></a>在web配置文件web.xml文件中指定spring配置文件路径</h3><p>使用<context-param>标签来配置，语法格式为：</p>
 <figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">context-param</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">param-name</span>&gt;</span>contextConfigLocation<span class="hljs-tag">&lt;/<span class="hljs-name">param-name</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">param-value</span>&gt;</span>classpath:spring配置文件路径<span class="hljs-tag">&lt;/<span class="hljs-name">param-value</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">context-param</span>&gt;</span><br></code></pre></td></tr></table></figure>
-
 <p>子标签<param-name>的值就是contextConfigLocation，固定不变。<param-value>就是spring配置文件的路径。</p>
 <p>ContextLoaderListener会从ServletContext中获取该参数，然后创建spring容器。</p>
 <p>注意，如果从ServletContext中获取web.xml初始参数，需要使用的方法是<code>getInitParameter(String name)</code>，而不是<code>getAttribute(String name)</code>。</p>
-<p>如果没有使用<context-param>标签指定spring配置文件路径，那么会默认使用WEB-INF&#x2F;applicationContext.xml这个路径。</p>
+<p>如果没有使用<context-param>标签指定spring配置文件路径，那么会默认使用WEB-INF/applicationContext.xml这个路径。</p>
 <h4 id="获取Spring容器对象"><a href="#获取Spring容器对象" class="headerlink" title="获取Spring容器对象"></a>获取Spring容器对象</h4><p>获取Spring容器对象有两种方法。</p>
 <p>在之前的例子中，Spring容器对应类时ApplicationContext，在web应用中容器对应类时WebApplicationContext，它是ApplicationContext的子类。</p>
 <h4 id="从ServletContext中获取"><a href="#从ServletContext中获取" class="headerlink" title="从ServletContext中获取"></a>从ServletContext中获取</h4><p>Spring容器对象在ServletContext中存放的key为<code>WebApplicationContext.ROOT_WEB_APPLICATION_CONTEXT_ATTRIBUTE。</code></p>
 <p>可以通过这个key，调用ServletContext的<code>getAttribute(String name)</code>方法获取WebApplicationContext。</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-type">String</span> <span class="hljs-variable">attr</span> <span class="hljs-operator">=</span> <span class="hljs-string">&quot;WebApplicationContext.ROOT_WEB_APPLICATION_CONTEXT_ATTRIBUTE&quot;</span>;<br><span class="hljs-type">WebApplicationContext</span> <span class="hljs-variable">ac</span> <span class="hljs-operator">=</span> (WebApplicationContext) <span class="hljs-built_in">this</span>.getServletContext().getAttribute(attr);<br></code></pre></td></tr></table></figure>
-
-
-
 <h4 id="通过WebApplicationContextUtils获取"><a href="#通过WebApplicationContextUtils获取" class="headerlink" title="通过WebApplicationContextUtils获取"></a>通过WebApplicationContextUtils获取</h4><p>WebApplicationContextUtils是一个工具类，它有一个<code>getRequiredWebApplicationContext(ServletContext sc)</code>方法，传入ServletContext参数，返回值就是Spring容器对象。</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-type">WebApplicationContext</span> <span class="hljs-variable">wac</span> <span class="hljs-operator">=</span> WebApplicationContextUtils.getRequiredWebApplicationContext(sc);<br></code></pre></td></tr></table></figure>
-
-
-
-
-
 
             </div>
             <hr>
