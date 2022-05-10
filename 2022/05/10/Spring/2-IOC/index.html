@@ -16,16 +16,16 @@
   <meta name="author" content="ZhaoXin">
   <meta name="keywords" content="">
   
-    <meta name="description" content="2-IOC概念​		控制反转(IOC)，是一种概念，一种思想。指将传统上由程序代码直接操纵的对象的调用权交给容器，通过容器来实现对象的装配和管理。控制反转指的就是 对对象控制权的转移，从程序代码本身反转到了外部容器。通过容器实现对象的创建、属性赋值、依赖的管理。  IOC是一种思想，它的实现方法有很多，比较流行的是依赖注入(Dependency Injection) ，也叫DI，应用广泛。  如何">
+    <meta name="description" content="2-IOC概念​		控制反转(IOC)，是一种概念，一种思想。指将传统上由程序代码直接操纵的对象的调用权交给容器，通过容器来实现对象的装配和管理。控制反转指的就是 对对象控制权的转移，从程序代码本身反转到了外部容器。通过容器实现对象的创建、属性赋值、依赖的管理。 IOC是一种思想，它的实现方法有很多，比较流行的是依赖注入(Dependency Injection) ，也叫DI，应用广泛。 如何理解">
 <meta property="og:type" content="article">
 <meta property="og:title" content="1-IOC">
 <meta property="og:url" content="https://zhaoquaner.github.io/2022/05/10/Spring/2-IOC/index.html">
 <meta property="og:site_name" content="赵圈儿的博客">
-<meta property="og:description" content="2-IOC概念​		控制反转(IOC)，是一种概念，一种思想。指将传统上由程序代码直接操纵的对象的调用权交给容器，通过容器来实现对象的装配和管理。控制反转指的就是 对对象控制权的转移，从程序代码本身反转到了外部容器。通过容器实现对象的创建、属性赋值、依赖的管理。  IOC是一种思想，它的实现方法有很多，比较流行的是依赖注入(Dependency Injection) ，也叫DI，应用广泛。  如何">
+<meta property="og:description" content="2-IOC概念​		控制反转(IOC)，是一种概念，一种思想。指将传统上由程序代码直接操纵的对象的调用权交给容器，通过容器来实现对象的装配和管理。控制反转指的就是 对对象控制权的转移，从程序代码本身反转到了外部容器。通过容器实现对象的创建、属性赋值、依赖的管理。 IOC是一种思想，它的实现方法有很多，比较流行的是依赖注入(Dependency Injection) ，也叫DI，应用广泛。 如何理解">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://crayon-1302863897.cos.ap-beijing.myqcloud.com/image/image-20201024172618382.png">
 <meta property="article:published_time" content="2022-05-09T16:00:00.000Z">
-<meta property="article:modified_time" content="2022-05-10T04:55:14.031Z">
+<meta property="article:modified_time" content="2022-05-10T05:02:21.664Z">
 <meta property="article:author" content="ZhaoXin">
 <meta property="article:tag" content="Spring">
 <meta property="article:tag" content="后端">
@@ -175,7 +175,7 @@
 </nav>
 
     <div class="banner" id="banner" parallax=true
-         style="background: url('/img/default.png') no-repeat center center;
+         style="background: url('/img/article.png') no-repeat center center;
            background-size: cover;">
       <div class="full-bg-img">
         <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
@@ -244,8 +244,7 @@
             
             <div class="markdown-body">
               <h1 id="2-IOC"><a href="#2-IOC" class="headerlink" title="2-IOC"></a>2-IOC</h1><h2 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h2><p>​		控制反转(IOC)，是一种概念，一种思想。指将传统上由程序代码直接操纵的对象的调用权交给容器，通过容器来实现对象的装配和管理。控制反转指的就是 对对象控制权的转移，从程序代码本身反转到了外部容器。通过容器实现对象的创建、属性赋值、依赖的管理。</p>
-<div class="code-wrapper"><pre><code class="hljs"> IOC是一种思想，它的实现方法有很多，比较流行的是依赖注入(Dependency Injection) ，也叫DI，应用广泛。
-</code></pre></div>
+<p>IOC是一种思想，它的实现方法有很多，比较流行的是依赖注入(Dependency Injection) ，也叫DI，应用广泛。</p>
 <p>如何理解IOC(截取知乎上一篇文章的核心部分):</p>
 <blockquote>
 <p>ioc的思想最核⼼的地⽅在于，资源不由使⽤资源的双⽅管理，⽽由不使⽤资源的第三⽅管理，这<br>可以带来很多好处。第⼀，资源集中管理，实现资源的可配置和易管理。第⼆，降低了使⽤资源<br>双⽅的依赖程度，也就是我们说的耦合度。<br>也就是说，甲⽅要达成某种⽬的不需要直接依赖⼄⽅，它只需要达到的⽬的告诉第三⽅机构就可<br>以了，⽐如甲⽅需要⼀双袜⼦，⽽⼄⽅它卖⼀双袜⼦，它要把袜⼦卖出去，并不需要⾃⼰去直接<br>找到⼀个卖家来完成袜⼦的卖出。它也只需要找第三⽅，告诉别⼈我要卖⼀双袜⼦。这下好了，<br>甲⼄双⽅进⾏交易活动，都不需要⾃⼰直接去找卖家，相当于程序内部开放接⼝，卖家由第三⽅<br>作为参数传⼊。甲⼄互相不依赖，⽽且只有在进⾏交易活动的时候，甲才和⼄产⽣联系。反之亦<br>然。这样做什么好处么呢，甲⼄可以在对⽅不真实存在的情况下独⽴存在，⽽且保证不交易时候<br>⽆联系，想交易的时候可以很容易的产⽣联系。甲⼄交易活动不需要双⽅⻅⾯，避免了双⽅的互<br>不信任造成交易失败的问题。因为交易由第三⽅来负责联系，⽽且甲⼄都认为第三⽅可靠。那么<br>交易就能很可靠很灵活的产⽣和进⾏了。这就是ioc的核⼼思想。⽣活中这种例⼦⽐⽐皆是，⽀付<br>宝在整个淘宝体系⾥就是庞⼤的ioc容器，交易双⽅之外的第三⽅，提供可靠性可依赖可灵活变更<br>交易⽅的资源管理中⼼。另外⼈事代理也是，雇佣机构和个⼈之外的第三⽅。<br>&#x3D;update&#x3D;<br>在以上的描述中，诞⽣了两个专业词汇，依赖注⼊和控制反转所谓的依赖注⼊，则是，甲⽅开放<br>接⼝，在它需要的时候，能够讲⼄⽅传递进来(注⼊)所谓的控制反转，甲⼄双⽅不相互依赖，交易<br>活动的进⾏不依赖于甲⼄任何⼀⽅，整个活动的进⾏由第三⽅负责管理。</p>
