@@ -1344,6 +1344,10 @@ mjx-container svg:focus,
 .index-card {
   margin-bottom: 2.5rem;
 }
+# 自己加的,
+.container {
+  width: 60%;
+}
 .index-img img {
   display: block;
   width: 100%;
