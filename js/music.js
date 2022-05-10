@@ -4,7 +4,7 @@ const ap = new APlayer({
     autoplay:true,
     loop:'one',
    	volume:0.2,
-   	theme: '#eeeeee',
+   	theme: 'rgba(0, 153, 145, 0);',
     audio: [{
         name: 'Last Dance',
         artist: 'BIGBANG',
