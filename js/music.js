@@ -2,7 +2,7 @@ const ap = new APlayer({
     container: document.getElementById('aplayer'),
     mini: true,
     autoplay:true,
-    loop:one,
+    loop:'one',
    	volume:0.4,
    	theme: '#eeeeee',
     audio: [{
