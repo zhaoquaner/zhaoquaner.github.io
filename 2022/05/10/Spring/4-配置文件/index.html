@@ -259,12 +259,10 @@
 <p>例如有student.xml和teacher.xml配置文件，那么可以有一个total.xml文件来把前两个配置文件包含在一起</p>
 <p>语法为：</p>
 <figure class="highlight xml"><table><tr><td class="gutter"><div class="code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></div></td><td class="code"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">beans</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">import</span> <span class="hljs-attr">resource</span>=<span class="hljs-string">&quot;其他配置文件的路径&quot;</span> /&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">beans</span>&gt;</span><br></code></pre></td></tr></table></figure>
-
 <p>关键词：”classpath:” 表示类路径，在spring的配置文件中要指定其他文件位置，需要使用classpath，告诉spring去哪里加载读取文件。</p>
 <p>主配置文件中一般不包含bean，它只是用来包含其他配置文件的。</p>
 <p>上面的例子可以这样写：</p>
 <figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">beans</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">import</span> <span class="hljs-attr">resource</span>=<span class="hljs-string">&quot;classpath:student.xml&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">import</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">import</span> <span class="hljs-attr">resource</span>=<span class="hljs-string">&quot;classpath:teacher.xml&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">import</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">beans</span>&gt;</span><br></code></pre></td></tr></table></figure>
-
 <p>当然实际上，其他配置文件会在其他目录里，这里只是演示。</p>
 <p>在使用ClassPathApplicationContext读取这个总配置文件时，就会将包含的两个配置文件一块读取。</p>
 <h3 id="使用通配符"><a href="#使用通配符" class="headerlink" title="使用通配符"></a>使用通配符</h3><p>在包含关系的配置文件中，可以使用通配符(*：表示任意字符)</p>
@@ -478,6 +476,10 @@
   
 
 
+
+
+  
+<script src="//cdn.jsdelivr.net/gh/bynotes/texiao/source/js/caidai.js"></script>
 
 
 
