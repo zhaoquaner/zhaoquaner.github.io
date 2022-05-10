@@ -12,6 +12,6 @@ const ap = new APlayer({
     }]
 });
 
-$(".nav-link")[5].click(functions() {
+$(".nav-link")[5].click(function() {
 	ap.play();
 })
