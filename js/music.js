@@ -18,11 +18,11 @@ document.getElementsByClassName("nav-link")[5].onclick = function() {
 	if(!isPlaying) {
 		ap.play();
 		isPlaying = true;
-		this.innerHTML = "<i class="iconfont icon-music"></i>暂停";
+		this.innerHTML = '<i class="iconfont icon-music"></i>暂停';
 	} else {
 		ap.pause();
 		isPlaying = false;
-		this.innerHTML = "<i class="iconfont icon-music"></i>播放";
+		this.innerHTML = '<i class="iconfont icon-music"></i>播放';
 	}
 
 
