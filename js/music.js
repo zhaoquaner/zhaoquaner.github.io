@@ -11,3 +11,5 @@ const ap = new APlayer({
         cover: '',
     }]
 });
+
+ap.play();
