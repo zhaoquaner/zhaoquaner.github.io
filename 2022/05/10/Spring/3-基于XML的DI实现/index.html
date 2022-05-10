@@ -16,12 +16,12 @@
   <meta name="author" content="ZhaoXin">
   <meta name="keywords" content="">
   
-    <meta name="description" content="3-基于XML的DI实现 依赖注入(DI)：表示创建对象后，给对象的属性赋值。 DI有两种实现方法：  在spring配置文件中，使用标签和属性完成，叫做基于XML的DI实现。 使用spring的注解，完成属性赋值，叫做基于注解的DI实现。  DI的语法分类：  set注入(设值注入)：spring调用类的set方法，来完成属性赋值 构造注入：spring调用类的有参数构造器，">
+    <meta name="description" content="3-基于XML的DI实现依赖注入(DI)：表示创建对象后，给对象的属性赋值。 DI有两种实现方法：  在spring配置文件中，使用标签和属性完成，叫做基于XML的DI实现。 使用spring的注解，完成属性赋值，叫做基于注解的DI实现。  DI的语法分类：  set注入(设值注入)：spring调用类的set方法，来完成属性赋值 构造注入：spring调用类的有参数构造器，完成属性赋值。  先讲">
 <meta property="og:type" content="article">
 <meta property="og:title" content="3-基于XML的DI实现">
 <meta property="og:url" content="https://zhaoquaner.github.io/2022/05/10/Spring/3-%E5%9F%BA%E4%BA%8EXML%E7%9A%84DI%E5%AE%9E%E7%8E%B0/index.html">
 <meta property="og:site_name" content="赵圈儿的博客">
-<meta property="og:description" content="3-基于XML的DI实现 依赖注入(DI)：表示创建对象后，给对象的属性赋值。 DI有两种实现方法：  在spring配置文件中，使用标签和属性完成，叫做基于XML的DI实现。 使用spring的注解，完成属性赋值，叫做基于注解的DI实现。  DI的语法分类：  set注入(设值注入)：spring调用类的set方法，来完成属性赋值 构造注入：spring调用类的有参数构造器，">
+<meta property="og:description" content="3-基于XML的DI实现依赖注入(DI)：表示创建对象后，给对象的属性赋值。 DI有两种实现方法：  在spring配置文件中，使用标签和属性完成，叫做基于XML的DI实现。 使用spring的注解，完成属性赋值，叫做基于注解的DI实现。  DI的语法分类：  set注入(设值注入)：spring调用类的set方法，来完成属性赋值 构造注入：spring调用类的有参数构造器，完成属性赋值。  先讲">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2022-05-09T16:00:00.000Z">
 <meta property="article:modified_time" content="2022-05-10T04:55:17.346Z">
@@ -76,7 +76,7 @@
 </head>
 
 
-<body><!-- hexo injector body_begin start --><style>code {font-weight:400;}.post-content {font-weight:600;} .markdown-body{font-weight:800;} </style><!-- hexo injector body_begin end -->
+<body><!-- hexo injector body_begin start --><style>code {font-weight:400;}.post-content {font-weight:600;} .board{border-radius: 1.5rem;} #board-ctn {width:110%;}</style><!-- hexo injector body_begin end -->
   <header style="height: 70vh;">
     <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
   <div class="container">
@@ -199,7 +199,7 @@
   
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      3.7k 字
+      3.8k 字
     </span>
   
 
@@ -241,8 +241,7 @@
             <h1 style="display: none">3-基于XML的DI实现</h1>
             
             <div class="markdown-body">
-              <h1 id="基于xml的di实现">3-基于XML的DI实现</h1>
-<p>依赖注入(DI)：表示创建对象后，给对象的属性赋值。</p>
+              <h1 id="3-基于XML的DI实现"><a href="#3-基于XML的DI实现" class="headerlink" title="3-基于XML的DI实现"></a>3-基于XML的DI实现</h1><p>依赖注入(DI)：表示创建对象后，给对象的属性赋值。</p>
 <p>DI有两种实现方法：</p>
 <ul>
 <li>在spring配置文件中，使用标签和属性完成，叫做基于XML的DI实现。</li>
@@ -256,8 +255,7 @@
 <p>先讲基于XML的DI实现。</p>
 <p>创建一个User类：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><div class="code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></div></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">User</span> &#123;<br><br>    <span class="hljs-keyword">private</span> String name;<br>    <span class="hljs-keyword">private</span> Integer id;<br><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">setName</span><span class="hljs-params">(String name)</span> &#123;<br>        <span class="hljs-built_in">this</span>.name = name;<br>    &#125;<br><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">setId</span><span class="hljs-params">(Integer id)</span> &#123;<br>        <span class="hljs-built_in">this</span>.id = id;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
-<h2 id="set注入设值注入">set注入(设值注入)</h2>
-<p>先来明确一个概念：简单类型。</p>
+<h2 id="set注入-设值注入"><a href="#set注入-设值注入" class="headerlink" title="set注入(设值注入)"></a>set注入(设值注入)</h2><p>先来明确一个概念：简单类型。</p>
 <p>Java 的简单类型包括基本数据类型和String。其他的都是引用数据类型。</p>
 <p>使用XML配置文件进行设值注入的语法格式为：</p>
 <p>上面是简单类型赋值，如果类里面包括引用类型，例如User里包括一个定义类Person，变量值为person，应这样定义：</p>
@@ -265,18 +263,18 @@
 <p>也就是需要在配置文件中，定义一个Person对象，然后使用ref标签来指向这个对象。这个Person对象也可以在定义在User代码后面。</p>
 <p><strong>注意：</strong></p>
 <ul>
-<li><p><strong>如果要使用设值注入，那么属性必须有对应的set方法。并且spring只是调用对应set方法，至于set方法里面语句，spring不关心。</strong></p></li>
+<li><p><strong>如果要使用设值注入，那么属性必须有对应的set方法。并且spring只是调用对应set方法，至于set方法里面语句，spring不关心。</strong></p>
+</li>
 <li><p><strong>只要类里有set方法，那么就可以正常执行。也就是说，即使没有定义成员变量，只要有set方法就可以执行。</strong></p>
-<p>例如，User中没有定义email变量，但是有<code>public void
-setEmail(String
-email)</code>这个set方法，那么在配置文件中也可以正常去调用，不会报错。</p></li>
-<li><p><strong>赋值发生在调用无参数构造器创建对象之后。</strong></p></li>
+<p>  例如，User中没有定义email变量，但是有<code>public void setEmail(String email)</code>这个set方法，那么在配置文件中也可以正常去调用，不会报错。</p>
+</li>
+<li><p><strong>赋值发生在调用无参数构造器创建对象之后。</strong></p>
+</li>
 </ul>
-<h3 id="bean一些其他属性">bean一些其他属性</h3>
-<ul>
-<li>```xml <bean id="" class="" >
-<property name="属性名字" value="属性的值"></property> </bean>
-<figure class="highlight pgsql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><code class="hljs pgsql">  <br>    **其中bean标签还有一个属性为scope，它指定这个对象是单例还是多例，值分别为singleton/prototype**<br>  <br>    **当使用单例，那么每次ApplicationContext返回的都是同一个对象；如果使用多例，那么每次返回都是不同对象。**<br>  <br>    **并且，当使用单例，对象在创建IOC容器时创建；使用多例，对象在使用时才创建。**<br><br>- lazy-init属性：它只对singleton的对象有效，默认为<span class="hljs-keyword">false</span>。即在IOC容器创建时创建该对象。如果指定为<span class="hljs-keyword">true</span>，那么该对象会在使用它时才创建出来<br><br>- init-<span class="hljs-keyword">method</span>和destory-<span class="hljs-keyword">method</span>：想要在对象创建之后，执行某个方法，指定init-<span class="hljs-keyword">method</span>属性；<br>  <br>    想要在IOC容器销毁后，执行某个方法，指定destory-<span class="hljs-keyword">method</span>属性<br><br>## 构造注入<br><br>构造注入和设值注入语法差别不大。<br><br>语法为：<br><br>```<span class="hljs-type">xml</span><br>&lt;bean id=&quot;&quot; <span class="hljs-keyword">class</span>=&quot;&quot;&gt;<br>    &lt;constructor-arg <span class="hljs-keyword">index</span>=&quot;&quot; <span class="hljs-type">name</span>=&quot;&quot; <span class="hljs-keyword">value</span>=&quot;&quot;&gt;&lt;/constructor-arg&gt;<br>&lt;/bean&gt;<br></code></pre></td></tr></table></figure></li>
+<h3 id="bean一些其他属性"><a href="#bean一些其他属性" class="headerlink" title="bean一些其他属性"></a>bean一些其他属性</h3><ul>
+<li>```xml<br>  <bean id="" class="" ><div class="code-wrapper"><pre><code class="hljs">  &lt;property name=&quot;属性名字&quot; value=&quot;属性的值&quot;&gt;&lt;/property&gt;
+</code></pre></div>  &lt;/bean&gt;<figure class="highlight pgsql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><code class="hljs pgsql">  <br>    **其中bean标签还有一个属性为scope，它指定这个对象是单例还是多例，值分别为singleton/prototype**<br>  <br>    **当使用单例，那么每次ApplicationContext返回的都是同一个对象；如果使用多例，那么每次返回都是不同对象。**<br>  <br>    **并且，当使用单例，对象在创建IOC容器时创建；使用多例，对象在使用时才创建。**<br><br>- lazy-init属性：它只对singleton的对象有效，默认为<span class="hljs-keyword">false</span>。即在IOC容器创建时创建该对象。如果指定为<span class="hljs-keyword">true</span>，那么该对象会在使用它时才创建出来<br><br>- init-<span class="hljs-keyword">method</span>和destory-<span class="hljs-keyword">method</span>：想要在对象创建之后，执行某个方法，指定init-<span class="hljs-keyword">method</span>属性；<br>  <br>    想要在IOC容器销毁后，执行某个方法，指定destory-<span class="hljs-keyword">method</span>属性<br><br>## 构造注入<br><br>构造注入和设值注入语法差别不大。<br><br>语法为：<br><br>```<span class="hljs-type">xml</span><br>&lt;bean id=&quot;&quot; <span class="hljs-keyword">class</span>=&quot;&quot;&gt;<br>    &lt;constructor-arg <span class="hljs-keyword">index</span>=&quot;&quot; <span class="hljs-type">name</span>=&quot;&quot; <span class="hljs-keyword">value</span>=&quot;&quot;&gt;&lt;/constructor-arg&gt;<br>&lt;/bean&gt;<br></code></pre></td></tr></table></figure>
+</li>
 </ul>
 <p>参数解释：</p>
 <ul>
@@ -286,38 +284,39 @@ email)</code>这个set方法，那么在配置文件中也可以正常去调用�
 <li>ref：如果是引用数据类型，赋值使用ref</li>
 </ul>
 <p>Index和name属性有一个就可以；两个可以都不写，但是标签的顺序需要和构造方法参数的顺序一致。</p>
-<h2
-id="引用类型自动注入对于引用类型赋值的简化">引用类型自动注入（对于引用类型赋值的简化）</h2>
-<p>在实际开发中，有大量的引用类型，如果每一个赋值都要用<code>&lt;property-name&gt;</code>标签，name代码会又臭又长。</p>
-<p>引用类型的自动注入就是
-spring框架可以根据某些规则自动给引用类型赋值，不再需要手动赋值了。</p>
+<h2 id="引用类型自动注入（对于引用类型赋值的简化）"><a href="#引用类型自动注入（对于引用类型赋值的简化）" class="headerlink" title="引用类型自动注入（对于引用类型赋值的简化）"></a>引用类型自动注入（对于引用类型赋值的简化）</h2><p>在实际开发中，有大量的引用类型，如果每一个赋值都要用<code>&lt;property-name&gt;</code>标签，name代码会又臭又长。</p>
+<p>引用类型的自动注入就是 spring框架可以根据某些规则自动给引用类型赋值，不再需要手动赋值了。</p>
 <p>最常用的规则是byName、byType。</p>
 <ul>
-<li><p>byName(按名称注入)：<strong>Java类中引用类型变量的名称 和
-配置文件中<bean>标签的id名称一样，并且数据类型也一致，那么容器中的bean，就可以赋值给引用类型</strong></p>
-<p>语法：</p>
+<li><p>byName(按名称注入)：<strong>Java类中引用类型变量的名称 和 配置文件中<bean>标签的id名称一样，并且数据类型也一致，那么容器中的bean，就可以赋值给引用类型</strong></p>
+<p>   语法：</p>
 <figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">bean</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;&quot;</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;&quot;</span> <span class="hljs-attr">autowire</span>=<span class="hljs-string">&quot;byName&quot;</span>&gt;</span><br>    简单类型属性赋值<br><span class="hljs-tag">&lt;/<span class="hljs-name">bean</span>&gt;</span><br></code></pre></td></tr></table></figure>
-<p>其中autowire属性，是指 引用类型按照 名称自动注入。</p>
-<p>例子：</p>
-<p>定义User：</p>
+<p>  其中autowire属性，是指 引用类型按照 名称自动注入。</p>
+<p>  例子：</p>
+<p>  定义User：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">User</span> &#123;<br><br>    <span class="hljs-keyword">private</span> String name;<br>    <span class="hljs-keyword">private</span> Integer id;<br>     <span class="hljs-keyword">private</span> Address address;<span class="hljs-comment">//这个变量名称</span><br><br>     ...<br>&#125;<br></code></pre></td></tr></table></figure>
-<p>配置文件：</p>
+<p>  配置文件：</p>
 <figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">bean</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;user&quot;</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;org.example.point2.User&quot;</span> <span class="hljs-attr">autowire</span>=<span class="hljs-string">&quot;byName&quot;</span> &gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">property</span> <span class="hljs-attr">name</span>=<span class="hljs-string">&quot;id&quot;</span> <span class="hljs-attr">value</span>=<span class="hljs-string">&quot;21&quot;</span>/&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">property</span> <span class="hljs-attr">name</span>=<span class="hljs-string">&quot;name&quot;</span> <span class="hljs-attr">value</span>=<span class="hljs-string">&quot;Jack&quot;</span> /&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">bean</span>&gt;</span><br>  <br><span class="hljs-tag">&lt;<span class="hljs-name">bean</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;address&quot;</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;org.example.point2.Address&quot;</span>&gt;</span><span class="hljs-comment">&lt;!--这个id名称--&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">property</span> <span class="hljs-attr">name</span>=<span class="hljs-string">&quot;addressId&quot;</span> <span class="hljs-attr">value</span>=<span class="hljs-string">&quot;1&quot;</span> /&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">property</span> <span class="hljs-attr">name</span>=<span class="hljs-string">&quot;addressName&quot;</span> <span class="hljs-attr">value</span>=<span class="hljs-string">&quot;河北&quot;</span> /&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">bean</span>&gt;</span><br></code></pre></td></tr></table></figure>
-<p>这个例子中，User对象并没有赋值address的语句，但是因为User中定义Address引用类型变量的名称和id="address"一样，所以会自动赋值给User的address变量。</p>
-<p>运行过程：spring在读取属性autowire后，知道按名字来注入，会先去User中拿到引用类型的名称address，然后和配置文件中所有bean的id比对，找到id一致的，并且数据类型相同，那么赋值给User的address引用变量。</p></li>
+<p>  这个例子中，User对象并没有赋值address的语句，但是因为User中定义Address引用类型变量的名称和id=”address”一样，所以会自动赋值给User的address变量。</p>
+<p>  运行过程：spring在读取属性autowire后，知道按名字来注入，会先去User中拿到引用类型的名称address，然后和配置文件中所有bean的id比对，找到id一致的，并且数据类型相同，那么赋值给User的address引用变量。</p>
+</li>
 <li><p>byType(按类型注入)：<strong>Java类引用类型的数据类型和配置文件中bean标签的class属性是同源关系，这样的bean就可以赋值给引用类型</strong></p>
-<p>同源：</p>
+<p>  同源：</p>
 <ul>
-<li><p>java类中引用类型和bean的class一致</p></li>
-<li><p>java类中引用类型和bean的class是父子类关系</p></li>
+<li><p>java类中引用类型和bean的class一致</p>
+</li>
+<li><p>java类中引用类型和bean的class是父子类关系</p>
+</li>
 <li><p>java类中引用类型和bean的class是接口和实现类关系</p>
 <p>语法：</p>
 <figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">bean</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;&quot;</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;&quot;</span> <span class="hljs-attr">autowire</span>=<span class="hljs-string">&quot;byType&quot;</span>&gt;</span><br>  简单类型赋值<br><span class="hljs-tag">&lt;/<span class="hljs-name">bean</span>&gt;</span><br></code></pre></td></tr></table></figure>
 <p>例子：</p>
 <figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">bean</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;user&quot;</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;org.example.point2.User&quot;</span> <span class="hljs-attr">autowire</span>=<span class="hljs-string">&quot;byType&quot;</span> &gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">property</span> <span class="hljs-attr">name</span>=<span class="hljs-string">&quot;id&quot;</span> <span class="hljs-attr">value</span>=<span class="hljs-string">&quot;21&quot;</span>/&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">property</span> <span class="hljs-attr">name</span>=<span class="hljs-string">&quot;name&quot;</span> <span class="hljs-attr">value</span>=<span class="hljs-string">&quot;Jack&quot;</span> /&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">bean</span>&gt;</span><br>    <br><span class="hljs-tag">&lt;<span class="hljs-name">bean</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;Myaddress&quot;</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;org.example.point2.Address&quot;</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">property</span> <span class="hljs-attr">name</span>=<span class="hljs-string">&quot;addressId&quot;</span> <span class="hljs-attr">value</span>=<span class="hljs-string">&quot;1&quot;</span> /&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">property</span> <span class="hljs-attr">name</span>=<span class="hljs-string">&quot;addressName&quot;</span> <span class="hljs-attr">value</span>=<span class="hljs-string">&quot;河北&quot;</span> /&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">bean</span>&gt;</span><br></code></pre></td></tr></table></figure>
 <p>可以看出bean的id值并不是address，但是因为是按类型注入，所以也可以实现自动赋值。</p>
-<p><strong>注意：在按类型注入时，bean只能有一个符合条件的，多于一个就会出现错误。</strong></p></li>
-</ul></li>
+<p><strong>注意：在按类型注入时，bean只能有一个符合条件的，多于一个就会出现错误。</strong></p>
+</li>
+</ul>
+</li>
 </ul>
 
             </div>
