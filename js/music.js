@@ -12,7 +12,7 @@ const ap = new APlayer({
     }]
 });
 
-$(".nav-link")[5].click(function() {
-	alert("音乐播放");
+document.getElementsByClassName("nav-link")[5].onclick = function() {
+	lert("音乐播放");
 	ap.play();
-})
+}
