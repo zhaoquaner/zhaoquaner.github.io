@@ -1,10 +1,9 @@
 const ap = new APlayer({
     container: document.getElementById('aplayer'),
-    fixed: true,
-    autoplay:true,
+    mini: true,
+    autoplay:false,
     loop:'one',
    	volume:0.2,
-   	theme: 'rgba(0, 153, 145, 0);',
     audio: [{
         name: 'Last Dance',
         artist: 'BIGBANG',
