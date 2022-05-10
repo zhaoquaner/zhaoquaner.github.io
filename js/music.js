@@ -12,7 +12,18 @@ const ap = new APlayer({
     }]
 });
 
+let isPlaying = false;
+
 document.getElementsByClassName("nav-link")[5].onclick = function() {
-	alert("音乐播放");
-	ap.play();
+	if(!isPlaying) {
+		ap.play();
+		isPlaying = true;
+		this.innerText = "暂停";
+	} else {
+		p.pause();
+		isPlaying = false;
+		this.innerText = "播放";
+	}
+
+
 }
