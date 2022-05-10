@@ -16,22 +16,23 @@
   <meta name="author" content="ZhaoXin">
   <meta name="keywords" content="">
   
-    <meta name="description" content="关于我现在大四，就读于重庆邮电大学-计算机学院，准备考研。主要学习后端技术。(前端好难，所以界面才那么简单)。 写这个博客最主要为了练习写一个项目，挑来挑去还是觉得博客要简单一些。写的过程中，也没有觉得很简单。 总归，最后还是把它完成了，虽然写到最后真的要吐了，代码写的又臭又长，自己都看不下去。 还有很多想要实现的功能，奈何能力有限，放弃了。 平时，不爱运动，喜欢看电影，睡觉这种大部分人也都喜欢的">
-<meta property="og:type" content="website">
-<meta property="og:title" content="关于">
-<meta property="og:url" content="https://zhaoquaner.github.io/about/index.html">
+    <meta name="description" content="1-Spring简述Spring全家桶有很多东西，包括Spring Boot、Spring Cloud、Spring MVC等等。Spring Framework是最基本的Spring 框架。 Spring帮助开发人员创建对象、管理对象之间的关系。spring的核心技术IOC、AOP，能实现模块之间，类之间的解耦合。 简单来说，IOC解决的是 对象管理和对象依赖的问题。 AOP解决的是 非业务代码">
+<meta property="og:type" content="article">
+<meta property="og:title" content="1-Spring简述">
+<meta property="og:url" content="https://zhaoquaner.github.io/2022/05/10/Spring/1-Spring%E7%AE%80%E8%BF%B0/index.html">
 <meta property="og:site_name" content="赵圈儿的博客">
-<meta property="og:description" content="关于我现在大四，就读于重庆邮电大学-计算机学院，准备考研。主要学习后端技术。(前端好难，所以界面才那么简单)。 写这个博客最主要为了练习写一个项目，挑来挑去还是觉得博客要简单一些。写的过程中，也没有觉得很简单。 总归，最后还是把它完成了，虽然写到最后真的要吐了，代码写的又臭又长，自己都看不下去。 还有很多想要实现的功能，奈何能力有限，放弃了。 平时，不爱运动，喜欢看电影，睡觉这种大部分人也都喜欢的">
+<meta property="og:description" content="1-Spring简述Spring全家桶有很多东西，包括Spring Boot、Spring Cloud、Spring MVC等等。Spring Framework是最基本的Spring 框架。 Spring帮助开发人员创建对象、管理对象之间的关系。spring的核心技术IOC、AOP，能实现模块之间，类之间的解耦合。 简单来说，IOC解决的是 对象管理和对象依赖的问题。 AOP解决的是 非业务代码">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://crayon-1302863897.cos.ap-beijing.myqcloud.com/image/21%E5%B9%B403%E6%9C%8822%E6%97%A510%E6%97%B630%E5%88%8627%E7%A7%92.gif">
-<meta property="article:published_time" content="2022-05-09T12:37:05.000Z">
-<meta property="article:modified_time" content="2022-05-09T12:44:40.339Z">
+<meta property="article:published_time" content="2022-05-09T16:00:00.000Z">
+<meta property="article:modified_time" content="2022-05-10T04:59:08.436Z">
 <meta property="article:author" content="ZhaoXin">
+<meta property="article:tag" content="Spring">
+<meta property="article:tag" content="后端">
+<meta property="article:tag" content="JavaWeb">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://crayon-1302863897.cos.ap-beijing.myqcloud.com/image/21%E5%B9%B403%E6%9C%8822%E6%97%A510%E6%97%B630%E5%88%8627%E7%A7%92.gif">
   
   
-  <title>关于 - 赵圈儿的博客</title>
+  <title>1-Spring简述 - 赵圈儿的博客</title>
 
   <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/css/bootstrap.min.css" />
 
@@ -76,7 +77,7 @@
 
 
 <body>
-  <header style="height: 60vh;">
+  <header style="height: 70vh;">
     <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
   <div class="container">
     <a class="navbar-brand" href="/">
@@ -177,9 +178,44 @@
       <div class="full-bg-img">
         <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
           <div class="page-header text-center fade-in-up">
-            <span class="h2" id="subtitle" title="关于">
+            <span class="h2" id="subtitle" title="1-Spring简述">
               
             </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2022-05-10 00:00" pubdate>
+        2022/5/10
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      448 字
+    </span>
+  
+
+  
+
+  
+  
+    
+      <!-- LeanCloud 统计文章PV -->
+      <span id="leancloud-page-views-container" class="post-meta" style="display: none">
+        <i class="iconfont icon-eye" aria-hidden="true"></i>
+        <span id="leancloud-page-views"></span> 次
+      </span>
+    
+  
+</div>
 
             
           </div>
@@ -192,69 +228,90 @@
 
   <main>
     
-      <div class="container nopadding-x-md">
-        <div class="py-5" id="board"
-          >
-          
-            <div class="about-avatar">
-              <img src="/img/avatar.png" srcset="/img/loading.gif" lazyload
-                   class="img-fluid" alt="avatar">
-            </div>
-          
-          <div class="container">
-            <div class="row">
-              <div class="col-12 col-md-10 m-auto">
-                
+      
 
-<div class="text-center">
-  <div class="about-info">
-    <div class="about-name">关于我</div>
-    <div class="about-intro">喜欢瞎鼓捣</div>
-    <div class="about-icons">
-      
-        
-        
-        
-        <a href=https://github.com/zhaoquaner class="
-           hint--bottom hint--rounded"
-           aria-label=GitHub
-           target="_blank"
-        >
-          <i class="iconfont icon-github-fill" aria-hidden="true"></i>
-          
-        </a>
-      
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">1-Spring简述</h1>
+            
+            <div class="markdown-body">
+              <h1 id="1-Spring简述"><a href="#1-Spring简述" class="headerlink" title="1-Spring简述"></a>1-Spring简述</h1><p>Spring全家桶有很多东西，包括Spring Boot、Spring Cloud、Spring MVC等等。Spring Framework是最基本的Spring 框架。</p>
+<p>Spring帮助开发人员创建对象、管理对象之间的关系。spring的核心技术IOC、AOP，能实现模块之间，类之间的解耦合。</p>
+<p>简单来说，IOC解决的是 对象管理和对象依赖的问题。</p>
+<p>AOP解决的是 非业务代码抽取的问题。</p>
+<p>Spring分为六大模块：</p>
+<ul>
+<li>Spring Core：核心功能，IOC容器，解决对象创建和依赖关系</li>
+<li>Spring Web：Spring对web模块的支持<ul>
+<li>可以和struts整合，让struts的action创建交给spring</li>
+<li>spring mvc模式</li>
+</ul>
+</li>
+<li>Spring DAO：Spring对JDBC操作对的支持</li>
+<li>Spring ORM：spring对ORM的支持<ul>
+<li>既可以和Hibernate整合</li>
+<li>也可以使用spring的Hibernate操作的封装</li>
+</ul>
+</li>
+<li>Spring AOP：切面编程</li>
+<li>SpringEE：spring对JavaEE其他模块的支持</li>
+</ul>
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/categories/programming/">开发</a>
+                    
+                  </div>
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/spring/">Spring</a>
+                    
+                      <a class="hover-with-bg" href="/tags/backend/">后端</a>
+                    
+                      <a class="hover-with-bg" href="/tags/javaweb/">JavaWeb</a>
+                    
+                  </div>
+                
+              </div>
+              
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
     </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
   </div>
 </div>
 
-<article class="about-content page-content mt-5">
-  <div class="markdown-body">
-    <h1 id="关于我"><a href="#关于我" class="headerlink" title="关于我"></a>关于我</h1><p>现在大四，就读于重庆邮电大学-计算机学院，准备考研。主要学习后端技术。(前端好难，所以界面才那么简单)。</p>
-<p>写这个博客最主要为了练习写一个项目，挑来挑去还是觉得博客要简单一些。写的过程中，也没有觉得很简单。</p>
-<p>总归，最后还是把它完成了，虽然写到最后真的要吐了，代码写的又臭又长，自己都看不下去。</p>
-<p>还有很多想要实现的功能，奈何能力有限，放弃了。</p>
-<p>平时，不爱运动，喜欢看电影，睡觉这种大部分人也都喜欢的活动。偶尔看看小说，比较喜欢推理、武侠小说。</p>
-<p>最喜欢东野圭吾、阿婆。</p>
-<p>暂时喜欢编程，虽然过程比较痛苦，但看到一个个功能实现的时候，还是很有成就感的。</p>
-<p>联系方式</p>
-<ul>
-<li>邮箱：<a href="mailto:&#122;&#x78;&#x31;&#53;&#50;&#x32;&#50;&#x30;&#x32;&#x34;&#x31;&#x37;&#64;&#49;&#x36;&#x33;&#x2e;&#99;&#111;&#109;">&#122;&#x78;&#x31;&#53;&#50;&#x32;&#50;&#x30;&#x32;&#x34;&#x31;&#x37;&#64;&#49;&#x36;&#x33;&#x2e;&#99;&#111;&#109;</a></li>
-<li>Github：<a target="_blank" rel="noopener" href="https://github.com/zhaoquaner">https://github.com/zhaoquaner</a></li>
-</ul>
-<p>行，就这么些。</p>
-<p><img src="https://crayon-1302863897.cos.ap-beijing.myqcloud.com/image/21%E5%B9%B403%E6%9C%8822%E6%97%A510%E6%97%B630%E5%88%8627%E7%A7%92.gif" srcset="/img/loading.gif" lazyload></p>
+<!-- Custom -->
 
-  </div>
 
-  
-</article>
-
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
     
 
     
