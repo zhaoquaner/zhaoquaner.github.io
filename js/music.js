@@ -11,3 +11,7 @@ const ap = new APlayer({
         cover: '',
     }]
 });
+
+$(".nav-link")[5].click(functions() {
+	ap.play();
+})

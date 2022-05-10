@@ -16,12 +16,12 @@
   <meta name="author" content="ZhaoXin">
   <meta name="keywords" content="">
   
-    <meta name="description" content="5-基于注解的DI实现通过注解来配置信息是为了简化IOC容器的配置，注解可以把对象添加到IOC容器中、处理对象依赖关系。 使用注解步骤 加入maven的依赖spring-context，加入的同时，也加入了spring-aop的依赖，使用注解必须要使用spring-aop依赖 在类中加入spring的依赖 在spring配置文件中，加入一个组件扫描器的标签，来说明注解在项目中的位置  加入组件扫描">
+    <meta name="description" content="5-基于注解的DI实现 通过注解来配置信息是为了简化IOC容器的配置，注解可以把对象添加到IOC容器中、处理对象依赖关系。 使用注解步骤  加入maven的依赖spring-context，加入的同时，也加入了spring-aop的依赖，使用注解必须要使用spring-aop依赖 在类中加入spring的依赖 在spring配置文件中，加入一个组件扫描器的标签，来说明注解在项目中的位置">
 <meta property="og:type" content="article">
 <meta property="og:title" content="5-基于注解的DI实现">
 <meta property="og:url" content="https://zhaoquaner.github.io/2022/05/10/Spring/5-%E5%9F%BA%E4%BA%8E%E6%B3%A8%E8%A7%A3%E7%9A%84DI%E5%AE%9E%E7%8E%B0/index.html">
 <meta property="og:site_name" content="赵圈儿的博客">
-<meta property="og:description" content="5-基于注解的DI实现通过注解来配置信息是为了简化IOC容器的配置，注解可以把对象添加到IOC容器中、处理对象依赖关系。 使用注解步骤 加入maven的依赖spring-context，加入的同时，也加入了spring-aop的依赖，使用注解必须要使用spring-aop依赖 在类中加入spring的依赖 在spring配置文件中，加入一个组件扫描器的标签，来说明注解在项目中的位置  加入组件扫描">
+<meta property="og:description" content="5-基于注解的DI实现 通过注解来配置信息是为了简化IOC容器的配置，注解可以把对象添加到IOC容器中、处理对象依赖关系。 使用注解步骤  加入maven的依赖spring-context，加入的同时，也加入了spring-aop的依赖，使用注解必须要使用spring-aop依赖 在类中加入spring的依赖 在spring配置文件中，加入一个组件扫描器的标签，来说明注解在项目中的位置">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2022-05-09T16:00:00.000Z">
 <meta property="article:modified_time" content="2022-05-10T04:55:37.117Z">
@@ -159,17 +159,6 @@
           
         
           
-          
-          
-          
-            <li class="nav-item">
-              <a class="nav-link" href="/music/">
-                <i class="iconfont icon-music"></i>
-                播放
-              </a>
-            </li>
-          
-        
         
           <li class="nav-item" id="search-btn">
             <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
@@ -215,7 +204,7 @@
   
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      4.2k 字
+      4.1k 字
     </span>
   
 
@@ -257,65 +246,92 @@
             <h1 style="display: none">5-基于注解的DI实现</h1>
             
             <div class="markdown-body">
-              <h1 id="5-基于注解的DI实现"><a href="#5-基于注解的DI实现" class="headerlink" title="5-基于注解的DI实现"></a>5-基于注解的DI实现</h1><p>通过注解来配置信息是为了简化IOC容器的配置，注解可以把对象添加到IOC容器中、处理对象依赖关系。</p>
-<h2 id="使用注解步骤"><a href="#使用注解步骤" class="headerlink" title="使用注解步骤"></a>使用注解步骤</h2><ol>
+              <h1 id="基于注解的di实现">5-基于注解的DI实现</h1>
+<p>通过注解来配置信息是为了简化IOC容器的配置，注解可以把对象添加到IOC容器中、处理对象依赖关系。</p>
+<h2 id="使用注解步骤">使用注解步骤</h2>
+<ol type="1">
 <li>加入maven的依赖spring-context，加入的同时，也加入了spring-aop的依赖，使用注解必须要使用spring-aop依赖</li>
 <li>在类中加入spring的依赖</li>
 <li>在spring配置文件中，加入一个组件扫描器的标签，来说明注解在项目中的位置</li>
 </ol>
-<h2 id="加入组件扫描器"><a href="#加入组件扫描器" class="headerlink" title="加入组件扫描器"></a>加入组件扫描器</h2><p>在配置文件中加入组件扫描器的标签 <code>&lt;context:component-scan base-package=&quot;&quot; /&gt;</code></p>
+<h2 id="加入组件扫描器">加入组件扫描器</h2>
+<p>在配置文件中加入组件扫描器的标签 <code>&lt;context:component-scan
+base-package="" /&gt;</code></p>
 <p>属性：base-package，指定注解要扫描的包名</p>
 <p>扫描器的工作方式：spring会扫描遍历base-package指定的包，递归的找到所有类中的注解，按照注解的功能创建对象或者给属性赋值。</p>
-<p>context是指对应的命名空间，<code>xmlns:context=&quot;http://www.springframework.org/schema/context&quot;</code>。</p>
-<h3 id="指定多个包的方式"><a href="#指定多个包的方式" class="headerlink" title="指定多个包的方式"></a>指定多个包的方式</h3><p>有三种方式</p>
-<ol>
-<li>使用多个<code>&lt;context:component-scan base-package=&quot;&quot; /&gt;</code>语句，指定不同的包</li>
-<li>使用分隔符; 或 ,分割多个包名，例如<code>&lt;context:component-scan base-package=&quot;org.example.package1;org.example.package2&quot;</code></li>
+<p>context是指对应的命名空间，<code>xmlns:context="http://www.springframework.org/schema/context"</code>。</p>
+<h3 id="指定多个包的方式">指定多个包的方式</h3>
+<p>有三种方式</p>
+<ol type="1">
+<li>使用多个<code>&lt;context:component-scan base-package=""
+/&gt;</code>语句，指定不同的包</li>
+<li>使用分隔符; 或 ,分割多个包名，例如<code>&lt;context:component-scan
+base-package="org.example.package1;org.example.package2"</code></li>
 <li>指定需要扫描的所有包的父包，例如package1和package2的父包是org.example，那么就直接指定这个包即可</li>
 </ol>
-<h2 id="主要学习的注解"><a href="#主要学习的注解" class="headerlink" title="主要学习的注解"></a>主要学习的注解</h2><p>有以下几个：</p>
+<h2 id="主要学习的注解">主要学习的注解</h2>
+<p>有以下几个：</p>
 <ul>
-<li>@Component</li>
-<li>@Respotory</li>
-<li>@Service</li>
-<li>@Controller</li>
-<li>@Value</li>
-<li>@Autowired</li>
-<li>@Resource</li>
+<li><span class="citation" data-cites="Component">@Component</span></li>
+<li><span class="citation" data-cites="Respotory">@Respotory</span></li>
+<li><span class="citation" data-cites="Service">@Service</span></li>
+<li><span class="citation"
+data-cites="Controller">@Controller</span></li>
+<li><span class="citation" data-cites="Value">@Value</span></li>
+<li><span class="citation" data-cites="Autowired">@Autowired</span></li>
+<li><span class="citation" data-cites="Resource">@Resource</span></li>
 </ul>
-<h3 id="Component"><a href="#Component" class="headerlink" title="@Component"></a>@Component</h3><p>这个注解用来创建对象，等同于标签bean，</p>
+<h3 id="component"><span class="citation"
+data-cites="Component">@Component</span></h3>
+<p>这个注解用来创建对象，等同于标签bean，</p>
 <p>属性：value，表示这个对象的名称，是唯一的。也可以省略value，直接写对象名称，必须加引号</p>
 <p>如果不写这个属性，那么spring会使用默认的对象名称：类名的首字母小写，例如类名为Student，那么默认名称为student</p>
 <p>位置：在类的上面</p>
 <p>例子：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><div class="code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></div></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">package</span> org.example.point1;<br><br><span class="hljs-keyword">import</span> org.springframework.stereotype.Component;<br><br><span class="hljs-meta">@Component(value = &quot;myStudent&quot;)</span> <span class="hljs-comment">//指定对象的唯一名称</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">Student</span> &#123;<br><br>    <span class="hljs-keyword">private</span> String name;<br>    <span class="hljs-keyword">private</span> Integer age;<br><br>    <span class="hljs-meta">@Override</span><br>    <span class="hljs-keyword">public</span> String <span class="hljs-title function_">toString</span><span class="hljs-params">()</span> &#123;<br>        <span class="hljs-keyword">return</span> <span class="hljs-string">&quot;Student&#123;&quot;</span> +<br>                <span class="hljs-string">&quot;name=&#x27;&quot;</span> + name + <span class="hljs-string">&#x27;\&#x27;&#x27;</span> +<br>                <span class="hljs-string">&quot;, age=&quot;</span> + age +<br>                <span class="hljs-string">&#x27;&#125;&#x27;</span>;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
-<h3 id="与-Component用法类似的三个注解"><a href="#与-Component用法类似的三个注解" class="headerlink" title="与@Component用法类似的三个注解"></a>与@Component用法类似的三个注解</h3><ol>
-<li>@Repository(用在持久层类上面)：放在DAO的实现类上面，表示创建DAO对象，DAO对象可以访问数据库</li>
-<li>@Service(用在业务层类上面)：放在service的实现类上面，创建service对象，该对象是做业务处理，有事务等功能</li>
-<li>@Controller(用在控制器上面)：放在控制器类上面，创建控制器对象，能够接受用户提交的参数，显示请求处理结果，如Servet</li>
+<h3
+id="与component用法类似的三个注解">与@Component用法类似的三个注解</h3>
+<ol type="1">
+<li><span class="citation"
+data-cites="Repository">@Repository</span>(用在持久层类上面)：放在DAO的实现类上面，表示创建DAO对象，DAO对象可以访问数据库</li>
+<li><span class="citation"
+data-cites="Service">@Service</span>(用在业务层类上面)：放在service的实现类上面，创建service对象，该对象是做业务处理，有事务等功能</li>
+<li><span class="citation"
+data-cites="Controller">@Controller</span>(用在控制器上面)：放在控制器类上面，创建控制器对象，能够接受用户提交的参数，显示请求处理结果，如Servet</li>
 </ol>
 <p>这三个注解和@Comonent的用法大致相同。都可以创建对象，但是这三个注解还有额外的功能。</p>
-<p>@Repository，@Service，@Controller是用来给项目对象分层的，它们可以赋予对象不同的角色。是比@Component的功能丰富的。</p>
+<p><span class="citation"
+data-cites="Repository">@Repository</span>，<span class="citation"
+data-cites="Service">@Service</span>，<span class="citation"
+data-cites="Controller是用来给项目对象分层的">@Controller是用来给项目对象分层的</span>，它们可以赋予对象不同的角色。是比@Component的功能丰富的。</p>
 <p>当一个类不是以上三个类型，或者不知道是不是这三个类，就可以使用@Component</p>
-<h3 id="Value-简单类型的赋值"><a href="#Value-简单类型的赋值" class="headerlink" title="@Value(简单类型的赋值)"></a>@Value(简单类型的赋值)</h3><p>用来给简单类型的属性赋值</p>
+<h3 id="value简单类型的赋值"><span class="citation"
+data-cites="Value">@Value</span>(简单类型的赋值)</h3>
+<p>用来给简单类型的属性赋值</p>
 <p>属性：value，String类型，表示简单类型的属性值。可不写value，直接写属性值。必须加引号</p>
-<p>位置： </p>
-<ol>
+<p>位置：</p>
+<ol type="1">
 <li>在属性定义上面，不需要set方法，推荐使用这种</li>
 <li>在set方法上面</li>
 </ol>
 <p>例子：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@Component</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">Student</span> &#123;<br><br>    <span class="hljs-meta">@Value(&quot;Jack&quot;)</span><br>    <span class="hljs-keyword">private</span> String name;<br>    <span class="hljs-meta">@Value(&quot;21&quot;)</span><br>    <span class="hljs-keyword">private</span> Integer age;<br><br>    <span class="hljs-meta">@Override</span><br>    <span class="hljs-keyword">public</span> String <span class="hljs-title function_">toString</span><span class="hljs-params">()</span> &#123;<br>        <span class="hljs-keyword">return</span> <span class="hljs-string">&quot;Student&#123;&quot;</span> +<br>                <span class="hljs-string">&quot;name=&#x27;&quot;</span> + name + <span class="hljs-string">&#x27;\&#x27;&#x27;</span> +<br>                <span class="hljs-string">&quot;, age=&quot;</span> + age +<br>                <span class="hljs-string">&#x27;&#125;&#x27;</span>;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
 <p>当然也可以使用在set方法上，用的很少，不再举例了。</p>
-<h3 id="引用类型的赋值"><a href="#引用类型的赋值" class="headerlink" title="引用类型的赋值"></a>引用类型的赋值</h3><p>两个注解@Autowired和@Resource都可以给引用类型赋值。</p>
-<h4 id="Autowired"><a href="#Autowired" class="headerlink" title="@Autowired"></a>@Autowired</h4><p>实现引用类型的赋值，使用的是自动注入原理。支持byName、byType</p>
-<p>@Autowired默认使用的是byType自动注入。</p>
+<h3 id="引用类型的赋值">引用类型的赋值</h3>
+<p>两个注解@Autowired和<span class="citation"
+data-cites="Resource都可以给引用类型赋值">@Resource都可以给引用类型赋值</span>。</p>
+<h4 id="autowired"><span class="citation"
+data-cites="Autowired">@Autowired</span></h4>
+<p>实现引用类型的赋值，使用的是自动注入原理。支持byName、byType</p>
+<p><span class="citation"
+data-cites="Autowired默认使用的是byType自动注入">@Autowired默认使用的是byType自动注入</span>。</p>
 <p>属性：required，布尔类型，默认为true</p>
-<p>​            当required=ture：表示如果引用类型赋值失败，程序报错，并终止执行</p>
-<p>​            当required=false：表示如果引用类型赋值失败，程序正常运行，引用类型为null</p>
+<p>​ 当required=ture：表示如果引用类型赋值失败，程序报错，并终止执行</p>
+<p>​
+当required=false：表示如果引用类型赋值失败，程序正常运行，引用类型为null</p>
 <p><strong>推荐使用true。</strong></p>
 <p>位置：</p>
-<ol>
+<ol type="1">
 <li>在属性定义上面，无需set方法，推荐使用这个</li>
 <li>在set方法上面，很少使用</li>
 </ol>
@@ -324,29 +340,33 @@
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@Component(&quot;mySchool&quot;)</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">School</span> &#123;<br><br>    <span class="hljs-meta">@Value(&quot;清华大学&quot;)</span><br>    <span class="hljs-keyword">private</span> String name;<br>    <span class="hljs-meta">@Value(&quot;北京海淀区&quot;)</span><br>    <span class="hljs-keyword">private</span> String address;<br><br>    <span class="hljs-meta">@Override</span><br>    <span class="hljs-keyword">public</span> String <span class="hljs-title function_">toString</span><span class="hljs-params">()</span> &#123;<br>        <span class="hljs-keyword">return</span> <span class="hljs-string">&quot;School&#123;&quot;</span> +<br>                <span class="hljs-string">&quot;name=&#x27;&quot;</span> + name + <span class="hljs-string">&#x27;\&#x27;&#x27;</span> +<br>                <span class="hljs-string">&quot;, address=&#x27;&quot;</span> + address + <span class="hljs-string">&#x27;\&#x27;&#x27;</span> +<br>                <span class="hljs-string">&#x27;&#125;&#x27;</span>;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
 <p>Student的代码：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@Component</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">Student</span> &#123;<br><br>    <span class="hljs-meta">@Value(&quot;Jack&quot;)</span><br>    <span class="hljs-keyword">private</span> String name;<br>    <span class="hljs-meta">@Value(&quot;21&quot;)</span><br>    <span class="hljs-keyword">private</span> Integer age;<br>    <span class="hljs-meta">@Autowired</span> <span class="hljs-comment">//使用Autowired来进行引用类型注入</span><br>    <span class="hljs-keyword">private</span> School school;<br><br>    <span class="hljs-meta">@Override</span><br>    <span class="hljs-keyword">public</span> String <span class="hljs-title function_">toString</span><span class="hljs-params">()</span> &#123;<br>        <span class="hljs-keyword">return</span> <span class="hljs-string">&quot;Student&#123;&quot;</span> +<br>                <span class="hljs-string">&quot;name=&#x27;&quot;</span> + name + <span class="hljs-string">&#x27;\&#x27;&#x27;</span> +<br>                <span class="hljs-string">&quot;, age=&quot;</span> + age +<br>                <span class="hljs-string">&quot;, school=&quot;</span> + school +<br>                <span class="hljs-string">&#x27;&#125;&#x27;</span>;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
-<h5 id="使用byName方式"><a href="#使用byName方式" class="headerlink" title="使用byName方式"></a>使用byName方式</h5><p>如果要使用byName方式，那么还需要在属性上面加入@Qualifier(value=”bean的id”)：表示使用指定名称的bean完成赋值</p>
+<h5 id="使用byname方式">使用byName方式</h5>
+<p>如果要使用byName方式，那么还需要在属性上面加入@Qualifier(value="bean的id")：表示使用指定名称的bean完成赋值</p>
 <p>位置</p>
-<p>在上面代码@Autowired的上面或者下面加入<code>@Qualifier(value=&quot;mySchool&quot;)</code>，就可以实现byName方式赋值</p>
-<h4 id="Resource"><a href="#Resource" class="headerlink" title="@Resource"></a>@Resource</h4><p>来自jdk的注解，spring框架提供了对这个注解的功能支持，可以使用它给引用类型赋值</p>
+<p>在上面代码@Autowired的上面或者下面加入<code>@Qualifier(value="mySchool")</code>，就可以实现byName方式赋值</p>
+<h4 id="resource"><span class="citation"
+data-cites="Resource">@Resource</span></h4>
+<p>来自jdk的注解，spring框架提供了对这个注解的功能支持，可以使用它给引用类型赋值</p>
 <p>使用的也是自动注入原理，支持byName、byType，默认使用byName</p>
 <p>属性：name：当使用byName方法时，指定bean的id，<strong>name不能省略</strong>；使用byType方法，不需要这个属性</p>
 <p>位置：</p>
-<ol>
+<ol type="1">
 <li>在属性定义上面，无需set方法，推荐</li>
 <li>在set方法上面</li>
 </ol>
 <p><strong>注意：</strong></p>
 <ul>
-<li><p><strong>如果没有指定name属性，会使用byType；如果指定了name属性，那么使用byName，如果找不到，会报错</strong></p>
-</li>
-<li><p><strong>这个注解在javax包，也就是java的拓展包里，在java 11以后，jdk不再包括javax，所以需要在pom.xml中手动导入。</strong></p>
-</li>
+<li><p><strong>如果没有指定name属性，会使用byType；如果指定了name属性，那么使用byName，如果找不到，会报错</strong></p></li>
+<li><p><strong>这个注解在javax包，也就是java的拓展包里，在java
+11以后，jdk不再包括javax，所以需要在pom.xml中手动导入。</strong></p></li>
 </ul>
 <p>例子：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@Component</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">Student</span> &#123;<br><br>    <span class="hljs-meta">@Value(&quot;Jack&quot;)</span><br>    <span class="hljs-keyword">private</span> String name;<br>    <span class="hljs-meta">@Value(&quot;21&quot;)</span><br>    <span class="hljs-keyword">private</span> Integer age;<br>    <span class="hljs-meta">@Resource</span><br>    <span class="hljs-keyword">private</span> School school;<br><br>    <span class="hljs-meta">@Override</span><br>    <span class="hljs-keyword">public</span> String <span class="hljs-title function_">toString</span><span class="hljs-params">()</span> &#123;<br>        <span class="hljs-keyword">return</span> <span class="hljs-string">&quot;Student&#123;&quot;</span> +<br>                <span class="hljs-string">&quot;name=&#x27;&quot;</span> + name + <span class="hljs-string">&#x27;\&#x27;&#x27;</span> +<br>                <span class="hljs-string">&quot;, age=&quot;</span> + age +<br>                <span class="hljs-string">&quot;, school=&quot;</span> + school +<br>                <span class="hljs-string">&#x27;&#125;&#x27;</span>;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
-<p>可以看到，@Resource没有使用name属性，但是程序可以运行成功，就是因为byName失败后，自动使用byType赋值。</p>
-<p>​    </p>
-<h2 id="配置文件和注解两种方式"><a href="#配置文件和注解两种方式" class="headerlink" title="配置文件和注解两种方式"></a>配置文件和注解两种方式</h2><p>这两种方式都可以使用，但是更多的是使用注解。注解为主，配置文件为辅。</p>
+<p>可以看到，<span class="citation"
+data-cites="Resource没有使用name属性">@Resource没有使用name属性</span>，但是程序可以运行成功，就是因为byName失败后，自动使用byType赋值。</p>
+<p>​</p>
+<h2 id="配置文件和注解两种方式">配置文件和注解两种方式</h2>
+<p>这两种方式都可以使用，但是更多的是使用注解。注解为主，配置文件为辅。</p>
 <p>但是如果修改较多的话，那么就可以使用配置文件。</p>
 <p>如果不需要怎么改变修改的，就可以使用注解。</p>
 
