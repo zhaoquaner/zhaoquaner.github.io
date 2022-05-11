@@ -20,18 +20,18 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"zhaoquaner.github.io","root":"/","images":"/images","scheme":"Muse","darkmode":false,"version":"8.11.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
 
-    <meta name="description" content="在SpringBoot中有两种方法可以直接使用Servlet。当然一般都直接使用控制器类。 注解使用注解@WebServlet来标识该类是一个Servlet类可以被SpringBoot扫描到。 该注解有一个属性urlPatterns来表示该Servlet处理哪个或者哪些请求。 然后在主类Application上加上注解@ServletComponentScan(“包路径”)，使用SpringBoo">
+    <meta name="description" content="在SpringBoot中有两种方法可以直接使用Servlet。当然一般都直接使用控制器类。 注解 使用注解@WebServlet来标识该类是一个Servlet类可以被SpringBoot扫描到。 该注解有一个属性urlPatterns来表示该Servlet处理哪个或者哪些请求。 然后在主类Application上加上注解@ServletComponentScan(&quot;包路径&quot;)，使用Spri">
 <meta property="og:type" content="article">
 <meta property="og:title" content="9-SpringBoot使用Servlet">
 <meta property="og:url" content="https://zhaoquaner.github.io/2022/05/11/SpringBoot/9-SpringBoot%E4%BD%BF%E7%94%A8Servlet/index.html">
 <meta property="og:site_name" content="赵圈儿的博客">
-<meta property="og:description" content="在SpringBoot中有两种方法可以直接使用Servlet。当然一般都直接使用控制器类。 注解使用注解@WebServlet来标识该类是一个Servlet类可以被SpringBoot扫描到。 该注解有一个属性urlPatterns来表示该Servlet处理哪个或者哪些请求。 然后在主类Application上加上注解@ServletComponentScan(“包路径”)，使用SpringBoo">
+<meta property="og:description" content="在SpringBoot中有两种方法可以直接使用Servlet。当然一般都直接使用控制器类。 注解 使用注解@WebServlet来标识该类是一个Servlet类可以被SpringBoot扫描到。 该注解有一个属性urlPatterns来表示该Servlet处理哪个或者哪些请求。 然后在主类Application上加上注解@ServletComponentScan(&quot;包路径&quot;)，使用Spri">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2022-05-11T06:14:39.000Z">
 <meta property="article:modified_time" content="2022-05-11T09:01:14.791Z">
 <meta property="article:author" content="ZhaoXin">
-<meta property="article:tag" content="后端">
 <meta property="article:tag" content="JavaWeb">
+<meta property="article:tag" content="后端">
 <meta property="article:tag" content="SpringBoot">
 <meta name="twitter:card" content="summary">
 
@@ -231,24 +231,31 @@
     
     <div class="post-body" itemprop="articleBody">
         <p>在SpringBoot中有两种方法可以直接使用Servlet。当然一般都直接使用控制器类。</p>
-<h2 id="注解"><a href="#注解" class="headerlink" title="注解"></a>注解</h2><p>使用注解<strong>@WebServlet</strong>来标识该类是一个Servlet类可以被SpringBoot扫描到。</p>
+<h2 id="注解">注解</h2>
+<p>使用注解<strong><span class="citation"
+data-cites="WebServlet">@WebServlet</span></strong>来标识该类是一个Servlet类可以被SpringBoot扫描到。</p>
 <p>该注解有一个属性urlPatterns来表示该Servlet处理哪个或者哪些请求。</p>
-<p>然后在主类Application上加上注解<strong>@ServletComponentScan(“包路径”)</strong>，使用SpringBoot能够扫描到该Servlet。</p>
-<p>例子：<br>创建一个Servlet类，继承HttpServlet。</p>
+<p>然后在主类Application上加上注解<strong><span class="citation"
+data-cites="ServletComponentScan">@ServletComponentScan</span>("包路径")</strong>，使用SpringBoot能够扫描到该Servlet。</p>
+<p>例子： 创建一个Servlet类，继承HttpServlet。</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@WebServlet(&quot;/springboot/sayHello&quot;)</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">MyServlet</span> <span class="keyword">extends</span> <span class="title class_">HttpServlet</span> &#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="type">long</span> <span class="variable">serialVersionUID</span> <span class="operator">=</span> -<span class="number">5556813722982445881L</span>;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">protected</span> <span class="keyword">void</span> <span class="title function_">doGet</span><span class="params">(HttpServletRequest req, HttpServletResponse resp)</span> <span class="keyword">throws</span> ServletException, IOException &#123;</span><br><span class="line">        <span class="type">PrintWriter</span> <span class="variable">pw</span> <span class="operator">=</span> resp.getWriter();</span><br><span class="line">        pw.println(<span class="string">&quot;Hello World!&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">protected</span> <span class="keyword">void</span> <span class="title function_">doPost</span><span class="params">(HttpServletRequest req, HttpServletResponse resp)</span> <span class="keyword">throws</span> ServletException, IOException &#123;</span><br><span class="line">        <span class="type">PrintWriter</span> <span class="variable">pw</span> <span class="operator">=</span> resp.getWriter();</span><br><span class="line">        pw.println(<span class="string">&quot;Hello World!&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>然后在主类上加上注解<strong>@ServletComponentScan(“包路径”)</strong>。</p>
+<p>然后在主类上加上注解<strong><span class="citation"
+data-cites="ServletComponentScan">@ServletComponentScan</span>("包路径")</strong>。</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@ServletComponentScan(basePackages = &quot;com.example.demo.controller&quot;)</span></span><br><span class="line"><span class="meta">@SpringBootApplication</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">DemoApplication</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">        SpringApplication.run(DemoApplication.class, args);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>就可以了。</p>
-<h2 id="配置类"><a href="#配置类" class="headerlink" title="配置类"></a>配置类</h2><p>第二种方式是使用配置类。</p>
+<h2 id="配置类">配置类</h2>
+<p>第二种方式是使用配置类。</p>
 <p>首先创建一个关于注册Servlet的配置类。并在该类上加上注解@Configuration</p>
 <p>并创建一个方法：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Configuration</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">ServletConfig</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Bean</span></span><br><span class="line">    <span class="keyword">public</span> ServletRegistrationBean <span class="title function_">httpServletRegistrationBean</span><span class="params">()</span> &#123;</span><br><span class="line">        </span><br><span class="line">        <span class="type">ServletRegistrationBean</span> <span class="variable">servletRegistrationBean</span></span><br><span class="line">                <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">ServletRegistrationBean</span>(<span class="keyword">new</span> <span class="title class_">MyServlet</span>(),<span class="string">&quot;/springboot/sayHello&quot;</span>);</span><br><span class="line">        <span class="keyword">return</span> servletRegistrationBean;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p><strong>在方法上加上注解@Bean。该注解表示将该方法交给Spring容器管理。即该方法会产生一个对象，Spring容器将管理该对象。</strong></p>
-<p><strong>@Bean注解只能在@Configuration注解下使用。</strong></p>
+<p><strong><span class="citation"
+data-cites="Bean注解只能在">@Bean注解只能在</span><span class="citation"
+data-cites="Configuration注解下使用">@Configuration注解下使用</span>。</strong></p>
 <p><strong>SerlvetRegistrationBean表示一个Servlet注册类对象。</strong></p>
 <p><strong>在该方法中创建该对象，并将Servlet对象和该Servlet对象要处理的请求url作为参数。最后返回该对象。</strong></p>
 <p>当然直接使用Servlet很少用，一般直接用控制器。</p>
-<p>​    </p>
+<p>​</p>
 
     </div>
 
@@ -258,8 +265,8 @@
 
     <footer class="post-footer">
           <div class="post-tags">
-              <a href="/tags/backend/" rel="tag"># 后端</a>
               <a href="/tags/javaweb/" rel="tag"># JavaWeb</a>
+              <a href="/tags/backend/" rel="tag"># 后端</a>
               <a href="/tags/springboot/" rel="tag"># SpringBoot</a>
           </div>
 

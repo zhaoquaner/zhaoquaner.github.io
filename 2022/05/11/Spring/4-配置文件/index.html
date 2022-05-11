@@ -20,19 +20,19 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"zhaoquaner.github.io","root":"/","images":"/images","scheme":"Muse","darkmode":false,"version":"8.11.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
 
-    <meta name="description" content="4-配置文件在实际项目开发过程中，常使用多个配置文件。 多个配置文件的优势：  每个文件的大小比单独一个文件要小很多，读取保存快，效率高 避免多人协作，竞争带来的冲突。  配置文件分类有也很多种方式：  按模块分类，一个模块一个配置文件  按业务分类，例如数据访问层一个配置文件，服务层一个配置文件   . . .   包含关系的多配置文件当有多个配置文件时，可以使用一个总的配置文件来把这些配置文件">
+    <meta name="description" content="4-配置文件 在实际项目开发过程中，常使用多个配置文件。 多个配置文件的优势：  每个文件的大小比单独一个文件要小很多，读取保存快，效率高 避免多人协作，竞争带来的冲突。  配置文件分类有也很多种方式：  按模块分类，一个模块一个配置文件 按业务分类，例如数据访问层一个配置文件，服务层一个配置文件 . . .  包含关系的多配置文件 当有多个配置文件时，可以使用一个总的">
 <meta property="og:type" content="article">
 <meta property="og:title" content="4-配置文件">
 <meta property="og:url" content="https://zhaoquaner.github.io/2022/05/11/Spring/4-%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6/index.html">
 <meta property="og:site_name" content="赵圈儿的博客">
-<meta property="og:description" content="4-配置文件在实际项目开发过程中，常使用多个配置文件。 多个配置文件的优势：  每个文件的大小比单独一个文件要小很多，读取保存快，效率高 避免多人协作，竞争带来的冲突。  配置文件分类有也很多种方式：  按模块分类，一个模块一个配置文件  按业务分类，例如数据访问层一个配置文件，服务层一个配置文件   . . .   包含关系的多配置文件当有多个配置文件时，可以使用一个总的配置文件来把这些配置文件">
+<meta property="og:description" content="4-配置文件 在实际项目开发过程中，常使用多个配置文件。 多个配置文件的优势：  每个文件的大小比单独一个文件要小很多，读取保存快，效率高 避免多人协作，竞争带来的冲突。  配置文件分类有也很多种方式：  按模块分类，一个模块一个配置文件 按业务分类，例如数据访问层一个配置文件，服务层一个配置文件 . . .  包含关系的多配置文件 当有多个配置文件时，可以使用一个总的">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2022-05-11T05:57:04.000Z">
 <meta property="article:modified_time" content="2022-05-11T08:59:24.126Z">
 <meta property="article:author" content="ZhaoXin">
+<meta property="article:tag" content="JavaWeb">
 <meta property="article:tag" content="后端">
 <meta property="article:tag" content="Spring">
-<meta property="article:tag" content="JavaWeb">
 <meta name="twitter:card" content="summary">
 
 
@@ -111,7 +111,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#4-%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6"><span class="nav-number">1.</span> <span class="nav-text">4-配置文件</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8C%85%E5%90%AB%E5%85%B3%E7%B3%BB%E7%9A%84%E5%A4%9A%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6"><span class="nav-number">1.1.</span> <span class="nav-text">包含关系的多配置文件</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8%E9%80%9A%E9%85%8D%E7%AC%A6"><span class="nav-number">1.1.1.</span> <span class="nav-text">使用通配符</span></a></li></ol></li></ol></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6"><span class="nav-number">1.</span> <span class="nav-text">4-配置文件</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8C%85%E5%90%AB%E5%85%B3%E7%B3%BB%E7%9A%84%E5%A4%9A%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6"><span class="nav-number">1.1.</span> <span class="nav-text">包含关系的多配置文件</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8%E9%80%9A%E9%85%8D%E7%AC%A6"><span class="nav-number">1.1.1.</span> <span class="nav-text">使用通配符</span></a></li></ol></li></ol></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -230,7 +230,8 @@
     
     
     <div class="post-body" itemprop="articleBody">
-        <h1 id="4-配置文件"><a href="#4-配置文件" class="headerlink" title="4-配置文件"></a>4-配置文件</h1><p>在实际项目开发过程中，常使用多个配置文件。</p>
+        <h1 id="配置文件">4-配置文件</h1>
+<p>在实际项目开发过程中，常使用多个配置文件。</p>
 <p>多个配置文件的优势：</p>
 <ul>
 <li>每个文件的大小比单独一个文件要小很多，读取保存快，效率高</li>
@@ -238,25 +239,28 @@
 </ul>
 <p>配置文件分类有也很多种方式：</p>
 <ul>
-<li><p>按模块分类，一个模块一个配置文件</p>
-</li>
+<li><p>按模块分类，一个模块一个配置文件</p></li>
 <li><p>按业务分类，例如数据访问层一个配置文件，服务层一个配置文件</p>
-<p>  . . .</p>
-</li>
+<p>. . .</p></li>
 </ul>
-<h2 id="包含关系的多配置文件"><a href="#包含关系的多配置文件" class="headerlink" title="包含关系的多配置文件"></a>包含关系的多配置文件</h2><p>当有多个配置文件时，可以使用一个总的配置文件来把这些配置文件都包含起来。</p>
+<h2 id="包含关系的多配置文件">包含关系的多配置文件</h2>
+<p>当有多个配置文件时，可以使用一个总的配置文件来把这些配置文件都包含起来。</p>
 <p>例如有student.xml和teacher.xml配置文件，那么可以有一个total.xml文件来把前两个配置文件包含在一起</p>
 <p>语法为：</p>
 <figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">beans</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">import</span> <span class="attr">resource</span>=<span class="string">&quot;其他配置文件的路径&quot;</span> /&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">beans</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<p>关键词：”classpath:” 表示类路径，在spring的配置文件中要指定其他文件位置，需要使用classpath，告诉spring去哪里加载读取文件。</p>
+<p>关键词："classpath:"
+表示类路径，在spring的配置文件中要指定其他文件位置，需要使用classpath，告诉spring去哪里加载读取文件。</p>
 <p>主配置文件中一般不包含bean，它只是用来包含其他配置文件的。</p>
 <p>上面的例子可以这样写：</p>
 <figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">beans</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">import</span> <span class="attr">resource</span>=<span class="string">&quot;classpath:student.xml&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">import</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">import</span> <span class="attr">resource</span>=<span class="string">&quot;classpath:teacher.xml&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">import</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">beans</span>&gt;</span></span><br></pre></td></tr></table></figure>
 <p>当然实际上，其他配置文件会在其他目录里，这里只是演示。</p>
 <p>在使用ClassPathApplicationContext读取这个总配置文件时，就会将包含的两个配置文件一块读取。</p>
-<h3 id="使用通配符"><a href="#使用通配符" class="headerlink" title="使用通配符"></a>使用通配符</h3><p>在包含关系的配置文件中，可以使用通配符(*：表示任意字符)</p>
+<h3 id="使用通配符">使用通配符</h3>
+<p>在包含关系的配置文件中，可以使用通配符(*：表示任意字符)</p>
 <p>例如有两个配置文件：spring-student.xml、spring-teacher.xml</p>
-<p>那么在总配置文件中引入是可以这样写：<br><code>&lt;import resource=&quot;classpath:spring-*.xml&quot; /&gt;</code>，这样就可以将两个配置文件都导入</p>
+<p>那么在总配置文件中引入是可以这样写： <code>&lt;import
+resource="classpath:spring-*.xml"
+/&gt;</code>，这样就可以将两个配置文件都导入</p>
 <p><strong>注意：</strong></p>
 <ul>
 <li>总的配置文件名称不能包含在通配符的范围里面，否则会造成死循环。例如上面例子，总配置文件不能起名叫spring-*.xml</li>
@@ -271,9 +275,9 @@
 
     <footer class="post-footer">
           <div class="post-tags">
+              <a href="/tags/javaweb/" rel="tag"># JavaWeb</a>
               <a href="/tags/backend/" rel="tag"># 后端</a>
               <a href="/tags/spring/" rel="tag"># Spring</a>
-              <a href="/tags/javaweb/" rel="tag"># JavaWeb</a>
           </div>
 
         

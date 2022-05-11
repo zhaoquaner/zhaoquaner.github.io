@@ -20,12 +20,12 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"zhaoquaner.github.io","root":"/","images":"/images","scheme":"Muse","darkmode":false,"version":"8.11.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
 
-    <meta name="description" content="首先运行服务器端Redis：  查看是否连接到服务器：ping在客户端使用ping命令，可以查看客户端是否成功连接到服务端。如果成功连接到，会返回一个PONG  切换库命令：select dbRedis默认创建16个库(该配置可以在配置文件中修改)，redis默认使用第一个库。 使用 select db来切换其他库，db代表数据库编号，从0到15。  查看当前库中key的数目：dbsizedbsi">
+    <meta name="description" content="首先运行服务器端Redis：  查看是否连接到服务器：ping 在客户端使用ping命令，可以查看客户端是否成功连接到服务端。如果成功连接到，会返回一个PONG  切换库命令：select db Redis默认创建16个库(该配置可以在配置文件中修改)，redis默认使用第一个库。 使用 select db来切换其他库，db代表数据库编号，从0到15。  查看当前库中key的数">
 <meta property="og:type" content="article">
 <meta property="og:title" content="2-Redis基本操作命令">
 <meta property="og:url" content="https://zhaoquaner.github.io/2022/05/11/Redis/2-Redis%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C%E5%91%BD%E4%BB%A4/index.html">
 <meta property="og:site_name" content="赵圈儿的博客">
-<meta property="og:description" content="首先运行服务器端Redis：  查看是否连接到服务器：ping在客户端使用ping命令，可以查看客户端是否成功连接到服务端。如果成功连接到，会返回一个PONG  切换库命令：select dbRedis默认创建16个库(该配置可以在配置文件中修改)，redis默认使用第一个库。 使用 select db来切换其他库，db代表数据库编号，从0到15。  查看当前库中key的数目：dbsizedbsi">
+<meta property="og:description" content="首先运行服务器端Redis：  查看是否连接到服务器：ping 在客户端使用ping命令，可以查看客户端是否成功连接到服务端。如果成功连接到，会返回一个PONG  切换库命令：select db Redis默认创建16个库(该配置可以在配置文件中修改)，redis默认使用第一个库。 使用 select db来切换其他库，db代表数据库编号，从0到15。  查看当前库中key的数">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://crayon-1302863897.cos.ap-beijing.myqcloud.com/image/image-20210101130538411.png">
 <meta property="og:image" content="https://crayon-1302863897.cos.ap-beijing.myqcloud.com/image/image-20210101130645009.png">
@@ -35,9 +35,9 @@
 <meta property="article:published_time" content="2022-05-11T06:21:39.000Z">
 <meta property="article:modified_time" content="2022-05-11T08:59:49.481Z">
 <meta property="article:author" content="ZhaoXin">
+<meta property="article:tag" content="后端">
 <meta property="article:tag" content="Redis">
 <meta property="article:tag" content="缓存数据库">
-<meta property="article:tag" content="后端">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://crayon-1302863897.cos.ap-beijing.myqcloud.com/image/image-20210101130538411.png">
 
@@ -117,7 +117,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9F%A5%E7%9C%8B%E6%98%AF%E5%90%A6%E8%BF%9E%E6%8E%A5%E5%88%B0%E6%9C%8D%E5%8A%A1%E5%99%A8%EF%BC%9Aping"><span class="nav-number">1.</span> <span class="nav-text">查看是否连接到服务器：ping</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%88%87%E6%8D%A2%E5%BA%93%E5%91%BD%E4%BB%A4%EF%BC%9Aselect-db"><span class="nav-number">2.</span> <span class="nav-text">切换库命令：select db</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9F%A5%E7%9C%8B%E5%BD%93%E5%89%8D%E5%BA%93%E4%B8%ADkey%E7%9A%84%E6%95%B0%E7%9B%AE%EF%BC%9Adbsize"><span class="nav-number">3.</span> <span class="nav-text">查看当前库中key的数目：dbsize</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%88%A0%E9%99%A4%E5%BD%93%E5%89%8D%E5%BA%93%E6%95%B0%E6%8D%AE%EF%BC%9Aflushdb"><span class="nav-number">4.</span> <span class="nav-text">删除当前库数据：flushdb</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%80%80%E5%87%BA%EF%BC%9Aexit%E6%88%96quit"><span class="nav-number">5.</span> <span class="nav-text">退出：exit或quit</span></a></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9F%A5%E7%9C%8B%E6%98%AF%E5%90%A6%E8%BF%9E%E6%8E%A5%E5%88%B0%E6%9C%8D%E5%8A%A1%E5%99%A8ping"><span class="nav-number">1.</span> <span class="nav-text">查看是否连接到服务器：ping</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%88%87%E6%8D%A2%E5%BA%93%E5%91%BD%E4%BB%A4select-db"><span class="nav-number">2.</span> <span class="nav-text">切换库命令：select db</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9F%A5%E7%9C%8B%E5%BD%93%E5%89%8D%E5%BA%93%E4%B8%ADkey%E7%9A%84%E6%95%B0%E7%9B%AEdbsize"><span class="nav-number">3.</span> <span class="nav-text">查看当前库中key的数目：dbsize</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%88%A0%E9%99%A4%E5%BD%93%E5%89%8D%E5%BA%93%E6%95%B0%E6%8D%AEflushdb"><span class="nav-number">4.</span> <span class="nav-text">删除当前库数据：flushdb</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%80%80%E5%87%BAexit%E6%88%96quit"><span class="nav-number">5.</span> <span class="nav-text">退出：exit或quit</span></a></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -242,15 +242,21 @@
     <div class="post-body" itemprop="articleBody">
         <p>首先运行服务器端Redis：</p>
 <p><img src="https://crayon-1302863897.cos.ap-beijing.myqcloud.com/image/image-20210101130538411.png" alt="image-20210101130538411" style="zoom: 50%;" /></p>
-<h2 id="查看是否连接到服务器：ping"><a href="#查看是否连接到服务器：ping" class="headerlink" title="查看是否连接到服务器：ping"></a>查看是否连接到服务器：ping</h2><p>在客户端使用ping命令，可以查看客户端是否成功连接到服务端。如果成功连接到，会返回一个PONG</p>
+<h2 id="查看是否连接到服务器ping">查看是否连接到服务器：ping</h2>
+<p>在客户端使用ping命令，可以查看客户端是否成功连接到服务端。如果成功连接到，会返回一个PONG</p>
 <p><img src="https://crayon-1302863897.cos.ap-beijing.myqcloud.com/image/image-20210101130645009.png" alt="image-20210101130645009" style="zoom:67%;" /></p>
-<h2 id="切换库命令：select-db"><a href="#切换库命令：select-db" class="headerlink" title="切换库命令：select db"></a>切换库命令：select db</h2><p>Redis默认创建16个库(该配置可以在配置文件中修改)，redis默认使用第一个库。</p>
-<p>使用 <code>select db</code>来切换其他库，db代表数据库编号，从0到15。</p>
+<h2 id="切换库命令select-db">切换库命令：select db</h2>
+<p>Redis默认创建16个库(该配置可以在配置文件中修改)，redis默认使用第一个库。</p>
+<p>使用 <code>select
+db</code>来切换其他库，db代表数据库编号，从0到15。</p>
 <p><img src="https://crayon-1302863897.cos.ap-beijing.myqcloud.com/image/image-20210101130851545.png" alt="image-20210101130851545" style="zoom:80%;" /></p>
-<h2 id="查看当前库中key的数目：dbsize"><a href="#查看当前库中key的数目：dbsize" class="headerlink" title="查看当前库中key的数目：dbsize"></a>查看当前库中key的数目：dbsize</h2><p>dbsize可以返回当前库中，key的数目。</p>
+<h2 id="查看当前库中key的数目dbsize">查看当前库中key的数目：dbsize</h2>
+<p>dbsize可以返回当前库中，key的数目。</p>
 <p><img src="https://crayon-1302863897.cos.ap-beijing.myqcloud.com/image/image-20210101131011818.png" alt="image-20210101131011818" style="zoom:80%;" /></p>
-<h2 id="删除当前库数据：flushdb"><a href="#删除当前库数据：flushdb" class="headerlink" title="删除当前库数据：flushdb"></a>删除当前库数据：flushdb</h2><p><img src="https://crayon-1302863897.cos.ap-beijing.myqcloud.com/image/image-20210101131115509.png" alt="image-20210101131115509" style="zoom:80%;" /></p>
-<h2 id="退出：exit或quit"><a href="#退出：exit或quit" class="headerlink" title="退出：exit或quit"></a>退出：exit或quit</h2><p>注意，这个退出，只是指客户端退出，但是服务器端依然在运行。</p>
+<h2 id="删除当前库数据flushdb">删除当前库数据：flushdb</h2>
+<p><img src="https://crayon-1302863897.cos.ap-beijing.myqcloud.com/image/image-20210101131115509.png" alt="image-20210101131115509" style="zoom:80%;" /></p>
+<h2 id="退出exit或quit">退出：exit或quit</h2>
+<p>注意，这个退出，只是指客户端退出，但是服务器端依然在运行。</p>
 
     </div>
 
@@ -260,9 +266,9 @@
 
     <footer class="post-footer">
           <div class="post-tags">
+              <a href="/tags/backend/" rel="tag"># 后端</a>
               <a href="/tags/redis/" rel="tag"># Redis</a>
               <a href="/tags/cachedb/" rel="tag"># 缓存数据库</a>
-              <a href="/tags/backend/" rel="tag"># 后端</a>
           </div>
 
         

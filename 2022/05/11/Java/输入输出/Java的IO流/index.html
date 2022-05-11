@@ -20,12 +20,12 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"zhaoquaner.github.io","root":"/","images":"/images","scheme":"Muse","darkmode":false,"version":"8.11.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
 
-    <meta name="description" content="在Java中把不同的输入输出源(键盘，文件，网络连接等)抽象表述为”流“，通过流的方式允许Java程序使用相同方式访问不同的输入&#x2F;输出源。stream是从起源到接收的有序数据。 流的分类按照不同分类标准，可以将流分成不同类型。  按照流的流向来分，分为输入流和输出流  输入流：只能从中读取数据，不能写入数据 输出流：只能从中写入数据，不能读取数据 注： 此处输入输出是相对内存来说的，数据从硬盘或其">
+    <meta name="description" content="在Java中把不同的输入输出源(键盘，文件，网络连接等)抽象表述为”流“，通过流的方式允许Java程序使用相同方式访问不同的输入&#x2F;输出源。stream是从起源到接收的有序数据。 流的分类 按照不同分类标准，可以将流分成不同类型。  按照流的流向来分，分为输入流和输出流  输入流：只能从中读取数据，不能写入数据 输出流：只能从中写入数据，不能读取数据  注： 此处输入输出是相对内">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Java的IO流">
 <meta property="og:url" content="https://zhaoquaner.github.io/2022/05/11/Java/%E8%BE%93%E5%85%A5%E8%BE%93%E5%87%BA/Java%E7%9A%84IO%E6%B5%81/index.html">
 <meta property="og:site_name" content="赵圈儿的博客">
-<meta property="og:description" content="在Java中把不同的输入输出源(键盘，文件，网络连接等)抽象表述为”流“，通过流的方式允许Java程序使用相同方式访问不同的输入&#x2F;输出源。stream是从起源到接收的有序数据。 流的分类按照不同分类标准，可以将流分成不同类型。  按照流的流向来分，分为输入流和输出流  输入流：只能从中读取数据，不能写入数据 输出流：只能从中写入数据，不能读取数据 注： 此处输入输出是相对内存来说的，数据从硬盘或其">
+<meta property="og:description" content="在Java中把不同的输入输出源(键盘，文件，网络连接等)抽象表述为”流“，通过流的方式允许Java程序使用相同方式访问不同的输入&#x2F;输出源。stream是从起源到接收的有序数据。 流的分类 按照不同分类标准，可以将流分成不同类型。  按照流的流向来分，分为输入流和输出流  输入流：只能从中读取数据，不能写入数据 输出流：只能从中写入数据，不能读取数据  注： 此处输入输出是相对内">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2022-05-11T01:12:39.000Z">
 <meta property="article:modified_time" content="2022-05-11T08:54:06.322Z">
@@ -110,7 +110,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%B5%81%E7%9A%84%E5%88%86%E7%B1%BB"><span class="nav-number">1.</span> <span class="nav-text">流的分类</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%B5%81%E7%9A%84%E6%A6%82%E5%BF%B5%E6%A8%A1%E5%9E%8B"><span class="nav-number">2.</span> <span class="nav-text">流的概念模型</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AD%97%E8%8A%82%E6%B5%81%E5%92%8C%E5%AD%97%E7%AC%A6%E6%B5%81"><span class="nav-number">3.</span> <span class="nav-text">字节流和字符流</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#InputStream%E5%92%8CReader"><span class="nav-number">3.1.</span> <span class="nav-text">InputStream和Reader</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#OutputStream%E5%92%8CWriter"><span class="nav-number">3.2.</span> <span class="nav-text">OutputStream和Writer</span></a></li></ol></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%B5%81%E7%9A%84%E5%88%86%E7%B1%BB"><span class="nav-number">1.</span> <span class="nav-text">流的分类</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%B5%81%E7%9A%84%E6%A6%82%E5%BF%B5%E6%A8%A1%E5%9E%8B"><span class="nav-number">2.</span> <span class="nav-text">流的概念模型</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AD%97%E8%8A%82%E6%B5%81%E5%92%8C%E5%AD%97%E7%AC%A6%E6%B5%81"><span class="nav-number">3.</span> <span class="nav-text">字节流和字符流</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#inputstream%E5%92%8Creader"><span class="nav-number">3.1.</span> <span class="nav-text">InputStream和Reader</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#outputstream%E5%92%8Cwriter"><span class="nav-number">3.2.</span> <span class="nav-text">OutputStream和Writer</span></a></li></ol></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -230,41 +230,34 @@
     
     <div class="post-body" itemprop="articleBody">
         <p>在Java中把不同的输入输出源(键盘，文件，网络连接等)抽象表述为”流“，通过流的方式允许Java程序使用相同方式访问不同的输入/输出源。stream是从起源到接收的有序数据。</p>
-<h2 id="流的分类"><a href="#流的分类" class="headerlink" title="流的分类"></a>流的分类</h2><p>按照不同分类标准，可以将流分成不同类型。</p>
-<ol>
+<h2 id="流的分类">流的分类</h2>
+<p>按照不同分类标准，可以将流分成不同类型。</p>
+<ol type="1">
 <li><p>按照流的流向来分，分为输入流和输出流</p>
-<ol>
+<ol type="1">
 <li>输入流：只能从中读取数据，不能写入数据</li>
-<li><p>输出流：只能从中写入数据，不能读取数据</p>
+<li>输出流：只能从中写入数据，不能读取数据</li>
+</ol>
 <p><strong>注</strong>：</p>
 <p>此处输入输出是相对内存来说的，数据从硬盘或其他设备到内存是输入，从内存到其他设备是输出。</p>
-</li>
-</ol>
-</li>
-</ol>
-<pre><code>Java的输入流主要由InputStream和Reader作为基类，输出流由OutputStream和Writer作为基类。它们都是抽象基类，无法直接创建实例。
-</code></pre><ol>
+<p>Java的输入流主要由InputStream和Reader作为基类，输出流由OutputStream和Writer作为基类。它们都是抽象基类，无法直接创建实例。</p></li>
 <li><p>按照流的操作数据单元不同，分为字符流和字节流</p>
-<ol>
+<ol type="1">
 <li>字节流：操作的数据单元是8位的字节</li>
-<li><p>字符流：操作的数据单元是16位的字符</p>
-<p>除了操作数据单元不同，字符流和字节流的用法几乎一样<br>字节流主要由InputStream和OutputStream作为基类，而字符流则主要由Reader和Writer作为基类。</p>
-</li>
+<li>字符流：操作的数据单元是16位的字符</li>
 </ol>
-</li>
-</ol>
-<ol>
+<p>除了操作数据单元不同，字符流和字节流的用法几乎一样
+字节流主要由InputStream和OutputStream作为基类，而字符流则主要由Reader和Writer作为基类。</p></li>
 <li><p>按照流的角色来分，分为节点流和处理流</p>
-<ol>
+<ol type="1">
 <li>节点流：从一个特定的IO设备(如磁盘、网络)读/写数据的流，称为节点流，也被称为低级流。</li>
-<li><p>处理流：对一个已存在的流就行连接或封装，通过封装后的流来实现数据读/写功能。处理流被称为高级流。</p>
+<li>处理流：对一个已存在的流就行连接或封装，通过封装后的流来实现数据读/写功能。处理流被称为高级流。</li>
+</ol>
 <p>注：</p>
-<p>当时用处理流进行输入输出时，程序不会直接连接到实际的数据源，没有和实际的输入输出节点相连接，使用处理流的一个好处就是，只要使用相同的处理流，程序就可以采用完全相同的输入输出代码来访问不同数据源。</p>
-</li>
+<p>当时用处理流进行输入输出时，程序不会直接连接到实际的数据源，没有和实际的输入输出节点相连接，使用处理流的一个好处就是，只要使用相同的处理流，程序就可以采用完全相同的输入输出代码来访问不同数据源。</p></li>
 </ol>
-</li>
-</ol>
-<h2 id="流的概念模型"><a href="#流的概念模型" class="headerlink" title="流的概念模型"></a>流的概念模型</h2><p>Java把所有设备的有序数据抽象成流模型，简化了输入输出处理。</p>
+<h2 id="流的概念模型">流的概念模型</h2>
+<p>Java把所有设备的有序数据抽象成流模型，简化了输入输出处理。</p>
 <p>Java的IO流共涉及40多个类，非常规则，而且彼此之间存在紧密联系，Java的IO流的40多个类都是从如下的4个基类派生出来的：</p>
 <ul>
 <li>InputStream/Reader：所有输入流的基类，前者是字节输入流，后者字符输入流</li>
@@ -276,85 +269,83 @@
 <li>操作的便捷：处理流提高了一系列便捷的方式来一次输入/输出大批量的内容。</li>
 </ul>
 <p>处理流可以”嫁接“在任何已经存在的流的的基础上，这允许Java采用相同代码来访问不同输入/输出设备的数据流。</p>
-<h2 id="字节流和字符流"><a href="#字节流和字符流" class="headerlink" title="字节流和字符流"></a>字节流和字符流</h2><h3 id="InputStream和Reader"><a href="#InputStream和Reader" class="headerlink" title="InputStream和Reader"></a>InputStream和Reader</h3><p>这是所有输入流的抽象基类，它们本身并不能创建实例来执行，但是它们是所有输入流的模板，包含的方法是所有输入流都可使用的方法。</p>
+<h2 id="字节流和字符流">字节流和字符流</h2>
+<h3 id="inputstream和reader">InputStream和Reader</h3>
+<p>这是所有输入流的抽象基类，它们本身并不能创建实例来执行，但是它们是所有输入流的模板，包含的方法是所有输入流都可使用的方法。</p>
 <p>InputStream里包含三个方法：</p>
 <p><strong>int read()</strong></p>
 <p>功能：从输入流读取单个字节。</p>
 <p>参数：无</p>
 <p>返回值：返回读取的字节数据(字节数据可直接转换为int类型)</p>
-<hr>
+<hr />
 <p><strong>int read(byte[] b)</strong></p>
 <p>功能：从输入流读取b.length个字节的数据，并储存在数组b中。</p>
 <p>参数：byte数组</p>
 <p>返回值：返回实际读取的字节数</p>
-<hr>
+<hr />
 <p><strong>int read(byte[] b, int off, int len)</strong></p>
 <p>功能：从输入流读取len个字节的数据，存储在数组b中，不是从数组起点开始，而是从off位置开始。</p>
 <p>参数：</p>
-<div class="table-container">
 <table>
 <thead>
-<tr>
+<tr class="header">
 <th>参数</th>
 <th>说明</th>
 </tr>
 </thead>
 <tbody>
-<tr>
+<tr class="odd">
 <td>byte[] b</td>
 <td>将读取的数据存入数组b中</td>
 </tr>
-<tr>
+<tr class="even">
 <td>int off</td>
 <td>从数组的off位置开始存</td>
 </tr>
-<tr>
+<tr class="odd">
 <td>int len</td>
 <td>从输入流读取len个字节的数据</td>
 </tr>
 </tbody>
 </table>
-</div>
 <p>返回值：返回实际读取的字节数</p>
-<hr>
+<hr />
 <p>Reader里也包含三个方法</p>
 <p><strong>int read()</strong></p>
 <p>功能：从输入流读取单个字符。</p>
 <p>参数：无</p>
 <p>返回值：返回读取的字符数据(字节数据可直接转换为int类型)</p>
-<hr>
+<hr />
 <p><strong>int read(char[] cbuf)</strong></p>
 <p>功能：从输入流读取cbuf.length个字符的数据，并储存在数组cbuf中。</p>
 <p>参数：char数组</p>
 <p>返回值：返回实际读取的字符数</p>
-<hr>
+<hr />
 <p><strong>int read(char[] cbuf int off, int len)</strong></p>
 <p>功能：从输入流读取len个字符的数据，存储在数组cbuf中，不是从数组起点开始，而是从off位置开始。</p>
 <p>参数：</p>
-<div class="table-container">
 <table>
 <thead>
-<tr>
+<tr class="header">
 <th>参数</th>
 <th>说明</th>
 </tr>
 </thead>
 <tbody>
-<tr>
+<tr class="odd">
 <td>char cbuf</td>
 <td>将读取的数据存入数组cbuf中</td>
 </tr>
-<tr>
+<tr class="even">
 <td>int off</td>
 <td>从数组的off位置开始存</td>
 </tr>
-<tr>
+<tr class="odd">
 <td>int len</td>
 <td>从输入流读取len个字符的数据</td>
 </tr>
 </tbody>
 </table>
-</div>
 <p>返回值：返回实际读取的字符数</p>
 <p>可以发现，两个基类的功能基本一样，只是一个是字节，一个是字符</p>
 <p>当read方法返回-1时，表明到了输入流的结束点</p>
@@ -370,35 +361,39 @@
 <p>参数：</p>
 <p>readAheadLimit: 在标记位置变为无效之前可以读取的最大字节数限制。</p>
 <p>返回值:无</p>
-<hr>
+<hr />
 <p><strong>boolean markSupported()</strong></p>
 <p>功能：判断此输入流是否支持mark操作，即是否支持记录标记。</p>
 <p>参数：无</p>
 <p>返回值：</p>
 <p>支持返回true，否则false</p>
-<hr>
+<hr />
 <p><strong>void reset()</strong></p>
 <p>功能：将该流的记录指针重新定位到上一次记录标记的mark位置</p>
 <p>参数：无</p>
 <p>返回值：无</p>
-<hr>
+<hr />
 <p><strong>long skip(long n)</strong></p>
 <p>功能：从记录指针开始，跳过n个字节/字符</p>
 <p>参数：需要跳过的字符/字节数</p>
 <p>返回值：实际跳过的字符/字节数</p>
-<hr>
-<p><strong>重要</strong>：<strong>Windows默认使用GBK编码保存文件，在GBK编码中，一个中文字符占两个字节，中文标点两个字节，英文字母和标                点占一个字节。且在文本文件中，每行末尾有\r\n，各占一个字节。</strong><br>                <strong>Linux系统默认使用UTF-8编码，在UTF-8编码中，一个中文字符和标点占三个字节，英文字母和标点占一个字节。<br>                IDEA中默认使用UTF-8编码</strong></p>
-<h3 id="OutputStream和Writer"><a href="#OutputStream和Writer" class="headerlink" title="OutputStream和Writer"></a>OutputStream和Writer</h3><p>这两个类也非常相似，两个流都提供了三个方法。</p>
+<hr />
+<p><strong>重要</strong>：<strong>Windows默认使用GBK编码保存文件，在GBK编码中，一个中文字符占两个字节，中文标点两个字节，英文字母和标
+点占一个字节。且在文本文件中，每行末尾有，各占一个字节。</strong>
+<strong>Linux系统默认使用UTF-8编码，在UTF-8编码中，一个中文字符和标点占三个字节，英文字母和标点占一个字节。
+IDEA中默认使用UTF-8编码</strong></p>
+<h3 id="outputstream和writer">OutputStream和Writer</h3>
+<p>这两个类也非常相似，两个流都提供了三个方法。</p>
 <p><strong>void write(int c)</strong></p>
 <p>功能：将字节/字符输出到输出流。</p>
 <p>参数：c可以代表字节，也可以代表字符。</p>
 <p>返回值：无</p>
-<hr>
+<hr />
 <p><strong>void write(byte[]/char[] buf)</strong></p>
 <p>功能：将字节数组/字符数组中的数据输出到指定输出流。</p>
 <p>参数：要输出的字节数组/字符数组的数据</p>
 <p>返回值：无</p>
-<hr>
+<hr />
 <p><strong>void write(byte[]/char[] buf, int off, int len)</strong></p>
 <p>功能：将字节数组/字符数组中从off位置开始，长度为len的数据输出到指定输出流。</p>
 <p>参数：</p>
@@ -408,13 +403,13 @@
 <li>len：要输出的字符/字节长度</li>
 </ul>
 <p>返回值：无</p>
-<hr>
+<hr />
 <p>因为字符流以字符为基本操作单位，所以Writer可以用字符串来代替字符数组，即以String对象为参数，Writer里还包含两个方法：</p>
 <p><strong>void write(String str)</strong></p>
 <p>功能：将字符串中的数据输出到指定输出流。</p>
 <p>参数：要输出的字符串</p>
 <p>返回值：无</p>
-<hr>
+<hr />
 <p><strong>void write(String src, int off, int len)</strong></p>
 <p>功能：将字符串中从off位置开始，长度为len的数据输出到指定输出流。</p>
 <p>参数：</p>
@@ -424,7 +419,7 @@
 <li>len：要输出的字符/字节长度</li>
 </ul>
 <p>返回值：无</p>
-<hr>
+<hr />
 <p>例子：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.io.*;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">FileOutputStreamTest</span></span><br><span class="line">&#123;</span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span></span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">try</span> (</span><br><span class="line">			<span class="comment">// 创建字节输入流</span></span><br><span class="line">			<span class="type">var</span> <span class="variable">fis</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">FileInputStream</span>(<span class="string">&quot;FileOutputStreamTest.java&quot;</span>);</span><br><span class="line">			<span class="comment">// 创建字节输出流</span></span><br><span class="line">			<span class="type">var</span> <span class="variable">fos</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">FileOutputStream</span>(<span class="string">&quot;newFile.txt&quot;</span>))</span><br><span class="line">		&#123;</span><br><span class="line">			<span class="type">var</span> <span class="variable">bbuf</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">byte</span>[<span class="number">32</span>];</span><br><span class="line">			<span class="type">var</span> <span class="variable">hasRead</span> <span class="operator">=</span> <span class="number">0</span>;</span><br><span class="line">			<span class="comment">// 循环从输入流中取出数据</span></span><br><span class="line">			<span class="keyword">while</span> ((hasRead = fis.read(bbuf)) &gt; <span class="number">0</span>)</span><br><span class="line">			&#123;</span><br><span class="line">				<span class="comment">// 每读取一次，即写入文件输出流，读了多少，就写多少。</span></span><br><span class="line">				fos.write(bbuf, <span class="number">0</span>, hasRead);</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">catch</span> (IOException ioe)</span><br><span class="line">		&#123;</span><br><span class="line">			ioe.printStackTrace();</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 

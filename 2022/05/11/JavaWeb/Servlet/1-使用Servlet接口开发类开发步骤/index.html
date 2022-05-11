@@ -20,12 +20,12 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"zhaoquaner.github.io","root":"/","images":"/images","scheme":"Muse","darkmode":false,"version":"8.11.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
 
-    <meta name="description" content="一共有三步：  创建一个类继承HttpServlet实现类，使之成为Servlet接口实现类  重写HttpServlet父类两个方法，doGet或者doPost  ​    浏览器使用get方式——&gt;Servlet.doGet()  ​    浏览器使用post方式—-&gt;Servlet.doPost()  将Servlet接口实现类信息注册到Tomcat服务器  ​    在web文">
+    <meta name="description" content="一共有三步：  创建一个类继承HttpServlet实现类，使之成为Servlet接口实现类 重写HttpServlet父类两个方法，doGet或者doPost ​ 浏览器使用get方式----&gt;Servlet.doGet() ​ 浏览器使用post方式---&gt;Servlet.doPost() 将Servlet接口实现类信息注册到Tomcat服务器 ​ 在web文件夹中找">
 <meta property="og:type" content="article">
 <meta property="og:title" content="1-使用Servlet接口开发类开发">
 <meta property="og:url" content="https://zhaoquaner.github.io/2022/05/11/JavaWeb/Servlet/1-%E4%BD%BF%E7%94%A8Servlet%E6%8E%A5%E5%8F%A3%E5%BC%80%E5%8F%91%E7%B1%BB%E5%BC%80%E5%8F%91%E6%AD%A5%E9%AA%A4/index.html">
 <meta property="og:site_name" content="赵圈儿的博客">
-<meta property="og:description" content="一共有三步：  创建一个类继承HttpServlet实现类，使之成为Servlet接口实现类  重写HttpServlet父类两个方法，doGet或者doPost  ​    浏览器使用get方式——&gt;Servlet.doGet()  ​    浏览器使用post方式—-&gt;Servlet.doPost()  将Servlet接口实现类信息注册到Tomcat服务器  ​    在web文">
+<meta property="og:description" content="一共有三步：  创建一个类继承HttpServlet实现类，使之成为Servlet接口实现类 重写HttpServlet父类两个方法，doGet或者doPost ​ 浏览器使用get方式----&gt;Servlet.doGet() ​ 浏览器使用post方式---&gt;Servlet.doPost() 将Servlet接口实现类信息注册到Tomcat服务器 ​ 在web文件夹中找">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2022-05-11T05:35:39.000Z">
 <meta property="article:modified_time" content="2022-05-11T08:55:21.007Z">
@@ -110,7 +110,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Servlet%E5%AF%B9%E8%B1%A1%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F"><span class="nav-number">1.</span> <span class="nav-text">Servlet对象生命周期</span></a></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#servlet%E5%AF%B9%E8%B1%A1%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F"><span class="nav-number">1.</span> <span class="nav-text">Servlet对象生命周期</span></a></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -230,38 +230,27 @@
     
     <div class="post-body" itemprop="articleBody">
         <p>一共有三步：</p>
-<ol>
-<li><p>创建一个类继承HttpServlet实现类，使之成为Servlet接口实现类</p>
-</li>
+<ol type="1">
+<li><p>创建一个类继承HttpServlet实现类，使之成为Servlet接口实现类</p></li>
 <li><p>重写HttpServlet父类两个方法，doGet或者doPost</p>
-<p> ​    浏览器使用get方式——&gt;Servlet.doGet()</p>
-<p> ​    浏览器使用post方式—-&gt;Servlet.doPost()</p>
-</li>
+<p>​ 浏览器使用get方式----&gt;Servlet.doGet()</p>
+<p>​ 浏览器使用post方式---&gt;Servlet.doPost()</p></li>
 <li><p>将Servlet接口实现类信息<strong>注册</strong>到Tomcat服务器</p>
-<p> ​    在web文件夹中找到web.xml文件，在该文件里注册实现类信息</p>
- <figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">servlet</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">servlet-name</span>&gt;</span><span class="tag">&lt;/<span class="name">servlet-name</span>&gt;</span><span class="comment">&lt;!--声明一个变量名称存储servlet实现类类路径--&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">servlet-class</span>&gt;</span><span class="tag">&lt;/<span class="name">servlet-class</span>&gt;</span><span class="comment">&lt;!--声明servlet接口路径--&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">servlet</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<p> 然后tomcat服务器会使用name和class路径来存储Servlet实现类路径</p>
-</li>
+<p>​ 在web文件夹中找到web.xml文件，在该文件里注册实现类信息</p>
+<p><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">servlet</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">servlet-name</span>&gt;</span><span class="tag">&lt;/<span class="name">servlet-name</span>&gt;</span><span class="comment">&lt;!--声明一个变量名称存储servlet实现类类路径--&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">servlet-class</span>&gt;</span><span class="tag">&lt;/<span class="name">servlet-class</span>&gt;</span><span class="comment">&lt;!--声明servlet接口路径--&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">servlet</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<p>然后tomcat服务器会使用name和class路径来存储Servlet实现类路径</p>
+<p>用户在访问实现类时需要写完整的类路径，这样太麻烦，为了降低用户访问Servlet接口实现类难度，需要设置简短的请求别名</p>
+<p><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">servlet-mapping</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">servlet-name</span>&gt;</span><span class="tag">&lt;/<span class="name">servlet-name</span>&gt;</span><span class="comment">&lt;!--这是在上面servlet标签中，和servlet-name一样--&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">url-pattern</span>&gt;</span><span class="tag">&lt;/<span class="name">url-pattern</span>&gt;</span><span class="comment">&lt;!--设置简短的请求别名，在书写时必须以&quot;/&quot;开头--&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">servlet-mapping</span>&gt;</span></span><br></pre></td></tr></table></figure></p></li>
 </ol>
-<pre><code>用户在访问实现类时需要写完整的类路径，这样太麻烦，为了降低用户访问Servlet接口实现类难度，需要设置简短的请求别名
-
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">servlet-mapping</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">servlet-name</span>&gt;</span><span class="tag">&lt;/<span class="name">servlet-name</span>&gt;</span><span class="comment">&lt;!--这是在上面servlet标签中，和servlet-name一样--&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">url-pattern</span>&gt;</span><span class="tag">&lt;/<span class="name">url-pattern</span>&gt;</span><span class="comment">&lt;!--设置简短的请求别名，在书写时必须以&quot;/&quot;开头--&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">servlet-mapping</span>&gt;</span></span><br></pre></td></tr></table></figure>
-</code></pre><h2 id="Servlet对象生命周期"><a href="#Servlet对象生命周期" class="headerlink" title="Servlet对象生命周期"></a>Servlet对象生命周期</h2><ol>
-<li><p>网站中所有Servlet实现类实例对象，只能由Http服务器负责创建，开发人员不能手动创建</p>
-</li>
+<h2 id="servlet对象生命周期">Servlet对象生命周期</h2>
+<ol type="1">
+<li><p>网站中所有Servlet实现类实例对象，只能由Http服务器负责创建，开发人员不能手动创建</p></li>
 <li><p>在默认情况下，Http服务器接收到对于当前Servlet接口实现类第一次请求时自动创建这个实现类的实例对象，如果没有请求，那么则不会创建该实例对象</p>
-</li>
-</ol>
-<pre><code>在手动配置下，可以要求Http服务器在启动时自动创建某个实现类实例对象
-
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">servlet</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">servlet-name</span>&gt;</span><span class="tag">&lt;/<span class="name">servlet-name</span>&gt;</span><span class="comment">&lt;!--声明一个变量名称存储servlet实现类类路径--&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">servlet-class</span>&gt;</span><span class="tag">&lt;/<span class="name">servlet-class</span>&gt;</span><span class="comment">&lt;!--声明servlet接口路径--&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">load-on-startup</span>&gt;</span> <span class="tag">&lt;/<span class="name">load-on-startup</span>&gt;</span><span class="comment">&lt;!--填写一个大于0的整数，默认值为0--&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">servlet</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-​    使用load-on-startup标签来设置当服务器启动时创建实例对象
-</code></pre><ol>
-<li><p>在Http服务器运行过程中，一个Servlet接口实现类只能创建出一个实例对象，如果有多个请求访问该实例对象，也只会创建一个，多个请求访问这一个，即单例多线程</p>
-</li>
-<li><p>在Http服务器关闭时，所有的Servlet对象都会被销毁</p>
-</li>
+<p>在手动配置下，可以要求Http服务器在启动时自动创建某个实现类实例对象</p>
+<p><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">servlet</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">servlet-name</span>&gt;</span><span class="tag">&lt;/<span class="name">servlet-name</span>&gt;</span><span class="comment">&lt;!--声明一个变量名称存储servlet实现类类路径--&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">servlet-class</span>&gt;</span><span class="tag">&lt;/<span class="name">servlet-class</span>&gt;</span><span class="comment">&lt;!--声明servlet接口路径--&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">load-on-startup</span>&gt;</span> <span class="tag">&lt;/<span class="name">load-on-startup</span>&gt;</span><span class="comment">&lt;!--填写一个大于0的整数，默认值为0--&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">servlet</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<p>​ 使用load-on-startup标签来设置当服务器启动时创建实例对象</p></li>
+<li><p>在Http服务器运行过程中，一个Servlet接口实现类只能创建出一个实例对象，如果有多个请求访问该实例对象，也只会创建一个，多个请求访问这一个，即单例多线程</p></li>
+<li><p>在Http服务器关闭时，所有的Servlet对象都会被销毁</p></li>
 </ol>
 
     </div>

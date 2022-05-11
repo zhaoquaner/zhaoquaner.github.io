@@ -20,12 +20,12 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"zhaoquaner.github.io","root":"/","images":"/images","scheme":"Muse","darkmode":false,"version":"8.11.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
 
-    <meta name="description" content="可滚动、可更新(可修改)的结果集使用absolute()、previous()、afterLast()等方法自由移动记录指针的ResultSet被称为可滚动的结果集。在Java 5.0以后，默认打开的ResultSet()就是可滚动的。 以默认方式打开的ResultSet是不可更新的，必须要传入额外参数。Connection在创建Statement或PreparedStatement时，传入如下两">
+    <meta name="description" content="可滚动、可更新(可修改)的结果集 使用absolute()、previous()、afterLast()等方法自由移动记录指针的ResultSet被称为可滚动的结果集。 在Java 5.0以后，默认打开的ResultSet()就是可滚动的。 以默认方式打开的ResultSet是不可更新的，必须要传入额外参数。Connection在创建Statement或PreparedStatement时，">
 <meta property="og:type" content="article">
 <meta property="og:title" content="管理结果集">
 <meta property="og:url" content="https://zhaoquaner.github.io/2022/05/11/Java/JDBC/%E7%AE%A1%E7%90%86%E7%BB%93%E6%9E%9C%E9%9B%86/index.html">
 <meta property="og:site_name" content="赵圈儿的博客">
-<meta property="og:description" content="可滚动、可更新(可修改)的结果集使用absolute()、previous()、afterLast()等方法自由移动记录指针的ResultSet被称为可滚动的结果集。在Java 5.0以后，默认打开的ResultSet()就是可滚动的。 以默认方式打开的ResultSet是不可更新的，必须要传入额外参数。Connection在创建Statement或PreparedStatement时，传入如下两">
+<meta property="og:description" content="可滚动、可更新(可修改)的结果集 使用absolute()、previous()、afterLast()等方法自由移动记录指针的ResultSet被称为可滚动的结果集。 在Java 5.0以后，默认打开的ResultSet()就是可滚动的。 以默认方式打开的ResultSet是不可更新的，必须要传入额外参数。Connection在创建Statement或PreparedStatement时，">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2022-05-11T01:32:39.000Z">
 <meta property="article:modified_time" content="2022-05-11T08:54:18.511Z">
@@ -110,7 +110,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%AF%E6%BB%9A%E5%8A%A8%E3%80%81%E5%8F%AF%E6%9B%B4%E6%96%B0-%E5%8F%AF%E4%BF%AE%E6%94%B9-%E7%9A%84%E7%BB%93%E6%9E%9C%E9%9B%86"><span class="nav-number">1.</span> <span class="nav-text">可滚动、可更新(可修改)的结果集</span></a></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%AF%E6%BB%9A%E5%8A%A8%E5%8F%AF%E6%9B%B4%E6%96%B0%E5%8F%AF%E4%BF%AE%E6%94%B9%E7%9A%84%E7%BB%93%E6%9E%9C%E9%9B%86"><span class="nav-number">1.</span> <span class="nav-text">可滚动、可更新(可修改)的结果集</span></a></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -229,71 +229,72 @@
     
     
     <div class="post-body" itemprop="articleBody">
-        <h2 id="可滚动、可更新-可修改-的结果集"><a href="#可滚动、可更新-可修改-的结果集" class="headerlink" title="可滚动、可更新(可修改)的结果集"></a>可滚动、可更新(可修改)的结果集</h2><p>使用absolute()、previous()、afterLast()等方法自由移动记录指针的ResultSet被称为可滚动的结果集。<br>在Java 5.0以后，默认打开的ResultSet()就是可滚动的。</p>
-<p>以默认方式打开的ResultSet是不可更新的，必须要传入额外参数。Connection在创建Statement或PreparedStatement时，<br>传入如下两个参数：</p>
-<ol>
+        <h2 id="可滚动可更新可修改的结果集">可滚动、可更新(可修改)的结果集</h2>
+<p>使用absolute()、previous()、afterLast()等方法自由移动记录指针的ResultSet被称为可滚动的结果集。
+在Java 5.0以后，默认打开的ResultSet()就是可滚动的。</p>
+<p>以默认方式打开的ResultSet是不可更新的，必须要传入额外参数。Connection在创建Statement或PreparedStatement时，
+传入如下两个参数：</p>
+<ol type="1">
 <li><p>resultSetType：可取三个值</p>
 <ul>
 <li>ResultSet.TYPE_FORWARD_ONLY：控制记录指针只能向前移动。</li>
-<li>ResultSet.TYPE_SCROLL_INSENSITINE：记录指针可以自由移动(可滚动结果集)，但底层数据改变不会影响ResultSet 的内容。</li>
-<li>ResultSet.TYPE_SCROLL_SENSTTIVE：记录指针可以自由移动(可滚动结果集)，底层数据改变会影响ResultSet 的内容。</li>
-</ul>
-</li>
-</ol>
-<ol>
+<li>ResultSet.TYPE_SCROLL_INSENSITINE：记录指针可以自由移动(可滚动结果集)，但底层数据改变不会影响ResultSet
+的内容。</li>
+<li>ResultSet.TYPE_SCROLL_SENSTTIVE：记录指针可以自由移动(可滚动结果集)，底层数据改变会影响ResultSet
+的内容。</li>
+</ul></li>
 <li><p>resultSetConcurrency：控制ResultSet的并发类型，可接收两个值。</p>
 <ul>
-<li><p>ResultSet.CONCUR_READ_ONLY：指示ResultSet是只读的并发模式（默认）</p>
-</li>
+<li><p>ResultSet.CONCUR_READ_ONLY：指示ResultSet是只读的并发模式（默认）</p></li>
 <li><p>ResultSet.CONCUR_UPDATABLE：指示ResultSet是可更新的并发模式</p>
-<p>  例子:</p>
-</li>
-</ul>
-</li>
+<p>例子:</p>
+<p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.*;</span><br><span class="line"><span class="keyword">import</span> java.io.*;</span><br><span class="line"><span class="keyword">import</span> java.sql.*;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">ResultSetTest</span></span><br><span class="line">&#123;</span><br><span class="line">	<span class="keyword">private</span> String driver;</span><br><span class="line">	<span class="keyword">private</span> String url;</span><br><span class="line">	<span class="keyword">private</span> String user;</span><br><span class="line">	<span class="keyword">private</span> String pass;</span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">initParam</span><span class="params">(String paramFile)</span> <span class="keyword">throws</span> Exception</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="comment">// 使用Properties类来加载属性文件</span></span><br><span class="line">		<span class="type">var</span> <span class="variable">props</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Properties</span>();</span><br><span class="line">		props.load(<span class="keyword">new</span> <span class="title class_">FileInputStream</span>(paramFile));</span><br><span class="line">		driver = props.getProperty(<span class="string">&quot;driver&quot;</span>);</span><br><span class="line">		url = props.getProperty(<span class="string">&quot;url&quot;</span>);</span><br><span class="line">		user = props.getProperty(<span class="string">&quot;user&quot;</span>);</span><br><span class="line">		pass = props.getProperty(<span class="string">&quot;pass&quot;</span>);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">query</span><span class="params">(String sql)</span> <span class="keyword">throws</span> Exception</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="comment">// 加载驱动</span></span><br><span class="line">		Class.forName(driver);</span><br><span class="line">		<span class="keyword">try</span> (</span><br><span class="line">			<span class="comment">// 获取数据库连接</span></span><br><span class="line">			<span class="type">Connection</span> <span class="variable">conn</span> <span class="operator">=</span> DriverManager.getConnection(url, user, pass);</span><br><span class="line">			<span class="comment">// 使用Connection来创建一个PreparedStatement对象</span></span><br><span class="line">			<span class="comment">// 传入控制结果集可滚动，可更新的参数。</span></span><br><span class="line">			<span class="type">PreparedStatement</span> <span class="variable">pstmt</span> <span class="operator">=</span> conn.prepareStatement(sql,</span><br><span class="line">				ResultSet.TYPE_SCROLL_INSENSITIVE,</span><br><span class="line">				ResultSet.CONCUR_UPDATABLE);</span><br><span class="line">			<span class="type">ResultSet</span> <span class="variable">rs</span> <span class="operator">=</span> pstmt.executeQuery())</span><br><span class="line">		&#123;</span><br><span class="line">			rs.last();</span><br><span class="line">			<span class="type">int</span> <span class="variable">rowCount</span> <span class="operator">=</span> rs.getRow();</span><br><span class="line">			<span class="keyword">for</span> (<span class="type">var</span> <span class="variable">i</span> <span class="operator">=</span> rowCount; i &gt; <span class="number">0</span>; i--)</span><br><span class="line">			&#123;</span><br><span class="line">				rs.absolute(i);</span><br><span class="line">				System.out.println(rs.getString(<span class="number">1</span>) + <span class="string">&quot;\t&quot;</span></span><br><span class="line">					+ rs.getString(<span class="number">2</span>) + <span class="string">&quot;\t&quot;</span> + rs.getString(<span class="number">3</span>));</span><br><span class="line">				<span class="comment">// 修改记录指针所有记录、第2列的值</span></span><br><span class="line">				rs.updateString(<span class="number">2</span>, <span class="string">&quot;学生名&quot;</span> + i);</span><br><span class="line">				<span class="comment">// 提交修改</span></span><br><span class="line">				rs.updateRow();</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> Exception</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="type">var</span> <span class="variable">rt</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">ResultSetTest</span>();</span><br><span class="line">		rt.initParam(<span class="string">&quot;mysql.ini&quot;</span>);</span><br><span class="line">		rt.query(<span class="string">&quot;select * from student_table&quot;</span>);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure></p>
+<p>## 使用ResultSetMetaData分析结果集</p>
+<p>如果程序需要了解ResultSet里包含哪些数据列，以及每个数据列的数据类型，可以通过ResultSetMetaData来获取关于ResultSet的描述信息。</p>
+<p>ResultSet里包含一个getMetaData()方法，该方法返回该ResultSetMetaData对象，然后通过ResultSetMetaData提供的方法返回ResultSet的描述信息。常有方法有如下三个：</p>
+<table>
+<colgroup>
+<col style="width: 43%" />
+<col style="width: 34%" />
+<col style="width: 21%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>函数原型</th>
+<th>功能</th>
+<th>参数</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>int getColumnCount()</td>
+<td>返回该ResultSet的列的数量</td>
+<td>无</td>
+</tr>
+<tr class="even">
+<td>String getColumnName(int column)</td>
+<td>返回指定索引的列名</td>
+<td>column：指定索引</td>
+</tr>
+<tr class="odd">
+<td>int getColumnType(int column)</td>
+<td>返回指定索引列类型</td>
+<td>column：指定索引</td>
+</tr>
+</tbody>
+</table>
+<p>## 使用RowSet 1.1 包装结果集</p>
+<p>RowSet接口继承了ResultSet接口，RowSet接口包括JdbcRowSet、CachedRowSet、FilteredRowSet、JoinRowSet和WebRowSet常用子接口，其中JdbcRowSet需要保持与数据库的连接之外，其余四个子接口都是离线的RowSet,不需要保持与数据库的连接。</p>
+<p>RowSet默认是可滚动、可更新、可序列化的结果集，对于离线的RowSet而言，程序在创建RowSet时已经把数据从底层数据库读取到了内存中，因此可以充分利用计算机的内存，从而降低数据库服务器的负载。</p>
+<p>#### RowSetFactory与RowSet</p>
+<p>RowSetProvider类负责创建RowSetFactory,而RowSetFactory提供以下方法创建RowSet实例。</p>
+<ul>
+<li>CachedRowSet createCachedRowSet()：创建一个默认的CachedRowSet。</li>
+<li>FilterRowSet createFilterRowSet()：创建一个默认的FilterRowSet</li>
+</ul></li>
+</ul></li>
 </ol>
-<pre><code>    <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.*;</span><br><span class="line"><span class="keyword">import</span> java.io.*;</span><br><span class="line"><span class="keyword">import</span> java.sql.*;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">ResultSetTest</span></span><br><span class="line">&#123;</span><br><span class="line">	<span class="keyword">private</span> String driver;</span><br><span class="line">	<span class="keyword">private</span> String url;</span><br><span class="line">	<span class="keyword">private</span> String user;</span><br><span class="line">	<span class="keyword">private</span> String pass;</span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">initParam</span><span class="params">(String paramFile)</span> <span class="keyword">throws</span> Exception</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="comment">// 使用Properties类来加载属性文件</span></span><br><span class="line">		<span class="type">var</span> <span class="variable">props</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Properties</span>();</span><br><span class="line">		props.load(<span class="keyword">new</span> <span class="title class_">FileInputStream</span>(paramFile));</span><br><span class="line">		driver = props.getProperty(<span class="string">&quot;driver&quot;</span>);</span><br><span class="line">		url = props.getProperty(<span class="string">&quot;url&quot;</span>);</span><br><span class="line">		user = props.getProperty(<span class="string">&quot;user&quot;</span>);</span><br><span class="line">		pass = props.getProperty(<span class="string">&quot;pass&quot;</span>);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">query</span><span class="params">(String sql)</span> <span class="keyword">throws</span> Exception</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="comment">// 加载驱动</span></span><br><span class="line">		Class.forName(driver);</span><br><span class="line">		<span class="keyword">try</span> (</span><br><span class="line">			<span class="comment">// 获取数据库连接</span></span><br><span class="line">			<span class="type">Connection</span> <span class="variable">conn</span> <span class="operator">=</span> DriverManager.getConnection(url, user, pass);</span><br><span class="line">			<span class="comment">// 使用Connection来创建一个PreparedStatement对象</span></span><br><span class="line">			<span class="comment">// 传入控制结果集可滚动，可更新的参数。</span></span><br><span class="line">			<span class="type">PreparedStatement</span> <span class="variable">pstmt</span> <span class="operator">=</span> conn.prepareStatement(sql,</span><br><span class="line">				ResultSet.TYPE_SCROLL_INSENSITIVE,</span><br><span class="line">				ResultSet.CONCUR_UPDATABLE);</span><br><span class="line">			<span class="type">ResultSet</span> <span class="variable">rs</span> <span class="operator">=</span> pstmt.executeQuery())</span><br><span class="line">		&#123;</span><br><span class="line">			rs.last();</span><br><span class="line">			<span class="type">int</span> <span class="variable">rowCount</span> <span class="operator">=</span> rs.getRow();</span><br><span class="line">			<span class="keyword">for</span> (<span class="type">var</span> <span class="variable">i</span> <span class="operator">=</span> rowCount; i &gt; <span class="number">0</span>; i--)</span><br><span class="line">			&#123;</span><br><span class="line">				rs.absolute(i);</span><br><span class="line">				System.out.println(rs.getString(<span class="number">1</span>) + <span class="string">&quot;\t&quot;</span></span><br><span class="line">					+ rs.getString(<span class="number">2</span>) + <span class="string">&quot;\t&quot;</span> + rs.getString(<span class="number">3</span>));</span><br><span class="line">				<span class="comment">// 修改记录指针所有记录、第2列的值</span></span><br><span class="line">				rs.updateString(<span class="number">2</span>, <span class="string">&quot;学生名&quot;</span> + i);</span><br><span class="line">				<span class="comment">// 提交修改</span></span><br><span class="line">				rs.updateRow();</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> Exception</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="type">var</span> <span class="variable">rt</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">ResultSetTest</span>();</span><br><span class="line">		rt.initParam(<span class="string">&quot;mysql.ini&quot;</span>);</span><br><span class="line">		rt.query(<span class="string">&quot;select * from student_table&quot;</span>);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 
-
-
-    ## 使用ResultSetMetaData分析结果集
-
-    如果程序需要了解ResultSet里包含哪些数据列，以及每个数据列的数据类型，可以通过ResultSetMetaData来获取关于ResultSet的描述信息。
-
-    ResultSet里包含一个getMetaData()方法，该方法返回该ResultSetMetaData对象，然后通过ResultSetMetaData提供的方法返回ResultSet的描述信息。常有方法有如下三个：
-
-    | 函数原型                         | 功能                      | 参数             |
-    | -------------------------------- | ------------------------- | ---------------- |
-    | int getColumnCount()             | 返回该ResultSet的列的数量 | 无               |
-    | String getColumnName(int column) | 返回指定索引的列名        | column：指定索引 |
-    | int getColumnType(int column)    | 返回指定索引列类型        | column：指定索引 |
-
-
-
-
-
-
-
-
-
-    ## 使用RowSet 1.1 包装结果集
-
-
-
-    RowSet接口继承了ResultSet接口，RowSet接口包括JdbcRowSet、CachedRowSet、FilteredRowSet、JoinRowSet和WebRowSet常用子接口，其中JdbcRowSet需要保持与数据库的连接之外，其余四个子接口都是离线的RowSet,不需要保持与数据库的连接。
-
-
-
-    RowSet默认是可滚动、可更新、可序列化的结果集，对于离线的RowSet而言，程序在创建RowSet时已经把数据从底层数据库读取到了内存中，因此可以充分利用计算机的内存，从而降低数据库服务器的负载。
-
-
-
-    #### RowSetFactory与RowSet
-
-    RowSetProvider类负责创建RowSetFactory,而RowSetFactory提供以下方法创建RowSet实例。
-
-    - CachedRowSet createCachedRowSet()：创建一个默认的CachedRowSet。
-    - FilterRowSet createFilterRowSet()：创建一个默认的FilterRowSet
-</code></pre>
     </div>
 
     

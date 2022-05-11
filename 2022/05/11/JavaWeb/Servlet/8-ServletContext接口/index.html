@@ -20,12 +20,12 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"zhaoquaner.github.io","root":"/","images":"/images","scheme":"Muse","darkmode":false,"version":"8.11.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
 
-    <meta name="description" content="当Tomcat启动时，就会创建一个ServletContext对象，它代表着当前web站点，该网站所有Servlet共享一个ServletContext对象，所有Servlet对象之间可以通过ServletContext实现通讯。 ServletContext对象被称为域对象，或者全局作用域对象，可以把它理解为一个容器，我们把需要共享的数据放到这个容器中，需要对应数据的Servlet对象就从这个容">
+    <meta name="description" content="当Tomcat启动时，就会创建一个ServletContext对象，它代表着当前web站点，该网站所有Servlet共享一个ServletContext对象，所有Servlet对象之间可以通过ServletContext实现通讯。 ServletContext对象被称为域对象，或者全局作用域对象，可以把它理解为一个容器，我们把需要共享的数据放到这个容器中，需要对应数据的Servlet对象就从这个">
 <meta property="og:type" content="article">
 <meta property="og:title" content="7-ServletContext接口">
 <meta property="og:url" content="https://zhaoquaner.github.io/2022/05/11/JavaWeb/Servlet/8-ServletContext%E6%8E%A5%E5%8F%A3/index.html">
 <meta property="og:site_name" content="赵圈儿的博客">
-<meta property="og:description" content="当Tomcat启动时，就会创建一个ServletContext对象，它代表着当前web站点，该网站所有Servlet共享一个ServletContext对象，所有Servlet对象之间可以通过ServletContext实现通讯。 ServletContext对象被称为域对象，或者全局作用域对象，可以把它理解为一个容器，我们把需要共享的数据放到这个容器中，需要对应数据的Servlet对象就从这个容">
+<meta property="og:description" content="当Tomcat启动时，就会创建一个ServletContext对象，它代表着当前web站点，该网站所有Servlet共享一个ServletContext对象，所有Servlet对象之间可以通过ServletContext实现通讯。 ServletContext对象被称为域对象，或者全局作用域对象，可以把它理解为一个容器，我们把需要共享的数据放到这个容器中，需要对应数据的Servlet对象就从这个">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2022-05-11T05:41:39.000Z">
 <meta property="article:modified_time" content="2022-05-11T08:55:35.211Z">
@@ -110,7 +110,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%8E%B7%E5%8F%96web%E7%AB%99%E7%82%B9%E9%85%8D%E7%BD%AE%E7%9A%84%E4%BF%A1%E6%81%AF"><span class="nav-number">1.</span> <span class="nav-text">获取web站点配置的信息</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#ServletContext%E7%9A%84%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F"><span class="nav-number">2.</span> <span class="nav-text">ServletContext的生命周期</span></a></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%8E%B7%E5%8F%96web%E7%AB%99%E7%82%B9%E9%85%8D%E7%BD%AE%E7%9A%84%E4%BF%A1%E6%81%AF"><span class="nav-number">1.</span> <span class="nav-text">获取web站点配置的信息</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#servletcontext%E7%9A%84%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F"><span class="nav-number">2.</span> <span class="nav-text">ServletContext的生命周期</span></a></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -231,15 +231,20 @@
     <div class="post-body" itemprop="articleBody">
         <p>当Tomcat启动时，就会创建一个ServletContext对象，它代表着当前web站点，该网站所有Servlet共享一个ServletContext对象，所有Servlet对象之间可以通过ServletContext实现通讯。</p>
 <p>ServletContext对象被称为域对象，或者全局作用域对象，可以把它理解为一个容器，我们把需要共享的数据放到这个容器中，需要对应数据的Servlet对象就从这个容器中拿。</p>
-<p>实现Servlet通讯要用ServletContext的<code>setAttribute(String name, Object obj)</code>方法，第一个参数为变量名，第二个参数为变量值；然后使用<code>servletContext.getAttribute(String name)</code>获取指定变量值，需要强制类型转换，例如：</p>
+<p>实现Servlet通讯要用ServletContext的<code>setAttribute(String name,
+Object
+obj)</code>方法，第一个参数为变量名，第二个参数为变量值；然后使用<code>servletContext.getAttribute(String
+name)</code>获取指定变量值，需要强制类型转换，例如：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//第一个Servlet代码</span></span><br><span class="line"><span class="type">ServletContext</span> <span class="variable">servletContext</span> <span class="operator">=</span> <span class="built_in">this</span>.getServletContext();</span><br><span class="line"><span class="type">String</span> <span class="variable">value</span> <span class="operator">=</span> <span class="string">&quot;HAHAHAH&quot;</span>;</span><br><span class="line">servletContext.setAttribute(<span class="string">&quot;Name&quot;</span>, value);</span><br><span class="line"></span><br><span class="line"><span class="comment">//第二个Servlet代码</span></span><br><span class="line"><span class="type">ServletContext</span> <span class="variable">servletContext</span> <span class="operator">=</span> <span class="built_in">this</span>.getServletContext();</span><br><span class="line"><span class="type">String</span> <span class="variable">value</span> <span class="operator">=</span> servletContext = (String)servletContext.getAttribute(<span class="string">&quot;name&quot;</span>);</span><br></pre></td></tr></table></figure>
-<h4 id="获取web站点配置的信息"><a href="#获取web站点配置的信息" class="headerlink" title="获取web站点配置的信息"></a>获取web站点配置的信息</h4><p>如果想要让所有Servlet都能够获取连接数据库的信息，不可能在web.xml给每个Servlet都配置，太麻烦，web.xml文件支持对整个站点进行配置参数信息，所有的Servlet都可以拿到该配置信息。</p>
-<p>例如：<br>web.xml的内容：</p>
+<h4 id="获取web站点配置的信息">获取web站点配置的信息</h4>
+<p>如果想要让所有Servlet都能够获取连接数据库的信息，不可能在web.xml给每个Servlet都配置，太麻烦，web.xml文件支持对整个站点进行配置参数信息，所有的Servlet都可以拿到该配置信息。</p>
+<p>例如： web.xml的内容：</p>
 <figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">context-param</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">param-name</span>&gt;</span>name<span class="tag">&lt;/<span class="name">param-name</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">param-value</span>&gt;</span>HAHAHA<span class="tag">&lt;/<span class="name">param-value</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">context-param</span>&gt;</span></span><br></pre></td></tr></table></figure>
 <p>Servlet的代码：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">ServletContext</span> <span class="variable">servletContext</span> <span class="operator">=</span> <span class="built_in">this</span>.getServletContext();</span><br><span class="line"><span class="type">String</span> <span class="variable">value</span> <span class="operator">=</span> servletContext.getInitParameter(<span class="string">&quot;name&quot;</span>);</span><br><span class="line">System.out.println(value);</span><br></pre></td></tr></table></figure>
 <p>获取web.xml配置参数时，要使用getInitParameter(String name)方法。</p>
-<h4 id="ServletContext的生命周期"><a href="#ServletContext的生命周期" class="headerlink" title="ServletContext的生命周期"></a>ServletContext的生命周期</h4><ul>
+<h4 id="servletcontext的生命周期">ServletContext的生命周期</h4>
+<ul>
 <li>当Tomcat启动过程中，自动为当前网站在内存中创建一个ServletContext对象</li>
 <li>在Http服务器运行期间，一个网站只有一个ServletContext对象，并且一直处于存活状态</li>
 <li>当Http服务器准备关闭时，负责将当前网站中ServletContext对象进行销毁</li>

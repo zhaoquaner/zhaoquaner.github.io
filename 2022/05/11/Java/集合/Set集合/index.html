@@ -20,12 +20,12 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"zhaoquaner.github.io","root":"/","images":"/images","scheme":"Muse","darkmode":false,"version":"8.11.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
 
-    <meta name="description" content="Set集合不允许元素重复，如果向Set集合添加一个已经存在的元素，则会添加失败 HashSet类HashSet类是Set接口典型实现，大多时候使用Set时就是使用这个，HashSet按Hash算法来存储集合中的元素，因此存取和查找性能很好。 几个特点  不保证元素的排列顺序，顺序可能与添加顺序不一致 HashSet不是同步的，如果有多个线程访问同一个HashSet，假设有两个或以上的线程同时修改了">
+    <meta name="description" content="Set集合不允许元素重复，如果向Set集合添加一个已经存在的元素，则会添加失败 HashSet类 HashSet类是Set接口典型实现，大多时候使用Set时就是使用这个，HashSet按Hash算法来存储集合中的元素，因此存取和查找性能很好。 几个特点  不保证元素的排列顺序，顺序可能与添加顺序不一致 HashSet不是同步的，如果有多个线程访问同一个HashSet，假设有两个或以上的">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Set集合">
 <meta property="og:url" content="https://zhaoquaner.github.io/2022/05/11/Java/%E9%9B%86%E5%90%88/Set%E9%9B%86%E5%90%88/index.html">
 <meta property="og:site_name" content="赵圈儿的博客">
-<meta property="og:description" content="Set集合不允许元素重复，如果向Set集合添加一个已经存在的元素，则会添加失败 HashSet类HashSet类是Set接口典型实现，大多时候使用Set时就是使用这个，HashSet按Hash算法来存储集合中的元素，因此存取和查找性能很好。 几个特点  不保证元素的排列顺序，顺序可能与添加顺序不一致 HashSet不是同步的，如果有多个线程访问同一个HashSet，假设有两个或以上的线程同时修改了">
+<meta property="og:description" content="Set集合不允许元素重复，如果向Set集合添加一个已经存在的元素，则会添加失败 HashSet类 HashSet类是Set接口典型实现，大多时候使用Set时就是使用这个，HashSet按Hash算法来存储集合中的元素，因此存取和查找性能很好。 几个特点  不保证元素的排列顺序，顺序可能与添加顺序不一致 HashSet不是同步的，如果有多个线程访问同一个HashSet，假设有两个或以上的">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2022-05-11T01:07:39.000Z">
 <meta property="article:modified_time" content="2022-05-11T08:53:37.901Z">
@@ -110,7 +110,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#HashSet%E7%B1%BB"><span class="nav-number">1.</span> <span class="nav-text">HashSet类</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#LinkedHashSet%E7%B1%BB"><span class="nav-number">1.1.</span> <span class="nav-text">LinkedHashSet类</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#TreeSet%E7%B1%BB"><span class="nav-number">2.</span> <span class="nav-text">TreeSet类</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%87%AA%E7%84%B6%E6%8E%92%E5%BA%8F"><span class="nav-number">2.1.</span> <span class="nav-text">自然排序</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%9A%E5%88%B6%E6%8E%92%E5%BA%8F"><span class="nav-number">2.2.</span> <span class="nav-text">定制排序</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#EnumSet%E7%B1%BB"><span class="nav-number">3.</span> <span class="nav-text">EnumSet类</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%90%84Set%E5%AE%9E%E7%8E%B0%E7%B1%BB%E7%9A%84%E6%80%A7%E8%83%BD%E5%88%86%E6%9E%90"><span class="nav-number">4.</span> <span class="nav-text">各Set实现类的性能分析</span></a></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#hashset%E7%B1%BB"><span class="nav-number">1.</span> <span class="nav-text">HashSet类</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#linkedhashset%E7%B1%BB"><span class="nav-number">1.1.</span> <span class="nav-text">LinkedHashSet类</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#treeset%E7%B1%BB"><span class="nav-number">2.</span> <span class="nav-text">TreeSet类</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%87%AA%E7%84%B6%E6%8E%92%E5%BA%8F"><span class="nav-number">2.1.</span> <span class="nav-text">自然排序</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%9A%E5%88%B6%E6%8E%92%E5%BA%8F"><span class="nav-number">2.2.</span> <span class="nav-text">定制排序</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#enumset%E7%B1%BB"><span class="nav-number">3.</span> <span class="nav-text">EnumSet类</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%90%84set%E5%AE%9E%E7%8E%B0%E7%B1%BB%E7%9A%84%E6%80%A7%E8%83%BD%E5%88%86%E6%9E%90"><span class="nav-number">4.</span> <span class="nav-text">各Set实现类的性能分析</span></a></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -230,7 +230,8 @@
     
     <div class="post-body" itemprop="articleBody">
         <p>Set集合不允许元素重复，如果向Set集合添加一个已经存在的元素，则会添加失败</p>
-<h2 id="HashSet类"><a href="#HashSet类" class="headerlink" title="HashSet类"></a>HashSet类</h2><p>HashSet类是Set接口典型实现，大多时候使用Set时就是使用这个，HashSet按Hash算法来存储集合中的元素，因此存取和查找性能很好。</p>
+<h2 id="hashset类">HashSet类</h2>
+<p>HashSet类是Set接口典型实现，大多时候使用Set时就是使用这个，HashSet按Hash算法来存储集合中的元素，因此存取和查找性能很好。</p>
 <p>几个特点</p>
 <ul>
 <li>不保证元素的排列顺序，顺序可能与添加顺序不一致</li>
@@ -248,40 +249,41 @@
 <li><strong>对象中用作equals方法比较标准的实例变量，也应该用于计算hashcode值</strong></li>
 </ul>
 <p>重写hashcode方法的一般步骤</p>
-<ol>
-<li><p>把对象内每个有意义的实例变量计算出一个int类型的hashcode值</p>
-</li>
+<ol type="1">
+<li><p>把对象内每个有意义的实例变量计算出一个int类型的hashcode值</p></li>
 <li><p>用第一步算出来的多个hashcode值组合成一个hashcode值返回</p>
-<p> 为了避免直接相加产生偶然相等，可以使各实例变量的hashcode值乘以任意一个质数</p>
-</li>
+<p>为了避免直接相加产生偶然相等，可以使各实例变量的hashcode值乘以任意一个质数</p></li>
 </ol>
 <p><strong>当把可变对象添加到HashSet中之后，不要再去修改该集合元素参与运算hashcode()、equals方法的实例变量</strong>，否则会导致HashSet无法正确操作这些集合元素。</p>
-<h3 id="LinkedHashSet类"><a href="#LinkedHashSet类" class="headerlink" title="LinkedHashSet类"></a>LinkedHashSet类</h3><p>它是HashSet类的子类，LinkedHashSet集合也使用hashcode值来决定存储位置，但它同时使用链表维护元素的次序，当遍历LinkedHashSet集合的元素时，LinkedHashSet会按元素的添加顺序来访问集合元素。</p>
+<h3 id="linkedhashset类">LinkedHashSet类</h3>
+<p>它是HashSet类的子类，LinkedHashSet集合也使用hashcode值来决定存储位置，但它同时使用链表维护元素的次序，当遍历LinkedHashSet集合的元素时，LinkedHashSet会按元素的添加顺序来访问集合元素。</p>
 <p>LinkedHashSet需要维护元素插入顺序，所以性能略低于HashSet性能</p>
 <p><strong>注意：虽然使用链表来维护内部顺序，但是LinkedHashSet依然不允许元素重复。</strong></p>
-<h2 id="TreeSet类"><a href="#TreeSet类" class="headerlink" title="TreeSet类"></a>TreeSet类</h2><p>TreeSet类是SortedSet接口的实现类，TreeSet可以保证集合元素处于排序状态，与HashSet相比，TreeSet还提供了几个额外方法</p>
+<h2 id="treeset类">TreeSet类</h2>
+<p>TreeSet类是SortedSet接口的实现类，TreeSet可以保证集合元素处于排序状态，与HashSet相比，TreeSet还提供了几个额外方法</p>
 <ul>
-<li><p><strong>Comparator comparator()</strong>：如果TreeSet采用了定制排序，则该方法返回定制排序所使用的Comparator，如果TreeSet使用了自然排序，则返回null</p>
-</li>
-<li><p><strong>Object first()</strong>：返回集合第一个元素</p>
-</li>
-<li><p><strong>Object last()</strong>：返回集合最后一个元素</p>
-</li>
-<li><p><strong>Object lower(Object e)</strong>：返回集合中位于指定元素e之前的元素(即小于指定元素e的最大元素，e不一定是TreeSet里的元素)</p>
-</li>
-<li><p><strong>Object higher(Object e)</strong>：返回集合中位于指定元素e之后的元素(即大于指定元素e的最小元素，e不一定是TreeSet里的元素)</p>
-</li>
-<li><p><strong>SortedSet subSet(Object fromElement, Object toElement)</strong>：返回此Set的子集合，返回从formElement(包含)到toElement(不包含)</p>
-</li>
-<li><p><strong>SortedSet headSet(Object toElement)</strong>：返回此Set的子集合，由小于toElement的元素组成</p>
-</li>
-<li><p><strong>SortedSet tailSet(Object fromElement)</strong>：返回此Set的子集合，由大小或等于romElement的元素组成</p>
-</li>
+<li><p><strong>Comparator
+comparator()</strong>：如果TreeSet采用了定制排序，则该方法返回定制排序所使用的Comparator，如果TreeSet使用了自然排序，则返回null</p></li>
+<li><p><strong>Object first()</strong>：返回集合第一个元素</p></li>
+<li><p><strong>Object last()</strong>：返回集合最后一个元素</p></li>
+<li><p><strong>Object lower(Object
+e)</strong>：返回集合中位于指定元素e之前的元素(即小于指定元素e的最大元素，e不一定是TreeSet里的元素)</p></li>
+<li><p><strong>Object higher(Object
+e)</strong>：返回集合中位于指定元素e之后的元素(即大于指定元素e的最小元素，e不一定是TreeSet里的元素)</p></li>
+<li><p><strong>SortedSet subSet(Object fromElement, Object
+toElement)</strong>：返回此Set的子集合，返回从formElement(包含)到toElement(不包含)</p></li>
+<li><p><strong>SortedSet headSet(Object
+toElement)</strong>：返回此Set的子集合，由小于toElement的元素组成</p></li>
+<li><p><strong>SortedSet tailSet(Object
+fromElement)</strong>：返回此Set的子集合，由大小或等于romElement的元素组成</p></li>
 </ul>
 <p>TreeSet支持两种排序方式：自然排序、定制排序</p>
 <p>默认情况，TreeSet使用自然排序。</p>
-<h3 id="自然排序"><a href="#自然排序" class="headerlink" title="自然排序"></a>自然排序</h3><p>TreeSet会调用元素的compareTo(Object obj)方法来比较元素之间的大小关系，然后将集合元素按升序排列，这种方式就是自然排序。</p>
-<p>Java提供了一个Comparable接口，<strong>该接口定义了一个compareTo(Object obj)方法，该方法返回一个整数值，若该对象大于obj对象，返回正整数，小于obj对象返回负整数，等于返回0</strong></p>
+<h3 id="自然排序">自然排序</h3>
+<p>TreeSet会调用元素的compareTo(Object
+obj)方法来比较元素之间的大小关系，然后将集合元素按升序排列，这种方式就是自然排序。</p>
+<p>Java提供了一个Comparable接口，<strong>该接口定义了一个compareTo(Object
+obj)方法，该方法返回一个整数值，若该对象大于obj对象，返回正整数，小于obj对象返回负整数，等于返回0</strong></p>
 <p>实现了该接口才可以比较大小，也才可以把对应类的对象放入TreeSet集合中</p>
 <p>实现了Comparaable接口的常用类</p>
 <ul>
@@ -294,26 +296,39 @@
 <p><strong>注意：因为只有相同类的实例才会比较大小，所有向TreeSet中添加的元素应该是同一类的对象，否则会抛出ClassCastException异常。</strong></p>
 <p><strong>对于TreeSet来说，判断两个对象相等的唯一方法就是调用对象的compareTo()方法，返回0，则相等，否则不相等</strong></p>
 <p><strong>当判断相等时，TreeSet无法把元素添加到集合中。</strong></p>
-<p>这里应该注意一个问题，当重写该对象对应类的equals方法时，应该保证该方法与compareTo(Object obj)方法有一致的结果，即<strong>如果两个对象通过equals方法返回相等时，这两个对象通过compareTo方法也应该返回0。</strong></p>
+<p>这里应该注意一个问题，当重写该对象对应类的equals方法时，应该保证该方法与compareTo(Object
+obj)方法有一致的结果，即<strong>如果两个对象通过equals方法返回相等时，这两个对象通过compareTo方法也应该返回0。</strong></p>
 <p><strong>不要修改放入HashSet和TreeSet集合中元素的关键实例变量。</strong></p>
-<h3 id="定制排序"><a href="#定制排序" class="headerlink" title="定制排序"></a>定制排序</h3><p>如果需要实现定制排序，则可以通过<strong>Comparator</strong>接口的帮助，该接口包含一个<strong>int compare(T o1, T o2)</strong>方法，如果o1大于o2，返回正整数，o1小于o2返回负整数，相等返回0</p>
+<h3 id="定制排序">定制排序</h3>
+<p>如果需要实现定制排序，则可以通过<strong>Comparator</strong>接口的帮助，该接口包含一个<strong>int
+compare(T o1, T
+o2)</strong>方法，如果o1大于o2，返回正整数，o1小于o2返回负整数，相等返回0</p>
 <p>如果要实现定制排序，则在创建TreeSet集合对象时，需要提供一个Comparator对象与该集合关联，Comparator是一个函数式接口，可以用Lambda表达式来代替Comparator对象。</p>
 <p>例子</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.*;</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">M</span></span><br><span class="line">&#123;</span><br><span class="line">	<span class="type">int</span> age;</span><br><span class="line">	<span class="keyword">public</span> <span class="title function_">M</span><span class="params">(<span class="type">int</span> age)</span></span><br><span class="line">	&#123;</span><br><span class="line">		<span class="built_in">this</span>.age = age;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">public</span> String <span class="title function_">toString</span><span class="params">()</span></span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">return</span> <span class="string">&quot;M [age:&quot;</span> + age + <span class="string">&quot;]&quot;</span>;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">TreeSetTest4</span></span><br><span class="line">&#123;</span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span></span><br><span class="line">	&#123;</span><br><span class="line">		<span class="comment">// 此处Lambda表达式的目标类型是Comparator</span></span><br><span class="line">		<span class="type">var</span> <span class="variable">ts</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">TreeSet</span>((o1, o2) -&gt;</span><br><span class="line">		&#123;</span><br><span class="line">			<span class="type">var</span> <span class="variable">m1</span> <span class="operator">=</span> (M) o1;</span><br><span class="line">			<span class="type">var</span> <span class="variable">m2</span> <span class="operator">=</span> (M) o2;</span><br><span class="line">			<span class="comment">// 根据M对象的age属性来决定大小，age越大，M对象反而越小</span></span><br><span class="line">			<span class="keyword">return</span> m1.age &gt; m2.age ? -<span class="number">1</span></span><br><span class="line">				: m1.age &lt; m2.age ? <span class="number">1</span> : <span class="number">0</span>;</span><br><span class="line">		&#125;);</span><br><span class="line">		ts.add(<span class="keyword">new</span> <span class="title class_">M</span>(<span class="number">5</span>));</span><br><span class="line">		ts.add(<span class="keyword">new</span> <span class="title class_">M</span>(-<span class="number">3</span>));</span><br><span class="line">		ts.add(<span class="keyword">new</span> <span class="title class_">M</span>(<span class="number">9</span>));</span><br><span class="line">		System.out.println(ts);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p><strong>注意：使用定制排序时，依然不能向TreeSet集合添加不同类的对象，否则会引发异常。</strong></p>
-<h2 id="EnumSet类"><a href="#EnumSet类" class="headerlink" title="EnumSet类"></a>EnumSet类</h2><p>EnumSet是一个专为枚举类设计的集合类，EnumSet中所有元素都必须是指定枚举类型的枚举值，该枚举类型在创建EnumSet时显式或者隐式的指定，EnumSet的集合元素也是有序的，EnumSet以枚举值在Enum类里定义顺序来决定集合元素的顺序。</p>
+<h2 id="enumset类">EnumSet类</h2>
+<p>EnumSet是一个专为枚举类设计的集合类，EnumSet中所有元素都必须是指定枚举类型的枚举值，该枚举类型在创建EnumSet时显式或者隐式的指定，EnumSet的集合元素也是有序的，EnumSet以枚举值在Enum类里定义顺序来决定集合元素的顺序。</p>
 <p><strong>EnumSet集合不允许添加null元素</strong>。</p>
 <p>EnumSet没有暴露任何构造器，程序应该用它提供的类方法来创建EnumSet对象</p>
 <ul>
-<li><strong>EnumSet allOf(Class elementType)</strong>：创建一个包含指定枚举类所有枚举值的EnumSet集合</li>
-<li><strong>EnumSet complementOf(EnumSet s)</strong>：创建一个其元素类型与指定EnumSet里元素类型相同的EnumSet集合，该集合包含原EnumSet集合不存在的、枚举类剩下的枚举值(新EnumSet集合和旧EnumSet集合加起来就是枚举类所有的枚举值)</li>
-<li><strong>EnumSet copyOf(Collection c)</strong>：使用一个普通集合来创建EnumSet集合,要求Collection所有元素必须是同一枚举类的枚举值</li>
-<li><strong>EnumSet copyOf(EnumSet s)</strong>：创建一个与指定EnumSet具有相同类型相同集合元素的EnumSet集合</li>
-<li><strong>EnumSet noneOf(Class elementType)</strong>：创建一个元素类型为指定枚举类型的空EnumSet</li>
-<li><strong>EnumSet of(E first,E….rest)</strong>：创建一个包含一个或多个枚举值的EnumSet集合，传入的多个枚举值必须属于同一个枚举类</li>
-<li><strong>EnumSet range(E from, E to)</strong>：创建一个从from枚举值到to枚举值范围内所有枚举值的EnumSet集合</li>
+<li><strong>EnumSet allOf(Class
+elementType)</strong>：创建一个包含指定枚举类所有枚举值的EnumSet集合</li>
+<li><strong>EnumSet complementOf(EnumSet
+s)</strong>：创建一个其元素类型与指定EnumSet里元素类型相同的EnumSet集合，该集合包含原EnumSet集合不存在的、枚举类剩下的枚举值(新EnumSet集合和旧EnumSet集合加起来就是枚举类所有的枚举值)</li>
+<li><strong>EnumSet copyOf(Collection
+c)</strong>：使用一个普通集合来创建EnumSet集合,要求Collection所有元素必须是同一枚举类的枚举值</li>
+<li><strong>EnumSet copyOf(EnumSet
+s)</strong>：创建一个与指定EnumSet具有相同类型相同集合元素的EnumSet集合</li>
+<li><strong>EnumSet noneOf(Class
+elementType)</strong>：创建一个元素类型为指定枚举类型的空EnumSet</li>
+<li><strong>EnumSet of(E
+first,E....rest)</strong>：创建一个包含一个或多个枚举值的EnumSet集合，传入的多个枚举值必须属于同一个枚举类</li>
+<li><strong>EnumSet range(E from, E
+to)</strong>：创建一个从from枚举值到to枚举值范围内所有枚举值的EnumSet集合</li>
 </ul>
-<h2 id="各Set实现类的性能分析"><a href="#各Set实现类的性能分析" class="headerlink" title="各Set实现类的性能分析"></a>各Set实现类的性能分析</h2><p>HahsSet的性能总是比TreeSet好(特别是常用的添加查询元素等操作)，因为TreeSet需要额外的红黑树算法来维护元素次序，只有需要一个保持排序的Set时，才需要TreeSet，否则都应该用HashSet</p>
+<h2 id="各set实现类的性能分析">各Set实现类的性能分析</h2>
+<p>HahsSet的性能总是比TreeSet好(特别是常用的添加查询元素等操作)，因为TreeSet需要额外的红黑树算法来维护元素次序，只有需要一个保持排序的Set时，才需要TreeSet，否则都应该用HashSet</p>
 <p>LinkedHashSet需要维护链表，所有也比HashSet性能差一点，但遍历集合会更快</p>
 <p>Set的三个实现类都是线程不安全的，如果有多个线程访问该集合，并且超过一个线程修改了该Set集合，则必须手动保证该Set集合的同步性。</p>
 

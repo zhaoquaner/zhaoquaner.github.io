@@ -20,12 +20,12 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"zhaoquaner.github.io","root":"/","images":"/images","scheme":"Muse","darkmode":false,"version":"8.11.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
 
-    <meta name="description" content="RandomAccessFile是Java输入&#x2F;输出体系功能最丰富的文件内容访问类，它既可以读取文件内容，也可以写入文件内容，与普通输入&#x2F;输出类不同的是，它支持“任意访问”，即程序可以从文件的任何位置开始写入或者读取。 RandomAccessFile允许自由定位记录指针，如果程序需要向已经存在的文件追加内容，则需要使用RandomAccessFile类。 当新创建一个RandomAccessFi">
+    <meta name="description" content="RandomAccessFile是Java输入&#x2F;输出体系功能最丰富的文件内容访问类，它既可以读取文件内容，也可以写入文件内容，与普通输入&#x2F;输出类不同的是，它支持“任意访问”，即程序可以从文件的任何位置开始写入或者读取。 RandomAccessFile允许自由定位记录指针，如果程序需要向已经存在的文件追加内容，则需要使用RandomAccessFile类。 当新创建一个RandomAccess">
 <meta property="og:type" content="article">
 <meta property="og:title" content="RandomAccessFile">
 <meta property="og:url" content="https://zhaoquaner.github.io/2022/05/11/Java/%E8%BE%93%E5%85%A5%E8%BE%93%E5%87%BA/RandomAccessFile/index.html">
 <meta property="og:site_name" content="赵圈儿的博客">
-<meta property="og:description" content="RandomAccessFile是Java输入&#x2F;输出体系功能最丰富的文件内容访问类，它既可以读取文件内容，也可以写入文件内容，与普通输入&#x2F;输出类不同的是，它支持“任意访问”，即程序可以从文件的任何位置开始写入或者读取。 RandomAccessFile允许自由定位记录指针，如果程序需要向已经存在的文件追加内容，则需要使用RandomAccessFile类。 当新创建一个RandomAccessFi">
+<meta property="og:description" content="RandomAccessFile是Java输入&#x2F;输出体系功能最丰富的文件内容访问类，它既可以读取文件内容，也可以写入文件内容，与普通输入&#x2F;输出类不同的是，它支持“任意访问”，即程序可以从文件的任何位置开始写入或者读取。 RandomAccessFile允许自由定位记录指针，如果程序需要向已经存在的文件追加内容，则需要使用RandomAccessFile类。 当新创建一个RandomAccess">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2022-05-11T01:15:39.000Z">
 <meta property="article:modified_time" content="2022-05-11T08:54:13.508Z">
@@ -235,7 +235,7 @@
 <p>功能：得到文件记录指针目前的位置</p>
 <p>参数：无</p>
 <p>返回值：返回记录指针位置</p>
-<hr>
+<hr />
 <p><strong>void seek(long pos)</strong></p>
 <p>功能：将文件指针定位到pos位置</p>
 <p>参数：</p>
@@ -243,18 +243,20 @@
 <li>pos:想要定位的文件位置</li>
 </ul>
 <p>返回值：无</p>
-<hr>
+<hr />
 <p>RandomAccessFile既可以读取文件内容也可以写入文件，所有它也包含了InputStream的三个read()方法，和OutputStream的三个write()方法，用法和原来一样。</p>
 <p>除此之外，RandomAccessFile还包含一系列readXxx()方法和writeXxx()方法来完成输入输出。</p>
 <p>RandomAccessFile本身有两个构造器</p>
-<p><strong>RandomAccessFile( File file, String mode)</strong>和<strong>RandomAccessFile( String name, String mode)</strong></p>
+<p><strong>RandomAccessFile( File file, String
+mode)</strong>和<strong>RandomAccessFile( String name, String
+mode)</strong></p>
 <p>前一个使用String参数来指定文件名，后一个使用File来指定文件本身。</p>
 <p>还有一个mode参数，指定文件以什么形式打开，有四个值：</p>
 <ul>
-<li>“r” :以只读方式打开文件，如果执行写入，会出现异常</li>
-<li>“rw”：以读写方式打开文件，如果文件不存在，则会创建该文件</li>
-<li>“rws”：以读写方式打开文件，相对于”rw”模式，还要求对文件内容或元数据的每个更新都同步写入到底层存储设备。</li>
-<li>“rwd”：以读写方式打开文件，相对于”rw”模式，还要求对文件内容的每个更新都同步写入到底层存储设备。</li>
+<li>"r" :以只读方式打开文件，如果执行写入，会出现异常</li>
+<li>"rw"：以读写方式打开文件，如果文件不存在，则会创建该文件</li>
+<li>"rws"：以读写方式打开文件，相对于"rw"模式，还要求对文件内容或元数据的每个更新都同步写入到底层存储设备。</li>
+<li>"rwd"：以读写方式打开文件，相对于"rw"模式，还要求对文件内容的每个更新都同步写入到底层存储设备。</li>
 </ul>
 <p>例子：使用RandomAccessFile来访问指定的中间部分数据</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.io.*;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span>  <span class="keyword">class</span>  <span class="title class_">hello</span>  &#123;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">        <span class="keyword">public</span>  <span class="keyword">static</span>  <span class="keyword">void</span>  <span class="title function_">main</span><span class="params">(String  args[])</span>  <span class="keyword">throws</span> IOException</span><br><span class="line">        &#123;</span><br><span class="line">                <span class="keyword">try</span>(<span class="type">RandomAccessFile</span> <span class="variable">raf</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">RandomAccessFile</span>(<span class="string">&quot;poem.txt&quot;</span>, <span class="string">&quot;r&quot;</span>))</span><br><span class="line">                &#123;</span><br><span class="line">                        System.out.println(raf.getFilePointer());</span><br><span class="line"></span><br><span class="line">                        raf.seek(<span class="number">7</span>);</span><br><span class="line"></span><br><span class="line">                        <span class="type">byte</span>[] bbuf = <span class="keyword">new</span> <span class="title class_">byte</span>[<span class="number">1024</span>];</span><br><span class="line"></span><br><span class="line">                        <span class="type">int</span> <span class="variable">hasread</span> <span class="operator">=</span> <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">                        <span class="keyword">while</span>((hasread = raf.read(bbuf)) &gt; <span class="number">0</span> )</span><br><span class="line">                        &#123;</span><br><span class="line">                                System.out.println(<span class="keyword">new</span> <span class="title class_">String</span>(bbuf, <span class="number">0</span>, hasread));</span><br><span class="line">                        &#125;</span><br><span class="line"></span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">catch</span> (IOException e)</span><br><span class="line">                &#123;</span><br><span class="line">                        e.printStackTrace();</span><br><span class="line">                &#125;</span><br><span class="line"></span><br><span class="line">        &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>

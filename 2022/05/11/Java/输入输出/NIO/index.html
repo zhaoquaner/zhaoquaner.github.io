@@ -27,15 +27,12 @@
 <meta property="og:site_name" content="赵圈儿的博客">
 <meta property="og:description" content="当时用BufferReader读取输入流数据时，如果没有读到有效数据，那么程序会在此处阻塞该线程的执行(使用InputStream的read方法读取输入流数据时，如果数据源没有数据，也会阻塞)，也就是说前面说的输入流输出流都是阻塞式的输入输出，不仅如此，传统的输入流输出流都是通过字节的移动来处理的，既然不直接处理字节流，底层也还是使用字节处理，也就是说，面向流的输入&#x2F;输出系统一次只能处理一个字符，">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="d:/各种文档/个人文档/学习总结/Java/输入输出/image/image-20200420150359162.png">
-<meta property="og:image" content="d:/各种文档/个人文档/学习总结/Java/输入输出/image/image-20200420153133317.png">
 <meta property="article:published_time" content="2022-05-11T01:13:39.000Z">
 <meta property="article:modified_time" content="2022-05-11T08:54:08.869Z">
 <meta property="article:author" content="ZhaoXin">
 <meta property="article:tag" content="Java基础">
 <meta property="article:tag" content="输入输出">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="d:/各种文档/个人文档/学习总结/Java/输入输出/image/image-20200420150359162.png">
 
 
 <link rel="canonical" href="https://zhaoquaner.github.io/2022/05/11/Java/%E8%BE%93%E5%85%A5%E8%BE%93%E5%87%BA/NIO/">
@@ -113,7 +110,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Java%E6%96%B0IO%E6%A6%82%E8%BF%B0"><span class="nav-number">1.</span> <span class="nav-text">Java新IO概述</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8Buffer"><span class="nav-number">2.</span> <span class="nav-text">　使用Buffer</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8Channel"><span class="nav-number">3.</span> <span class="nav-text">使用Channel</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AD%97%E7%AC%A6%E9%9B%86%E5%92%8CCharset"><span class="nav-number">4.</span> <span class="nav-text">字符集和Charset</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%96%87%E4%BB%B6%E9%94%81"><span class="nav-number">5.</span> <span class="nav-text">文件锁</span></a></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#java%E6%96%B0io%E6%A6%82%E8%BF%B0"><span class="nav-number">1.</span> <span class="nav-text">Java新IO概述</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8channel"><span class="nav-number">2.</span> <span class="nav-text">使用Channel</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AD%97%E7%AC%A6%E9%9B%86%E5%92%8Ccharset"><span class="nav-number">3.</span> <span class="nav-text">字符集和Charset</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%96%87%E4%BB%B6%E9%94%81"><span class="nav-number">4.</span> <span class="nav-text">文件锁</span></a></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -234,7 +231,8 @@
     <div class="post-body" itemprop="articleBody">
         <p>当时用BufferReader读取输入流数据时，如果没有读到有效数据，那么程序会在此处阻塞该线程的执行(使用InputStream的read方法读取输入流数据时，如果数据源没有数据，也会阻塞)，也就是说前面说的输入流输出流都是阻塞式的输入输出，不仅如此，传统的输入流输出流都是通过字节的移动来处理的，既然不直接处理字节流，底层也还是使用字节处理，也就是说，面向流的输入/输出系统一次只能处理一个字符，因此通常效率不高。</p>
 <p>从jdk1.4，Java提供了一系列改进的输入输出新功能，这些功能被统称为新IO，新增了许多用于处理输入输出的类，这些类都放在java.nio包及其子包下。</p>
-<h2 id="Java新IO概述"><a href="#Java新IO概述" class="headerlink" title="Java新IO概述"></a>Java新IO概述</h2><p>新IO和传统IO目的相同，用于输入/输出，但是新IO使用了不同的方式来处理输入输出。新IO采用内存映射文件的方式来处理输入输出，新IO将文件或者文件部分映射到内存中，这样就可以像访问内存一样来访问文件(这种方式模拟了操作系统的虚拟内存概念)，通过这种方式，进行输入输出要快得多。</p>
+<h2 id="java新io概述">Java新IO概述</h2>
+<p>新IO和传统IO目的相同，用于输入/输出，但是新IO使用了不同的方式来处理输入输出。新IO采用内存映射文件的方式来处理输入输出，新IO将文件或者文件部分映射到内存中，这样就可以像访问内存一样来访问文件(这种方式模拟了操作系统的虚拟内存概念)，通过这种方式，进行输入输出要快得多。</p>
 <p>Java中与新IO相关的包如下。</p>
 <ul>
 <li>java.nio：主要包含各种与Buffer相关的类</li>
@@ -247,9 +245,11 @@
 <p>如果说传统输入输出是面向流的处理，那么新IO就是面向块的处理。</p>
 <p>Buffer可以被理解成容器，它本质是数组，发送到Channel中的所有对象都必须放在Buffer中，而从Channel读取的数据也必须先放到Buffer。</p>
 <p>除了Channel和Buffer之外，新IO还提供了用于将Unicode字符串应设成字节序列以及逆映射的操作的Charset类,也提供了用于支持非阻塞式输入输出的Selector类。</p>
-<h2 id="使用Buffer"><a href="#使用Buffer" class="headerlink" title="　使用Buffer"></a>　使用Buffer</h2><p>从内部结构看，Buffer就像一个数组，可以保存多个类型相同的数据，Buffer是一个抽象类，最常用的子类是ByteBuffer，他可以在底层字节数组进行get/set操作，除了ByteBuffer外，对应其他基本数据类型(boolean除外)都有对应Buffer类:CharBuffer、ShortBuffer、IntBuffer、LongBuffer、FloatBuffer和DoubleBuffer。</p>
+<p>##　使用Buffer</p>
+<p>从内部结构看，Buffer就像一个数组，可以保存多个类型相同的数据，Buffer是一个抽象类，最常用的子类是ByteBuffer，他可以在底层字节数组进行get/set操作，除了ByteBuffer外，对应其他基本数据类型(boolean除外)都有对应Buffer类:CharBuffer、ShortBuffer、IntBuffer、LongBuffer、FloatBuffer和DoubleBuffer。</p>
 <p>上面这些Buffer类，除了ByteBuffer类外，他们都采用相同或者相似的方法管理数据，这些Buffer类都没有提供构造器，通过如下一个方法来得到XxxBuffer对象</p>
-<p>`<strong>static XxxBuffer allocate(int capacity)</strong>来创建一个容量为capacity的XxxBuffer对象。</p>
+<p>`<strong>static XxxBuffer allocate(int
+capacity)</strong>来创建一个容量为capacity的XxxBuffer对象。</p>
 <p>实际使用较多的是ByteBuffer和CharBuffer类，其他Buffer子类较少用到，其中ByteBuffer类还有一个子类：MappedByteBuffer，它用于表示Channel将磁盘文件部分或者全部内容映射到内存中得到的结果，通常MappedByteBuffer对象由Channel得map方法返回。</p>
 <p>在Buffer中有三个重要概念：</p>
 <ul>
@@ -260,7 +260,12 @@
 <p>除此之外，Buffer还支持一个可选的标记mark，Buffer允许直接将position定位到该mark处。</p>
 <p>这些值的关系为</p>
 <p><strong>0≤mark≤position≤limit≤capacity</strong></p>
-<p><img src="D:\各种文档\个人文档\学习总结\Java\输入输出\image\image-20200420150359162.png" alt="image-20200420150359162"></p>
+<figure>
+<img
+src="D:\各种文档\个人文档\学习总结\Java\输入输出\image\image-20200420150359162.png"
+alt="image-20200420150359162" />
+<figcaption aria-hidden="true">image-20200420150359162</figcaption>
+</figure>
 <p>如图可看出这些值的关系。</p>
 <p>Buffer的主要作用就是装入数据，然后输出数据，开始时，<strong>position为0，limit为capacity</strong>，程序通过put方法像Buffer中放入数据，</p>
 <p>Buffer中一些常用的方法：</p>
@@ -270,7 +275,7 @@
 <p>返回值：调用该方法的Buffer对象</p>
 <p><strong>注：</strong></p>
 <p>该方法使得Buffer的读写指针移到开始位置，即调用flip方法后，Buffer为输出数据做好准备</p>
-<hr>
+<hr />
 <p><strong>XxxBuffer clear()</strong></p>
 <p>功能：将limit设为capacity，然后设position为0</p>
 <p>参数：无</p>
@@ -280,23 +285,23 @@
 <li>该方法使得Buffer的读写指针移到开始位置，即调用clear方法后，Buffer为读取数据做好准备</li>
 <li><strong>该方法不会清除Buffer中的内容，只会改变limit和position的值</strong></li>
 </ul>
-<hr>
-<p><strong>int  capacity()</strong></p>
+<hr />
+<p><strong>int capacity()</strong></p>
 <p>功能：获得Buffer的capacity大小</p>
 <p>参数：无</p>
 <p>返回值：Buffer的capacity</p>
-<hr>
+<hr />
 <p><strong>boolean hasRemaining()</strong></p>
 <p>功能：判断当前位置(position)和界限(limit)之间是否还有元素可供处理</p>
 <p>参数：无</p>
 <p>返回值：</p>
 <p>有元素需要处理，返回true，无返回false</p>
-<hr>
+<hr />
 <p><strong>int limit()</strong></p>
 <p>功能：返回Buffer界限的位置</p>
 <p>参数：无</p>
 <p>返回值：Buffer的limit</p>
-<hr>
+<hr />
 <p><strong>Buffer limit(int newPs)</strong></p>
 <p>功能：重新设置limit的位置</p>
 <p>参数：</p>
@@ -304,7 +309,7 @@
 <li>newPs:新limit的位置</li>
 </ul>
 <p>返回值：此Buffer对象</p>
-<hr>
+<hr />
 <p><strong>Buffer mark()</strong></p>
 <p>功能：在当前Buffer的position设置一个mark</p>
 <p>参数：无</p>
@@ -314,12 +319,12 @@
 <li>mark只能在0到position之间</li>
 <li>设置了mark，只是在position位置做一个标记，需要调用reset方法将position转到mark位置</li>
 </ul>
-<hr>
+<hr />
 <p><strong>int position()</strong></p>
 <p>功能：获得Buffer的position值</p>
 <p>参数：无</p>
 <p>返回值：Buffer的position</p>
-<hr>
+<hr />
 <p><strong>Buffer position(int newPs)</strong></p>
 <p>功能:设置Buffer的position</p>
 <p>参数：</p>
@@ -327,22 +332,22 @@
 <li>newPs：需要设置的newPs位置</li>
 </ul>
 <p>返回值：返回修改了position的Buffer对象</p>
-<hr>
+<hr />
 <p><strong>int remaining()</strong></p>
 <p>功能：返回当前位置和界限之间的元素个数。</p>
 <p>参数：无</p>
 <p>返回值：返回元素个数</p>
-<hr>
+<hr />
 <p><strong>Buffer reset()</strong></p>
 <p>功能：将position转到mark所在位置</p>
 <p>参数：无</p>
 <p>返回值：此Buffer对象</p>
-<hr>
+<hr />
 <p><strong>Buffer rewind()</strong></p>
 <p>功能：将位置设为0，取消设置的mark</p>
 <p>参数：无</p>
 <p>返回值：此Buffer对象</p>
-<hr>
+<hr />
 <p>除了这些方法外，Buffer的所有子类还提供了两个重要方法，put()和get()，用于向Buffer中放入数据和从Buffer中取出数据，当时用这两个方式时，Buffer即支持对单个数据的访问，也支持对批量数据的访问(以数组作为参数)。</p>
 <p>使用put()和get()来访问Buffer中的数据时，分为相对和绝对两种</p>
 <ul>
@@ -353,13 +358,19 @@
 <p>下面是Buffer的常规操作。</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span>  <span class="keyword">class</span>  <span class="title class_">Main</span>  &#123;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">public</span>  <span class="keyword">static</span>  <span class="keyword">void</span>  <span class="title function_">main</span><span class="params">(String[]  args)</span> <span class="keyword">throws</span> Exception&#123;</span><br><span class="line"></span><br><span class="line">                <span class="type">CharBuffer</span> <span class="variable">buff</span> <span class="operator">=</span> CharBuffer.allocate(<span class="number">8</span>);</span><br><span class="line"></span><br><span class="line">                System.out.println(<span class="string">&quot;capacity : &quot;</span> + buff.capacity());</span><br><span class="line"></span><br><span class="line">                System.out.println(<span class="string">&quot;limit : &quot;</span> + buff.limit());</span><br><span class="line"></span><br><span class="line">                System.out.println(<span class="string">&quot;position : &quot;</span> + buff.position());</span><br><span class="line"></span><br><span class="line">                buff.put(<span class="string">&#x27;a&#x27;</span>);</span><br><span class="line"></span><br><span class="line">                buff.put(<span class="string">&#x27;b&#x27;</span>);</span><br><span class="line"></span><br><span class="line">                buff.put(<span class="string">&#x27;c&#x27;</span>);</span><br><span class="line"></span><br><span class="line">                System.out.println(<span class="string">&quot;加入三个元素后的position：&quot;</span> + buff.position());</span><br><span class="line"></span><br><span class="line">                buff.flip();</span><br><span class="line"></span><br><span class="line">                System.out.println(<span class="string">&quot;执行完flip方法后 limit = &quot;</span> + buff.limit() + <span class="string">&quot;  position = &quot;</span> + buff.position());</span><br><span class="line"></span><br><span class="line">                System.out.println(<span class="string">&quot;取出第一个元素: &quot;</span> + buff.get());</span><br><span class="line"></span><br><span class="line">                System.out.println(<span class="string">&quot;取出第一个元素后，position位置为&quot;</span> + buff.position());</span><br><span class="line"></span><br><span class="line">                buff.clear();</span><br><span class="line"></span><br><span class="line">                System.out.println(<span class="string">&quot;执行完clear方法后 limit = &quot;</span> + buff.limit() + <span class="string">&quot;   position = &quot;</span> + buff.position());</span><br><span class="line"></span><br><span class="line">                System.out.println(<span class="string">&quot;执行clear后，缓冲区内容并没有被清除，取出第三个元素:&quot;</span> + buff.get(<span class="number">2</span>));</span><br><span class="line"></span><br><span class="line">                System.out.println(<span class="string">&quot;执行绝对读取后，position = &quot;</span> + buff.position());</span><br><span class="line"></span><br><span class="line">        &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>输出结果为：</p>
-<p><img src="D:\各种文档\个人文档\学习总结\Java\输入输出\image\image-20200420153133317.png" alt="image-20200420153133317"></p>
+<figure>
+<img
+src="D:\各种文档\个人文档\学习总结\Java\输入输出\image\image-20200420153133317.png"
+alt="image-20200420153133317" />
+<figcaption aria-hidden="true">image-20200420153133317</figcaption>
+</figure>
 <p>通过allocate()方法创建的Buffer对象是普通的Buffer，ByteBuffer还提供了一个allocateDirect方法来创建直接Buffer，直接Buffer的创建成本比普通Buffer的创建成本高，但直接Buffer的读取效率更高。</p>
 <p><strong>提示</strong></p>
 <p>由于直接Buffer创建成本很高，所以直接Buffer只适用于生存期长的Buffer，而不适用与短生存期、一次用完就丢弃的Buffer。</p>
 <p>而且只有ByteBuffer提供了allocateDirect()方法，所以只能在ByteBuffer级别上创建直接Buffer，如果希望使用其他类型，则应该将该Buffer转为其他类型的Buffer。</p>
 <p>直接Buffer和普通Buffer用法基本相同。</p>
-<h2 id="使用Channel"><a href="#使用Channel" class="headerlink" title="使用Channel"></a>使用Channel</h2><p>Channel类似于传统的流对象，但与传统流对象有两个主要区别：</p>
+<h2 id="使用channel">使用Channel</h2>
+<p>Channel类似于传统的流对象，但与传统流对象有两个主要区别：</p>
 <ul>
 <li>Channel可以直接将指定文件的部分或者全部映射成Buffer</li>
 <li>程序不能直接访问Channel中的数据，读取、写入都不可以，必须写通过Buffer，如果要写入Channel，必须先写入Buffer，通过Buffer写入Channel，读取也是一样</li>
@@ -367,7 +378,8 @@
 <p>Java为Channel接口提供了DatagramChannel、FileChannel、Pipe.SinkChannel、Pipe.SourceChannel、SelectableChannel、ServerSocketChannel和SocketChannel等实现类，这里主要介绍FileChannel的用法。新IO的Channel是按功能来分类的，Pipe.SinkChannel、Pipe.SourceChannel是用于支持线程通信的管道Channel，ServerSocketChannel和SocketChannel是用于网络通信的管道Channel。</p>
 <p>注意，所有的Channel都不应该通过构造器来创建，而是通过传统节点InputStream，OutputStream的getChannel()方法来返回对应Channel，不同节点流返回的Channel类型不同。FileInputStream和FileutputStream返回的Channel是FileChannel，PipedInputStream和PipedOutputStream返回的Channel是PipeChannel。</p>
 <p>Channel最常用的三类方法是map(),read(),write()，其中map()方法用于将Channel对应的部分或者全部数据映射成ByteBuffer，而read()和write()都有一系列重载形式。</p>
-<p>map()的方法签名为 <strong>MappedByteBuffer map(FileChannel.MapMode mode, long position, long size)</strong></p>
+<p>map()的方法签名为 <strong>MappedByteBuffer map(FileChannel.MapMode
+mode, long position, long size)</strong></p>
 <p>第一个参数是执行映射时的模式，有三个取值</p>
 <ul>
 <li>FileChannel.MapMode.PRIVATE：私有模式(写时复制)</li>
@@ -383,7 +395,8 @@
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.io.*;</span><br><span class="line"><span class="keyword">import</span> java.nio.*;</span><br><span class="line"><span class="keyword">import</span> java.nio.channels.*;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">RandomFileChannelTest</span></span><br><span class="line">&#123;</span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span></span><br><span class="line">		<span class="keyword">throws</span> IOException</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="type">var</span> <span class="variable">f</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">File</span>(<span class="string">&quot;a.txt&quot;</span>);</span><br><span class="line">		<span class="keyword">try</span> (</span><br><span class="line">			<span class="comment">// 创建一个RandomAccessFile对象</span></span><br><span class="line">			<span class="type">var</span> <span class="variable">raf</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">RandomAccessFile</span>(f, <span class="string">&quot;rw&quot;</span>);</span><br><span class="line">			<span class="comment">// 获取RandomAccessFile对应的Channel</span></span><br><span class="line">			<span class="type">FileChannel</span> <span class="variable">randomChannel</span> <span class="operator">=</span> raf.getChannel())</span><br><span class="line">		&#123;</span><br><span class="line">			<span class="comment">// 将Channel中所有数据映射成ByteBuffer</span></span><br><span class="line">			<span class="type">ByteBuffer</span> <span class="variable">buffer</span> <span class="operator">=</span> randomChannel.map(FileChannel</span><br><span class="line">				.MapMode.READ_ONLY, <span class="number">0</span>, f.length());</span><br><span class="line">			<span class="comment">// 把Channel的记录指针移动到最后</span></span><br><span class="line">			randomChannel.position(f.length());</span><br><span class="line">			<span class="comment">// 将buffer中所有数据输出</span></span><br><span class="line">			randomChannel.write(buffer);</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>程序也可以使用Channel和Buffer传统的”用竹筒多次重复取水“的方式，代码如下</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.io.*;</span><br><span class="line"><span class="keyword">import</span> java.nio.*;</span><br><span class="line"><span class="keyword">import</span> java.nio.channels.*;</span><br><span class="line"><span class="keyword">import</span> java.nio.charset.*;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">ReadFile</span></span><br><span class="line">&#123;</span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span></span><br><span class="line">		<span class="keyword">throws</span> IOException</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">try</span> (</span><br><span class="line">			<span class="comment">// 创建文件输入流</span></span><br><span class="line">			<span class="type">var</span> <span class="variable">fis</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">FileInputStream</span>(<span class="string">&quot;ReadFile.java&quot;</span>);</span><br><span class="line">			<span class="comment">// 创建一个FileChannel</span></span><br><span class="line">			<span class="type">FileChannel</span> <span class="variable">fcin</span> <span class="operator">=</span> fis.getChannel())</span><br><span class="line">		&#123;</span><br><span class="line">			<span class="comment">// 定义一个ByteBuffer对象，用于重复取水</span></span><br><span class="line">			<span class="type">ByteBuffer</span> <span class="variable">bbuff</span> <span class="operator">=</span> ByteBuffer.allocate(<span class="number">256</span>);</span><br><span class="line">			<span class="comment">// 将FileChannel中数据放入ByteBuffer中</span></span><br><span class="line">			<span class="keyword">while</span> (fcin.read(bbuff) != -<span class="number">1</span>)</span><br><span class="line">			&#123;</span><br><span class="line">				<span class="comment">// 锁定Buffer的空白区</span></span><br><span class="line">				bbuff.flip();</span><br><span class="line">				<span class="comment">// 创建Charset对象</span></span><br><span class="line">				<span class="type">Charset</span> <span class="variable">charset</span> <span class="operator">=</span> Charset.forName(<span class="string">&quot;GBK&quot;</span>);</span><br><span class="line">				<span class="comment">// 创建解码器(CharsetDecoder)对象</span></span><br><span class="line">				<span class="type">CharsetDecoder</span> <span class="variable">decoder</span> <span class="operator">=</span> charset.newDecoder();</span><br><span class="line">				<span class="comment">// 将ByteBuffer的内容转码</span></span><br><span class="line">				<span class="type">CharBuffer</span> <span class="variable">cbuff</span> <span class="operator">=</span> decoder.decode(bbuff);</span><br><span class="line">				System.out.print(cbuff);</span><br><span class="line">				<span class="comment">// 将Buffer初始化，为下一次读取数据做准备</span></span><br><span class="line">				bbuff.clear();</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="字符集和Charset"><a href="#字符集和Charset" class="headerlink" title="字符集和Charset"></a>字符集和Charset</h2><p>计算机中的文件、数据、图片等等是一种表面现象，在计算机内部它们都是以二进制序列存储的，对于文本文件，我们之所以可以看到一个个的字符，是因为系统将二进制序列转换为了字符。这个过程有两个概念：编码(Encode)和解码(Decode)。通常，把明文的字符序列转换成计算机理解的二进制序列称为编码，把二进制序列转换成普通人看得懂的明文字符串为解码。</p>
+<h2 id="字符集和charset">字符集和Charset</h2>
+<p>计算机中的文件、数据、图片等等是一种表面现象，在计算机内部它们都是以二进制序列存储的，对于文本文件，我们之所以可以看到一个个的字符，是因为系统将二进制序列转换为了字符。这个过程有两个概念：编码(Encode)和解码(Decode)。通常，把明文的字符序列转换成计算机理解的二进制序列称为编码，把二进制序列转换成普通人看得懂的明文字符串为解码。</p>
 <p>Java默认使用Unicode字符集，但很多操作系统并不是用Unicode字符集，那么当从系统中读取数据到Java程序中时，就可能出现乱码问题。</p>
 <p>Java提供了Charset来处理字节序列和字符序列的转换关系，该类包含了创建解码器和编码器的方法，还提供了获取Charset所支持的字符集的方法，Charset类是不可变类。</p>
 <p>常用的字符集：</p>
@@ -393,18 +406,23 @@
 <li>UTF-8：linux系统默认字符集，8位UCS转换格式</li>
 </ul>
 <p>可以通过Chatrset的forName()方法创建对应的Charset对象，参数就是字符集的别名</p>
-<p>如<code>Charset cs = Charset.forName(&quot;GBK&quot;);</code></p>
+<p>如<code>Charset cs = Charset.forName("GBK");</code></p>
 <p>获得了Charset对象后，就可以通过该对象的newDecoder()和newEncoder()方法来获得CharsetDecoder和CharsetEncoder对象，分别是该Charset对象的解码器和编码器。这两个对象分别有decode()和encode()方法来对字节序列和字符序列解码和编码。</p>
 <p>例子</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.nio.*;</span><br><span class="line"><span class="keyword">import</span> java.nio.charset.*;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">CharsetTransform</span></span><br><span class="line">&#123;</span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span></span><br><span class="line">		<span class="keyword">throws</span> Exception</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="comment">// 创建简体中文对应的Charset</span></span><br><span class="line">		<span class="type">Charset</span> <span class="variable">cn</span> <span class="operator">=</span> Charset.forName(<span class="string">&quot;GBK&quot;</span>);</span><br><span class="line">		<span class="comment">// 获取cn对象对应的编码器和解码器</span></span><br><span class="line">		<span class="type">CharsetEncoder</span> <span class="variable">cnEncoder</span> <span class="operator">=</span> cn.newEncoder();</span><br><span class="line">		<span class="type">CharsetDecoder</span> <span class="variable">cnDecoder</span> <span class="operator">=</span> cn.newDecoder();</span><br><span class="line">		<span class="comment">// 创建一个CharBuffer对象</span></span><br><span class="line">		<span class="type">CharBuffer</span> <span class="variable">cbuff</span> <span class="operator">=</span> CharBuffer.allocate(<span class="number">8</span>);</span><br><span class="line">		cbuff.put(<span class="string">&#x27;孙&#x27;</span>);</span><br><span class="line">		cbuff.put(<span class="string">&#x27;悟&#x27;</span>);</span><br><span class="line">		cbuff.put(<span class="string">&#x27;空&#x27;</span>);</span><br><span class="line">		cbuff.flip();</span><br><span class="line">		<span class="comment">// 将CharBuffer中的字符序列转换成字节序列</span></span><br><span class="line">		<span class="type">ByteBuffer</span> <span class="variable">bbuff</span> <span class="operator">=</span> cnEncoder.encode(cbuff);</span><br><span class="line">		<span class="comment">// 循环访问ByteBuffer中的每个字节</span></span><br><span class="line">		<span class="keyword">for</span> (<span class="type">var</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>; i &lt; bbuff.capacity(); i++)</span><br><span class="line">		&#123;</span><br><span class="line">			System.out.print(bbuff.get(i) + <span class="string">&quot; &quot;</span>);</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="comment">// 将ByteBuffer的数据解码成字符序列</span></span><br><span class="line">		System.out.println(<span class="string">&quot;\n&quot;</span> + cnDecoder.decode(bbuff));</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>上面程序分别实现了将ByteBuffer转换成CharBuffer，和CharBuffer转换成ByteBuffer的功能。</p>
 <p>实际上，Charset类也提供了三个方法</p>
-<p><strong>CharBuffer decode(ByteBuffer bb)</strong>:将ByteBuffer中的字节序列转换成字符序列的快捷方法</p>
-<p><strong>ByteBuffer encode(CharBuffer bb)</strong>:将CharBuffer中的字符序列转换成字节序列的快捷方法</p>
-<p><strong>ByteBuffer encode(String str)</strong>:将String字符序列转换成字节序列的快捷方法</p>
+<p><strong>CharBuffer decode(ByteBuffer
+bb)</strong>:将ByteBuffer中的字节序列转换成字符序列的快捷方法</p>
+<p><strong>ByteBuffer encode(CharBuffer
+bb)</strong>:将CharBuffer中的字符序列转换成字节序列的快捷方法</p>
+<p><strong>ByteBuffer encode(String
+str)</strong>:将String字符序列转换成字节序列的快捷方法</p>
 <p>也就是说，获取Charset对象以后，如果仅仅是需要简单的编码和解码操作，不需要创建对应的解码器和编码器，直接调用Charset对象的方法即可。</p>
-<p>在String类里也提供了一个getBytes(String charset)方法，该方法返回byte[],即使用指定字符集将字符串转换成字节序列</p>
-<h2 id="文件锁"><a href="#文件锁" class="headerlink" title="文件锁"></a>文件锁</h2><p>FileLock文件锁，在操作系统中很常见，如果多个程序同时访问、修改同一个文件，但是因为文件数据不同步而出现问题，给文件加一个锁，同一时间，只有一个程序可以访问该文件，或者所有程序都可以读取此文件，但不能同时写入，这就解决了同步问题。</p>
+<p>在String类里也提供了一个getBytes(String
+charset)方法，该方法返回byte[],即使用指定字符集将字符串转换成字节序列</p>
+<h2 id="文件锁">文件锁</h2>
+<p>FileLock文件锁，在操作系统中很常见，如果多个程序同时访问、修改同一个文件，但是因为文件数据不同步而出现问题，给文件加一个锁，同一时间，只有一个程序可以访问该文件，或者所有程序都可以读取此文件，但不能同时写入，这就解决了同步问题。</p>
 <p>文件锁是进程级别的，不是线程级别的，文件锁可以解决多个进程并发访问，但不能解决多线程并发访问的问题。</p>
 <p>这就是说，当使用文件锁时，同一进程的多个线程可以同时访问修改该文件。</p>
 <p>文件锁是当前程序所属的JVM实例持有的，一旦获取到文件锁，要释放文件锁有三种方法</p>
@@ -419,13 +437,17 @@
 <li>共享锁：某个进程对文件加共享锁，其他进程也可以访问该文件，<strong>但是这些进程都只能读此文件，不能写</strong>，即读操作是共享的，但写操作是独占的，线程安全，其他进程不能获得该文件的排他锁，可以获得该文件的共享锁。</li>
 </ul>
 <p>在FileChannel提供的lock/tryLock方法可以获得文件锁FileLock对象,lock和tryLock的区别是：当lock方法试图锁定某个文件时，如果无法得到文件锁，程序将一直阻塞；而tryLock是尝试锁定文件，它将直接返回而不是阻塞，如果获得了文件锁，则该方法返回该文件锁，否则返回null</p>
-<p>如果要锁定文件的部分内容，使用<strong>lock(long position, long size, boolean shared)</strong>和<strong>tryLock(long position, long size, boolean shared)</strong></p>
+<p>如果要锁定文件的部分内容，使用<strong>lock(long position, long size,
+boolean shared)</strong>和<strong>tryLock(long position, long size,
+boolean shared)</strong></p>
 <p>所以一共有四种获得文件锁的方式</p>
 <ul>
 <li><strong>lock()</strong>：对整个文件加锁，默认为排他锁</li>
-<li><strong>lock(long position, long size, boolean shared)</strong>：自定义加锁方式，前两个指定加锁文件的起始位置和大小，第三个参数，如果为true，则是共享锁，false则为排他锁</li>
+<li><strong>lock(long position, long size, boolean
+shared)</strong>：自定义加锁方式，前两个指定加锁文件的起始位置和大小，第三个参数，如果为true，则是共享锁，false则为排他锁</li>
 <li><strong>tryLock()</strong>：对整个文件加锁，默认排他锁，非阻塞式</li>
-<li><strong>tryLock(long position, long size, boolean shared)</strong>：自定义加锁方式，参数与第二个方法一样，非阻塞式</li>
+<li><strong>tryLock(long position, long size, boolean
+shared)</strong>：自定义加锁方式，参数与第二个方法一样，非阻塞式</li>
 </ul>
 <p>FileLock其他常用的两个方法</p>
 <ul>
@@ -436,7 +458,8 @@
 <p>文件锁虽然可以用于控制并发访问，但对于高并发访问的情形，还是推荐使用数据库保存程序信息</p>
 <p>关于文件锁注意的几点</p>
 <ul>
-<li>在某些平台上，文件锁仅仅是建议性的，并不是强制性的， 这意味着即使一个程序不能获得文件锁，也可对该文件读写</li>
+<li>在某些平台上，文件锁仅仅是建议性的，并不是强制性的，
+这意味着即使一个程序不能获得文件锁，也可对该文件读写</li>
 <li>在某些平台上，不能同步地锁定一个文件并把它映射到内存</li>
 <li>文件锁是由Java虚拟机持有，如果两个Java程序使用同一个虚拟机运行，则他们不能对同一个文件进行加锁</li>
 <li>在某些平台关闭FileChannel时，会释放虚拟机在该文件上的所有锁，因此避免对同一个被锁定的文件打开多个FileChannel</li>

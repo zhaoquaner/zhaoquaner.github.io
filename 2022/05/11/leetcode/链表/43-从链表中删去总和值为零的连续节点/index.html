@@ -20,12 +20,12 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"zhaoquaner.github.io","root":"/","images":"/images","scheme":"Muse","darkmode":false,"version":"8.11.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
 
-    <meta name="description" content="这道题我不会。 参考做法算法思想设链表节点值依次为 a、b、c、d、e、f、g。 若a + b &#x3D; m,且a + b + c + d &#x3D; m。那么就可确定c + d &#x3D; 0。 这样就找到了一组和为0的连续节点。 依据这样的思路，使用一个map集合，将每个节点和它以及之前节点的值的和一一对应起来。 也就是说，key为int，value为节点指针。 每个节点指针对应着：该节点及其之前所有结点的值的总">
+    <meta name="description" content="这道题我不会。 参考做法 算法思想 设链表节点值依次为 a、b、c、d、e、f、g。 若a + b &#x3D; m,且a + b + c + d &#x3D; m。那么就可确定c + d &#x3D; 0。 这样就找到了一组和为0的连续节点。 依据这样的思路，使用一个map集合，将每个节点和它以及之前节点的值的和一一对应起来。 也就是说，key为int，value为节点指针。 每个节点指针对应着：该节点及">
 <meta property="og:type" content="article">
 <meta property="og:title" content="43-从链表中删去总和值为零的连续节点">
 <meta property="og:url" content="https://zhaoquaner.github.io/2022/05/11/leetcode/%E9%93%BE%E8%A1%A8/43-%E4%BB%8E%E9%93%BE%E8%A1%A8%E4%B8%AD%E5%88%A0%E5%8E%BB%E6%80%BB%E5%92%8C%E5%80%BC%E4%B8%BA%E9%9B%B6%E7%9A%84%E8%BF%9E%E7%BB%AD%E8%8A%82%E7%82%B9/index.html">
 <meta property="og:site_name" content="赵圈儿的博客">
-<meta property="og:description" content="这道题我不会。 参考做法算法思想设链表节点值依次为 a、b、c、d、e、f、g。 若a + b &#x3D; m,且a + b + c + d &#x3D; m。那么就可确定c + d &#x3D; 0。 这样就找到了一组和为0的连续节点。 依据这样的思路，使用一个map集合，将每个节点和它以及之前节点的值的和一一对应起来。 也就是说，key为int，value为节点指针。 每个节点指针对应着：该节点及其之前所有结点的值的总">
+<meta property="og:description" content="这道题我不会。 参考做法 算法思想 设链表节点值依次为 a、b、c、d、e、f、g。 若a + b &#x3D; m,且a + b + c + d &#x3D; m。那么就可确定c + d &#x3D; 0。 这样就找到了一组和为0的连续节点。 依据这样的思路，使用一个map集合，将每个节点和它以及之前节点的值的和一一对应起来。 也就是说，key为int，value为节点指针。 每个节点指针对应着：该节点及">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://crayon-1302863897.cos.ap-beijing.myqcloud.com/image/image-20210526212657769.png">
 <meta property="og:image" content="https://crayon-1302863897.cos.ap-beijing.myqcloud.com/image/image-20210526213910594.png">
@@ -233,7 +233,9 @@
     <div class="post-body" itemprop="articleBody">
         <p><img src="https://crayon-1302863897.cos.ap-beijing.myqcloud.com/image/image-20210526212657769.png" alt="image-20210526212657769" style="zoom:50%;" /></p>
 <p>这道题我不会。</p>
-<h2 id="参考做法"><a href="#参考做法" class="headerlink" title="参考做法"></a>参考做法</h2><h3 id="算法思想"><a href="#算法思想" class="headerlink" title="算法思想"></a>算法思想</h3><p>设链表节点值依次为 a、b、c、d、e、f、g。</p>
+<h2 id="参考做法">参考做法</h2>
+<h3 id="算法思想">算法思想</h3>
+<p>设链表节点值依次为 a、b、c、d、e、f、g。</p>
 <p>若a + b = m,且a + b + c + d = m。那么就可确定c + d = 0。</p>
 <p>这样就找到了一组和为0的连续节点。</p>
 <p>依据这样的思路，使用一个map集合，将每个节点和<strong>它以及之前节点的值</strong>的和一一对应起来。</p>
@@ -244,14 +246,18 @@
 <p><img src="https://crayon-1302863897.cos.ap-beijing.myqcloud.com/image/image-20210526213910594.png" alt="image-20210526213910594" style="zoom:53%;" /></p>
 <p>链表和对应的map集合元素。</p>
 <p>然后遍历链表，同时累加对应节点值，用sum表示。</p>
-<p>设当前节点为node，那么<code>node-&gt;next = map[sum]-&gt;next</code>。</p>
+<p>设当前节点为node，那么<code>node-&gt;next =
+map[sum]-&gt;next</code>。</p>
 <p>即：node对应的sum在map中只有两种情况：一是map中sum对应的节点是它自己，也就是node；二是对应的节点是它后面的某个节点(因为后面会覆盖前面的)，这说明：node的下一个节点一直到map中对应的节点，这段连续节点的值的总和是零。那么就应该删除掉这段节点。</p>
 <p>这两种情况都能用上面这句代码表示。</p>
 <p>对于第一种情况：这是个恒等式。</p>
 <p>对于第二种情况：可以删除掉这段和为0的连续节点。</p>
-<h3 id="算法实现"><a href="#算法实现" class="headerlink" title="算法实现"></a>算法实现</h3><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function">ListNode* <span class="title">removeZeroSumSublists</span><span class="params">(ListNode* head)</span> </span>&#123;</span><br><span class="line">        ListNode * dummy = <span class="keyword">new</span> <span class="built_in">ListNode</span>(<span class="number">0</span>);</span><br><span class="line">        dummy-&gt;next = head;</span><br><span class="line">        unordered_map&lt;<span class="type">int</span>, ListNode *&gt; map;</span><br><span class="line">        ListNode * node = dummy;</span><br><span class="line">        <span class="type">int</span> sum = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">while</span> (node != <span class="literal">nullptr</span>) &#123;</span><br><span class="line">            sum = sum + node-&gt;val;</span><br><span class="line">            map[sum] = node;</span><br><span class="line">            node = node-&gt;next;</span><br><span class="line">        &#125;</span><br><span class="line">        node = dummy;</span><br><span class="line">        sum = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">while</span> (node != <span class="literal">nullptr</span>) &#123;</span><br><span class="line">            sum = sum + node-&gt;val;</span><br><span class="line">            node-&gt;next = map[sum]-&gt;next;</span><br><span class="line">            node = node-&gt;next;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> dummy-&gt;next;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-<h3 id="性能分析"><a href="#性能分析" class="headerlink" title="性能分析"></a>性能分析</h3><p>时间复杂度：遍历了两遍链表，$O(n)$。</p>
-<p>空间复杂度：$O(n)$。</p>
+<h3 id="算法实现">算法实现</h3>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function">ListNode* <span class="title">removeZeroSumSublists</span><span class="params">(ListNode* head)</span> </span>&#123;</span><br><span class="line">        ListNode * dummy = <span class="keyword">new</span> <span class="built_in">ListNode</span>(<span class="number">0</span>);</span><br><span class="line">        dummy-&gt;next = head;</span><br><span class="line">        unordered_map&lt;<span class="type">int</span>, ListNode *&gt; map;</span><br><span class="line">        ListNode * node = dummy;</span><br><span class="line">        <span class="type">int</span> sum = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">while</span> (node != <span class="literal">nullptr</span>) &#123;</span><br><span class="line">            sum = sum + node-&gt;val;</span><br><span class="line">            map[sum] = node;</span><br><span class="line">            node = node-&gt;next;</span><br><span class="line">        &#125;</span><br><span class="line">        node = dummy;</span><br><span class="line">        sum = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">while</span> (node != <span class="literal">nullptr</span>) &#123;</span><br><span class="line">            sum = sum + node-&gt;val;</span><br><span class="line">            node-&gt;next = map[sum]-&gt;next;</span><br><span class="line">            node = node-&gt;next;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> dummy-&gt;next;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h3 id="性能分析">性能分析</h3>
+<p>时间复杂度：遍历了两遍链表，<span
+class="math inline">\(O(n)\)</span>。</p>
+<p>空间复杂度：<span class="math inline">\(O(n)\)</span>。</p>
 
     </div>
 
