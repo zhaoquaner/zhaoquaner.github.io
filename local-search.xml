@@ -1907,12 +1907,16 @@
       
       <category>开发</category>
       
+      <category>Redis</category>
+      
       <category>数据库</category>
       
     </categories>
     
     
     <tags>
+      
+      <tag>后端</tag>
       
       <tag>Redis</tag>
       
@@ -1936,12 +1940,16 @@
       
       <category>开发</category>
       
+      <category>Redis</category>
+      
       <category>数据库</category>
       
     </categories>
     
     
     <tags>
+      
+      <tag>后端</tag>
       
       <tag>Redis</tag>
       
@@ -1965,12 +1973,16 @@
       
       <category>开发</category>
       
+      <category>Redis</category>
+      
       <category>数据库</category>
       
     </categories>
     
     
     <tags>
+      
+      <tag>后端</tag>
       
       <tag>Redis</tag>
       
@@ -1994,12 +2006,16 @@
       
       <category>开发</category>
       
+      <category>Redis</category>
+      
       <category>数据库</category>
       
     </categories>
     
     
     <tags>
+      
+      <tag>后端</tag>
       
       <tag>Redis</tag>
       
@@ -2023,12 +2039,16 @@
       
       <category>开发</category>
       
+      <category>Redis</category>
+      
       <category>数据库</category>
       
     </categories>
     
     
     <tags>
+      
+      <tag>后端</tag>
       
       <tag>Redis</tag>
       
@@ -2052,12 +2072,16 @@
       
       <category>开发</category>
       
+      <category>Redis</category>
+      
       <category>数据库</category>
       
     </categories>
     
     
     <tags>
+      
+      <tag>后端</tag>
       
       <tag>Redis</tag>
       
@@ -2081,12 +2105,16 @@
       
       <category>编程学习</category>
       
+      <category>SpringBoot</category>
+      
     </categories>
     
     
     <tags>
       
       <tag>JavaWeb</tag>
+      
+      <tag>后端</tag>
       
       <tag>SpringBoot</tag>
       
@@ -2108,12 +2136,16 @@
       
       <category>编程学习</category>
       
+      <category>SpringBoot</category>
+      
     </categories>
     
     
     <tags>
       
       <tag>JavaWeb</tag>
+      
+      <tag>后端</tag>
       
       <tag>SpringBoot</tag>
       
@@ -2135,12 +2167,16 @@
       
       <category>编程学习</category>
       
+      <category>SpringBoot</category>
+      
     </categories>
     
     
     <tags>
       
       <tag>JavaWeb</tag>
+      
+      <tag>后端</tag>
       
       <tag>SpringBoot</tag>
       
@@ -2162,12 +2198,16 @@
       
       <category>编程学习</category>
       
+      <category>SpringBoot</category>
+      
     </categories>
     
     
     <tags>
       
       <tag>JavaWeb</tag>
+      
+      <tag>后端</tag>
       
       <tag>SpringBoot</tag>
       
@@ -2189,12 +2229,16 @@
       
       <category>编程学习</category>
       
+      <category>SpringBoot</category>
+      
     </categories>
     
     
     <tags>
       
       <tag>JavaWeb</tag>
+      
+      <tag>后端</tag>
       
       <tag>SpringBoot</tag>
       
@@ -2216,12 +2260,16 @@
       
       <category>编程学习</category>
       
+      <category>SpringBoot</category>
+      
     </categories>
     
     
     <tags>
       
       <tag>JavaWeb</tag>
+      
+      <tag>后端</tag>
       
       <tag>SpringBoot</tag>
       
@@ -2243,12 +2291,16 @@
       
       <category>编程学习</category>
       
+      <category>SpringBoot</category>
+      
     </categories>
     
     
     <tags>
       
       <tag>JavaWeb</tag>
+      
+      <tag>后端</tag>
       
       <tag>SpringBoot</tag>
       
@@ -2270,12 +2322,16 @@
       
       <category>编程学习</category>
       
+      <category>SpringBoot</category>
+      
     </categories>
     
     
     <tags>
       
       <tag>JavaWeb</tag>
+      
+      <tag>后端</tag>
       
       <tag>SpringBoot</tag>
       
@@ -2297,12 +2353,16 @@
       
       <category>编程学习</category>
       
+      <category>SpringBoot</category>
+      
     </categories>
     
     
     <tags>
       
       <tag>JavaWeb</tag>
+      
+      <tag>后端</tag>
       
       <tag>SpringBoot</tag>
       
@@ -2324,12 +2384,16 @@
       
       <category>编程学习</category>
       
+      <category>SpringBoot</category>
+      
     </categories>
     
     
     <tags>
       
       <tag>JavaWeb</tag>
+      
+      <tag>后端</tag>
       
       <tag>SpringBoot</tag>
       
@@ -2351,12 +2415,16 @@
       
       <category>编程学习</category>
       
+      <category>SpringBoot</category>
+      
     </categories>
     
     
     <tags>
       
       <tag>JavaWeb</tag>
+      
+      <tag>后端</tag>
       
       <tag>SpringBoot</tag>
       
@@ -2378,12 +2446,16 @@
       
       <category>编程学习</category>
       
+      <category>SpringBoot</category>
+      
     </categories>
     
     
     <tags>
       
       <tag>JavaWeb</tag>
+      
+      <tag>后端</tag>
       
       <tag>SpringBoot</tag>
       
@@ -2405,12 +2477,16 @@
       
       <category>编程学习</category>
       
+      <category>SpringMVC</category>
+      
     </categories>
     
     
     <tags>
       
       <tag>JavaWeb</tag>
+      
+      <tag>后端</tag>
       
       <tag>SpringMVC</tag>
       
@@ -2432,12 +2508,16 @@
       
       <category>编程学习</category>
       
+      <category>SpringMVC</category>
+      
     </categories>
     
     
     <tags>
       
       <tag>JavaWeb</tag>
+      
+      <tag>后端</tag>
       
       <tag>SpringMVC</tag>
       
@@ -2459,12 +2539,16 @@
       
       <category>编程学习</category>
       
+      <category>SpringMVC</category>
+      
     </categories>
     
     
     <tags>
       
       <tag>JavaWeb</tag>
+      
+      <tag>后端</tag>
       
       <tag>SpringMVC</tag>
       
@@ -2486,12 +2570,16 @@
       
       <category>编程学习</category>
       
+      <category>SpringMVC</category>
+      
     </categories>
     
     
     <tags>
       
       <tag>JavaWeb</tag>
+      
+      <tag>后端</tag>
       
       <tag>SpringMVC</tag>
       
@@ -2513,12 +2601,16 @@
       
       <category>编程学习</category>
       
+      <category>SpringMVC</category>
+      
     </categories>
     
     
     <tags>
       
       <tag>JavaWeb</tag>
+      
+      <tag>后端</tag>
       
       <tag>SpringMVC</tag>
       
@@ -2540,6 +2632,8 @@
       
       <category>编程学习</category>
       
+      <category>MyBatis</category>
+      
     </categories>
     
     
@@ -2548,6 +2642,8 @@
       <tag>JavaWeb</tag>
       
       <tag>MyBatis</tag>
+      
+      <tag>后端</tag>
       
     </tags>
     
@@ -2567,6 +2663,8 @@
       
       <category>编程学习</category>
       
+      <category>MyBatis</category>
+      
     </categories>
     
     
@@ -2575,6 +2673,8 @@
       <tag>JavaWeb</tag>
       
       <tag>MyBatis</tag>
+      
+      <tag>后端</tag>
       
     </tags>
     
@@ -2594,6 +2694,8 @@
       
       <category>编程学习</category>
       
+      <category>MyBatis</category>
+      
     </categories>
     
     
@@ -2602,6 +2704,8 @@
       <tag>JavaWeb</tag>
       
       <tag>MyBatis</tag>
+      
+      <tag>后端</tag>
       
     </tags>
     
@@ -2621,6 +2725,8 @@
       
       <category>编程学习</category>
       
+      <category>MyBatis</category>
+      
     </categories>
     
     
@@ -2629,6 +2735,8 @@
       <tag>JavaWeb</tag>
       
       <tag>MyBatis</tag>
+      
+      <tag>后端</tag>
       
     </tags>
     
@@ -2648,6 +2756,8 @@
       
       <category>编程学习</category>
       
+      <category>MyBatis</category>
+      
     </categories>
     
     
@@ -2656,6 +2766,8 @@
       <tag>JavaWeb</tag>
       
       <tag>MyBatis</tag>
+      
+      <tag>后端</tag>
       
     </tags>
     
@@ -2675,6 +2787,8 @@
       
       <category>编程学习</category>
       
+      <category>MyBatis</category>
+      
     </categories>
     
     
@@ -2683,6 +2797,8 @@
       <tag>JavaWeb</tag>
       
       <tag>MyBatis</tag>
+      
+      <tag>后端</tag>
       
     </tags>
     
@@ -2702,6 +2818,8 @@
       
       <category>编程学习</category>
       
+      <category>MyBatis</category>
+      
     </categories>
     
     
@@ -2710,6 +2828,8 @@
       <tag>JavaWeb</tag>
       
       <tag>MyBatis</tag>
+      
+      <tag>后端</tag>
       
     </tags>
     
@@ -2729,6 +2849,8 @@
       
       <category>编程学习</category>
       
+      <category>MyBatis</category>
+      
     </categories>
     
     
@@ -2737,6 +2859,8 @@
       <tag>JavaWeb</tag>
       
       <tag>MyBatis</tag>
+      
+      <tag>后端</tag>
       
     </tags>
     
@@ -2756,6 +2880,8 @@
       
       <category>编程学习</category>
       
+      <category>MyBatis</category>
+      
     </categories>
     
     
@@ -2764,6 +2890,8 @@
       <tag>JavaWeb</tag>
       
       <tag>MyBatis</tag>
+      
+      <tag>后端</tag>
       
     </tags>
     
@@ -2783,6 +2911,8 @@
       
       <category>编程学习</category>
       
+      <category>MyBatis</category>
+      
     </categories>
     
     
@@ -2791,6 +2921,8 @@
       <tag>JavaWeb</tag>
       
       <tag>MyBatis</tag>
+      
+      <tag>后端</tag>
       
     </tags>
     
@@ -2808,7 +2940,9 @@
     
     <categories>
       
-      <category>开发</category>
+      <category>编程学习</category>
+      
+      <category>Spring</category>
       
     </categories>
     
@@ -2817,9 +2951,9 @@
       
       <tag>JavaWeb</tag>
       
-      <tag>Spring</tag>
-      
       <tag>后端</tag>
+      
+      <tag>Spring</tag>
       
     </tags>
     
@@ -2837,7 +2971,9 @@
     
     <categories>
       
-      <category>开发</category>
+      <category>编程学习</category>
+      
+      <category>Spring</category>
       
     </categories>
     
@@ -2846,9 +2982,9 @@
       
       <tag>JavaWeb</tag>
       
-      <tag>Spring</tag>
-      
       <tag>后端</tag>
+      
+      <tag>Spring</tag>
       
     </tags>
     
@@ -2866,7 +3002,9 @@
     
     <categories>
       
-      <category>开发</category>
+      <category>编程学习</category>
+      
+      <category>Spring</category>
       
     </categories>
     
@@ -2875,9 +3013,9 @@
       
       <tag>JavaWeb</tag>
       
-      <tag>Spring</tag>
-      
       <tag>后端</tag>
+      
+      <tag>Spring</tag>
       
     </tags>
     
@@ -2895,7 +3033,9 @@
     
     <categories>
       
-      <category>开发</category>
+      <category>编程学习</category>
+      
+      <category>Spring</category>
       
     </categories>
     
@@ -2904,9 +3044,9 @@
       
       <tag>JavaWeb</tag>
       
-      <tag>Spring</tag>
-      
       <tag>后端</tag>
+      
+      <tag>Spring</tag>
       
     </tags>
     
@@ -2924,7 +3064,9 @@
     
     <categories>
       
-      <category>开发</category>
+      <category>编程学习</category>
+      
+      <category>Spring</category>
       
     </categories>
     
@@ -2933,9 +3075,9 @@
       
       <tag>JavaWeb</tag>
       
-      <tag>Spring</tag>
-      
       <tag>后端</tag>
+      
+      <tag>Spring</tag>
       
     </tags>
     
@@ -2953,7 +3095,9 @@
     
     <categories>
       
-      <category>开发</category>
+      <category>编程学习</category>
+      
+      <category>Spring</category>
       
     </categories>
     
@@ -2962,9 +3106,9 @@
       
       <tag>JavaWeb</tag>
       
-      <tag>Spring</tag>
-      
       <tag>后端</tag>
+      
+      <tag>Spring</tag>
       
     </tags>
     
@@ -2982,7 +3126,9 @@
     
     <categories>
       
-      <category>开发</category>
+      <category>编程学习</category>
+      
+      <category>Spring</category>
       
     </categories>
     
@@ -2991,9 +3137,9 @@
       
       <tag>JavaWeb</tag>
       
-      <tag>Spring</tag>
-      
       <tag>后端</tag>
+      
+      <tag>Spring</tag>
       
     </tags>
     
@@ -3011,7 +3157,9 @@
     
     <categories>
       
-      <category>开发</category>
+      <category>编程学习</category>
+      
+      <category>Spring</category>
       
     </categories>
     
@@ -3020,9 +3168,9 @@
       
       <tag>JavaWeb</tag>
       
-      <tag>Spring</tag>
-      
       <tag>后端</tag>
+      
+      <tag>Spring</tag>
       
     </tags>
     
@@ -3040,7 +3188,9 @@
     
     <categories>
       
-      <category>开发</category>
+      <category>编程学习</category>
+      
+      <category>Spring</category>
       
     </categories>
     
@@ -3049,9 +3199,9 @@
       
       <tag>JavaWeb</tag>
       
-      <tag>Spring</tag>
-      
       <tag>后端</tag>
+      
+      <tag>Spring</tag>
       
     </tags>
     
@@ -3069,7 +3219,9 @@
     
     <categories>
       
-      <category>开发</category>
+      <category>编程学习</category>
+      
+      <category>Spring</category>
       
     </categories>
     
@@ -3078,9 +3230,9 @@
       
       <tag>JavaWeb</tag>
       
-      <tag>Spring</tag>
-      
       <tag>后端</tag>
+      
+      <tag>Spring</tag>
       
     </tags>
     
@@ -3099,6 +3251,8 @@
     <categories>
       
       <category>编程学习</category>
+      
+      <category>JavaWeb</category>
       
     </categories>
     
@@ -3127,6 +3281,8 @@
       
       <category>编程学习</category>
       
+      <category>JavaWeb</category>
+      
     </categories>
     
     
@@ -3153,6 +3309,8 @@
     <categories>
       
       <category>编程学习</category>
+      
+      <category>JavaWeb</category>
       
     </categories>
     
@@ -3181,6 +3339,8 @@
       
       <category>编程学习</category>
       
+      <category>JavaWeb</category>
+      
     </categories>
     
     
@@ -3207,6 +3367,8 @@
     <categories>
       
       <category>编程学习</category>
+      
+      <category>JavaWeb</category>
       
     </categories>
     
@@ -3235,6 +3397,8 @@
       
       <category>编程学习</category>
       
+      <category>JavaWeb</category>
+      
     </categories>
     
     
@@ -3261,6 +3425,8 @@
     <categories>
       
       <category>编程学习</category>
+      
+      <category>JavaWeb</category>
       
     </categories>
     
@@ -3289,6 +3455,8 @@
       
       <category>编程学习</category>
       
+      <category>JavaWeb</category>
+      
     </categories>
     
     
@@ -3315,6 +3483,8 @@
     <categories>
       
       <category>编程学习</category>
+      
+      <category>JavaWeb</category>
       
     </categories>
     
@@ -3343,6 +3513,8 @@
       
       <category>编程学习</category>
       
+      <category>JavaWeb</category>
+      
     </categories>
     
     
@@ -3369,6 +3541,8 @@
     <categories>
       
       <category>编程学习</category>
+      
+      <category>JavaWeb</category>
       
     </categories>
     
@@ -3397,6 +3571,8 @@
       
       <category>编程学习</category>
       
+      <category>JavaWeb</category>
+      
     </categories>
     
     
@@ -3423,6 +3599,8 @@
     <categories>
       
       <category>编程学习</category>
+      
+      <category>JavaWeb</category>
       
     </categories>
     
@@ -3451,6 +3629,8 @@
       
       <category>编程学习</category>
       
+      <category>JavaWeb</category>
+      
     </categories>
     
     
@@ -3477,6 +3657,8 @@
     <categories>
       
       <category>编程学习</category>
+      
+      <category>JavaWeb</category>
       
     </categories>
     
@@ -3505,6 +3687,8 @@
       
       <category>编程学习</category>
       
+      <category>JavaWeb</category>
+      
     </categories>
     
     
@@ -3531,6 +3715,8 @@
     <categories>
       
       <category>编程学习</category>
+      
+      <category>JavaWeb</category>
       
     </categories>
     
@@ -3559,6 +3745,8 @@
       
       <category>编程学习</category>
       
+      <category>JavaWeb</category>
+      
     </categories>
     
     
@@ -3585,6 +3773,8 @@
     <categories>
       
       <category>编程学习</category>
+      
+      <category>JavaWeb</category>
       
     </categories>
     
@@ -3613,6 +3803,8 @@
       
       <category>编程学习</category>
       
+      <category>JavaWeb</category>
+      
     </categories>
     
     
@@ -3639,6 +3831,8 @@
     <categories>
       
       <category>编程学习</category>
+      
+      <category>JavaWeb</category>
       
     </categories>
     
@@ -3692,6 +3886,8 @@
       
       <category>编程学习</category>
       
+      <category>Java基础</category>
+      
     </categories>
     
     
@@ -3718,6 +3914,8 @@
     <categories>
       
       <category>编程学习</category>
+      
+      <category>Java基础</category>
       
     </categories>
     
@@ -3746,6 +3944,8 @@
       
       <category>编程学习</category>
       
+      <category>Java基础</category>
+      
     </categories>
     
     
@@ -3772,6 +3972,8 @@
     <categories>
       
       <category>编程学习</category>
+      
+      <category>Java基础</category>
       
     </categories>
     
@@ -3800,6 +4002,8 @@
       
       <category>编程学习</category>
       
+      <category>Java基础</category>
+      
     </categories>
     
     
@@ -3826,6 +4030,8 @@
     <categories>
       
       <category>编程学习</category>
+      
+      <category>Java基础</category>
       
     </categories>
     
@@ -3854,6 +4060,8 @@
       
       <category>编程学习</category>
       
+      <category>Java基础</category>
+      
     </categories>
     
     
@@ -3880,6 +4088,8 @@
     <categories>
       
       <category>编程学习</category>
+      
+      <category>Java基础</category>
       
     </categories>
     
@@ -3908,6 +4118,8 @@
       
       <category>编程学习</category>
       
+      <category>Java基础</category>
+      
     </categories>
     
     
@@ -3934,6 +4146,8 @@
     <categories>
       
       <category>编程学习</category>
+      
+      <category>Java基础</category>
       
     </categories>
     
@@ -3962,6 +4176,8 @@
       
       <category>编程学习</category>
       
+      <category>Java基础</category>
+      
     </categories>
     
     
@@ -3988,6 +4204,8 @@
     <categories>
       
       <category>编程学习</category>
+      
+      <category>Java基础</category>
       
     </categories>
     
@@ -4016,6 +4234,8 @@
       
       <category>编程学习</category>
       
+      <category>Java基础</category>
+      
     </categories>
     
     
@@ -4042,6 +4262,8 @@
     <categories>
       
       <category>编程学习</category>
+      
+      <category>Java基础</category>
       
     </categories>
     
@@ -4070,6 +4292,8 @@
       
       <category>编程学习</category>
       
+      <category>Java基础</category>
+      
     </categories>
     
     
@@ -4096,6 +4320,8 @@
     <categories>
       
       <category>编程学习</category>
+      
+      <category>Java基础</category>
       
     </categories>
     
@@ -4124,6 +4350,8 @@
       
       <category>编程学习</category>
       
+      <category>Java基础</category>
+      
     </categories>
     
     
@@ -4150,6 +4378,8 @@
     <categories>
       
       <category>编程学习</category>
+      
+      <category>Java基础</category>
       
     </categories>
     
@@ -4178,6 +4408,8 @@
       
       <category>编程学习</category>
       
+      <category>Java基础</category>
+      
     </categories>
     
     
@@ -4204,6 +4436,8 @@
     <categories>
       
       <category>编程学习</category>
+      
+      <category>Java基础</category>
       
     </categories>
     
@@ -4232,6 +4466,8 @@
       
       <category>编程学习</category>
       
+      <category>Java基础</category>
+      
     </categories>
     
     
@@ -4258,6 +4494,8 @@
     <categories>
       
       <category>编程学习</category>
+      
+      <category>Java基础</category>
       
     </categories>
     
@@ -4286,6 +4524,8 @@
       
       <category>编程学习</category>
       
+      <category>Java基础</category>
+      
     </categories>
     
     
@@ -4312,6 +4552,8 @@
     <categories>
       
       <category>编程学习</category>
+      
+      <category>Java基础</category>
       
     </categories>
     
@@ -4340,6 +4582,8 @@
       
       <category>编程学习</category>
       
+      <category>Java基础</category>
+      
     </categories>
     
     
@@ -4366,6 +4610,8 @@
     <categories>
       
       <category>编程学习</category>
+      
+      <category>Java基础</category>
       
     </categories>
     
@@ -4394,6 +4640,8 @@
       
       <category>编程学习</category>
       
+      <category>Java基础</category>
+      
     </categories>
     
     
@@ -4420,6 +4668,8 @@
     <categories>
       
       <category>编程学习</category>
+      
+      <category>Java基础</category>
       
     </categories>
     
@@ -4448,6 +4698,8 @@
       
       <category>编程学习</category>
       
+      <category>Java基础</category>
+      
     </categories>
     
     
@@ -4474,6 +4726,8 @@
     <categories>
       
       <category>编程学习</category>
+      
+      <category>Java基础</category>
       
     </categories>
     
@@ -4502,6 +4756,8 @@
       
       <category>编程学习</category>
       
+      <category>Java基础</category>
+      
     </categories>
     
     
@@ -4529,6 +4785,8 @@
       
       <category>编程学习</category>
       
+      <category>Java基础</category>
+      
     </categories>
     
     
@@ -4555,6 +4813,8 @@
     <categories>
       
       <category>编程学习</category>
+      
+      <category>Java基础</category>
       
     </categories>
     
@@ -4594,22 +4854,22 @@
   
   
   <entry>
-    <title>categories</title>
+    <title>about</title>
     <link href="/"/>
     <url>/</url>
     
-    <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script>]]></content>
+    <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>本科 | 重庆邮电大学 | 计算机科学与技术 | 2018.09 - 2022.06</p><p>喜欢看小说，科幻、推理、武侠… 爱躺着，不爱坐着。</p><h3 id="找到我">找到我</h3><ul><li>邮箱：zx1522202417@163.com</li><li>QQ：1522202417</li></ul>]]></content>
     
   </entry>
   
   
   
   <entry>
-    <title>about</title>
+    <title>categories</title>
     <link href="/"/>
     <url>/</url>
     
-    <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>本科 | 重庆邮电大学 | 计算机科学与技术 | 2018.09 - 2022.06</p><p>喜欢看小说，科幻、推理、武侠… 爱躺着，不爱坐着。</p><h3 id="找到我">找到我</h3><ul><li>邮箱：zx1522202417@163.com</li><li>QQ：1522202417</li></ul>]]></content>
+    <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script>]]></content>
     
   </entry>
   
