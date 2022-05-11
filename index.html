@@ -213,7 +213,7 @@
       <span class="post-meta-item-text">发表于</span>
       
 
-      <time title="创建时间：2022-05-11 16:13:39 / 修改时间：22:34:23" itemprop="dateCreated datePublished" datetime="2022-05-11T16:13:39+08:00">2022-05-11</time>
+      <time title="创建时间：2022-05-11 16:13:39 / 修改时间：22:44:12" itemprop="dateCreated datePublished" datetime="2022-05-11T16:13:39+08:00">2022-05-11</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -239,23 +239,15 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <span id="more"></span>
-<p><img src="https://crayon-1302863897.cos.ap-beijing.myqcloud.com/image/image-20220128141450375.png" alt="image-20220128141450375" style="zoom:57%;" /></p>
-<h2 id="自己的做法">自己的做法</h2>
-<h3 id="算法思想">算法思想</h3>
-<p>使用层次遍历算法，用到数据结构队列queue。</p>
-<p>遍历每一层时，需要确定该层是否遍历结束。则需要设置一个标志变量<code>last</code>，初始指向根节点，
-遍历节点时，判断该节点与<code>last</code>是否相等。</p>
-<p>若相等，则代表该层已遍历完毕，若queue不为空，则队尾元素为下一层的末尾节点，将last指向该节点；</p>
-<p>若不相等，则正常执行。</p>
-<p>把每一层节点值存入数组中即可。</p>
-<p>注：此题childen类型是数组，因此可直接使用数组长度来判断是否到末尾节点。</p>
-<h3 id="算法实现">算法实现</h3>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Node</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="type">int</span> val;</span><br><span class="line">    vector&lt;Node*&gt; children;</span><br><span class="line">    <span class="built_in">Node</span>() &#123;&#125;</span><br><span class="line">    <span class="built_in">Node</span>(<span class="type">int</span> _val) &#123;</span><br><span class="line">        val = _val;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">Node</span>(<span class="type">int</span> _val, vector&lt;Node*&gt; _children) &#123;</span><br><span class="line">        val = _val;</span><br><span class="line">        children = _children;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    vector&lt;vector&lt;<span class="type">int</span>&gt;&gt; <span class="built_in">levelOrder</span>(Node* root) &#123;</span><br><span class="line"></span><br><span class="line">        vector&lt;vector&lt;<span class="type">int</span>&gt;&gt; res;</span><br><span class="line">        <span class="keyword">if</span>(root == <span class="literal">nullptr</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> res;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">// 指向每一层末尾节点</span></span><br><span class="line">        Node * last = root;</span><br><span class="line">        <span class="comment">// 遍历树</span></span><br><span class="line">        Node * p = <span class="literal">nullptr</span>;</span><br><span class="line">        queue&lt;Node *&gt; q;</span><br><span class="line">        q.<span class="built_in">push</span>(root);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">while</span> (!q.<span class="built_in">empty</span>()) &#123;</span><br><span class="line">            vector&lt;<span class="type">int</span>&gt; tmp;</span><br><span class="line">            <span class="comment">// 判断遍历节点与末尾节点是否相等</span></span><br><span class="line">            <span class="keyword">while</span>(p != last) &#123;</span><br><span class="line">                p = q.<span class="built_in">front</span>();</span><br><span class="line">                q.<span class="built_in">pop</span>();</span><br><span class="line">                tmp.<span class="built_in">push_back</span>(p-&gt;val);</span><br><span class="line">                <span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">0</span>; i &lt; p-&gt;children.<span class="built_in">size</span>(); i++) &#123;</span><br><span class="line">                    q.<span class="built_in">push</span>(p-&gt;children[i]);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="comment">// 修改末尾节点指向</span></span><br><span class="line">            last = q.<span class="built_in">back</span>();</span><br><span class="line">            res.<span class="built_in">push_back</span>(tmp);</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">		<span class="keyword">return</span> res;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-<h3 id="性能分析">性能分析</h3>
-<p>时间复杂度：<span class="math inline">\(O(n)\)</span>。</p>
-<p>空间复杂度：<span class="math inline">\(O(n)\)</span>。</p>
-
+          <p><img src="https://crayon-1302863897.cos.ap-beijing.myqcloud.com/image/image-20220128141450375.png" alt="image-20220128141450375" style="zoom:57%;" /></p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2022/05/11/leetcode/%E6%A0%91/73-N%E5%8F%89%E6%A0%91%E7%9A%84%E5%B1%82%E6%AC%A1%E9%81%8D%E5%8E%86/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
