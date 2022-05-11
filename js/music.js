@@ -7,7 +7,7 @@ const ap = new APlayer({
     audio: [{
         name: 'Last Dance',
         artist: 'BIGBANG',
-        url: 'https://crayon-1302863897.cos.ap-beijing.myqcloud.com/audio/lastdance.mp3',
+        url: 'https://crayon-1302863897.cos.ap-beijing.myqcloud.com/audio/stilllife.mp3',
         cover: '',
     }]
 });
