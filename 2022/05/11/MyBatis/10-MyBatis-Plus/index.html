@@ -1,25 +1,21 @@
+
+
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
 <head>
   <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width">
-<meta name="theme-color" content="#222">
-
-
-  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
-  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
-  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
-  <link rel="mask-icon" href="/images/logo.svg" color="#222">
-
-<link rel="stylesheet" href="/css/main.css">
-
-
-
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css" integrity="sha256-DfWjNxDkM94fVBWx1H5BMMp0Zq7luBlV8QRcSES7s+0=" crossorigin="anonymous">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
-
-<script class="next-config" data-name="main" type="application/json">{"hostname":"zhaoquaner.github.io","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.11.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":15,"offset":12,"width":220},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
-
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
+  <link rel="icon" href="/img/favicon.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="ZhaoXin">
+  <meta name="keywords" content="博客">
+  
     <meta name="description" content="​ 简介 MyBatis-Plus是MyBatis的增强工具。在MyBatis上，只做增强，不做改变。目的是简化开发，提高效率。 特性  无侵入：就是只做增强，不做改变。不会影响现有工程 损耗小：启动会自动注入基本的CRUD，性能基本无损耗 强大的CRUD操作：内置了通用的Mapper，通用的Service。也有强大的条件构造器 支持Lambda形式调用：使用Lambda表达式编写">
 <meta property="og:type" content="article">
 <meta property="og:title" content="10-MyBatisPlus">
@@ -41,225 +37,235 @@
 <meta property="article:published_time" content="2022-05-11T05:58:09.000Z">
 <meta property="article:modified_time" content="2022-05-11T09:00:22.955Z">
 <meta property="article:author" content="ZhaoXin">
-<meta property="article:tag" content="后端">
 <meta property="article:tag" content="JavaWeb">
 <meta property="article:tag" content="MyBatis">
-<meta name="twitter:card" content="summary">
+<meta property="article:tag" content="后端">
+<meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="https://crayon-1302863897.cos.ap-beijing.myqcloud.com/image/image-20210205113108645.png">
+  
+  
+  <title>10-MyBatisPlus - 赵圈儿的博客</title>
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/css/bootstrap.min.css" />
 
 
-<link rel="canonical" href="https://zhaoquaner.github.io/2022/05/11/MyBatis/10-MyBatis-Plus/">
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4/github-markdown.min.css" />
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hint.css@2/hint.min.css" />
 
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10/styles/github-gist.min.css" />
+    
+  
 
-
-<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://zhaoquaner.github.io/2022/05/11/MyBatis/10-MyBatis-Plus/","path":"2022/05/11/MyBatis/10-MyBatis-Plus/","title":"10-MyBatisPlus"}</script>
-
-<script class="next-config" data-name="calendar" type="application/json">""</script>
-<title>10-MyBatisPlus | 赵圈儿的博客</title>
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.css" />
   
 
 
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
 
 
 
-  <noscript>
-    <link rel="stylesheet" href="/css/noscript.css">
-  </noscript>
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"zhaoquaner.github.io","root":"/","version":"1.8.14","typing":{"enable":true,"typeSpeed":60,"cursorChar":" ","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":false,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":2},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":"BzK0JfEpsm40LlV9EPIyl4mp-gzGzoHsz","app_key":"MpxSk6ED55Utq83yNrKAMI5c","server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
 </head>
 
-<body itemscope itemtype="http://schema.org/WebPage" class="use-motion"><!-- hexo injector body_begin start --><style>code {font-weight:400;}.post-content {font-weight:600;} #board {border-radius: 1.5rem;} #board-ctn {width:110%;margin-left:-5%;}</style><!-- hexo injector body_begin end -->
-  <div class="headband"></div>
 
-  <main class="main">
-    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
-      <div class="header-inner"><div class="site-brand-container">
-  <div class="site-nav-toggle">
-    <div class="toggle" aria-label="切换导航栏" role="button">
-        <span class="toggle-line"></span>
-        <span class="toggle-line"></span>
-        <span class="toggle-line"></span>
-    </div>
-  </div>
-
-  <div class="site-meta">
-
-    <a href="/" class="brand" rel="start">
-      <i class="logo-line"></i>
-      <p class="site-title">赵圈儿的博客</p>
-      <i class="logo-line"></i>
+<body><!-- hexo injector body_begin start --><style>code {font-weight:400;}.post-content {font-weight:600;} #board {border-radius: 1.5rem;} #board-ctn {width:110%;margin-left:-5%;}</style><!-- hexo injector body_begin end -->
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Personal Blog</strong>
     </a>
-  </div>
 
-  <div class="site-nav-right">
-    <div class="toggle popup-trigger">
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="javascript:;">
+                <i class="iconfont icon-music"></i>
+                播放
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
     </div>
   </div>
-</div>
-
-
-
-<nav class="site-nav">
-  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">23</span></a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">18</span></a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">169</span></a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li>
-  </ul>
 </nav>
 
+    <div class="banner" id="banner" parallax=true
+         style="background: url('/img/article.png') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="10-MyBatisPlus">
+              
+            </span>
 
-
-
-</div>
-        
+            
+              <div class="mt-3">
   
-  <div class="toggle sidebar-toggle" role="button">
-    <span class="toggle-line"></span>
-    <span class="toggle-line"></span>
-    <span class="toggle-line"></span>
-  </div>
-
-  <aside class="sidebar">
-
-    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
-      <ul class="sidebar-nav">
-        <li class="sidebar-nav-toc">
-          文章目录
-        </li>
-        <li class="sidebar-nav-overview">
-          站点概览
-        </li>
-      </ul>
-
-      <div class="sidebar-panel-container">
-        <!--noindex-->
-        <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AE%80%E4%BB%8B"><span class="nav-number">1.</span> <span class="nav-text">简介</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%89%B9%E6%80%A7"><span class="nav-number">1.1.</span> <span class="nav-text">特性</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%80%E4%B8%AA%E7%AE%80%E5%8D%95%E7%9A%84%E4%BE%8B%E5%AD%90"><span class="nav-number">2.</span> <span class="nav-text">一个简单的例子</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%85%8D%E7%BD%AE%E6%97%A5%E5%BF%97%E8%BE%93%E5%87%BA"><span class="nav-number">3.</span> <span class="nav-text">配置日志输出</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%BB%E9%94%AE%E7%94%9F%E6%88%90%E7%AD%96%E7%95%A5"><span class="nav-number">4.</span> <span class="nav-text">主键生成策略</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#tableid"><span class="nav-number">4.1.</span> <span class="nav-text">@TableId</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%9B%AA%E8%8A%B1%E7%AE%97%E6%B3%95"><span class="nav-number">4.2.</span> <span class="nav-text">雪花算法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#uuid"><span class="nav-number">4.3.</span> <span class="nav-text">UUID</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9B%B4%E6%96%B0%E6%93%8D%E4%BD%9C"><span class="nav-number">5.</span> <span class="nav-text">更新操作</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8A%A8%E6%80%81sql"><span class="nav-number">5.1.</span> <span class="nav-text">动态SQL</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%87%AA%E5%8A%A8%E5%A1%AB%E5%85%85%E5%AD%97%E6%AE%B5"><span class="nav-number">5.2.</span> <span class="nav-text">自动填充字段</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#tablefield"><span class="nav-number">5.2.1.</span> <span class="nav-text">TableField</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BE%8B%E5%AD%90"><span class="nav-number">5.2.2.</span> <span class="nav-text">例子</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B9%90%E8%A7%82%E9%94%81%E5%92%8C%E6%82%B2%E8%A7%82%E9%94%81"><span class="nav-number">5.3.</span> <span class="nav-text">乐观锁和悲观锁</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%B9%B6%E5%8F%91%E6%8E%A7%E5%88%B6%E4%BB%8B%E7%BB%8D"><span class="nav-number">5.3.1.</span> <span class="nav-text">并发控制介绍</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%82%B2%E8%A7%82%E9%94%81"><span class="nav-number">5.3.2.</span> <span class="nav-text">悲观锁</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%B9%90%E8%A7%82%E9%94%81optimistic-locking"><span class="nav-number">5.3.3.</span> <span class="nav-text">乐观锁(Optimistic Locking)</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%8F%92%E4%BB%B6"><span class="nav-number">6.</span> <span class="nav-text">插件</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#mybatis-plus%E5%AE%9E%E7%8E%B0%E4%B9%90%E8%A7%82%E9%94%81"><span class="nav-number">6.1.</span> <span class="nav-text">MyBatis-Plus实现乐观锁</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%80%BB%E7%BB%93"><span class="nav-number">6.1.1.</span> <span class="nav-text">总结</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%88%86%E9%A1%B5%E6%8F%92%E4%BB%B6"><span class="nav-number">6.2.</span> <span class="nav-text">分页插件</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9F%A5%E8%AF%A2%E6%93%8D%E4%BD%9C"><span class="nav-number">7.</span> <span class="nav-text">查询操作</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%88%A0%E9%99%A4%E6%93%8D%E4%BD%9C"><span class="nav-number">8.</span> <span class="nav-text">删除操作</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%80%BB%E8%BE%91%E5%88%A0%E9%99%A4"><span class="nav-number">8.1.</span> <span class="nav-text">逻辑删除</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%89%A9%E7%90%86%E5%88%A0%E9%99%A4"><span class="nav-number">8.2.</span> <span class="nav-text">物理删除</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#mybatis-plus%E7%9A%84%E5%88%A0%E9%99%A4%E6%93%8D%E4%BD%9C"><span class="nav-number">8.3.</span> <span class="nav-text">MyBatis-Plus的删除操作</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%9E%E7%8E%B0%E9%80%BB%E8%BE%91%E5%88%A0%E9%99%A4"><span class="nav-number">8.4.</span> <span class="nav-text">实现逻辑删除</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9D%A1%E4%BB%B6%E6%9E%84%E9%80%A0%E5%99%A8"><span class="nav-number">9.</span> <span class="nav-text">条件构造器</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#abstractwrapper"><span class="nav-number">9.1.</span> <span class="nav-text">AbstractWrapper</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#querywrapper"><span class="nav-number">9.2.</span> <span class="nav-text">QueryWrapper</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#updatewrapper"><span class="nav-number">9.3.</span> <span class="nav-text">UpdateWrapper</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BB%A3%E7%A0%81%E7%94%9F%E6%88%90%E5%99%A8"><span class="nav-number">10.</span> <span class="nav-text">代码生成器</span></a></li></ol></div>
-        </div>
-        <!--/noindex-->
-
-        <div class="site-overview-wrap sidebar-panel">
-          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
-    <img class="site-author-image" itemprop="image" alt="ZhaoXin"
-      src="https://crayon-1302863897.cos.ap-beijing.myqcloud.com/blog_images/avatar.png">
-  <p class="site-author-name" itemprop="name">ZhaoXin</p>
-  <div class="site-description" itemprop="description"></div>
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2022-05-11 13:58" pubdate>
+        2022/5/11 13时58分
+      </time>
+    </span>
+  
 </div>
-<div class="site-state-wrap site-overview-item animated">
-  <nav class="site-state">
-      <div class="site-state-item site-state-posts">
-        <a href="/archives/">
-          <span class="site-state-item-count">169</span>
-          <span class="site-state-item-name">日志</span>
-        </a>
-      </div>
-      <div class="site-state-item site-state-categories">
-          <a href="/categories/">
-        <span class="site-state-item-count">18</span>
-        <span class="site-state-item-name">分类</span></a>
-      </div>
-      <div class="site-state-item site-state-tags">
-          <a href="/tags/">
-        <span class="site-state-item-count">23</span>
-        <span class="site-state-item-name">标签</span></a>
-      </div>
-  </nav>
+
+<div class="mt-1">
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      17k 字
+    </span>
+  
+
+  
+
+  
+  
+    
+      <!-- LeanCloud 统计文章PV -->
+      <span id="leancloud-page-views-container" class="post-meta" style="display: none">
+        <i class="iconfont icon-eye" aria-hidden="true"></i>
+        <span id="leancloud-page-views"></span> 次
+      </span>
+    
+  
 </div>
-  <div class="links-of-author site-overview-item animated">
-      <span class="links-of-author-item">
-        <a href="https://github.com/zhaoquaner" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;zhaoquaner" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
-      </span>
-      <span class="links-of-author-item">
-        <a href="mailto:zx1522202417@163.com" title="E-Mail → mailto:zx1522202417@163.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
-      </span>
-  </div>
 
+            
+          </div>
 
-
+          
         </div>
       </div>
     </div>
-  </aside>
-  <div class="sidebar-dimmer"></div>
+  </header>
 
-
-    </header>
-
+  <main>
     
-  <div class="back-to-top" role="button" aria-label="返回顶部">
-    <i class="fa fa-arrow-up"></i>
-    <span>0%</span>
-  </div>
-
-<noscript>
-  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
-</noscript>
-
-
-    <div class="main-inner post posts-expand">
-
-
-  
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://zhaoquaner.github.io/2022/05/11/MyBatis/10-MyBatis-Plus/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="https://crayon-1302863897.cos.ap-beijing.myqcloud.com/blog_images/avatar.png">
-      <meta itemprop="name" content="ZhaoXin">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="赵圈儿的博客">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="10-MyBatisPlus | 赵圈儿的博客">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          10-MyBatisPlus
-        </h1>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
       
 
-      <time title="创建时间：2022-05-11 13:58:09 / 修改时间：17:00:22" itemprop="dateCreated datePublished" datetime="2022-05-11T13:58:09+08:00">2022-05-11</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/programming/" itemprop="url" rel="index"><span itemprop="name">编程学习</span></a>
-        </span>
-          ，
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/programming/mybatis/" itemprop="url" rel="index"><span itemprop="name">MyBatis</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-        <p>​</p>
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">10-MyBatisPlus</h1>
+            
+            <div class="markdown-body">
+              <p>​</p>
 <h2 id="简介">简介</h2>
 <p>MyBatis-Plus是MyBatis的增强工具。在MyBatis上，只做增强，不做改变。目的是简化开发，提高效率。</p>
 <h3 id="特性">特性</h3>
@@ -280,25 +286,25 @@
 <li>首先创建一张表，或者使用现成的表也可以。</li>
 </ol>
 <p>使用的表：student
-<img src="https://crayon-1302863897.cos.ap-beijing.myqcloud.com/image/image-20210205113108645.png" alt="image-20210205113108645" style="zoom:67%;" /></p>
+<img src="https://crayon-1302863897.cos.ap-beijing.myqcloud.com/image/image-20210205113108645.png" srcset="/img/loading.gif" lazyload alt="image-20210205113108645" style="zoom:67%;" /></p>
 <ol start="2" type="1">
 <li><p>创建一个SpringBoot项目</p></li>
 <li><p>添加mysql依赖，mybatis-plus依赖</p>
-<p><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>com.baomidou<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>mybatis-plus-boot-starter<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>3.4.2<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure></p></li>
+<p><figure class="highlight xml"><table><tr><td class="gutter"><div class="code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></div></td><td class="code"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>com.baomidou<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>mybatis-plus-boot-starter<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">version</span>&gt;</span>3.4.2<span class="hljs-tag">&lt;/<span class="hljs-name">version</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span><br></code></pre></td></tr></table></figure></p></li>
 <li><p>在<code>application.properties</code>配置mysql</p>
-<p><img src="https://crayon-1302863897.cos.ap-beijing.myqcloud.com/image/image-20210205113510725.png" alt="image-20210205113510725" style="zoom:50%;" /></p></li>
+<p><img src="https://crayon-1302863897.cos.ap-beijing.myqcloud.com/image/image-20210205113510725.png" srcset="/img/loading.gif" lazyload alt="image-20210205113510725" style="zoom:50%;" /></p></li>
 <li><p>在包entity中创建实体类Student</p>
-<p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Data</span></span><br><span class="line"><span class="meta">@NoArgsConstructor</span></span><br><span class="line"><span class="meta">@AllArgsConstructor</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Student</span> &#123;</span><br><span class="line">    <span class="keyword">private</span> Integer id;</span><br><span class="line">    <span class="keyword">private</span> String name;</span><br><span class="line">    <span class="keyword">private</span> String email;</span><br><span class="line">    <span class="keyword">private</span> String age;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@Data</span><br><span class="hljs-meta">@NoArgsConstructor</span><br><span class="hljs-meta">@AllArgsConstructor</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">Student</span> &#123;<br>    <span class="hljs-keyword">private</span> Integer id;<br>    <span class="hljs-keyword">private</span> String name;<br>    <span class="hljs-keyword">private</span> String email;<br>    <span class="hljs-keyword">private</span> String age;<br>&#125;<br></code></pre></td></tr></table></figure></p>
 <p><strong>注意：</strong></p>
 <p><strong>实体类名字一定要和表名一致，大小写不区分。</strong></p>
 <p><strong>属性名和表中列名要保持一致，表中列名尽量使用<code>_</code>符号。代表前后是两个单词，MyBatis-Plus会把后面一个单词第一个字母大写，并去掉<code>_</code>例如列名<code>user_name</code>，会对应<code>userName</code>。</strong></p></li>
 <li><p>在包dao中创建StudentMapper接口，继承MyBatis-Plus提供的通用Mapper接口<code>BaseMapper&lt;T&gt;</code>，泛型就是对应的实体类。加上注解<code>@Mapper</code>。</p>
-<p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Mapper</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">interface</span> <span class="title class_">StudentMapper</span> <span class="keyword">extends</span> <span class="title class_">BaseMapper</span>&lt;Student&gt; &#123;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@Mapper</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">interface</span> <span class="hljs-title class_">StudentMapper</span> <span class="hljs-keyword">extends</span> <span class="hljs-title class_">BaseMapper</span>&lt;Student&gt; &#123;<br>&#125;<br></code></pre></td></tr></table></figure></p>
 <p>这样就写完了基本的CRUD操作了。这些方法都由<code>BaseMapper</code>写好了。</p></li>
 <li><p>测试</p>
-<p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">   <span class="meta">@Autowired</span></span><br><span class="line">   <span class="keyword">private</span> StudentMapper studentMapper;</span><br><span class="line"><span class="meta">@Test</span></span><br><span class="line">   <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">testMybatisPlus</span><span class="params">()</span> &#123;</span><br><span class="line">       List&lt;Student&gt; students = studentMapper.selectList(<span class="literal">null</span>);</span><br><span class="line">       students.forEach(System.out::println);</span><br><span class="line">    </span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure></p>
+<p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs java">   <span class="hljs-meta">@Autowired</span><br>   <span class="hljs-keyword">private</span> StudentMapper studentMapper;<br><span class="hljs-meta">@Test</span><br>   <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">testMybatisPlus</span><span class="hljs-params">()</span> &#123;<br>       List&lt;Student&gt; students = studentMapper.selectList(<span class="hljs-literal">null</span>);<br>       students.forEach(System.out::println);<br>    <br>   &#125;<br></code></pre></td></tr></table></figure></p>
 <p>测试结果：</p>
-<p><img src="https://crayon-1302863897.cos.ap-beijing.myqcloud.com/image/image-20210205113948108.png" alt="image-20210205113948108" style="zoom:67%;" /></p></li>
+<p><img src="https://crayon-1302863897.cos.ap-beijing.myqcloud.com/image/image-20210205113948108.png" srcset="/img/loading.gif" lazyload alt="image-20210205113948108" style="zoom:67%;" /></p></li>
 </ol>
 <p>可以看到，使用MyBatis-Plus，代码量很少。不需要写SQL语句，xml文件。</p>
 <h2 id="配置日志输出">配置日志输出</h2>
@@ -339,7 +345,7 @@ class="math inline">\(2^{10}\)</span>台机器上。其中5个bit代表机房id�
 <li>占12位：用来记录同一毫秒产生的不同id，即，如果前面所有都一样，这部分用来区分不同id。占12位，表示一毫秒可生产<span
 class="math inline">\(2^{12}\)</span>个不同的id，即4096个id</li>
 </ol>
-<p><img src="https://crayon-1302863897.cos.ap-beijing.myqcloud.com/image/image-20210205161158740.png" alt="image-20210205161158740" style="zoom:70%;" /></p>
+<p><img src="https://crayon-1302863897.cos.ap-beijing.myqcloud.com/image/image-20210205161158740.png" srcset="/img/loading.gif" lazyload alt="image-20210205161158740" style="zoom:70%;" /></p>
 <h3 id="uuid">UUID</h3>
 <p>不过多介绍。</p>
 <p>UUID有16个字节，通常以36字节字符串表示。</p>
@@ -347,19 +353,19 @@ class="math inline">\(2^{12}\)</span>个不同的id，即4096个id</li>
 <h2 id="更新操作">更新操作</h2>
 <p>​
 <code>BaseMapper&lt;T&gt;</code>接口提供了两个更新操作相关方法。</p>
-<p><strong><img src="https://crayon-1302863897.cos.ap-beijing.myqcloud.com/image/image-20210205165816947.png" alt="image-20210205165816947" style="zoom:80%;" /></strong></p>
+<p><strong><img src="https://crayon-1302863897.cos.ap-beijing.myqcloud.com/image/image-20210205165816947.png" srcset="/img/loading.gif" lazyload alt="image-20210205165816947" style="zoom:80%;" /></strong></p>
 <p>第一个方法先不讲。</p>
 <p>第二个方法，参数对应实体类对象。</p>
 <h3 id="动态sql">动态SQL</h3>
 <p>在更新操作时，传入一个实体类对象，MyBatis-Plus会动态拼接SQL语句，当属性值不为空，则更新该属性；当属性值为null，就不会更新。</p>
 <p>例子：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Test</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">testUpdate</span><span class="params">()</span> &#123;</span><br><span class="line">    <span class="type">Student</span> <span class="variable">student</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Student</span>();</span><br><span class="line">    student.setId(<span class="number">1013</span>);</span><br><span class="line">    student.setAge(<span class="number">43</span>);</span><br><span class="line">    <span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> studentMapper.updateById(student);</span><br><span class="line">    System.out.println(i);</span><br><span class="line">    System.out.println(i == <span class="number">1</span> ? <span class="string">&quot;更新成功&quot;</span>: <span class="string">&quot;更新失败&quot;</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@Test</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">testUpdate</span><span class="hljs-params">()</span> &#123;<br>    <span class="hljs-type">Student</span> <span class="hljs-variable">student</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Student</span>();<br>    student.setId(<span class="hljs-number">1013</span>);<br>    student.setAge(<span class="hljs-number">43</span>);<br>    <span class="hljs-type">int</span> <span class="hljs-variable">i</span> <span class="hljs-operator">=</span> studentMapper.updateById(student);<br>    System.out.println(i);<br>    System.out.println(i == <span class="hljs-number">1</span> ? <span class="hljs-string">&quot;更新成功&quot;</span>: <span class="hljs-string">&quot;更新失败&quot;</span>);<br>&#125;<br></code></pre></td></tr></table></figure>
 <p>只设置了主键ID和年龄。日志：</p>
-<p><img src="https://crayon-1302863897.cos.ap-beijing.myqcloud.com/image/image-20210205170259420.png" alt="image-20210205170259420" style="zoom:80%;" /></p>
+<p><img src="https://crayon-1302863897.cos.ap-beijing.myqcloud.com/image/image-20210205170259420.png" srcset="/img/loading.gif" lazyload alt="image-20210205170259420" style="zoom:80%;" /></p>
 <p>可以看到，SQL语句只更新了age。</p>
 <p>加上<code>student.setEmail("wusong@qq.com")</code></p>
 <p>再次执行效果：</p>
-<p><img src="https://crayon-1302863897.cos.ap-beijing.myqcloud.com/image/image-20210205170406889.png" alt="image-20210205170406889" style="zoom:67%;" /></p>
+<p><img src="https://crayon-1302863897.cos.ap-beijing.myqcloud.com/image/image-20210205170406889.png" srcset="/img/loading.gif" lazyload alt="image-20210205170406889" style="zoom:67%;" /></p>
 <p>可以看到，已经加上了email字段。</p>
 <p>所以MyBatis-Plus会动态拼接SQL语句。</p>
 <h3 id="自动填充字段">自动填充字段</h3>
@@ -525,39 +531,39 @@ Date()</code></li>
 </ul>
 <h4 id="例子">例子</h4>
 <p>首先在实体类中添加两个属性，并加上注解<code>@TableField</code>：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@TableField(fill = FieldFill.INSERT)</span></span><br><span class="line"><span class="keyword">private</span> Date createTime;</span><br><span class="line"><span class="meta">@TableField(fill = FieldFill.INSERT_UPDATE)</span></span><br><span class="line"><span class="keyword">private</span> Date updateTime;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@TableField(fill = FieldFill.INSERT)</span><br><span class="hljs-keyword">private</span> Date createTime;<br><span class="hljs-meta">@TableField(fill = FieldFill.INSERT_UPDATE)</span><br><span class="hljs-keyword">private</span> Date updateTime;<br></code></pre></td></tr></table></figure>
 <p>首先创建一个填充处理类：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Slf4j</span></span><br><span class="line"><span class="meta">@Component</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">MyMetaObjectHandler</span> <span class="keyword">implements</span> <span class="title class_">MetaObjectHandler</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">insertFill</span><span class="params">(MetaObject metaObject)</span> &#123;</span><br><span class="line">        log.info(<span class="string">&quot;插入填充开始&quot;</span>);</span><br><span class="line">        <span class="built_in">this</span>.setFieldValByName(<span class="string">&quot;createTime&quot;</span>, <span class="keyword">new</span> <span class="title class_">Date</span>(), metaObject);</span><br><span class="line">        <span class="built_in">this</span>.setFieldValByName(<span class="string">&quot;updateTime&quot;</span>, <span class="keyword">new</span> <span class="title class_">Date</span>(), metaObject);</span><br><span class="line">        log.info(<span class="string">&quot;插入填充结束&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">updateFill</span><span class="params">(MetaObject metaObject)</span> &#123;</span><br><span class="line">        log.info(<span class="string">&quot;更新填充开始&quot;</span>);</span><br><span class="line">        <span class="built_in">this</span>.setFieldValByName(<span class="string">&quot;updateTime&quot;</span>, <span class="keyword">new</span> <span class="title class_">Date</span>(), metaObject);</span><br><span class="line">        log.info(<span class="string">&quot;更新填充结束&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@Slf4j</span><br><span class="hljs-meta">@Component</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">MyMetaObjectHandler</span> <span class="hljs-keyword">implements</span> <span class="hljs-title class_">MetaObjectHandler</span> &#123;<br><br>    <span class="hljs-meta">@Override</span><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">insertFill</span><span class="hljs-params">(MetaObject metaObject)</span> &#123;<br>        log.info(<span class="hljs-string">&quot;插入填充开始&quot;</span>);<br>        <span class="hljs-built_in">this</span>.setFieldValByName(<span class="hljs-string">&quot;createTime&quot;</span>, <span class="hljs-keyword">new</span> <span class="hljs-title class_">Date</span>(), metaObject);<br>        <span class="hljs-built_in">this</span>.setFieldValByName(<span class="hljs-string">&quot;updateTime&quot;</span>, <span class="hljs-keyword">new</span> <span class="hljs-title class_">Date</span>(), metaObject);<br>        log.info(<span class="hljs-string">&quot;插入填充结束&quot;</span>);<br>    &#125;<br><br>    <span class="hljs-meta">@Override</span><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">updateFill</span><span class="hljs-params">(MetaObject metaObject)</span> &#123;<br>        log.info(<span class="hljs-string">&quot;更新填充开始&quot;</span>);<br>        <span class="hljs-built_in">this</span>.setFieldValByName(<span class="hljs-string">&quot;updateTime&quot;</span>, <span class="hljs-keyword">new</span> <span class="hljs-title class_">Date</span>(), metaObject);<br>        log.info(<span class="hljs-string">&quot;更新填充结束&quot;</span>);<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
 <p>进行插入操作：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Test</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">testInsert</span><span class="params">()</span> &#123;</span><br><span class="line">    <span class="type">Student</span> <span class="variable">student</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Student</span>();</span><br><span class="line">    student.setId(<span class="number">1014</span>);</span><br><span class="line">    student.setName(<span class="string">&quot;如来佛祖&quot;</span>);</span><br><span class="line">    student.setAge(<span class="number">1000</span>);</span><br><span class="line">    student.setEmail(<span class="string">&quot;rulai@163.com&quot;</span>);</span><br><span class="line">    studentMapper.insert(student);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@Test</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">testInsert</span><span class="hljs-params">()</span> &#123;<br>    <span class="hljs-type">Student</span> <span class="hljs-variable">student</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Student</span>();<br>    student.setId(<span class="hljs-number">1014</span>);<br>    student.setName(<span class="hljs-string">&quot;如来佛祖&quot;</span>);<br>    student.setAge(<span class="hljs-number">1000</span>);<br>    student.setEmail(<span class="hljs-string">&quot;rulai@163.com&quot;</span>);<br>    studentMapper.insert(student);<br>&#125;<br></code></pre></td></tr></table></figure>
 <p>注意：这里并没有写<code>createTime</code>和<code>upateTime</code></p>
 <p>运行结果：</p>
 <figure>
 <img
-src="https://crayon-1302863897.cos.ap-beijing.myqcloud.com/image/image-20210205173912472.png"
+src="https://crayon-1302863897.cos.ap-beijing.myqcloud.com/image/image-20210205173912472.png" srcset="/img/loading.gif" lazyload
 alt="image-20210205173912472" />
 <figcaption aria-hidden="true">image-20210205173912472</figcaption>
 </figure>
 <p>并且打印出自定义的日志：</p>
 <figure>
 <img
-src="https://crayon-1302863897.cos.ap-beijing.myqcloud.com/image/image-20210205173953002.png"
+src="https://crayon-1302863897.cos.ap-beijing.myqcloud.com/image/image-20210205173953002.png" srcset="/img/loading.gif" lazyload
 alt="image-20210205173953002" />
 <figcaption aria-hidden="true">image-20210205173953002</figcaption>
 </figure>
 <p>进行更新操作：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Test</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">testUpdate</span><span class="params">()</span> &#123;</span><br><span class="line">    <span class="type">Student</span> <span class="variable">student</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Student</span>();</span><br><span class="line">    student.setId(<span class="number">1014</span>);</span><br><span class="line">    student.setAge(<span class="number">1200</span>);</span><br><span class="line">    <span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> studentMapper.updateById(student);</span><br><span class="line">    System.out.println(i);</span><br><span class="line">    System.out.println(i == <span class="number">1</span> ? <span class="string">&quot;更新成功&quot;</span>: <span class="string">&quot;更新失败&quot;</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@Test</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">testUpdate</span><span class="hljs-params">()</span> &#123;<br>    <span class="hljs-type">Student</span> <span class="hljs-variable">student</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Student</span>();<br>    student.setId(<span class="hljs-number">1014</span>);<br>    student.setAge(<span class="hljs-number">1200</span>);<br>    <span class="hljs-type">int</span> <span class="hljs-variable">i</span> <span class="hljs-operator">=</span> studentMapper.updateById(student);<br>    System.out.println(i);<br>    System.out.println(i == <span class="hljs-number">1</span> ? <span class="hljs-string">&quot;更新成功&quot;</span>: <span class="hljs-string">&quot;更新失败&quot;</span>);<br>&#125;<br></code></pre></td></tr></table></figure>
 <p>运行结果：</p>
 <figure>
 <img
-src="https://crayon-1302863897.cos.ap-beijing.myqcloud.com/image/image-20210205174143487.png"
+src="https://crayon-1302863897.cos.ap-beijing.myqcloud.com/image/image-20210205174143487.png" srcset="/img/loading.gif" lazyload
 alt="image-20210205174143487" />
 <figcaption aria-hidden="true">image-20210205174143487</figcaption>
 </figure>
 <p>打印出自定义日志：</p>
 <figure>
 <img
-src="https://crayon-1302863897.cos.ap-beijing.myqcloud.com/image/image-20210205174202105.png"
+src="https://crayon-1302863897.cos.ap-beijing.myqcloud.com/image/image-20210205174202105.png" srcset="/img/loading.gif" lazyload
 alt="image-20210205174202105" />
 <figcaption aria-hidden="true">image-20210205174202105</figcaption>
 </figure>
@@ -601,7 +607,7 @@ alt="image-20210205174202105" />
 <h2 id="插件">插件</h2>
 <p>MyBatis-Plus提供的插件都需要在配置类中注册组件。</p>
 <p>首先创建配置类，并加上<code>@Configuration</code>，并创建一个方法：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Bean</span></span><br><span class="line"><span class="keyword">public</span> MybatisPlusInterceptor <span class="title function_">mybatisPlusInterceptor</span><span class="params">()</span> &#123;</span><br><span class="line">    <span class="type">MybatisPlusInterceptor</span> <span class="variable">interceptor</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">MybatisPlusInterceptor</span>();</span><br><span class="line">    interceptor.addInnerInterceptor(<span class="keyword">new</span> <span class="title class_">OptimisticLockerInnerInterceptor</span>());</span><br><span class="line">    <span class="keyword">return</span> interceptor;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@Bean</span><br><span class="hljs-keyword">public</span> MybatisPlusInterceptor <span class="hljs-title function_">mybatisPlusInterceptor</span><span class="hljs-params">()</span> &#123;<br>    <span class="hljs-type">MybatisPlusInterceptor</span> <span class="hljs-variable">interceptor</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">MybatisPlusInterceptor</span>();<br>    interceptor.addInnerInterceptor(<span class="hljs-keyword">new</span> <span class="hljs-title class_">OptimisticLockerInnerInterceptor</span>());<br>    <span class="hljs-keyword">return</span> interceptor;<br>&#125;<br></code></pre></td></tr></table></figure>
 <p>MyBatisPlusInterceptor是MyBatis-Plus提供的拦截器类，在方法中新建一个类，需要什么插件，就创建对应的插件接口实现类，并使用<code>addInnerInterceptor()</code>添加到拦截器中。</p>
 <p>可用的插件接口实现类有：</p>
 <ul>
@@ -618,7 +624,7 @@ alt="image-20210205174202105" />
 <p>在数据库表中加上一个字段<code>version</code>，可以是int类型，并设默认值为1</p>
 <p>只要在实体类中添加定义一个属性<code>private Integer
 version</code>，并在其上加上注解<code>@Version</code>：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Version</span></span><br><span class="line"><span class="keyword">private</span> Integer version;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@Version</span><br><span class="hljs-keyword">private</span> Integer version;<br></code></pre></td></tr></table></figure>
 <p>注意：</p>
 <ul>
 <li>支持的数据类型只有：int、Integer、long、Long、Date、Timestamp、LocalDateTime</li>
@@ -630,12 +636,12 @@ wrapper)</code>方法</li>
 </ul>
 <p><strong>特别注意！注意！：只有在更新之前，进行查询操作，才会实现乐观锁，单纯的更新不会实现。</strong></p>
 <p>例如：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Test</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">testUpdate</span><span class="params">()</span> &#123;</span><br><span class="line">    <span class="type">Student</span> <span class="variable">student</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Student</span>();</span><br><span class="line">    student.setId(<span class="number">1014</span>);</span><br><span class="line">    student.setAge(<span class="number">34</span>);</span><br><span class="line">    <span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> studentMapper.updateById(student);</span><br><span class="line">    System.out.println(i);</span><br><span class="line">    System.out.println(i == <span class="number">1</span> ? <span class="string">&quot;更新成功&quot;</span>: <span class="string">&quot;更新失败&quot;</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@Test</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">testUpdate</span><span class="hljs-params">()</span> &#123;<br>    <span class="hljs-type">Student</span> <span class="hljs-variable">student</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Student</span>();<br>    student.setId(<span class="hljs-number">1014</span>);<br>    student.setAge(<span class="hljs-number">34</span>);<br>    <span class="hljs-type">int</span> <span class="hljs-variable">i</span> <span class="hljs-operator">=</span> studentMapper.updateById(student);<br>    System.out.println(i);<br>    System.out.println(i == <span class="hljs-number">1</span> ? <span class="hljs-string">&quot;更新成功&quot;</span>: <span class="hljs-string">&quot;更新失败&quot;</span>);<br>&#125;<br></code></pre></td></tr></table></figure>
 <p>如果这样写，是不会实现乐观锁的。因为获取不到version值。</p>
 <p><strong>必须要在更新之前进行查询操作：</strong></p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Test</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">testUpdate</span><span class="params">()</span> &#123;</span><br><span class="line">    <span class="type">Student</span> <span class="variable">student</span> <span class="operator">=</span> studentMapper.selectById(<span class="number">1013</span>);</span><br><span class="line">    student.setAge(<span class="number">34</span>);</span><br><span class="line">    <span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> studentMapper.updateById(student);</span><br><span class="line">    System.out.println(i);</span><br><span class="line">    System.out.println(i == <span class="number">1</span> ? <span class="string">&quot;更新成功&quot;</span>: <span class="string">&quot;更新失败&quot;</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@Test</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">testUpdate</span><span class="hljs-params">()</span> &#123;<br>    <span class="hljs-type">Student</span> <span class="hljs-variable">student</span> <span class="hljs-operator">=</span> studentMapper.selectById(<span class="hljs-number">1013</span>);<br>    student.setAge(<span class="hljs-number">34</span>);<br>    <span class="hljs-type">int</span> <span class="hljs-variable">i</span> <span class="hljs-operator">=</span> studentMapper.updateById(student);<br>    System.out.println(i);<br>    System.out.println(i == <span class="hljs-number">1</span> ? <span class="hljs-string">&quot;更新成功&quot;</span>: <span class="hljs-string">&quot;更新失败&quot;</span>);<br>&#125;<br></code></pre></td></tr></table></figure>
 <p>这样才会实现乐观锁。</p>
-<p><img src="https://crayon-1302863897.cos.ap-beijing.myqcloud.com/image/image-20210206180311794.png" alt="image-20210206180311794" style="zoom:80%;" /></p>
+<p><img src="https://crayon-1302863897.cos.ap-beijing.myqcloud.com/image/image-20210206180311794.png" srcset="/img/loading.gif" lazyload alt="image-20210206180311794" style="zoom:80%;" /></p>
 <h4 id="总结">总结</h4>
 <ol type="1">
 <li>自定义填充处理类不要忘记加注解<code>@Component</code></li>
@@ -667,10 +673,10 @@ queryWrapper);</code></li>
 <li><p>创建服务层方法：<code>public Page&lt;Categories&gt;
 list(Page&lt;Categories&gt; page);</code></p></li>
 <li><p>在继承类实现该方法：</p>
-<p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Override</span></span><br><span class="line"><span class="keyword">public</span> Page&lt;Categories&gt; <span class="title function_">list</span><span class="params">(Page&lt;Categories&gt; page)</span> &#123;</span><br><span class="line">    Page&lt;Categories&gt; categoriesPage = categoriesMapper.selectPage(page, <span class="literal">null</span>);</span><br><span class="line">    <span class="keyword">return</span> categoriesPage;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p></li>
+<p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@Override</span><br><span class="hljs-keyword">public</span> Page&lt;Categories&gt; <span class="hljs-title function_">list</span><span class="hljs-params">(Page&lt;Categories&gt; page)</span> &#123;<br>    Page&lt;Categories&gt; categoriesPage = categoriesMapper.selectPage(page, <span class="hljs-literal">null</span>);<br>    <span class="hljs-keyword">return</span> categoriesPage;<br>&#125;<br></code></pre></td></tr></table></figure></p></li>
 <li><p>使用传入的参数或返回值(这俩是一个Page对象)来获得查询到的数据和相关数据</p></li>
 <li><p>在控制层创建Page对象，并调用服务层方法。</p>
-<p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">getCategories</span><span class="params">(Integer pageNumber, Integer limit)</span> &#123;</span><br><span class="line">    Page&lt;Categories&gt; page = <span class="keyword">new</span> <span class="title class_">Page</span>&lt;&gt;(pageNumber, limit);</span><br><span class="line">    Page&lt;Categories&gt; list = categoriesService.list(page);</span><br><span class="line">    List&lt;Categories&gt; records = page.getRecords();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p></li>
+<p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">getCategories</span><span class="hljs-params">(Integer pageNumber, Integer limit)</span> &#123;<br>    Page&lt;Categories&gt; page = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Page</span>&lt;&gt;(pageNumber, limit);<br>    Page&lt;Categories&gt; list = categoriesService.list(page);<br>    List&lt;Categories&gt; records = page.getRecords();<br>&#125;<br></code></pre></td></tr></table></figure></p></li>
 </ol>
 <p><strong>注意：</strong></p>
 <ol type="1">
@@ -679,40 +685,40 @@ list(Page&lt;Categories&gt; page);</code></p></li>
 </ol>
 <h2 id="查询操作">查询操作</h2>
 <p><code>BaseMapper</code>有几种查询方法：</p>
-<p><img src="https://crayon-1302863897.cos.ap-beijing.myqcloud.com/image/image-20210221130459868.png" alt="image-20210221130459868" style="zoom:67%;" /></p>
+<p><img src="https://crayon-1302863897.cos.ap-beijing.myqcloud.com/image/image-20210221130459868.png" srcset="/img/loading.gif" lazyload alt="image-20210221130459868" style="zoom:67%;" /></p>
 <p>挨个介绍：</p>
 <ul>
 <li><p><code>List&lt;T&gt; selectBatchIds(Collection&lt;? extends
 Serializable&gt;)</code>：以Id为查询条件做批量查询，即可同时查询多个Id匹配的行，参数是一个集合，可以是List、Set和Queue，返回值是一个List集合</p>
 <p>例子：</p>
-<p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Test</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">testSelect</span><span class="params">()</span> &#123;</span><br><span class="line">    List&lt;Student&gt; students = studentMapper.selectBatchIds(Arrays.asList(<span class="number">1001</span>, <span class="number">1002</span>, <span class="number">1003</span>));</span><br><span class="line">    students.forEach(System.out::println);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@Test</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">testSelect</span><span class="hljs-params">()</span> &#123;<br>    List&lt;Student&gt; students = studentMapper.selectBatchIds(Arrays.asList(<span class="hljs-number">1001</span>, <span class="hljs-number">1002</span>, <span class="hljs-number">1003</span>));<br>    students.forEach(System.out::println);<br>&#125;<br></code></pre></td></tr></table></figure></p>
 <p>结果：</p>
 <p>​ <img
-src="https://crayon-1302863897.cos.ap-beijing.myqcloud.com/image/image-20210221131546875.png"
+src="https://crayon-1302863897.cos.ap-beijing.myqcloud.com/image/image-20210221131546875.png" srcset="/img/loading.gif" lazyload
 alt="image-20210221131546875" /></p></li>
 <li><p><code>T
 selectById(Serializable)</code>：单个查询，返回值是对应实体类</p>
 <p>例子：</p>
-<p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Test</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">testSelect</span><span class="params">()</span> &#123;</span><br><span class="line">    <span class="type">Student</span> <span class="variable">student</span> <span class="operator">=</span> studentMapper.selectById(<span class="number">1001</span>);</span><br><span class="line">    System.out.println(student);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@Test</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">testSelect</span><span class="hljs-params">()</span> &#123;<br>    <span class="hljs-type">Student</span> <span class="hljs-variable">student</span> <span class="hljs-operator">=</span> studentMapper.selectById(<span class="hljs-number">1001</span>);<br>    System.out.println(student);<br>&#125;<br></code></pre></td></tr></table></figure></p>
 <p>运行结果：</p>
-<p><img src="https://crayon-1302863897.cos.ap-beijing.myqcloud.com/image/image-20210221131708309.png" alt="image-20210221131708309" style="zoom:150%;" /></p></li>
+<p><img src="https://crayon-1302863897.cos.ap-beijing.myqcloud.com/image/image-20210221131708309.png" srcset="/img/loading.gif" lazyload alt="image-20210221131708309" style="zoom:150%;" /></p></li>
 <li><p><code>List&lt;T&gt; selectByMap(Map&lt;String,
 Object&gt;)</code>：条件查询，使用Map对象，key是String，代表属性名；Object代表属性值。多个key/value对，使用and连接。</p>
 <p>例子：</p>
-<p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Test</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">testSelect</span><span class="params">()</span> &#123;</span><br><span class="line">    <span class="type">HashMap</span> <span class="variable">map</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">HashMap</span>();</span><br><span class="line">    map.put(<span class="string">&quot;name&quot;</span>, <span class="string">&quot;刘备&quot;</span>);</span><br><span class="line">    List&lt;Student&gt; students = studentMapper.selectByMap(map);</span><br><span class="line">    students.forEach(System.out::println);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@Test</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">testSelect</span><span class="hljs-params">()</span> &#123;<br>    <span class="hljs-type">HashMap</span> <span class="hljs-variable">map</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">HashMap</span>();<br>    map.put(<span class="hljs-string">&quot;name&quot;</span>, <span class="hljs-string">&quot;刘备&quot;</span>);<br>    List&lt;Student&gt; students = studentMapper.selectByMap(map);<br>    students.forEach(System.out::println);<br>&#125;<br></code></pre></td></tr></table></figure></p>
 <p>运行结果：</p>
 <figure>
 <img
-src="https://crayon-1302863897.cos.ap-beijing.myqcloud.com/image/image-20210221132145371.png"
+src="https://crayon-1302863897.cos.ap-beijing.myqcloud.com/image/image-20210221132145371.png" srcset="/img/loading.gif" lazyload
 alt="image-20210221132145371" />
 <figcaption aria-hidden="true">image-20210221132145371</figcaption>
 </figure>
 <p>例子：</p>
-<p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Test</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">testSelect</span><span class="params">()</span> &#123;</span><br><span class="line">    HashMap&lt;String, Object&gt; map = <span class="keyword">new</span> <span class="title class_">HashMap</span>&lt;&gt;();</span><br><span class="line">    map.put(<span class="string">&quot;name&quot;</span>, <span class="string">&quot;刘备&quot;</span>);</span><br><span class="line">    map.put(<span class="string">&quot;age&quot;</span>, <span class="string">&quot;76&quot;</span>);</span><br><span class="line">    List&lt;Student&gt; students = studentMapper.selectByMap(map);</span><br><span class="line">    students.forEach(System.out::println);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@Test</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">testSelect</span><span class="hljs-params">()</span> &#123;<br>    HashMap&lt;String, Object&gt; map = <span class="hljs-keyword">new</span> <span class="hljs-title class_">HashMap</span>&lt;&gt;();<br>    map.put(<span class="hljs-string">&quot;name&quot;</span>, <span class="hljs-string">&quot;刘备&quot;</span>);<br>    map.put(<span class="hljs-string">&quot;age&quot;</span>, <span class="hljs-string">&quot;76&quot;</span>);<br>    List&lt;Student&gt; students = studentMapper.selectByMap(map);<br>    students.forEach(System.out::println);<br>&#125;<br></code></pre></td></tr></table></figure></p>
 <p>运行结果：</p>
 <figure>
 <img
-src="https://crayon-1302863897.cos.ap-beijing.myqcloud.com/image/image-20210221132308173.png"
+src="https://crayon-1302863897.cos.ap-beijing.myqcloud.com/image/image-20210221132308173.png" srcset="/img/loading.gif" lazyload
 alt="image-20210221132308173" />
 <figcaption aria-hidden="true">image-20210221132308173</figcaption>
 </figure></li>
@@ -742,9 +748,9 @@ Serializable&gt;)</code>：根据集合删除</li>
 <ol type="1">
 <li><p>在表中添加deleted字段，类型为boolean或int，默认值是false或0，不为空。</p></li>
 <li><p>在配置文件中配置：</p>
-<p><figure class="highlight properties"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">mybatis-plus.global-config.db-config.logic-not-delete-value</span>=<span class="string">0</span></span><br><span class="line"><span class="attr">mybatis-plus.global-config.db-config.logic-delete-value</span>=<span class="string">1</span></span><br></pre></td></tr></table></figure></p></li>
+<p><figure class="highlight properties"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs properties"><span class="hljs-attr">mybatis-plus.global-config.db-config.logic-not-delete-value</span>=<span class="hljs-string">0</span><br><span class="hljs-attr">mybatis-plus.global-config.db-config.logic-delete-value</span>=<span class="hljs-string">1</span><br></code></pre></td></tr></table></figure></p></li>
 <li><p>在实体类deleted属性上添加注解<code>@TableLogic</code></p>
-<p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@TableLogic</span></span><br><span class="line"><span class="keyword">private</span> Boolean deleted;</span><br></pre></td></tr></table></figure></p>
+<p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@TableLogic</span><br><span class="hljs-keyword">private</span> Boolean deleted;<br></code></pre></td></tr></table></figure></p>
 <p>就可以了。</p></li>
 </ol>
 <p>实现了逻辑删除后，MyBatis-Plus一系列CRUD操作会发生改变：</p>
@@ -763,27 +769,27 @@ where ...</code></li>
 </ul>
 <p>例子：</p>
 <p>删除操作：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Test</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">testDelete</span><span class="params">()</span> &#123;</span><br><span class="line">    <span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> studentMapper.deleteById(<span class="number">1044</span>);</span><br><span class="line">    System.out.println(i);</span><br><span class="line">    System.out.println(i == <span class="number">1</span> ? <span class="string">&quot;删除成功&quot;</span> : <span class="string">&quot;删除失败&quot;</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@Test</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">testDelete</span><span class="hljs-params">()</span> &#123;<br>    <span class="hljs-type">int</span> <span class="hljs-variable">i</span> <span class="hljs-operator">=</span> studentMapper.deleteById(<span class="hljs-number">1044</span>);<br>    System.out.println(i);<br>    System.out.println(i == <span class="hljs-number">1</span> ? <span class="hljs-string">&quot;删除成功&quot;</span> : <span class="hljs-string">&quot;删除失败&quot;</span>);<br>&#125;<br></code></pre></td></tr></table></figure>
 <p>结果：</p>
 <figure>
 <img
-src="https://crayon-1302863897.cos.ap-beijing.myqcloud.com/image/image-20210221140256573.png"
+src="https://crayon-1302863897.cos.ap-beijing.myqcloud.com/image/image-20210221140256573.png" srcset="/img/loading.gif" lazyload
 alt="image-20210221140256573" />
 <figcaption aria-hidden="true">image-20210221140256573</figcaption>
 </figure>
 <p>查询操作：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Test</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">selectAll</span><span class="params">()</span> &#123;</span><br><span class="line">    List&lt;Student&gt; students = studentMapper.selectList(<span class="literal">null</span>);</span><br><span class="line">    students.forEach(System.out::println);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@Test</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">selectAll</span><span class="hljs-params">()</span> &#123;<br>    List&lt;Student&gt; students = studentMapper.selectList(<span class="hljs-literal">null</span>);<br>    students.forEach(System.out::println);<br>&#125;<br></code></pre></td></tr></table></figure>
 <p>结果：</p>
 <figure>
 <img
-src="https://crayon-1302863897.cos.ap-beijing.myqcloud.com/image/image-20210221140352545.png"
+src="https://crayon-1302863897.cos.ap-beijing.myqcloud.com/image/image-20210221140352545.png" srcset="/img/loading.gif" lazyload
 alt="image-20210221140352545" />
 <figcaption aria-hidden="true">image-20210221140352545</figcaption>
 </figure>
 <h2 id="条件构造器">条件构造器</h2>
 <p>MyBatis-Plus有一个条件构造抽象类Wrapper，它是用来构造复杂的where条件的。</p>
 <p>Wrapper有几个子类：</p>
-<p><img src="https://crayon-1302863897.cos.ap-beijing.myqcloud.com/image/image-20210221141448914.png" alt="image-20210221141448914" style="zoom:80%;" /></p>
+<p><img src="https://crayon-1302863897.cos.ap-beijing.myqcloud.com/image/image-20210221141448914.png" srcset="/img/loading.gif" lazyload alt="image-20210221141448914" style="zoom:80%;" /></p>
 <p>主要就分为查询和更新对应Wrapper类。</p>
 <h3 id="abstractwrapper">AbstractWrapper</h3>
 <p>首先介绍抽象类AbstractWrapper有的方法：</p>
@@ -810,7 +816,7 @@ and name = Jack and age is null</code></p>
 false)</code>--&gt;<code>id = 1 and name = Jack</code></p></li>
 </ul>
 <hr />
-<pre><code>`between(R column, Object val1, Object val2)`
+<div class="code-wrapper"><pre><code class="hljs">`between(R column, Object val1, Object val2)`
 
 `notBetween(R column, Object val1, Object val2)`
 
@@ -822,7 +828,7 @@ false)</code>--&gt;<code>id = 1 and name = Jack</code></p></li>
 
 `notBetween(&quot;age&quot;, 18 ,30)`--&gt;`age not between 18 and 30`
 
----</code></pre>
+---</code></pre></div>
 <p>​</p>
 <ul>
 <li><p><code>like(R column Object val)</code></p>
@@ -929,72 +935,132 @@ val)</code>和<code>likeRight(R column, Object val)</code>两个方法。</p>
 </ul>
 <h2 id="代码生成器">代码生成器</h2>
 <p>使用代码生成器自动生成代码。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">DataAutoGenerator</span> &#123;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">        <span class="comment">//创建自动生成器对象</span></span><br><span class="line">        <span class="type">AutoGenerator</span> <span class="variable">ag</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">AutoGenerator</span>();</span><br><span class="line">        </span><br><span class="line">        <span class="comment">//创建全局配置对象</span></span><br><span class="line">        <span class="type">GlobalConfig</span> <span class="variable">gc</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">GlobalConfig</span>();</span><br><span class="line">        <span class="comment">//获取项目绝对路径</span></span><br><span class="line">        <span class="type">String</span> <span class="variable">projectPath</span> <span class="operator">=</span> System.getProperty(<span class="string">&quot;user.dir&quot;</span>);</span><br><span class="line">        <span class="comment">//设置输出目录</span></span><br><span class="line">        gc.setOutputDir(projectPath + <span class="string">&quot;/12-MyBatis_Plus/src/main/java&quot;</span>);</span><br><span class="line">        <span class="comment">//设置作者</span></span><br><span class="line">        gc.setAuthor(<span class="string">&quot;zhao-xin&quot;</span>);</span><br><span class="line">        <span class="comment">//设置生成后不打开输出目录</span></span><br><span class="line">        gc.setOpen(<span class="literal">false</span>);</span><br><span class="line">        <span class="comment">//设置Service类命名</span></span><br><span class="line">        gc.setServiceName(<span class="string">&quot;%sService&quot;</span>);</span><br><span class="line">        <span class="comment">//开启 swagger2 模式</span></span><br><span class="line">        gc.setSwagger2(<span class="literal">true</span>);</span><br><span class="line">        <span class="comment">//添加全局配置到自动生成器</span></span><br><span class="line">        ag.setGlobalConfig(gc);</span><br><span class="line"></span><br><span class="line">        <span class="comment">//创建数据源对象，并配置数据源。这部分比较熟悉，不细讲了。</span></span><br><span class="line">        <span class="type">DataSourceConfig</span> <span class="variable">dsf</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">DataSourceConfig</span>();</span><br><span class="line">        dsf.setUrl(<span class="string">&quot;jdbc:mysql://localhost:3306/test&quot;</span>);</span><br><span class="line">        dsf.setDriverName(<span class="string">&quot;com.mysql.cj.jdbc.Driver&quot;</span>);</span><br><span class="line">        dsf.setUsername(<span class="string">&quot;root&quot;</span>);</span><br><span class="line">        dsf.setPassword(<span class="string">&quot;bigbang2022&quot;</span>);</span><br><span class="line">        dsf.setDbType(DbType.MYSQL);</span><br><span class="line">        ag.setDataSource(dsf);</span><br><span class="line"></span><br><span class="line">        <span class="comment">//配置包</span></span><br><span class="line">        <span class="type">PackageConfig</span> <span class="variable">pc</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">PackageConfig</span>();</span><br><span class="line">        <span class="comment">//配置父包，entity等包生成在该包中</span></span><br><span class="line">        pc.setParent(<span class="string">&quot;com.example&quot;</span>);</span><br><span class="line">        <span class="comment">//设置实体类，数据访问层，服务层和控制层的名称</span></span><br><span class="line">        pc.setEntity(<span class="string">&quot;entity&quot;</span>);</span><br><span class="line">        pc.setMapper(<span class="string">&quot;mapper&quot;</span>);</span><br><span class="line">        pc.setService(<span class="string">&quot;service&quot;</span>);</span><br><span class="line">        pc.setController(<span class="string">&quot;controller&quot;</span>);</span><br><span class="line">        <span class="comment">//添加到自动生成器中</span></span><br><span class="line">        ag.setPackageInfo(pc);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">        <span class="comment">// 策略配置</span></span><br><span class="line">        <span class="type">StrategyConfig</span> <span class="variable">strategy</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">StrategyConfig</span>();</span><br><span class="line">        <span class="comment">//设置命名策略为下划线转驼峰</span></span><br><span class="line">        strategy.setNaming(NamingStrategy.underline_to_camel);</span><br><span class="line">        <span class="comment">//设置列名命名策略也为下划线转驼峰</span></span><br><span class="line">        strategy.setColumnNaming(NamingStrategy.underline_to_camel);</span><br><span class="line">        <span class="comment">//是否开启实体类使用lombok</span></span><br><span class="line">        strategy.setEntityLombokModel(<span class="literal">true</span>);</span><br><span class="line">        <span class="comment">//使用Rest风格</span></span><br><span class="line">        strategy.setRestControllerStyle(<span class="literal">true</span>);</span><br><span class="line"></span><br><span class="line">        <span class="comment">//设置需要生成的表名</span></span><br><span class="line">        strategy.setInclude(<span class="string">&quot;student&quot;</span>);</span><br><span class="line">        </span><br><span class="line">        strategy.setControllerMappingHyphenStyle(<span class="literal">true</span>);</span><br><span class="line">        </span><br><span class="line">        <span class="comment">//设置逻辑删除字段</span></span><br><span class="line">        strategy.setLogicDeleteFieldName(<span class="string">&quot;deleted&quot;</span>);</span><br><span class="line">        <span class="comment">//设置乐观锁字段</span></span><br><span class="line">        strategy.setVersionFieldName(<span class="string">&quot;version&quot;</span>);</span><br><span class="line"></span><br><span class="line">        <span class="comment">//设置自动填充字段</span></span><br><span class="line">        List&lt;TableFill&gt; list = <span class="keyword">new</span> <span class="title class_">ArrayList</span>&lt;&gt;();</span><br><span class="line">        list.add(<span class="keyword">new</span> <span class="title class_">TableFill</span>(<span class="string">&quot;create_time&quot;</span>, FieldFill.INSERT));</span><br><span class="line">        list.add(<span class="keyword">new</span> <span class="title class_">TableFill</span>(<span class="string">&quot;update_time&quot;</span>, FieldFill.INSERT_UPDATE));</span><br><span class="line">        strategy.setTableFillList(list);</span><br><span class="line">        <span class="comment">//添加到自动生成器对象</span></span><br><span class="line">        ag.setStrategy(strategy);</span><br><span class="line"></span><br><span class="line">        <span class="comment">//设置模板引擎</span></span><br><span class="line">        ag.setTemplateEngine(<span class="keyword">new</span> <span class="title class_">VelocityTemplateEngine</span>());</span><br><span class="line">        </span><br><span class="line">        <span class="comment">//执行</span></span><br><span class="line">        ag.execute();</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">DataAutoGenerator</span> &#123;<br><br><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">main</span><span class="hljs-params">(String[] args)</span> &#123;<br>        <span class="hljs-comment">//创建自动生成器对象</span><br>        <span class="hljs-type">AutoGenerator</span> <span class="hljs-variable">ag</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">AutoGenerator</span>();<br>        <br>        <span class="hljs-comment">//创建全局配置对象</span><br>        <span class="hljs-type">GlobalConfig</span> <span class="hljs-variable">gc</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">GlobalConfig</span>();<br>        <span class="hljs-comment">//获取项目绝对路径</span><br>        <span class="hljs-type">String</span> <span class="hljs-variable">projectPath</span> <span class="hljs-operator">=</span> System.getProperty(<span class="hljs-string">&quot;user.dir&quot;</span>);<br>        <span class="hljs-comment">//设置输出目录</span><br>        gc.setOutputDir(projectPath + <span class="hljs-string">&quot;/12-MyBatis_Plus/src/main/java&quot;</span>);<br>        <span class="hljs-comment">//设置作者</span><br>        gc.setAuthor(<span class="hljs-string">&quot;zhao-xin&quot;</span>);<br>        <span class="hljs-comment">//设置生成后不打开输出目录</span><br>        gc.setOpen(<span class="hljs-literal">false</span>);<br>        <span class="hljs-comment">//设置Service类命名</span><br>        gc.setServiceName(<span class="hljs-string">&quot;%sService&quot;</span>);<br>        <span class="hljs-comment">//开启 swagger2 模式</span><br>        gc.setSwagger2(<span class="hljs-literal">true</span>);<br>        <span class="hljs-comment">//添加全局配置到自动生成器</span><br>        ag.setGlobalConfig(gc);<br><br>        <span class="hljs-comment">//创建数据源对象，并配置数据源。这部分比较熟悉，不细讲了。</span><br>        <span class="hljs-type">DataSourceConfig</span> <span class="hljs-variable">dsf</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">DataSourceConfig</span>();<br>        dsf.setUrl(<span class="hljs-string">&quot;jdbc:mysql://localhost:3306/test&quot;</span>);<br>        dsf.setDriverName(<span class="hljs-string">&quot;com.mysql.cj.jdbc.Driver&quot;</span>);<br>        dsf.setUsername(<span class="hljs-string">&quot;root&quot;</span>);<br>        dsf.setPassword(<span class="hljs-string">&quot;bigbang2022&quot;</span>);<br>        dsf.setDbType(DbType.MYSQL);<br>        ag.setDataSource(dsf);<br><br>        <span class="hljs-comment">//配置包</span><br>        <span class="hljs-type">PackageConfig</span> <span class="hljs-variable">pc</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">PackageConfig</span>();<br>        <span class="hljs-comment">//配置父包，entity等包生成在该包中</span><br>        pc.setParent(<span class="hljs-string">&quot;com.example&quot;</span>);<br>        <span class="hljs-comment">//设置实体类，数据访问层，服务层和控制层的名称</span><br>        pc.setEntity(<span class="hljs-string">&quot;entity&quot;</span>);<br>        pc.setMapper(<span class="hljs-string">&quot;mapper&quot;</span>);<br>        pc.setService(<span class="hljs-string">&quot;service&quot;</span>);<br>        pc.setController(<span class="hljs-string">&quot;controller&quot;</span>);<br>        <span class="hljs-comment">//添加到自动生成器中</span><br>        ag.setPackageInfo(pc);<br><br><br><br>        <span class="hljs-comment">// 策略配置</span><br>        <span class="hljs-type">StrategyConfig</span> <span class="hljs-variable">strategy</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">StrategyConfig</span>();<br>        <span class="hljs-comment">//设置命名策略为下划线转驼峰</span><br>        strategy.setNaming(NamingStrategy.underline_to_camel);<br>        <span class="hljs-comment">//设置列名命名策略也为下划线转驼峰</span><br>        strategy.setColumnNaming(NamingStrategy.underline_to_camel);<br>        <span class="hljs-comment">//是否开启实体类使用lombok</span><br>        strategy.setEntityLombokModel(<span class="hljs-literal">true</span>);<br>        <span class="hljs-comment">//使用Rest风格</span><br>        strategy.setRestControllerStyle(<span class="hljs-literal">true</span>);<br><br>        <span class="hljs-comment">//设置需要生成的表名</span><br>        strategy.setInclude(<span class="hljs-string">&quot;student&quot;</span>);<br>        <br>        strategy.setControllerMappingHyphenStyle(<span class="hljs-literal">true</span>);<br>        <br>        <span class="hljs-comment">//设置逻辑删除字段</span><br>        strategy.setLogicDeleteFieldName(<span class="hljs-string">&quot;deleted&quot;</span>);<br>        <span class="hljs-comment">//设置乐观锁字段</span><br>        strategy.setVersionFieldName(<span class="hljs-string">&quot;version&quot;</span>);<br><br>        <span class="hljs-comment">//设置自动填充字段</span><br>        List&lt;TableFill&gt; list = <span class="hljs-keyword">new</span> <span class="hljs-title class_">ArrayList</span>&lt;&gt;();<br>        list.add(<span class="hljs-keyword">new</span> <span class="hljs-title class_">TableFill</span>(<span class="hljs-string">&quot;create_time&quot;</span>, FieldFill.INSERT));<br>        list.add(<span class="hljs-keyword">new</span> <span class="hljs-title class_">TableFill</span>(<span class="hljs-string">&quot;update_time&quot;</span>, FieldFill.INSERT_UPDATE));<br>        strategy.setTableFillList(list);<br>        <span class="hljs-comment">//添加到自动生成器对象</span><br>        ag.setStrategy(strategy);<br><br>        <span class="hljs-comment">//设置模板引擎</span><br>        ag.setTemplateEngine(<span class="hljs-keyword">new</span> <span class="hljs-title class_">VelocityTemplateEngine</span>());<br>        <br>        <span class="hljs-comment">//执行</span><br>        ag.execute();<br><br><br>    &#125;<br>&#125;<br><br></code></pre></td></tr></table></figure>
 
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/categories/programming/">编程学习</a>
+                    
+                      <a class="hover-with-bg" href="/categories/programming/mybatis/">MyBatis</a>
+                    
+                  </div>
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/javaweb/">JavaWeb</a>
+                    
+                      <a class="hover-with-bg" href="/tags/mybatis/">MyBatis</a>
+                    
+                      <a class="hover-with-bg" href="/tags/backend/">后端</a>
+                    
+                  </div>
+                
+              </div>
+              
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
     </div>
-
     
-    
-    
-
-    <footer class="post-footer">
-          <div class="post-tags">
-              <a href="/tags/backend/" rel="tag"># 后端</a>
-              <a href="/tags/javaweb/" rel="tag"># JavaWeb</a>
-              <a href="/tags/mybatis/" rel="tag"># MyBatis</a>
-          </div>
-
-        
-
-          <div class="post-nav">
-            <div class="post-nav-item">
-                <a href="/2022/05/11/MyBatis/9-MyBatis%E9%80%86%E5%90%91%E5%B7%A5%E7%A8%8B/" rel="prev" title="9-MyBatis逆向工程">
-                  <i class="fa fa-chevron-left"></i> 9-MyBatis逆向工程
-                </a>
-            </div>
-            <div class="post-nav-item">
-                <a href="/2022/05/11/Spring-MVC/1-Spring-MVC%E5%9F%BA%E7%A1%80/" rel="next" title="1-Spring-MVC基础">
-                  1-Spring-MVC基础 <i class="fa fa-chevron-right"></i>
-                </a>
-            </div>
-          </div>
-    </footer>
-  </article>
+  </div>
 </div>
 
+<!-- Custom -->
 
 
+    
 
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
 
-
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
 </div>
+    
+
+    
+      <div class="col-lg-7 mx-auto nopadding-x-md">
+        <div class="container custom mx-auto">
+          <link rel="stylesheet" href="/js/aplayer/APlayer.min.css"> <div id="aplayer" style="display:none"></div> <script src="/js/aplayer/APlayer.min.js"></script>
+        </div>
+      </div>
+    
   </main>
 
-  <footer class="footer">
-    <div class="footer-inner">
-
-
-<div class="copyright">
-  &copy; 
-  <span itemprop="copyrightYear">2022</span>
-  <span class="with-love">
-    <i class="fa fa-heart"></i>
-  </span>
-  <span class="author" itemprop="copyrightHolder">ZhaoXin</span>
-</div>
-  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     <i class="iconfont icon-copyright"></i> <span>ZhaoXin, Built by </span> <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> 
   </div>
-
-    </div>
-  </footer>
-
   
-  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
-<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
 
   
 
+  
+</footer>
 
+  <!-- SCRIPTS -->
+  
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
 
 
 
@@ -1002,6 +1068,110 @@ val)</code>和<code>likeRight(R column, Object val)</code>两个方法。</p>
 
 
 
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4/anchor.min.js" ></script>
+  
+  
+    <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js" ></script>
+  
+
+
+
+
+  <script defer src="/js/leancloud.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+        typing(title);
+      
+    })(window, document);
+  </script>
+
+
+
+
+
+  
+
+  
+    <!-- MathJax -->
+    <script>
+      MathJax = {
+        tex: {
+          inlineMath: [['$', '$'], ['\\(', '\\)']]
+        },
+        loader: {
+          load: ['ui/lazy']
+        },
+        options: {
+          renderActions: {
+            findScript: [10, doc => {
+              document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+                const display = !!node.type.match(/; *mode=display/);
+                const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+                const text = document.createTextNode('');
+                node.parentNode.replaceChild(text, node);
+                math.start = { node: text, delim: '', n: 0 };
+                math.end = { node: text, delim: '', n: 0 };
+                doc.math.push(math);
+              });
+            }, '', false],
+            insertedScript: [200, () => {
+              document.querySelectorAll('mjx-container').forEach(node => {
+                let target = node.parentNode;
+                if (target.nodeName.toLowerCase() === 'li') {
+                  target.parentNode.classList.add('has-jax');
+                }
+              });
+            }, '', false]
+          }
+        }
+      };
+    </script>
+
+    <script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js" ></script>
+
+  
+
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+
+  
+<script src="/js/music.js"></script>
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
 
 
 </body>

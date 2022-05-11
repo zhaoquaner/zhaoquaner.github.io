@@ -1,25 +1,21 @@
+
+
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
 <head>
   <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width">
-<meta name="theme-color" content="#222">
-
-
-  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
-  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
-  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
-  <link rel="mask-icon" href="/images/logo.svg" color="#222">
-
-<link rel="stylesheet" href="/css/main.css">
-
-
-
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css" integrity="sha256-DfWjNxDkM94fVBWx1H5BMMp0Zq7luBlV8QRcSES7s+0=" crossorigin="anonymous">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
-
-<script class="next-config" data-name="main" type="application/json">{"hostname":"zhaoquaner.github.io","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.11.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":15,"offset":12,"width":220},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
-
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
+  <link rel="icon" href="/img/favicon.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="ZhaoXin">
+  <meta name="keywords" content="博客">
+  
     <meta name="description" content="Statement对象执行SQL语句  使用executeLargeUpdate()方法执行DDL和DML语句 executeUpdate和executeLargeUpdate区别是如果受影响的行数超过了int最大值，则要使用后者。 例子： 12345678910111213141516171819202122232425262728293031323334353637383940414">
 <meta property="og:type" content="article">
 <meta property="og:title" content="执行SQL语句">
@@ -32,226 +28,236 @@
 <meta property="article:author" content="ZhaoXin">
 <meta property="article:tag" content="Java基础">
 <meta property="article:tag" content="JDBC">
-<meta name="twitter:card" content="summary">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  <title>执行SQL语句 - 赵圈儿的博客</title>
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/css/bootstrap.min.css" />
 
 
-<link rel="canonical" href="https://zhaoquaner.github.io/2022/05/11/Java/JDBC/%E6%89%A7%E8%A1%8CSQL%E8%AF%AD%E5%8F%A5/">
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4/github-markdown.min.css" />
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hint.css@2/hint.min.css" />
 
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10/styles/github-gist.min.css" />
+    
+  
 
-
-<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://zhaoquaner.github.io/2022/05/11/Java/JDBC/%E6%89%A7%E8%A1%8CSQL%E8%AF%AD%E5%8F%A5/","path":"2022/05/11/Java/JDBC/执行SQL语句/","title":"执行SQL语句"}</script>
-
-<script class="next-config" data-name="calendar" type="application/json">""</script>
-<title>执行SQL语句 | 赵圈儿的博客</title>
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.css" />
   
 
 
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
 
 
 
-  <noscript>
-    <link rel="stylesheet" href="/css/noscript.css">
-  </noscript>
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"zhaoquaner.github.io","root":"/","version":"1.8.14","typing":{"enable":true,"typeSpeed":60,"cursorChar":" ","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":false,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":2},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":"BzK0JfEpsm40LlV9EPIyl4mp-gzGzoHsz","app_key":"MpxSk6ED55Utq83yNrKAMI5c","server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
 </head>
 
-<body itemscope itemtype="http://schema.org/WebPage" class="use-motion"><!-- hexo injector body_begin start --><style>code {font-weight:400;}.post-content {font-weight:600;} #board {border-radius: 1.5rem;} #board-ctn {width:110%;margin-left:-5%;}</style><!-- hexo injector body_begin end -->
-  <div class="headband"></div>
 
-  <main class="main">
-    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
-      <div class="header-inner"><div class="site-brand-container">
-  <div class="site-nav-toggle">
-    <div class="toggle" aria-label="切换导航栏" role="button">
-        <span class="toggle-line"></span>
-        <span class="toggle-line"></span>
-        <span class="toggle-line"></span>
-    </div>
-  </div>
-
-  <div class="site-meta">
-
-    <a href="/" class="brand" rel="start">
-      <i class="logo-line"></i>
-      <p class="site-title">赵圈儿的博客</p>
-      <i class="logo-line"></i>
+<body><!-- hexo injector body_begin start --><style>code {font-weight:400;}.post-content {font-weight:600;} #board {border-radius: 1.5rem;} #board-ctn {width:110%;margin-left:-5%;}</style><!-- hexo injector body_begin end -->
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Personal Blog</strong>
     </a>
-  </div>
 
-  <div class="site-nav-right">
-    <div class="toggle popup-trigger">
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="javascript:;">
+                <i class="iconfont icon-music"></i>
+                播放
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
     </div>
   </div>
-</div>
-
-
-
-<nav class="site-nav">
-  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">23</span></a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">18</span></a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">169</span></a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li>
-  </ul>
 </nav>
 
+    <div class="banner" id="banner" parallax=true
+         style="background: url('/img/article.png') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="执行SQL语句">
+              
+            </span>
 
-
-
-</div>
-        
+            
+              <div class="mt-3">
   
-  <div class="toggle sidebar-toggle" role="button">
-    <span class="toggle-line"></span>
-    <span class="toggle-line"></span>
-    <span class="toggle-line"></span>
-  </div>
-
-  <aside class="sidebar">
-
-    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
-      <ul class="sidebar-nav">
-        <li class="sidebar-nav-toc">
-          文章目录
-        </li>
-        <li class="sidebar-nav-overview">
-          站点概览
-        </li>
-      </ul>
-
-      <div class="sidebar-panel-container">
-        <!--noindex-->
-        <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#statement%E5%AF%B9%E8%B1%A1%E6%89%A7%E8%A1%8Csql%E8%AF%AD%E5%8F%A5"><span class="nav-number">1.</span> <span class="nav-text">Statement对象执行SQL语句</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8callablestatement%E8%B0%83%E7%94%A8%E5%AD%98%E5%82%A8%E8%BF%87%E7%A8%8B"><span class="nav-number">2.</span> <span class="nav-text">使用CallableStatement调用存储过程</span></a></li></ol></div>
-        </div>
-        <!--/noindex-->
-
-        <div class="site-overview-wrap sidebar-panel">
-          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
-    <img class="site-author-image" itemprop="image" alt="ZhaoXin"
-      src="https://crayon-1302863897.cos.ap-beijing.myqcloud.com/blog_images/avatar.png">
-  <p class="site-author-name" itemprop="name">ZhaoXin</p>
-  <div class="site-description" itemprop="description"></div>
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2022-05-11 09:31" pubdate>
+        2022/5/11 9时31分
+      </time>
+    </span>
+  
 </div>
-<div class="site-state-wrap site-overview-item animated">
-  <nav class="site-state">
-      <div class="site-state-item site-state-posts">
-        <a href="/archives/">
-          <span class="site-state-item-count">169</span>
-          <span class="site-state-item-name">日志</span>
-        </a>
-      </div>
-      <div class="site-state-item site-state-categories">
-          <a href="/categories/">
-        <span class="site-state-item-count">18</span>
-        <span class="site-state-item-name">分类</span></a>
-      </div>
-      <div class="site-state-item site-state-tags">
-          <a href="/tags/">
-        <span class="site-state-item-count">23</span>
-        <span class="site-state-item-name">标签</span></a>
-      </div>
-  </nav>
+
+<div class="mt-1">
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      7.5k 字
+    </span>
+  
+
+  
+
+  
+  
+    
+      <!-- LeanCloud 统计文章PV -->
+      <span id="leancloud-page-views-container" class="post-meta" style="display: none">
+        <i class="iconfont icon-eye" aria-hidden="true"></i>
+        <span id="leancloud-page-views"></span> 次
+      </span>
+    
+  
 </div>
-  <div class="links-of-author site-overview-item animated">
-      <span class="links-of-author-item">
-        <a href="https://github.com/zhaoquaner" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;zhaoquaner" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
-      </span>
-      <span class="links-of-author-item">
-        <a href="mailto:zx1522202417@163.com" title="E-Mail → mailto:zx1522202417@163.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
-      </span>
-  </div>
 
+            
+          </div>
 
-
+          
         </div>
       </div>
     </div>
-  </aside>
-  <div class="sidebar-dimmer"></div>
+  </header>
 
-
-    </header>
-
+  <main>
     
-  <div class="back-to-top" role="button" aria-label="返回顶部">
-    <i class="fa fa-arrow-up"></i>
-    <span>0%</span>
-  </div>
-
-<noscript>
-  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
-</noscript>
-
-
-    <div class="main-inner post posts-expand">
-
-
-  
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://zhaoquaner.github.io/2022/05/11/Java/JDBC/%E6%89%A7%E8%A1%8CSQL%E8%AF%AD%E5%8F%A5/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="https://crayon-1302863897.cos.ap-beijing.myqcloud.com/blog_images/avatar.png">
-      <meta itemprop="name" content="ZhaoXin">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="赵圈儿的博客">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="执行SQL语句 | 赵圈儿的博客">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          执行SQL语句
-        </h1>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
       
 
-      <time title="创建时间：2022-05-11 09:31:39 / 修改时间：16:54:23" itemprop="dateCreated datePublished" datetime="2022-05-11T09:31:39+08:00">2022-05-11</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/programming/" itemprop="url" rel="index"><span itemprop="name">编程学习</span></a>
-        </span>
-          ，
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/programming/java/" itemprop="url" rel="index"><span itemprop="name">Java基础</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-        <h2 id="statement对象执行sql语句">Statement对象执行SQL语句</h2>
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">执行SQL语句</h1>
+            
+            <div class="markdown-body">
+              <h2 id="statement对象执行sql语句">Statement对象执行SQL语句</h2>
 <ol type="1">
 <li><p>使用executeLargeUpdate()方法执行DDL和DML语句</p>
 <p>executeUpdate和executeLargeUpdate区别是如果受影响的行数超过了int最大值，则要使用后者。</p>
 <p>例子：</p>
-<p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.*;</span><br><span class="line"><span class="keyword">import</span> java.io.*;</span><br><span class="line"><span class="keyword">import</span> java.sql.*;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">ExecuteDDL</span></span><br><span class="line">&#123;</span><br><span class="line">	<span class="keyword">private</span> String driver;</span><br><span class="line">	<span class="keyword">private</span> String url;</span><br><span class="line">	<span class="keyword">private</span> String user;</span><br><span class="line">	<span class="keyword">private</span> String pass;</span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">initParam</span><span class="params">(String paramFile)</span></span><br><span class="line">		<span class="keyword">throws</span> Exception</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="comment">// 使用Properties类来加载属性文件</span></span><br><span class="line">		<span class="type">var</span> <span class="variable">props</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Properties</span>();</span><br><span class="line">		props.load(<span class="keyword">new</span> <span class="title class_">FileInputStream</span>(paramFile));</span><br><span class="line">		driver = props.getProperty(<span class="string">&quot;driver&quot;</span>);</span><br><span class="line">		url = props.getProperty(<span class="string">&quot;url&quot;</span>);</span><br><span class="line">		user = props.getProperty(<span class="string">&quot;user&quot;</span>);</span><br><span class="line">		pass = props.getProperty(<span class="string">&quot;pass&quot;</span>);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">createTable</span><span class="params">(String sql)</span> <span class="keyword">throws</span> Exception</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="comment">// 加载驱动</span></span><br><span class="line">		Class.forName(driver);</span><br><span class="line">		<span class="keyword">try</span> (</span><br><span class="line">			<span class="comment">// 获取数据库连接</span></span><br><span class="line">			<span class="type">Connection</span> <span class="variable">conn</span> <span class="operator">=</span> DriverManager.getConnection(url, user, pass);</span><br><span class="line">			<span class="comment">// 使用Connection来创建一个Statment对象</span></span><br><span class="line">			<span class="type">Statement</span> <span class="variable">stmt</span> <span class="operator">=</span> conn.createStatement())</span><br><span class="line">		&#123;</span><br><span class="line">			<span class="comment">// 执行DDL,创建数据表</span></span><br><span class="line">			stmt.executeUpdate(sql);</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> Exception</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="type">var</span> <span class="variable">ed</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">ExecuteDDL</span>();</span><br><span class="line">		ed.initParam(<span class="string">&quot;mysql.ini&quot;</span>);</span><br><span class="line">		ed.createTable(<span class="string">&quot;create table jdbc_test &quot;</span></span><br><span class="line">			+ <span class="string">&quot;( jdbc_id int auto_increment primary key, &quot;</span></span><br><span class="line">			+ <span class="string">&quot;jdbc_name varchar(255), &quot;</span></span><br><span class="line">			+ <span class="string">&quot;jdbc_desc text);&quot;</span>);</span><br><span class="line">		System.out.println(<span class="string">&quot;-----建表成功-----&quot;</span>);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p></li>
+<p><figure class="highlight java"><table><tr><td class="gutter"><div class="code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></div></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">import</span> java.util.*;<br><span class="hljs-keyword">import</span> java.io.*;<br><span class="hljs-keyword">import</span> java.sql.*;<br><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">ExecuteDDL</span><br>&#123;<br>	<span class="hljs-keyword">private</span> String driver;<br>	<span class="hljs-keyword">private</span> String url;<br>	<span class="hljs-keyword">private</span> String user;<br>	<span class="hljs-keyword">private</span> String pass;<br>	<span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">initParam</span><span class="hljs-params">(String paramFile)</span><br>		<span class="hljs-keyword">throws</span> Exception<br>	&#123;<br>		<span class="hljs-comment">// 使用Properties类来加载属性文件</span><br>		<span class="hljs-type">var</span> <span class="hljs-variable">props</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Properties</span>();<br>		props.load(<span class="hljs-keyword">new</span> <span class="hljs-title class_">FileInputStream</span>(paramFile));<br>		driver = props.getProperty(<span class="hljs-string">&quot;driver&quot;</span>);<br>		url = props.getProperty(<span class="hljs-string">&quot;url&quot;</span>);<br>		user = props.getProperty(<span class="hljs-string">&quot;user&quot;</span>);<br>		pass = props.getProperty(<span class="hljs-string">&quot;pass&quot;</span>);<br>	&#125;<br>	<span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">createTable</span><span class="hljs-params">(String sql)</span> <span class="hljs-keyword">throws</span> Exception<br>	&#123;<br>		<span class="hljs-comment">// 加载驱动</span><br>		Class.forName(driver);<br>		<span class="hljs-keyword">try</span> (<br>			<span class="hljs-comment">// 获取数据库连接</span><br>			<span class="hljs-type">Connection</span> <span class="hljs-variable">conn</span> <span class="hljs-operator">=</span> DriverManager.getConnection(url, user, pass);<br>			<span class="hljs-comment">// 使用Connection来创建一个Statment对象</span><br>			<span class="hljs-type">Statement</span> <span class="hljs-variable">stmt</span> <span class="hljs-operator">=</span> conn.createStatement())<br>		&#123;<br>			<span class="hljs-comment">// 执行DDL,创建数据表</span><br>			stmt.executeUpdate(sql);<br>		&#125;<br>	&#125;<br>	<span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">main</span><span class="hljs-params">(String[] args)</span> <span class="hljs-keyword">throws</span> Exception<br>	&#123;<br>		<span class="hljs-type">var</span> <span class="hljs-variable">ed</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">ExecuteDDL</span>();<br>		ed.initParam(<span class="hljs-string">&quot;mysql.ini&quot;</span>);<br>		ed.createTable(<span class="hljs-string">&quot;create table jdbc_test &quot;</span><br>			+ <span class="hljs-string">&quot;( jdbc_id int auto_increment primary key, &quot;</span><br>			+ <span class="hljs-string">&quot;jdbc_name varchar(255), &quot;</span><br>			+ <span class="hljs-string">&quot;jdbc_desc text);&quot;</span>);<br>		System.out.println(<span class="hljs-string">&quot;-----建表成功-----&quot;</span>);<br>	&#125;<br>&#125;<br></code></pre></td></tr></table></figure></p></li>
 <li><p>使用execute方法执行SQL语句</p>
 <p>execute方法可以执行任何SQL语句，但是很麻烦，通常没必要用此方法。但如果不清楚SQL语句类型，则可以使用此方法。</p>
 <p>该方法返回值是boolean值，SQL语句返回结果集，则为true，否则为false。</p>
@@ -260,11 +266,11 @@
 <p>若返回值是false，则表明SQL语句是DDL或者DML，用</p>
 <p><code>getUpdateCount()</code> 获取执行DML语句影响的行数</p>
 <p>例子：</p>
-<p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.util.*;</span><br><span class="line"><span class="keyword">import</span> java.io.*;</span><br><span class="line"><span class="keyword">import</span> java.sql.*;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">ExecuteSQL</span></span><br><span class="line">&#123;</span><br><span class="line">	<span class="keyword">private</span> String driver;</span><br><span class="line">	<span class="keyword">private</span> String url;</span><br><span class="line">	<span class="keyword">private</span> String user;</span><br><span class="line">	<span class="keyword">private</span> String pass;</span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">initParam</span><span class="params">(String paramFile)</span> <span class="keyword">throws</span> Exception</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="comment">// 使用Properties类来加载属性文件</span></span><br><span class="line">		<span class="type">var</span> <span class="variable">props</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Properties</span>();</span><br><span class="line">		props.load(<span class="keyword">new</span> <span class="title class_">FileInputStream</span>(paramFile));</span><br><span class="line">		driver = props.getProperty(<span class="string">&quot;driver&quot;</span>);</span><br><span class="line">		url = props.getProperty(<span class="string">&quot;url&quot;</span>);</span><br><span class="line">		user = props.getProperty(<span class="string">&quot;user&quot;</span>);</span><br><span class="line">		pass = props.getProperty(<span class="string">&quot;pass&quot;</span>);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">executeSql</span><span class="params">(String sql)</span> <span class="keyword">throws</span> Exception</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="comment">// 加载驱动</span></span><br><span class="line">		Class.forName(driver);</span><br><span class="line">		<span class="keyword">try</span> (</span><br><span class="line">			<span class="comment">// 获取数据库连接</span></span><br><span class="line">			<span class="type">Connection</span> <span class="variable">conn</span> <span class="operator">=</span> DriverManager.getConnection(url,</span><br><span class="line">				user, pass);</span><br><span class="line">			<span class="comment">// 使用Connection来创建一个Statement对象</span></span><br><span class="line">			<span class="type">Statement</span> <span class="variable">stmt</span> <span class="operator">=</span> conn.createStatement())</span><br><span class="line">		&#123;</span><br><span class="line">			<span class="comment">// 执行SQL,返回boolean值表示是否包含ResultSet</span></span><br><span class="line">			<span class="type">boolean</span> <span class="variable">hasResultSet</span> <span class="operator">=</span> stmt.execute(sql);</span><br><span class="line">			<span class="comment">// 如果执行后有ResultSet结果集</span></span><br><span class="line">			<span class="keyword">if</span> (hasResultSet)</span><br><span class="line">			&#123;</span><br><span class="line">				<span class="keyword">try</span> (</span><br><span class="line">					<span class="comment">// 获取结果集</span></span><br><span class="line">					<span class="type">ResultSet</span> <span class="variable">rs</span> <span class="operator">=</span> stmt.getResultSet())</span><br><span class="line">				&#123;</span><br><span class="line">					<span class="comment">// ResultSetMetaData是用于分析结果集的元数据接口</span></span><br><span class="line">					<span class="type">ResultSetMetaData</span> <span class="variable">rsmd</span> <span class="operator">=</span> rs.getMetaData();</span><br><span class="line">					<span class="type">int</span> <span class="variable">columnCount</span> <span class="operator">=</span> rsmd.getColumnCount();</span><br><span class="line">					<span class="comment">// 迭代输出ResultSet对象</span></span><br><span class="line">					<span class="keyword">while</span> (rs.next())</span><br><span class="line">					&#123;</span><br><span class="line">						<span class="comment">// 依次输出每列的值</span></span><br><span class="line">						<span class="keyword">for</span> (<span class="type">var</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>; i &lt; columnCount; i++)</span><br><span class="line">						&#123;</span><br><span class="line">							System.out.print(rs.getString(i + <span class="number">1</span>) + <span class="string">&quot;\t&quot;</span>);</span><br><span class="line">						&#125;</span><br><span class="line">						System.out.print(<span class="string">&quot;\n&quot;</span>);</span><br><span class="line">					&#125;</span><br><span class="line">				&#125;</span><br><span class="line">			&#125;</span><br><span class="line">			<span class="keyword">else</span></span><br><span class="line">			&#123;</span><br><span class="line">				System.out.println(<span class="string">&quot;该SQL语句影响的记录有&quot;</span></span><br><span class="line">					+ stmt.getUpdateCount() + <span class="string">&quot;条&quot;</span>);</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> Exception</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="type">var</span> <span class="variable">es</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">ExecuteSQL</span>();</span><br><span class="line">		es.initParam(<span class="string">&quot;mysql.ini&quot;</span>);</span><br><span class="line">		System.out.println(<span class="string">&quot;------执行删除表的DDL语句-----&quot;</span>);</span><br><span class="line">		es.executeSql(<span class="string">&quot;drop table if exists my_test&quot;</span>);</span><br><span class="line">		System.out.println(<span class="string">&quot;------执行建表的DDL语句-----&quot;</span>);</span><br><span class="line">		es.executeSql(<span class="string">&quot;create table my_test&quot;</span></span><br><span class="line">			+ <span class="string">&quot;(test_id int auto_increment primary key, &quot;</span></span><br><span class="line">			+ <span class="string">&quot;test_name varchar(255))&quot;</span>);</span><br><span class="line">		System.out.println(<span class="string">&quot;------执行插入数据的DML语句-----&quot;</span>);</span><br><span class="line">		es.executeSql(<span class="string">&quot;insert into my_test(test_name) &quot;</span></span><br><span class="line">			+ <span class="string">&quot;select student_name from student_table&quot;</span>);</span><br><span class="line">		System.out.println(<span class="string">&quot;------执行查询数据的查询语句-----&quot;</span>);</span><br><span class="line">		es.executeSql(<span class="string">&quot;select * from my_test&quot;</span>);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure></p></li>
+<p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br></pre></td><td class="code"><pre><code class="hljs java"><br><span class="hljs-keyword">import</span> java.util.*;<br><span class="hljs-keyword">import</span> java.io.*;<br><span class="hljs-keyword">import</span> java.sql.*;<br><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">ExecuteSQL</span><br>&#123;<br>	<span class="hljs-keyword">private</span> String driver;<br>	<span class="hljs-keyword">private</span> String url;<br>	<span class="hljs-keyword">private</span> String user;<br>	<span class="hljs-keyword">private</span> String pass;<br>	<span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">initParam</span><span class="hljs-params">(String paramFile)</span> <span class="hljs-keyword">throws</span> Exception<br>	&#123;<br>		<span class="hljs-comment">// 使用Properties类来加载属性文件</span><br>		<span class="hljs-type">var</span> <span class="hljs-variable">props</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Properties</span>();<br>		props.load(<span class="hljs-keyword">new</span> <span class="hljs-title class_">FileInputStream</span>(paramFile));<br>		driver = props.getProperty(<span class="hljs-string">&quot;driver&quot;</span>);<br>		url = props.getProperty(<span class="hljs-string">&quot;url&quot;</span>);<br>		user = props.getProperty(<span class="hljs-string">&quot;user&quot;</span>);<br>		pass = props.getProperty(<span class="hljs-string">&quot;pass&quot;</span>);<br>	&#125;<br>	<span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">executeSql</span><span class="hljs-params">(String sql)</span> <span class="hljs-keyword">throws</span> Exception<br>	&#123;<br>		<span class="hljs-comment">// 加载驱动</span><br>		Class.forName(driver);<br>		<span class="hljs-keyword">try</span> (<br>			<span class="hljs-comment">// 获取数据库连接</span><br>			<span class="hljs-type">Connection</span> <span class="hljs-variable">conn</span> <span class="hljs-operator">=</span> DriverManager.getConnection(url,<br>				user, pass);<br>			<span class="hljs-comment">// 使用Connection来创建一个Statement对象</span><br>			<span class="hljs-type">Statement</span> <span class="hljs-variable">stmt</span> <span class="hljs-operator">=</span> conn.createStatement())<br>		&#123;<br>			<span class="hljs-comment">// 执行SQL,返回boolean值表示是否包含ResultSet</span><br>			<span class="hljs-type">boolean</span> <span class="hljs-variable">hasResultSet</span> <span class="hljs-operator">=</span> stmt.execute(sql);<br>			<span class="hljs-comment">// 如果执行后有ResultSet结果集</span><br>			<span class="hljs-keyword">if</span> (hasResultSet)<br>			&#123;<br>				<span class="hljs-keyword">try</span> (<br>					<span class="hljs-comment">// 获取结果集</span><br>					<span class="hljs-type">ResultSet</span> <span class="hljs-variable">rs</span> <span class="hljs-operator">=</span> stmt.getResultSet())<br>				&#123;<br>					<span class="hljs-comment">// ResultSetMetaData是用于分析结果集的元数据接口</span><br>					<span class="hljs-type">ResultSetMetaData</span> <span class="hljs-variable">rsmd</span> <span class="hljs-operator">=</span> rs.getMetaData();<br>					<span class="hljs-type">int</span> <span class="hljs-variable">columnCount</span> <span class="hljs-operator">=</span> rsmd.getColumnCount();<br>					<span class="hljs-comment">// 迭代输出ResultSet对象</span><br>					<span class="hljs-keyword">while</span> (rs.next())<br>					&#123;<br>						<span class="hljs-comment">// 依次输出每列的值</span><br>						<span class="hljs-keyword">for</span> (<span class="hljs-type">var</span> <span class="hljs-variable">i</span> <span class="hljs-operator">=</span> <span class="hljs-number">0</span>; i &lt; columnCount; i++)<br>						&#123;<br>							System.out.print(rs.getString(i + <span class="hljs-number">1</span>) + <span class="hljs-string">&quot;\t&quot;</span>);<br>						&#125;<br>						System.out.print(<span class="hljs-string">&quot;\n&quot;</span>);<br>					&#125;<br>				&#125;<br>			&#125;<br>			<span class="hljs-keyword">else</span><br>			&#123;<br>				System.out.println(<span class="hljs-string">&quot;该SQL语句影响的记录有&quot;</span><br>					+ stmt.getUpdateCount() + <span class="hljs-string">&quot;条&quot;</span>);<br>			&#125;<br>		&#125;<br>	&#125;<br>	<span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">main</span><span class="hljs-params">(String[] args)</span> <span class="hljs-keyword">throws</span> Exception<br>	&#123;<br>		<span class="hljs-type">var</span> <span class="hljs-variable">es</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">ExecuteSQL</span>();<br>		es.initParam(<span class="hljs-string">&quot;mysql.ini&quot;</span>);<br>		System.out.println(<span class="hljs-string">&quot;------执行删除表的DDL语句-----&quot;</span>);<br>		es.executeSql(<span class="hljs-string">&quot;drop table if exists my_test&quot;</span>);<br>		System.out.println(<span class="hljs-string">&quot;------执行建表的DDL语句-----&quot;</span>);<br>		es.executeSql(<span class="hljs-string">&quot;create table my_test&quot;</span><br>			+ <span class="hljs-string">&quot;(test_id int auto_increment primary key, &quot;</span><br>			+ <span class="hljs-string">&quot;test_name varchar(255))&quot;</span>);<br>		System.out.println(<span class="hljs-string">&quot;------执行插入数据的DML语句-----&quot;</span>);<br>		es.executeSql(<span class="hljs-string">&quot;insert into my_test(test_name) &quot;</span><br>			+ <span class="hljs-string">&quot;select student_name from student_table&quot;</span>);<br>		System.out.println(<span class="hljs-string">&quot;------执行查询数据的查询语句-----&quot;</span>);<br>		es.executeSql(<span class="hljs-string">&quot;select * from my_test&quot;</span>);<br>	&#125;<br>&#125;<br><br></code></pre></td></tr></table></figure></p></li>
 </ol>
 <p>​</p>
 <p>​</p>
-<pre><code>## PreparedStatement对象执行SQL语句
+<div class="code-wrapper"><pre><code class="hljs">## PreparedStatement对象执行SQL语句
 
 如果要反复执行结构相同的SQL语句，可以用带占位符 ？参数的SQL语句来代替语句的不同地方
 
@@ -278,7 +284,7 @@
 
 例子：
 
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.util.*;</span><br><span class="line"><span class="keyword">import</span> java.io.*;</span><br><span class="line"><span class="keyword">import</span> java.sql.*;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">PreparedStatementTest</span></span><br><span class="line">&#123;</span><br><span class="line">	<span class="keyword">private</span> String driver;</span><br><span class="line">	<span class="keyword">private</span> String url;</span><br><span class="line">	<span class="keyword">private</span> String user;</span><br><span class="line">	<span class="keyword">private</span> String pass;</span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">initParam</span><span class="params">(String paramFile)</span> <span class="keyword">throws</span> Exception</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="comment">// 使用Properties类来加载属性文件</span></span><br><span class="line">		<span class="type">var</span> <span class="variable">props</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Properties</span>();</span><br><span class="line">		props.load(<span class="keyword">new</span> <span class="title class_">FileInputStream</span>(paramFile));</span><br><span class="line">		driver = props.getProperty(<span class="string">&quot;driver&quot;</span>);</span><br><span class="line">		url = props.getProperty(<span class="string">&quot;url&quot;</span>);</span><br><span class="line">		user = props.getProperty(<span class="string">&quot;user&quot;</span>);</span><br><span class="line">		pass = props.getProperty(<span class="string">&quot;pass&quot;</span>);</span><br><span class="line">		<span class="comment">// 加载驱动</span></span><br><span class="line">		Class.forName(driver);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">insertUseStatement</span><span class="params">()</span> <span class="keyword">throws</span> Exception</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="type">long</span> <span class="variable">start</span> <span class="operator">=</span> System.currentTimeMillis();</span><br><span class="line">		<span class="keyword">try</span> (</span><br><span class="line">			<span class="comment">// 获取数据库连接</span></span><br><span class="line">			<span class="type">Connection</span> <span class="variable">conn</span> <span class="operator">=</span> DriverManager.getConnection(url,</span><br><span class="line">				user, pass);</span><br><span class="line">			<span class="comment">// 使用Connection来创建一个Statment对象</span></span><br><span class="line">			<span class="type">Statement</span> <span class="variable">stmt</span> <span class="operator">=</span> conn.createStatement())</span><br><span class="line">		&#123;</span><br><span class="line">			<span class="comment">// 需要使用100条SQL语句来插入100条记录</span></span><br><span class="line">			<span class="keyword">for</span> (<span class="type">var</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>; i &lt; <span class="number">100</span>; i++)</span><br><span class="line">			&#123;</span><br><span class="line">				stmt.executeUpdate(<span class="string">&quot;insert into student_table values(&quot;</span></span><br><span class="line">					+ <span class="string">&quot; null, &#x27;姓名&quot;</span> + i + <span class="string">&quot;&#x27;, 1)&quot;</span>);</span><br><span class="line">			&#125;</span><br><span class="line">			System.out.println(<span class="string">&quot;使用Statement费时:&quot;</span></span><br><span class="line">				+ (System.currentTimeMillis() - start));</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">insertUsePrepare</span><span class="params">()</span> <span class="keyword">throws</span> Exception</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="type">long</span> <span class="variable">start</span> <span class="operator">=</span> System.currentTimeMillis();</span><br><span class="line">		<span class="keyword">try</span> (</span><br><span class="line">			<span class="comment">// 获取数据库连接</span></span><br><span class="line">			<span class="type">Connection</span> <span class="variable">conn</span> <span class="operator">=</span> DriverManager.getConnection(url,</span><br><span class="line">				user, pass);</span><br><span class="line">			<span class="comment">// 使用Connection来创建一个PreparedStatement对象</span></span><br><span class="line">			<span class="type">PreparedStatement</span> <span class="variable">pstmt</span> <span class="operator">=</span> conn.prepareStatement(</span><br><span class="line">				<span class="string">&quot;insert into student_table values(null, ?, 1)&quot;</span>))</span><br><span class="line"></span><br><span class="line">		&#123;</span><br><span class="line">			<span class="comment">// 100次为PreparedStatement的参数设值，就可以插入100条记录</span></span><br><span class="line">			<span class="keyword">for</span> (<span class="type">var</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>; i &lt; <span class="number">100</span>; i++)</span><br><span class="line">			&#123;</span><br><span class="line">				pstmt.setString(<span class="number">1</span>, <span class="string">&quot;姓名&quot;</span> + i);</span><br><span class="line">				pstmt.executeUpdate();</span><br><span class="line">			&#125;</span><br><span class="line">			System.out.println(<span class="string">&quot;使用PreparedStatement费时:&quot;</span></span><br><span class="line">				+ (System.currentTimeMillis() - start));</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> Exception</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="type">var</span> <span class="variable">pt</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">PreparedStatementTest</span>();</span><br><span class="line">		pt.initParam(<span class="string">&quot;mysql.ini&quot;</span>);</span><br><span class="line">		pt.insertUseStatement();</span><br><span class="line">		pt.insertUsePrepare();</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure></code></pre>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br></pre></div></td><td class="code"><pre><code class="hljs java"><br><span class="hljs-keyword">import</span> java.util.*;<br><span class="hljs-keyword">import</span> java.io.*;<br><span class="hljs-keyword">import</span> java.sql.*;<br><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">PreparedStatementTest</span><br>&#123;<br>	<span class="hljs-keyword">private</span> String driver;<br>	<span class="hljs-keyword">private</span> String url;<br>	<span class="hljs-keyword">private</span> String user;<br>	<span class="hljs-keyword">private</span> String pass;<br>	<span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">initParam</span><span class="hljs-params">(String paramFile)</span> <span class="hljs-keyword">throws</span> Exception<br>	&#123;<br>		<span class="hljs-comment">// 使用Properties类来加载属性文件</span><br>		<span class="hljs-type">var</span> <span class="hljs-variable">props</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Properties</span>();<br>		props.load(<span class="hljs-keyword">new</span> <span class="hljs-title class_">FileInputStream</span>(paramFile));<br>		driver = props.getProperty(<span class="hljs-string">&quot;driver&quot;</span>);<br>		url = props.getProperty(<span class="hljs-string">&quot;url&quot;</span>);<br>		user = props.getProperty(<span class="hljs-string">&quot;user&quot;</span>);<br>		pass = props.getProperty(<span class="hljs-string">&quot;pass&quot;</span>);<br>		<span class="hljs-comment">// 加载驱动</span><br>		Class.forName(driver);<br>	&#125;<br>	<span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">insertUseStatement</span><span class="hljs-params">()</span> <span class="hljs-keyword">throws</span> Exception<br>	&#123;<br>		<span class="hljs-type">long</span> <span class="hljs-variable">start</span> <span class="hljs-operator">=</span> System.currentTimeMillis();<br>		<span class="hljs-keyword">try</span> (<br>			<span class="hljs-comment">// 获取数据库连接</span><br>			<span class="hljs-type">Connection</span> <span class="hljs-variable">conn</span> <span class="hljs-operator">=</span> DriverManager.getConnection(url,<br>				user, pass);<br>			<span class="hljs-comment">// 使用Connection来创建一个Statment对象</span><br>			<span class="hljs-type">Statement</span> <span class="hljs-variable">stmt</span> <span class="hljs-operator">=</span> conn.createStatement())<br>		&#123;<br>			<span class="hljs-comment">// 需要使用100条SQL语句来插入100条记录</span><br>			<span class="hljs-keyword">for</span> (<span class="hljs-type">var</span> <span class="hljs-variable">i</span> <span class="hljs-operator">=</span> <span class="hljs-number">0</span>; i &lt; <span class="hljs-number">100</span>; i++)<br>			&#123;<br>				stmt.executeUpdate(<span class="hljs-string">&quot;insert into student_table values(&quot;</span><br>					+ <span class="hljs-string">&quot; null, &#x27;姓名&quot;</span> + i + <span class="hljs-string">&quot;&#x27;, 1)&quot;</span>);<br>			&#125;<br>			System.out.println(<span class="hljs-string">&quot;使用Statement费时:&quot;</span><br>				+ (System.currentTimeMillis() - start));<br>		&#125;<br>	&#125;<br>	<span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">insertUsePrepare</span><span class="hljs-params">()</span> <span class="hljs-keyword">throws</span> Exception<br>	&#123;<br>		<span class="hljs-type">long</span> <span class="hljs-variable">start</span> <span class="hljs-operator">=</span> System.currentTimeMillis();<br>		<span class="hljs-keyword">try</span> (<br>			<span class="hljs-comment">// 获取数据库连接</span><br>			<span class="hljs-type">Connection</span> <span class="hljs-variable">conn</span> <span class="hljs-operator">=</span> DriverManager.getConnection(url,<br>				user, pass);<br>			<span class="hljs-comment">// 使用Connection来创建一个PreparedStatement对象</span><br>			<span class="hljs-type">PreparedStatement</span> <span class="hljs-variable">pstmt</span> <span class="hljs-operator">=</span> conn.prepareStatement(<br>				<span class="hljs-string">&quot;insert into student_table values(null, ?, 1)&quot;</span>))<br><br>		&#123;<br>			<span class="hljs-comment">// 100次为PreparedStatement的参数设值，就可以插入100条记录</span><br>			<span class="hljs-keyword">for</span> (<span class="hljs-type">var</span> <span class="hljs-variable">i</span> <span class="hljs-operator">=</span> <span class="hljs-number">0</span>; i &lt; <span class="hljs-number">100</span>; i++)<br>			&#123;<br>				pstmt.setString(<span class="hljs-number">1</span>, <span class="hljs-string">&quot;姓名&quot;</span> + i);<br>				pstmt.executeUpdate();<br>			&#125;<br>			System.out.println(<span class="hljs-string">&quot;使用PreparedStatement费时:&quot;</span><br>				+ (System.currentTimeMillis() - start));<br>		&#125;<br>	&#125;<br>	<span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">main</span><span class="hljs-params">(String[] args)</span> <span class="hljs-keyword">throws</span> Exception<br>	&#123;<br>		<span class="hljs-type">var</span> <span class="hljs-variable">pt</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">PreparedStatementTest</span>();<br>		pt.initParam(<span class="hljs-string">&quot;mysql.ini&quot;</span>);<br>		pt.insertUseStatement();<br>		pt.insertUsePrepare();<br>	&#125;<br>&#125;<br><br></code></pre></td></tr></table></figure></code></pre>
 <p>使用PreparedStatement比使用Statement多了三个好处</p>
 <ol type="1">
 <li><p>PreparedStatement预编译SQL语句，性能更好</p></li>
@@ -295,73 +301,132 @@ id="使用callablestatement调用存储过程">使用CallableStatement调用存�
 <p><code>cstmt = conn.prepareCall("&#123;call add_pro(?, ?, ?)&#125;")</code></p>
 <p>传入参数可以通过 <code>setXxx()</code> 来传入参数 传出参数需要调用
 <code>registerOutParameter()</code> 来注册该参数，实例代码如下</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//注册CallableStatement的第三个参数是int类型</span></span><br><span class="line">cstmt.registerOutParameter(<span class="number">3</span>, Types.INTEGER)</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">//注册CallableStatement的第三个参数是int类型</span><br>cstmt.registerOutParameter(<span class="hljs-number">3</span>, Types.INTEGER)<br></code></pre></td></tr></table></figure>
 <p>调用存储过程实例：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.*;</span><br><span class="line"><span class="keyword">import</span> java.io.*;</span><br><span class="line"><span class="keyword">import</span> java.sql.*;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">CallableStatementTest</span></span><br><span class="line">&#123;</span><br><span class="line">	<span class="keyword">private</span> String driver;</span><br><span class="line">	<span class="keyword">private</span> String url;</span><br><span class="line">	<span class="keyword">private</span> String user;</span><br><span class="line">	<span class="keyword">private</span> String pass;</span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">initParam</span><span class="params">(String paramFile)</span> <span class="keyword">throws</span> Exception</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="comment">// 使用Properties类来加载属性文件</span></span><br><span class="line">		<span class="type">var</span> <span class="variable">props</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Properties</span>();</span><br><span class="line">		props.load(<span class="keyword">new</span> <span class="title class_">FileInputStream</span>(paramFile));</span><br><span class="line">		driver = props.getProperty(<span class="string">&quot;driver&quot;</span>);</span><br><span class="line">		url = props.getProperty(<span class="string">&quot;url&quot;</span>);</span><br><span class="line">		user = props.getProperty(<span class="string">&quot;user&quot;</span>);</span><br><span class="line">		pass = props.getProperty(<span class="string">&quot;pass&quot;</span>);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">callProcedure</span><span class="params">()</span> <span class="keyword">throws</span> Exception</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="comment">// 加载驱动</span></span><br><span class="line">		Class.forName(driver);</span><br><span class="line">		<span class="keyword">try</span> (</span><br><span class="line">			<span class="comment">// 获取数据库连接</span></span><br><span class="line">			<span class="type">Connection</span> <span class="variable">conn</span> <span class="operator">=</span> DriverManager.getConnection(url, user, pass);</span><br><span class="line">			<span class="comment">// 使用Connection来创建一个CallableStatment对象</span></span><br><span class="line">			<span class="type">CallableStatement</span> <span class="variable">cstmt</span> <span class="operator">=</span> conn.prepareCall(</span><br><span class="line">				<span class="string">&quot;&#123;call add_pro(?, ?, ?)&#125;&quot;</span>))</span><br><span class="line">		&#123;</span><br><span class="line">			cstmt.setInt(<span class="number">1</span>, <span class="number">4</span>);</span><br><span class="line">			cstmt.setInt(<span class="number">2</span>, <span class="number">5</span>);</span><br><span class="line">			<span class="comment">// 注册CallableStatement的第三个参数是int类型</span></span><br><span class="line">			cstmt.registerOutParameter(<span class="number">3</span>, Types.INTEGER);</span><br><span class="line">			<span class="comment">// 执行存储过程</span></span><br><span class="line">			cstmt.execute();</span><br><span class="line">			<span class="comment">// 获取，并输出存储过程传出参数的值。</span></span><br><span class="line">			System.out.println(<span class="string">&quot;执行结果是: &quot;</span> + cstmt.getInt(<span class="number">3</span>));</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> Exception</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="type">var</span> <span class="variable">ct</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">CallableStatementTest</span>();</span><br><span class="line">		ct.initParam(<span class="string">&quot;mysql.ini&quot;</span>);</span><br><span class="line">		ct.callProcedure();</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">import</span> java.util.*;<br><span class="hljs-keyword">import</span> java.io.*;<br><span class="hljs-keyword">import</span> java.sql.*;<br><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">CallableStatementTest</span><br>&#123;<br>	<span class="hljs-keyword">private</span> String driver;<br>	<span class="hljs-keyword">private</span> String url;<br>	<span class="hljs-keyword">private</span> String user;<br>	<span class="hljs-keyword">private</span> String pass;<br>	<span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">initParam</span><span class="hljs-params">(String paramFile)</span> <span class="hljs-keyword">throws</span> Exception<br>	&#123;<br>		<span class="hljs-comment">// 使用Properties类来加载属性文件</span><br>		<span class="hljs-type">var</span> <span class="hljs-variable">props</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Properties</span>();<br>		props.load(<span class="hljs-keyword">new</span> <span class="hljs-title class_">FileInputStream</span>(paramFile));<br>		driver = props.getProperty(<span class="hljs-string">&quot;driver&quot;</span>);<br>		url = props.getProperty(<span class="hljs-string">&quot;url&quot;</span>);<br>		user = props.getProperty(<span class="hljs-string">&quot;user&quot;</span>);<br>		pass = props.getProperty(<span class="hljs-string">&quot;pass&quot;</span>);<br>	&#125;<br>	<span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">callProcedure</span><span class="hljs-params">()</span> <span class="hljs-keyword">throws</span> Exception<br>	&#123;<br>		<span class="hljs-comment">// 加载驱动</span><br>		Class.forName(driver);<br>		<span class="hljs-keyword">try</span> (<br>			<span class="hljs-comment">// 获取数据库连接</span><br>			<span class="hljs-type">Connection</span> <span class="hljs-variable">conn</span> <span class="hljs-operator">=</span> DriverManager.getConnection(url, user, pass);<br>			<span class="hljs-comment">// 使用Connection来创建一个CallableStatment对象</span><br>			<span class="hljs-type">CallableStatement</span> <span class="hljs-variable">cstmt</span> <span class="hljs-operator">=</span> conn.prepareCall(<br>				<span class="hljs-string">&quot;&#123;call add_pro(?, ?, ?)&#125;&quot;</span>))<br>		&#123;<br>			cstmt.setInt(<span class="hljs-number">1</span>, <span class="hljs-number">4</span>);<br>			cstmt.setInt(<span class="hljs-number">2</span>, <span class="hljs-number">5</span>);<br>			<span class="hljs-comment">// 注册CallableStatement的第三个参数是int类型</span><br>			cstmt.registerOutParameter(<span class="hljs-number">3</span>, Types.INTEGER);<br>			<span class="hljs-comment">// 执行存储过程</span><br>			cstmt.execute();<br>			<span class="hljs-comment">// 获取，并输出存储过程传出参数的值。</span><br>			System.out.println(<span class="hljs-string">&quot;执行结果是: &quot;</span> + cstmt.getInt(<span class="hljs-number">3</span>));<br>		&#125;<br>	&#125;<br>	<span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">main</span><span class="hljs-params">(String[] args)</span> <span class="hljs-keyword">throws</span> Exception<br>	&#123;<br>		<span class="hljs-type">var</span> <span class="hljs-variable">ct</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">CallableStatementTest</span>();<br>		ct.initParam(<span class="hljs-string">&quot;mysql.ini&quot;</span>);<br>		ct.callProcedure();<br>	&#125;<br>&#125;<br><br><br></code></pre></td></tr></table></figure>
 
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/categories/programming/">编程学习</a>
+                    
+                      <a class="hover-with-bg" href="/categories/programming/java/">Java基础</a>
+                    
+                  </div>
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/java/">Java基础</a>
+                    
+                      <a class="hover-with-bg" href="/tags/jdbc/">JDBC</a>
+                    
+                  </div>
+                
+              </div>
+              
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
     </div>
-
     
-    
-    
-
-    <footer class="post-footer">
-          <div class="post-tags">
-              <a href="/tags/java/" rel="tag"># Java基础</a>
-              <a href="/tags/jdbc/" rel="tag"># JDBC</a>
-          </div>
-
-        
-
-          <div class="post-nav">
-            <div class="post-nav-item">
-                <a href="/2022/05/11/Java/JDBC/JDBC%E7%BC%96%E7%A8%8B/" rel="prev" title="JDBC常用接口和类及其编程步骤">
-                  <i class="fa fa-chevron-left"></i> JDBC常用接口和类及其编程步骤
-                </a>
-            </div>
-            <div class="post-nav-item">
-                <a href="/2022/05/11/Java/JDBC/%E7%AE%A1%E7%90%86%E7%BB%93%E6%9E%9C%E9%9B%86/" rel="next" title="管理结果集">
-                  管理结果集 <i class="fa fa-chevron-right"></i>
-                </a>
-            </div>
-          </div>
-    </footer>
-  </article>
+  </div>
 </div>
 
+<!-- Custom -->
 
 
+    
 
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
 
-
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
 </div>
+    
+
+    
+      <div class="col-lg-7 mx-auto nopadding-x-md">
+        <div class="container custom mx-auto">
+          <link rel="stylesheet" href="/js/aplayer/APlayer.min.css"> <div id="aplayer" style="display:none"></div> <script src="/js/aplayer/APlayer.min.js"></script>
+        </div>
+      </div>
+    
   </main>
 
-  <footer class="footer">
-    <div class="footer-inner">
-
-
-<div class="copyright">
-  &copy; 
-  <span itemprop="copyrightYear">2022</span>
-  <span class="with-love">
-    <i class="fa fa-heart"></i>
-  </span>
-  <span class="author" itemprop="copyrightHolder">ZhaoXin</span>
-</div>
-  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     <i class="iconfont icon-copyright"></i> <span>ZhaoXin, Built by </span> <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> 
   </div>
-
-    </div>
-  </footer>
-
   
-  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
-<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
 
   
 
+  
+</footer>
 
+  <!-- SCRIPTS -->
+  
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
 
 
 
@@ -369,6 +434,110 @@ id="使用callablestatement调用存储过程">使用CallableStatement调用存�
 
 
 
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4/anchor.min.js" ></script>
+  
+  
+    <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js" ></script>
+  
+
+
+
+
+  <script defer src="/js/leancloud.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+        typing(title);
+      
+    })(window, document);
+  </script>
+
+
+
+
+
+  
+
+  
+    <!-- MathJax -->
+    <script>
+      MathJax = {
+        tex: {
+          inlineMath: [['$', '$'], ['\\(', '\\)']]
+        },
+        loader: {
+          load: ['ui/lazy']
+        },
+        options: {
+          renderActions: {
+            findScript: [10, doc => {
+              document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+                const display = !!node.type.match(/; *mode=display/);
+                const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+                const text = document.createTextNode('');
+                node.parentNode.replaceChild(text, node);
+                math.start = { node: text, delim: '', n: 0 };
+                math.end = { node: text, delim: '', n: 0 };
+                doc.math.push(math);
+              });
+            }, '', false],
+            insertedScript: [200, () => {
+              document.querySelectorAll('mjx-container').forEach(node => {
+                let target = node.parentNode;
+                if (target.nodeName.toLowerCase() === 'li') {
+                  target.parentNode.classList.add('has-jax');
+                }
+              });
+            }, '', false]
+          }
+        }
+      };
+    </script>
+
+    <script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js" ></script>
+
+  
+
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+
+  
+<script src="/js/music.js"></script>
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
 
 
 </body>

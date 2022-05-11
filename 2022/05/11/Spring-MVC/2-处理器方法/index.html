@@ -1,25 +1,21 @@
+
+
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
 <head>
   <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width">
-<meta name="theme-color" content="#222">
-
-
-  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
-  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
-  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
-  <link rel="mask-icon" href="/images/logo.svg" color="#222">
-
-<link rel="stylesheet" href="/css/main.css">
-
-
-
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css" integrity="sha256-DfWjNxDkM94fVBWx1H5BMMp0Zq7luBlV8QRcSES7s+0=" crossorigin="anonymous">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
-
-<script class="next-config" data-name="main" type="application/json">{"hostname":"zhaoquaner.github.io","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.11.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":15,"offset":12,"width":220},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
-
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
+  <link rel="icon" href="/img/favicon.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="ZhaoXin">
+  <meta name="keywords" content="博客">
+  
     <meta name="description" content="已经学了创建控制器类，控制器类里的一个方法对应一个请求或者多个请求。使用@RequestMapping来进行配置。 下面具体来讲一下处理器方法。 @RequestMapping @RequestMapping注解可以放在类上面，也可以放在方法上。但是含义是完全不一样的。 放在类上面 放在类上面，其实很简单。只有一种情况，就是当这个类中的所有方法对应的请求都有公共部分时，就可以把该公共部分">
 <meta property="og:type" content="article">
 <meta property="og:title" content="2-处理器方法">
@@ -36,225 +32,235 @@
 <meta property="article:published_time" content="2022-05-11T06:01:39.000Z">
 <meta property="article:modified_time" content="2022-05-11T09:00:41.741Z">
 <meta property="article:author" content="ZhaoXin">
-<meta property="article:tag" content="后端">
 <meta property="article:tag" content="JavaWeb">
+<meta property="article:tag" content="后端">
 <meta property="article:tag" content="SpringMVC">
-<meta name="twitter:card" content="summary">
+<meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="https://crayon-1302863897.cos.ap-beijing.myqcloud.com/image/image-20201208131258509.png">
+  
+  
+  <title>2-处理器方法 - 赵圈儿的博客</title>
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/css/bootstrap.min.css" />
 
 
-<link rel="canonical" href="https://zhaoquaner.github.io/2022/05/11/Spring-MVC/2-%E5%A4%84%E7%90%86%E5%99%A8%E6%96%B9%E6%B3%95/">
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4/github-markdown.min.css" />
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hint.css@2/hint.min.css" />
 
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10/styles/github-gist.min.css" />
+    
+  
 
-
-<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://zhaoquaner.github.io/2022/05/11/Spring-MVC/2-%E5%A4%84%E7%90%86%E5%99%A8%E6%96%B9%E6%B3%95/","path":"2022/05/11/Spring-MVC/2-处理器方法/","title":"2-处理器方法"}</script>
-
-<script class="next-config" data-name="calendar" type="application/json">""</script>
-<title>2-处理器方法 | 赵圈儿的博客</title>
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.css" />
   
 
 
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
 
 
 
-  <noscript>
-    <link rel="stylesheet" href="/css/noscript.css">
-  </noscript>
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"zhaoquaner.github.io","root":"/","version":"1.8.14","typing":{"enable":true,"typeSpeed":60,"cursorChar":" ","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":false,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":2},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":"BzK0JfEpsm40LlV9EPIyl4mp-gzGzoHsz","app_key":"MpxSk6ED55Utq83yNrKAMI5c","server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
 </head>
 
-<body itemscope itemtype="http://schema.org/WebPage" class="use-motion"><!-- hexo injector body_begin start --><style>code {font-weight:400;}.post-content {font-weight:600;} #board {border-radius: 1.5rem;} #board-ctn {width:110%;margin-left:-5%;}</style><!-- hexo injector body_begin end -->
-  <div class="headband"></div>
 
-  <main class="main">
-    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
-      <div class="header-inner"><div class="site-brand-container">
-  <div class="site-nav-toggle">
-    <div class="toggle" aria-label="切换导航栏" role="button">
-        <span class="toggle-line"></span>
-        <span class="toggle-line"></span>
-        <span class="toggle-line"></span>
-    </div>
-  </div>
-
-  <div class="site-meta">
-
-    <a href="/" class="brand" rel="start">
-      <i class="logo-line"></i>
-      <p class="site-title">赵圈儿的博客</p>
-      <i class="logo-line"></i>
+<body><!-- hexo injector body_begin start --><style>code {font-weight:400;}.post-content {font-weight:600;} #board {border-radius: 1.5rem;} #board-ctn {width:110%;margin-left:-5%;}</style><!-- hexo injector body_begin end -->
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Personal Blog</strong>
     </a>
-  </div>
 
-  <div class="site-nav-right">
-    <div class="toggle popup-trigger">
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="javascript:;">
+                <i class="iconfont icon-music"></i>
+                播放
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
     </div>
   </div>
-</div>
-
-
-
-<nav class="site-nav">
-  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">23</span></a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">18</span></a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">169</span></a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li>
-  </ul>
 </nav>
 
+    <div class="banner" id="banner" parallax=true
+         style="background: url('/img/article.png') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="2-处理器方法">
+              
+            </span>
 
-
-
-</div>
-        
+            
+              <div class="mt-3">
   
-  <div class="toggle sidebar-toggle" role="button">
-    <span class="toggle-line"></span>
-    <span class="toggle-line"></span>
-    <span class="toggle-line"></span>
-  </div>
-
-  <aside class="sidebar">
-
-    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
-      <ul class="sidebar-nav">
-        <li class="sidebar-nav-toc">
-          文章目录
-        </li>
-        <li class="sidebar-nav-overview">
-          站点概览
-        </li>
-      </ul>
-
-      <div class="sidebar-panel-container">
-        <!--noindex-->
-        <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#requestmapping"><span class="nav-number">1.</span> <span class="nav-text">@RequestMapping</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%94%BE%E5%9C%A8%E7%B1%BB%E4%B8%8A%E9%9D%A2"><span class="nav-number">1.1.</span> <span class="nav-text">放在类上面</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%94%BE%E5%9C%A8%E6%96%B9%E6%B3%95%E4%B8%8A%E9%9D%A2"><span class="nav-number">1.2.</span> <span class="nav-text">放在方法上面</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#value"><span class="nav-number">1.2.1.</span> <span class="nav-text">value</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#method"><span class="nav-number">1.2.2.</span> <span class="nav-text">method</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#consumes"><span class="nav-number">1.2.3.</span> <span class="nav-text">consumes</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#produces"><span class="nav-number">1.2.4.</span> <span class="nav-text">produces</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#params"><span class="nav-number">1.2.5.</span> <span class="nav-text">params</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#headers"><span class="nav-number">1.2.6.</span> <span class="nav-text">headers</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%A4%84%E7%90%86%E5%99%A8%E6%96%B9%E6%B3%95%E5%8F%82%E6%95%B0"><span class="nav-number">2.</span> <span class="nav-text">处理器方法参数</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%80%90%E4%B8%AA%E5%8F%82%E6%95%B0%E6%8E%A5%E5%8F%97"><span class="nav-number">2.1.</span> <span class="nav-text">逐个参数接受</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#post%E6%96%B9%E5%BC%8F%E8%A7%A3%E5%86%B3%E4%B9%B1%E7%A0%81%E9%97%AE%E9%A2%98"><span class="nav-number">2.1.1.</span> <span class="nav-text">POST方式解决乱码问题</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E5%9C%A8web.xml%E9%85%8D%E7%BD%AE%E8%BF%87%E6%BB%A4%E5%99%A8"><span class="nav-number">2.1.1.1.</span> <span class="nav-text">在web.xml配置过滤器</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#requestparam"><span class="nav-number">2.2.</span> <span class="nav-text">@RequestParam</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AF%B9%E8%B1%A1%E5%8F%82%E6%95%B0%E6%8E%A5%E5%8F%97"><span class="nav-number">2.3.</span> <span class="nav-text">对象参数接受</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%A4%84%E7%90%86%E5%99%A8%E6%96%B9%E6%B3%95%E8%BF%94%E5%9B%9E%E5%80%BC"><span class="nav-number">3.</span> <span class="nav-text">处理器方法返回值</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#modelandview"><span class="nav-number">3.1.</span> <span class="nav-text">ModelAndView</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#string"><span class="nav-number">3.2.</span> <span class="nav-text">String</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#void"><span class="nav-number">3.3.</span> <span class="nav-text">void</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#object"><span class="nav-number">3.4.</span> <span class="nav-text">Object</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8%E6%AD%A5%E9%AA%A4"><span class="nav-number">3.4.1.</span> <span class="nav-text">使用步骤</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E5%AF%BC%E5%85%A5pom%E4%BE%9D%E8%B5%96"><span class="nav-number">3.4.1.1.</span> <span class="nav-text">导入pom依赖</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E5%A3%B0%E6%98%8E%E6%B3%A8%E8%A7%A3%E9%A9%B1%E5%8A%A8"><span class="nav-number">3.4.1.2.</span> <span class="nav-text">声明注解驱动</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#httpmessageconverter"><span class="nav-number">3.4.1.2.1.</span> <span class="nav-text">HttpMessageConverter</span></a></li></ol></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E6%B7%BB%E5%8A%A0responsebody%E6%B3%A8%E8%A7%A3"><span class="nav-number">3.4.1.3.</span> <span class="nav-text">添加@ResponseBody注解</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BE%8B%E5%AD%90"><span class="nav-number">3.4.2.</span> <span class="nav-text">例子</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E8%BE%93%E5%87%BA%E8%87%AA%E5%AE%9A%E4%B9%89%E5%AF%B9%E8%B1%A1"><span class="nav-number">3.4.2.1.</span> <span class="nav-text">输出自定义对象</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E8%BE%93%E5%87%BAlist%E9%9B%86%E5%90%88"><span class="nav-number">3.4.2.2.</span> <span class="nav-text">输出List集合</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E8%BF%94%E5%9B%9E%E6%96%87%E6%9C%AC%E6%95%B0%E6%8D%AE"><span class="nav-number">3.4.2.3.</span> <span class="nav-text">返回文本数据</span></a></li></ol></li></ol></li></ol></li></ol></div>
-        </div>
-        <!--/noindex-->
-
-        <div class="site-overview-wrap sidebar-panel">
-          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
-    <img class="site-author-image" itemprop="image" alt="ZhaoXin"
-      src="https://crayon-1302863897.cos.ap-beijing.myqcloud.com/blog_images/avatar.png">
-  <p class="site-author-name" itemprop="name">ZhaoXin</p>
-  <div class="site-description" itemprop="description"></div>
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2022-05-11 14:01" pubdate>
+        2022/5/11 14时1分
+      </time>
+    </span>
+  
 </div>
-<div class="site-state-wrap site-overview-item animated">
-  <nav class="site-state">
-      <div class="site-state-item site-state-posts">
-        <a href="/archives/">
-          <span class="site-state-item-count">169</span>
-          <span class="site-state-item-name">日志</span>
-        </a>
-      </div>
-      <div class="site-state-item site-state-categories">
-          <a href="/categories/">
-        <span class="site-state-item-count">18</span>
-        <span class="site-state-item-name">分类</span></a>
-      </div>
-      <div class="site-state-item site-state-tags">
-          <a href="/tags/">
-        <span class="site-state-item-count">23</span>
-        <span class="site-state-item-name">标签</span></a>
-      </div>
-  </nav>
+
+<div class="mt-1">
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      9.5k 字
+    </span>
+  
+
+  
+
+  
+  
+    
+      <!-- LeanCloud 统计文章PV -->
+      <span id="leancloud-page-views-container" class="post-meta" style="display: none">
+        <i class="iconfont icon-eye" aria-hidden="true"></i>
+        <span id="leancloud-page-views"></span> 次
+      </span>
+    
+  
 </div>
-  <div class="links-of-author site-overview-item animated">
-      <span class="links-of-author-item">
-        <a href="https://github.com/zhaoquaner" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;zhaoquaner" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
-      </span>
-      <span class="links-of-author-item">
-        <a href="mailto:zx1522202417@163.com" title="E-Mail → mailto:zx1522202417@163.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
-      </span>
-  </div>
 
+            
+          </div>
 
-
+          
         </div>
       </div>
     </div>
-  </aside>
-  <div class="sidebar-dimmer"></div>
+  </header>
 
-
-    </header>
-
+  <main>
     
-  <div class="back-to-top" role="button" aria-label="返回顶部">
-    <i class="fa fa-arrow-up"></i>
-    <span>0%</span>
-  </div>
-
-<noscript>
-  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
-</noscript>
-
-
-    <div class="main-inner post posts-expand">
-
-
-  
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://zhaoquaner.github.io/2022/05/11/Spring-MVC/2-%E5%A4%84%E7%90%86%E5%99%A8%E6%96%B9%E6%B3%95/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="https://crayon-1302863897.cos.ap-beijing.myqcloud.com/blog_images/avatar.png">
-      <meta itemprop="name" content="ZhaoXin">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="赵圈儿的博客">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="2-处理器方法 | 赵圈儿的博客">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          2-处理器方法
-        </h1>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
       
 
-      <time title="创建时间：2022-05-11 14:01:39 / 修改时间：17:00:41" itemprop="dateCreated datePublished" datetime="2022-05-11T14:01:39+08:00">2022-05-11</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/programming/" itemprop="url" rel="index"><span itemprop="name">编程学习</span></a>
-        </span>
-          ，
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/programming/springmvc/" itemprop="url" rel="index"><span itemprop="name">SpringMVC</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-        <p>已经学了创建控制器类，控制器类里的一个方法对应一个请求或者多个请求。使用@RequestMapping来进行配置。</p>
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">2-处理器方法</h1>
+            
+            <div class="markdown-body">
+              <p>已经学了创建控制器类，控制器类里的一个方法对应一个请求或者多个请求。使用@RequestMapping来进行配置。</p>
 <p>下面具体来讲一下处理器方法。</p>
 <h2 id="requestmapping"><span class="citation"
 data-cites="RequestMapping">@RequestMapping</span></h2>
@@ -277,7 +283,7 @@ data-cites="RequestMapping注解还有其他的属性">@RequestMapping注解还�
 <h4 id="method">method</h4>
 <p>指定请求的方式，例如GET、POST、PUT等</p>
 <p>它的值是RequestMethod类的枚举值。</p>
-<p><img src="https://crayon-1302863897.cos.ap-beijing.myqcloud.com/image/image-20201208131258509.png" alt="image-20201208131258509" style="zoom:35%;" /></p>
+<p><img src="https://crayon-1302863897.cos.ap-beijing.myqcloud.com/image/image-20201208131258509.png" srcset="/img/loading.gif" lazyload alt="image-20201208131258509" style="zoom:35%;" /></p>
 <p>例如：<code>@RequestMapping(method=RequestMethod.GET)</code></p>
 <p>如果不指定请求方式，那么没有限制，任意一种请求方式都可以。</p>
 <h4 id="consumes">consumes</h4>
@@ -307,11 +313,11 @@ response)</code>。</p>
 <p>接受请求中所携带的请求参数，可以逐个参数接受。框架会自动进行类型转换。</p>
 <p>只需要保证，前端代码的请求参数名和处理方法的参数名相同即可。</p>
 <p>例如： 前端代码：</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">form</span> <span class="attr">action</span>=<span class="string">&quot;/some.do&quot;</span> <span class="attr">method</span>=<span class="string">&quot;post&quot;</span> &gt;</span></span><br><span class="line">    姓名：<span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;text&quot;</span> <span class="attr">name</span>=<span class="string">&quot;name&quot;</span> &gt;</span><span class="tag">&lt;<span class="name">br</span>&gt;</span></span><br><span class="line">    年龄：<span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;text&quot;</span> <span class="attr">name</span>=<span class="string">&quot;age&quot;</span> &gt;</span><span class="tag">&lt;<span class="name">br</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;submit&quot;</span> <span class="attr">value</span>=<span class="string">&quot;提交信息&quot;</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">form</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight html"><table><tr><td class="gutter"><div class="code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></div></td><td class="code"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">form</span> <span class="hljs-attr">action</span>=<span class="hljs-string">&quot;/some.do&quot;</span> <span class="hljs-attr">method</span>=<span class="hljs-string">&quot;post&quot;</span> &gt;</span><br>    姓名：<span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;text&quot;</span> <span class="hljs-attr">name</span>=<span class="hljs-string">&quot;name&quot;</span> &gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">br</span>&gt;</span><br>    年龄：<span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;text&quot;</span> <span class="hljs-attr">name</span>=<span class="hljs-string">&quot;age&quot;</span> &gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">br</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;submit&quot;</span> <span class="hljs-attr">value</span>=<span class="hljs-string">&quot;提交信息&quot;</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">form</span>&gt;</span><br></code></pre></td></tr></table></figure>
 <p>那么处理方法中的参数名和前端提交的参数名保持一致</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@RequestMapping(value = &quot;/some.do&quot;)</span></span><br><span class="line"><span class="keyword">public</span> ModelAndView <span class="title function_">doSome</span><span class="params">(String name, <span class="type">int</span> age)</span> &#123;</span><br><span class="line">    <span class="type">ModelAndView</span> <span class="variable">mv</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">ModelAndView</span>();</span><br><span class="line">    mv.addObject(<span class="string">&quot;name&quot;</span>, name);</span><br><span class="line">    mv.addObject(<span class="string">&quot;age&quot;</span>, age);</span><br><span class="line">    mv.setViewName(<span class="string">&quot;hello&quot;</span>);</span><br><span class="line">    <span class="keyword">return</span> mv;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@RequestMapping(value = &quot;/some.do&quot;)</span><br><span class="hljs-keyword">public</span> ModelAndView <span class="hljs-title function_">doSome</span><span class="hljs-params">(String name, <span class="hljs-type">int</span> age)</span> &#123;<br>    <span class="hljs-type">ModelAndView</span> <span class="hljs-variable">mv</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">ModelAndView</span>();<br>    mv.addObject(<span class="hljs-string">&quot;name&quot;</span>, name);<br>    mv.addObject(<span class="hljs-string">&quot;age&quot;</span>, age);<br>    mv.setViewName(<span class="hljs-string">&quot;hello&quot;</span>);<br>    <span class="hljs-keyword">return</span> mv;<br><br>&#125;<br></code></pre></td></tr></table></figure>
 <p>运行结果：</p>
-<p><img src="https://crayon-1302863897.cos.ap-beijing.myqcloud.com/image/image-20201208134551362.png" alt="image-20201208134551362" style="zoom:33%;" /></p>
+<p><img src="https://crayon-1302863897.cos.ap-beijing.myqcloud.com/image/image-20201208134551362.png" srcset="/img/loading.gif" lazyload alt="image-20201208134551362" style="zoom:33%;" /></p>
 <p>可以看到参数正常接收到了。</p>
 <h4 id="post方式解决乱码问题">POST方式解决乱码问题</h4>
 <p>当使用POST方式提交值为中文的参数时，会出现乱码。</p>
@@ -328,7 +334,7 @@ response)</code>。</p>
 </ul>
 <p>同时设置<filter-mapper>中的<url-pattern>值为<code>/*</code>，表示强制所有的请求都必须通过该过滤器。</p>
 <p>即：</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">filter</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">filter-name</span>&gt;</span>characterEncodingFilter<span class="tag">&lt;/<span class="name">filter-name</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">filter-class</span>&gt;</span>org.springframework.web.filter.CharacterEncodingFilter<span class="tag">&lt;/<span class="name">filter-class</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">init-param</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">param-name</span>&gt;</span>encoding<span class="tag">&lt;/<span class="name">param-name</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">param-value</span>&gt;</span>utf-8<span class="tag">&lt;/<span class="name">param-value</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">init-param</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">init-param</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">param-name</span>&gt;</span>forceRequestEncoding<span class="tag">&lt;/<span class="name">param-name</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">param-value</span>&gt;</span>true<span class="tag">&lt;/<span class="name">param-value</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">init-param</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">init-param</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">param-name</span>&gt;</span>forceResponseEncoding<span class="tag">&lt;/<span class="name">param-name</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">param-value</span>&gt;</span>true<span class="tag">&lt;/<span class="name">param-value</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">init-param</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">filter</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">filter-mapping</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">filter-name</span>&gt;</span>characterEncodingFilter<span class="tag">&lt;/<span class="name">filter-name</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">url-pattern</span>&gt;</span>/*<span class="tag">&lt;/<span class="name">url-pattern</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">filter-mapping</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">filter</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">filter-name</span>&gt;</span>characterEncodingFilter<span class="hljs-tag">&lt;/<span class="hljs-name">filter-name</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">filter-class</span>&gt;</span>org.springframework.web.filter.CharacterEncodingFilter<span class="hljs-tag">&lt;/<span class="hljs-name">filter-class</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">init-param</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">param-name</span>&gt;</span>encoding<span class="hljs-tag">&lt;/<span class="hljs-name">param-name</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">param-value</span>&gt;</span>utf-8<span class="hljs-tag">&lt;/<span class="hljs-name">param-value</span>&gt;</span><br>    <span class="hljs-tag">&lt;/<span class="hljs-name">init-param</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">init-param</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">param-name</span>&gt;</span>forceRequestEncoding<span class="hljs-tag">&lt;/<span class="hljs-name">param-name</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">param-value</span>&gt;</span>true<span class="hljs-tag">&lt;/<span class="hljs-name">param-value</span>&gt;</span><br>    <span class="hljs-tag">&lt;/<span class="hljs-name">init-param</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">init-param</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">param-name</span>&gt;</span>forceResponseEncoding<span class="hljs-tag">&lt;/<span class="hljs-name">param-name</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">param-value</span>&gt;</span>true<span class="hljs-tag">&lt;/<span class="hljs-name">param-value</span>&gt;</span><br>    <span class="hljs-tag">&lt;/<span class="hljs-name">init-param</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">filter</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">filter-mapping</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">filter-name</span>&gt;</span>characterEncodingFilter<span class="hljs-tag">&lt;/<span class="hljs-name">filter-name</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">url-pattern</span>&gt;</span>/*<span class="hljs-tag">&lt;/<span class="hljs-name">url-pattern</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">filter-mapping</span>&gt;</span><br></code></pre></td></tr></table></figure>
 <h3 id="requestparam"><span class="citation"
 data-cites="RequestParam">@RequestParam</span></h3>
 <p>当请求URL的请求参数名和处理方法的形参名不相同时，使用@RequestParam注解放在形参名前，用来指定请求提交的参数名。</p>
@@ -340,9 +346,9 @@ data-cites="RequestParam">@RequestParam</span></h3>
 </ul>
 <p>一般将required设为false。</p>
 <p>例子： 修改前端代码：</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">form</span> <span class="attr">action</span>=<span class="string">&quot;some.do&quot;</span> <span class="attr">method</span>=<span class="string">&quot;post&quot;</span> &gt;</span></span><br><span class="line">    姓名：<span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;text&quot;</span> <span class="attr">name</span>=<span class="string">&quot;myName&quot;</span> &gt;</span><span class="tag">&lt;<span class="name">br</span>&gt;</span></span><br><span class="line">    年龄：<span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;text&quot;</span> <span class="attr">name</span>=<span class="string">&quot;myAage&quot;</span> &gt;</span><span class="tag">&lt;<span class="name">br</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;submit&quot;</span> <span class="attr">value</span>=<span class="string">&quot;提交信息&quot;</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">form</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">form</span> <span class="hljs-attr">action</span>=<span class="hljs-string">&quot;some.do&quot;</span> <span class="hljs-attr">method</span>=<span class="hljs-string">&quot;post&quot;</span> &gt;</span><br>    姓名：<span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;text&quot;</span> <span class="hljs-attr">name</span>=<span class="hljs-string">&quot;myName&quot;</span> &gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">br</span>&gt;</span><br>    年龄：<span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;text&quot;</span> <span class="hljs-attr">name</span>=<span class="hljs-string">&quot;myAage&quot;</span> &gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">br</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;submit&quot;</span> <span class="hljs-attr">value</span>=<span class="hljs-string">&quot;提交信息&quot;</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">form</span>&gt;</span><br></code></pre></td></tr></table></figure>
 <p>那么方法签名改为：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> ModelAndView <span class="title function_">doSome</span><span class="params">(<span class="meta">@RequestParam(&quot;myName&quot;, required = false)</span>String name,</span></span><br><span class="line"><span class="params">                           <span class="meta">@RequestParam(&quot;myAge&quot;, required = false)</span> <span class="type">int</span> age)</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> ModelAndView <span class="hljs-title function_">doSome</span><span class="hljs-params">(<span class="hljs-meta">@RequestParam(&quot;myName&quot;, required = false)</span>String name,</span><br><span class="hljs-params">                           <span class="hljs-meta">@RequestParam(&quot;myAge&quot;, required = false)</span> <span class="hljs-type">int</span> age)</span><br></code></pre></td></tr></table></figure>
 <h3 id="对象参数接受">对象参数接受</h3>
 <p>若把处理器方法的参数定义为一个Java对象，那么只要保证请求的参数名和这个对象的属性名相同即可。</p>
 <p>与逐个参数接受差不多。</p>
@@ -351,13 +357,13 @@ data-cites="RequestParam">@RequestParam</span></h3>
 <p><strong>这种方法在实际中应用的比较多。</strong></p>
 <p>例如：</p>
 <p>前端代码：</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">form</span> <span class="attr">action</span>=<span class="string">&quot;some.do&quot;</span> <span class="attr">method</span>=<span class="string">&quot;post&quot;</span> &gt;</span></span><br><span class="line">    姓名：<span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;text&quot;</span> <span class="attr">name</span>=<span class="string">&quot;name&quot;</span> &gt;</span><span class="tag">&lt;<span class="name">br</span>&gt;</span></span><br><span class="line">    年龄：<span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;text&quot;</span> <span class="attr">name</span>=<span class="string">&quot;age&quot;</span> &gt;</span><span class="tag">&lt;<span class="name">br</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;submit&quot;</span> <span class="attr">value</span>=<span class="string">&quot;提交信息&quot;</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">form</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">form</span> <span class="hljs-attr">action</span>=<span class="hljs-string">&quot;some.do&quot;</span> <span class="hljs-attr">method</span>=<span class="hljs-string">&quot;post&quot;</span> &gt;</span><br>    姓名：<span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;text&quot;</span> <span class="hljs-attr">name</span>=<span class="hljs-string">&quot;name&quot;</span> &gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">br</span>&gt;</span><br>    年龄：<span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;text&quot;</span> <span class="hljs-attr">name</span>=<span class="hljs-string">&quot;age&quot;</span> &gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">br</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;submit&quot;</span> <span class="hljs-attr">value</span>=<span class="hljs-string">&quot;提交信息&quot;</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">form</span>&gt;</span><br></code></pre></td></tr></table></figure>
 <p>创建一个类Student</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Student</span> &#123;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">private</span> String name;</span><br><span class="line">    <span class="keyword">private</span> Integer age;</span><br><span class="line">    <span class="comment">//set和get方法，构造器方法</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">Student</span> &#123;<br>    <br>    <span class="hljs-keyword">private</span> String name;<br>    <span class="hljs-keyword">private</span> Integer age;<br>    <span class="hljs-comment">//set和get方法，构造器方法</span><br>&#125;<br></code></pre></td></tr></table></figure>
 <p>那么在处理器方法中：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@RequestMapping(value = &quot;/some.do&quot;)</span></span><br><span class="line"><span class="keyword">public</span> ModelAndView <span class="title function_">doSome</span><span class="params">(Student student)</span> &#123;</span><br><span class="line">    <span class="type">ModelAndView</span> <span class="variable">mv</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">ModelAndView</span>();</span><br><span class="line">    mv.addObject(<span class="string">&quot;myStudent&quot;</span>, student);</span><br><span class="line">    mv.setViewName(<span class="string">&quot;hello&quot;</span>);</span><br><span class="line">    <span class="keyword">return</span> mv;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@RequestMapping(value = &quot;/some.do&quot;)</span><br><span class="hljs-keyword">public</span> ModelAndView <span class="hljs-title function_">doSome</span><span class="hljs-params">(Student student)</span> &#123;<br>    <span class="hljs-type">ModelAndView</span> <span class="hljs-variable">mv</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">ModelAndView</span>();<br>    mv.addObject(<span class="hljs-string">&quot;myStudent&quot;</span>, student);<br>    mv.setViewName(<span class="hljs-string">&quot;hello&quot;</span>);<br>    <span class="hljs-keyword">return</span> mv;<br>&#125;<br></code></pre></td></tr></table></figure>
 <p>hello.jsp代码：</p>
-<figure class="highlight jsp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&lt;%@ page contentType=<span class="string">&quot;text/html;charset=UTF-8&quot;</span> language=<span class="string">&quot;java&quot;</span> %&gt;</span><br><span class="line">&lt;html&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">    &lt;title&gt;欢迎界面&lt;/title&gt;</span><br><span class="line">&lt;/head&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line">    &lt;h1&gt;欢迎使用SpringMVC开发Web应用&lt;/h1&gt;</span><br><span class="line">    &lt;h2&gt;姓名是：$&#123;myStudent.name&#125;&lt;/h2&gt;</span><br><span class="line">    &lt;h2&gt;年龄是：$&#123;myStudent.age&#125;&lt;/h2&gt;</span><br><span class="line">&lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure>
+<figure class="highlight jsp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs jsp">&lt;%@ page contentType=<span class="hljs-string">&quot;text/html;charset=UTF-8&quot;</span> language=<span class="hljs-string">&quot;java&quot;</span> %&gt;<br>&lt;html&gt;<br>&lt;head&gt;<br>    &lt;title&gt;欢迎界面&lt;/title&gt;<br>&lt;/head&gt;<br>&lt;body&gt;<br>    &lt;h1&gt;欢迎使用SpringMVC开发Web应用&lt;/h1&gt;<br>    &lt;h2&gt;姓名是：$&#123;myStudent.name&#125;&lt;/h2&gt;<br>    &lt;h2&gt;年龄是：$&#123;myStudent.age&#125;&lt;/h2&gt;<br>&lt;/body&gt;<br>&lt;/html&gt;<br></code></pre></td></tr></table></figure>
 <h2 id="处理器方法返回值">处理器方法返回值</h2>
 <p>常见的返回值有四种类型：</p>
 <ul>
@@ -373,7 +379,7 @@ data-cites="RequestParam">@RequestParam</span></h3>
 <p>如果处理器方法执行完后，只进行资源跳转。那么可以返回String类型。返回的字符串可以指定逻辑视图名，视图解析器会将其解析，转换为物理视图地址(就是html、jsp等资源文件)。</p>
 <p>如果跳转的资源是内部资源，那么因为已经在springmvc.xml文件中注册了视图解析器。所以直接返回方法名即可，视图解析器会将路径前缀和后缀拓展名进行拼接。</p>
 <p>例如：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@RequestMapping(value = &quot;/some.do&quot;)</span></span><br><span class="line"><span class="keyword">public</span> String <span class="title function_">doSome</span><span class="params">()</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="string">&quot;hello&quot;</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@RequestMapping(value = &quot;/some.do&quot;)</span><br><span class="hljs-keyword">public</span> String <span class="hljs-title function_">doSome</span><span class="hljs-params">()</span> &#123;<br>    <span class="hljs-keyword">return</span> <span class="hljs-string">&quot;hello&quot;</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
 <p>发起请求就可以跳转到hello.jsp文件。</p>
 <h3 id="void">void</h3>
 <p>如果处理器方法不需要跳转到其他资源，可以让处理器方法返回void。</p>
@@ -428,11 +434,11 @@ outputMessage)</code>：将T类型的对象写入到响应流中，同时指定�
 <h5 id="输出自定义对象">输出自定义对象</h5>
 <p>向浏览器返回一个自定义的对象Student，转换为json格式。</p>
 <p>处理器方法：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@RequestMapping(value = &quot;/returnStudent.do&quot;)</span></span><br><span class="line"><span class="meta">@ResponseBody</span></span><br><span class="line"><span class="keyword">public</span> Student <span class="title function_">doStudent</span><span class="params">()</span> &#123;</span><br><span class="line">    <span class="type">Student</span> <span class="variable">student</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Student</span>();</span><br><span class="line">    student.setName(<span class="string">&quot;赵大宝&quot;</span>);</span><br><span class="line">    student.setAge(<span class="number">21</span>);</span><br><span class="line">    <span class="keyword">return</span> student;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@RequestMapping(value = &quot;/returnStudent.do&quot;)</span><br><span class="hljs-meta">@ResponseBody</span><br><span class="hljs-keyword">public</span> Student <span class="hljs-title function_">doStudent</span><span class="hljs-params">()</span> &#123;<br>    <span class="hljs-type">Student</span> <span class="hljs-variable">student</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Student</span>();<br>    student.setName(<span class="hljs-string">&quot;赵大宝&quot;</span>);<br>    student.setAge(<span class="hljs-number">21</span>);<br>    <span class="hljs-keyword">return</span> student;<br>&#125;<br></code></pre></td></tr></table></figure>
 <p>异步请求代码：</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">$(<span class="keyword">function</span> (<span class="params"></span>)&#123;</span><br><span class="line">    $(<span class="string">&quot;#btn&quot;</span>).<span class="title function_">click</span>(<span class="keyword">function</span> (<span class="params"></span>) &#123;</span><br><span class="line">        $.<span class="title function_">ajax</span>(&#123;</span><br><span class="line">            <span class="attr">url</span>:<span class="string">&quot;returnStudent.do&quot;</span>,</span><br><span class="line">            <span class="attr">type</span>:<span class="string">&quot;get&quot;</span>,</span><br><span class="line">            <span class="attr">dataType</span>:<span class="string">&quot;json&quot;</span>,</span><br><span class="line">            <span class="attr">success</span>:<span class="keyword">function</span> (<span class="params">data</span>) &#123;</span><br><span class="line">                <span class="title function_">alert</span>(data);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;)</span><br><span class="line"></span><br><span class="line">    &#125;)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs javascript">$(<span class="hljs-keyword">function</span> (<span class="hljs-params"></span>)&#123;<br>    $(<span class="hljs-string">&quot;#btn&quot;</span>).<span class="hljs-title function_">click</span>(<span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) &#123;<br>        $.<span class="hljs-title function_">ajax</span>(&#123;<br>            <span class="hljs-attr">url</span>:<span class="hljs-string">&quot;returnStudent.do&quot;</span>,<br>            <span class="hljs-attr">type</span>:<span class="hljs-string">&quot;get&quot;</span>,<br>            <span class="hljs-attr">dataType</span>:<span class="hljs-string">&quot;json&quot;</span>,<br>            <span class="hljs-attr">success</span>:<span class="hljs-keyword">function</span> (<span class="hljs-params">data</span>) &#123;<br>                <span class="hljs-title function_">alert</span>(data);<br>            &#125;<br>        &#125;)<br><br>    &#125;)<br>&#125;)<br></code></pre></td></tr></table></figure>
 <p>运行结果：
-<img src="https://crayon-1302863897.cos.ap-beijing.myqcloud.com/image/image-20201217132846957.png" alt="image-20201217132846957" style="zoom:67%;" /></p>
+<img src="https://crayon-1302863897.cos.ap-beijing.myqcloud.com/image/image-20201217132846957.png" srcset="/img/loading.gif" lazyload alt="image-20201217132846957" style="zoom:67%;" /></p>
 <p>返回对象Json数据的处理流程：</p>
 <ul>
 <li>框架会将Student类型，调用框架中的ArrayList<HttpMessageConverter>中每个实现类对象的canWrite方法，检查哪个HttpMessageConverter接口的实现类可以处理Student类型的数据，找到MapperJackson2HttpMessageConverter实现类</li>
@@ -443,12 +449,12 @@ outputMessage)</code>：将T类型的对象写入到响应流中，同时指定�
 <p>将List集合转换为JSON对象数组输出。</p>
 <p>和上个例子差不多</p>
 <p>处理器方法：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@RequestMapping(value = &quot;/returnList.do&quot;)</span></span><br><span class="line"><span class="meta">@ResponseBody</span></span><br><span class="line"><span class="keyword">public</span> List&lt;Student&gt; <span class="title function_">doList</span><span class="params">()</span> &#123;</span><br><span class="line">    List&lt;Student&gt; list = <span class="keyword">new</span> <span class="title class_">ArrayList</span>&lt;&gt;();</span><br><span class="line">    <span class="type">Student</span> <span class="variable">student</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Student</span>();</span><br><span class="line">    student.setName(<span class="string">&quot;赵大宝&quot;</span>);</span><br><span class="line">    student.setAge(<span class="number">21</span>);</span><br><span class="line">    list.add(student);</span><br><span class="line">    <span class="type">Student</span> <span class="variable">student1</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Student</span>();</span><br><span class="line">    student1.setName(<span class="string">&quot;李二狗&quot;</span>);</span><br><span class="line">    student1.setAge(<span class="number">22</span>);</span><br><span class="line">    list.add(student1);</span><br><span class="line">    <span class="keyword">return</span> list;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@RequestMapping(value = &quot;/returnList.do&quot;)</span><br><span class="hljs-meta">@ResponseBody</span><br><span class="hljs-keyword">public</span> List&lt;Student&gt; <span class="hljs-title function_">doList</span><span class="hljs-params">()</span> &#123;<br>    List&lt;Student&gt; list = <span class="hljs-keyword">new</span> <span class="hljs-title class_">ArrayList</span>&lt;&gt;();<br>    <span class="hljs-type">Student</span> <span class="hljs-variable">student</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Student</span>();<br>    student.setName(<span class="hljs-string">&quot;赵大宝&quot;</span>);<br>    student.setAge(<span class="hljs-number">21</span>);<br>    list.add(student);<br>    <span class="hljs-type">Student</span> <span class="hljs-variable">student1</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Student</span>();<br>    student1.setName(<span class="hljs-string">&quot;李二狗&quot;</span>);<br>    student1.setAge(<span class="hljs-number">22</span>);<br>    list.add(student1);<br>    <span class="hljs-keyword">return</span> list;<br>&#125;<br></code></pre></td></tr></table></figure>
 <p>JS代码：</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">$(<span class="keyword">function</span> (<span class="params"></span>)&#123;</span><br><span class="line">    $(<span class="string">&quot;#btn&quot;</span>).<span class="title function_">click</span>(<span class="keyword">function</span> (<span class="params"></span>) &#123;</span><br><span class="line">        $.<span class="title function_">ajax</span>(&#123;</span><br><span class="line">            <span class="attr">url</span>:<span class="string">&quot;returnList.do&quot;</span>,</span><br><span class="line">            <span class="attr">type</span>:<span class="string">&quot;get&quot;</span>,</span><br><span class="line">            <span class="attr">dataType</span>:<span class="string">&quot;json&quot;</span>,</span><br><span class="line">            <span class="attr">success</span>:<span class="keyword">function</span> (<span class="params">data</span>) &#123;</span><br><span class="line">                $.<span class="title function_">each</span>(data, <span class="keyword">function</span> (<span class="params">i, n</span>)&#123;</span><br><span class="line">                    <span class="title function_">alert</span>(n.<span class="property">name</span> + <span class="string">&quot;  &quot;</span> + n.<span class="property">age</span>);</span><br><span class="line">                &#125;)</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;)</span><br><span class="line"></span><br><span class="line">    &#125;)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs javascript">$(<span class="hljs-keyword">function</span> (<span class="hljs-params"></span>)&#123;<br>    $(<span class="hljs-string">&quot;#btn&quot;</span>).<span class="hljs-title function_">click</span>(<span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) &#123;<br>        $.<span class="hljs-title function_">ajax</span>(&#123;<br>            <span class="hljs-attr">url</span>:<span class="hljs-string">&quot;returnList.do&quot;</span>,<br>            <span class="hljs-attr">type</span>:<span class="hljs-string">&quot;get&quot;</span>,<br>            <span class="hljs-attr">dataType</span>:<span class="hljs-string">&quot;json&quot;</span>,<br>            <span class="hljs-attr">success</span>:<span class="hljs-keyword">function</span> (<span class="hljs-params">data</span>) &#123;<br>                $.<span class="hljs-title function_">each</span>(data, <span class="hljs-keyword">function</span> (<span class="hljs-params">i, n</span>)&#123;<br>                    <span class="hljs-title function_">alert</span>(n.<span class="hljs-property">name</span> + <span class="hljs-string">&quot;  &quot;</span> + n.<span class="hljs-property">age</span>);<br>                &#125;)<br>            &#125;<br>        &#125;)<br><br>    &#125;)<br>&#125;)<br></code></pre></td></tr></table></figure>
 <p>运行结果：</p>
-<p><img src="https://crayon-1302863897.cos.ap-beijing.myqcloud.com/image/image-20201217134624351.png" alt="image-20201217134624351" style="zoom:73%;" /></p>
-<p><img src="https://crayon-1302863897.cos.ap-beijing.myqcloud.com/image/image-20201217134613989.png" alt="image-20201217134610237" style="zoom:50%;" /></p>
+<p><img src="https://crayon-1302863897.cos.ap-beijing.myqcloud.com/image/image-20201217134624351.png" srcset="/img/loading.gif" lazyload alt="image-20201217134624351" style="zoom:73%;" /></p>
+<p><img src="https://crayon-1302863897.cos.ap-beijing.myqcloud.com/image/image-20201217134613989.png" srcset="/img/loading.gif" lazyload alt="image-20201217134610237" style="zoom:50%;" /></p>
 <h5 id="返回文本数据">返回文本数据</h5>
 <p>处理器方法返回的是String类型，这里String表示数据，而不是视图。</p>
 <p><strong>区分返回值String是数据还是视图的方法：</strong></p>
@@ -457,76 +463,136 @@ outputMessage)</code>：将T类型的对象写入到响应流中，同时指定�
 <p>解决方案：在@RequestMapping注解中加上属性produces =
 "text/plain;charset=utf-8"，来指定新的contentType</p>
 <p>处理器方法：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@RequestMapping(value = &quot;/returnStringData.do&quot;, produces = &quot;text/plain;charset=utf-8&quot;)</span></span><br><span class="line"><span class="meta">@ResponseBody</span></span><br><span class="line"><span class="keyword">public</span> String <span class="title function_">doStringData</span><span class="params">()</span> &#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="string">&quot;返回的是文本数据&quot;</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@RequestMapping(value = &quot;/returnStringData.do&quot;, produces = &quot;text/plain;charset=utf-8&quot;)</span><br><span class="hljs-meta">@ResponseBody</span><br><span class="hljs-keyword">public</span> String <span class="hljs-title function_">doStringData</span><span class="hljs-params">()</span> &#123;<br>  <span class="hljs-keyword">return</span> <span class="hljs-string">&quot;返回的是文本数据&quot;</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
 <p>JS代码：</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">$(<span class="keyword">function</span> (<span class="params"></span>)&#123;</span><br><span class="line">    $(<span class="string">&quot;#btn&quot;</span>).<span class="title function_">click</span>(<span class="keyword">function</span> (<span class="params"></span>) &#123;</span><br><span class="line">        $.<span class="title function_">ajax</span>(&#123;</span><br><span class="line">            <span class="attr">url</span>:<span class="string">&quot;returnStringData.do&quot;</span>,</span><br><span class="line">            <span class="attr">type</span>:<span class="string">&quot;get&quot;</span>,</span><br><span class="line">            <span class="comment">// dataType:&quot;json&quot;,</span></span><br><span class="line">            <span class="attr">success</span>:<span class="keyword">function</span> (<span class="params">data</span>) &#123;</span><br><span class="line">                <span class="title function_">alert</span>(data);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;)</span><br><span class="line"></span><br><span class="line">    &#125;)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs javascript">$(<span class="hljs-keyword">function</span> (<span class="hljs-params"></span>)&#123;<br>    $(<span class="hljs-string">&quot;#btn&quot;</span>).<span class="hljs-title function_">click</span>(<span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) &#123;<br>        $.<span class="hljs-title function_">ajax</span>(&#123;<br>            <span class="hljs-attr">url</span>:<span class="hljs-string">&quot;returnStringData.do&quot;</span>,<br>            <span class="hljs-attr">type</span>:<span class="hljs-string">&quot;get&quot;</span>,<br>            <span class="hljs-comment">// dataType:&quot;json&quot;,</span><br>            <span class="hljs-attr">success</span>:<span class="hljs-keyword">function</span> (<span class="hljs-params">data</span>) &#123;<br>                <span class="hljs-title function_">alert</span>(data);<br>            &#125;<br>        &#125;)<br><br>    &#125;)<br>&#125;)<br></code></pre></td></tr></table></figure>
 <p>运行结果：
-<img src="https://crayon-1302863897.cos.ap-beijing.myqcloud.com/image/image-20201217141214840.png" alt="image-20201217141214840" style="zoom:50%;" /></p>
+<img src="https://crayon-1302863897.cos.ap-beijing.myqcloud.com/image/image-20201217141214840.png" srcset="/img/loading.gif" lazyload alt="image-20201217141214840" style="zoom:50%;" /></p>
 
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/categories/programming/">编程学习</a>
+                    
+                      <a class="hover-with-bg" href="/categories/programming/springmvc/">SpringMVC</a>
+                    
+                  </div>
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/javaweb/">JavaWeb</a>
+                    
+                      <a class="hover-with-bg" href="/tags/backend/">后端</a>
+                    
+                      <a class="hover-with-bg" href="/tags/springmvc/">SpringMVC</a>
+                    
+                  </div>
+                
+              </div>
+              
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
     </div>
-
     
-    
-    
-
-    <footer class="post-footer">
-          <div class="post-tags">
-              <a href="/tags/backend/" rel="tag"># 后端</a>
-              <a href="/tags/javaweb/" rel="tag"># JavaWeb</a>
-              <a href="/tags/springmvc/" rel="tag"># SpringMVC</a>
-          </div>
-
-        
-
-          <div class="post-nav">
-            <div class="post-nav-item">
-                <a href="/2022/05/11/Spring-MVC/1-Spring-MVC%E5%9F%BA%E7%A1%80/" rel="prev" title="1-Spring-MVC基础">
-                  <i class="fa fa-chevron-left"></i> 1-Spring-MVC基础
-                </a>
-            </div>
-            <div class="post-nav-item">
-                <a href="/2022/05/11/Spring-MVC/3-%E9%9D%99%E6%80%81%E8%B5%84%E6%BA%90%E8%AE%BF%E9%97%AE%E9%97%AE%E9%A2%98/" rel="next" title="3-静态资源访问问题">
-                  3-静态资源访问问题 <i class="fa fa-chevron-right"></i>
-                </a>
-            </div>
-          </div>
-    </footer>
-  </article>
+  </div>
 </div>
 
+<!-- Custom -->
 
 
+    
 
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
 
-
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
 </div>
+    
+
+    
+      <div class="col-lg-7 mx-auto nopadding-x-md">
+        <div class="container custom mx-auto">
+          <link rel="stylesheet" href="/js/aplayer/APlayer.min.css"> <div id="aplayer" style="display:none"></div> <script src="/js/aplayer/APlayer.min.js"></script>
+        </div>
+      </div>
+    
   </main>
 
-  <footer class="footer">
-    <div class="footer-inner">
-
-
-<div class="copyright">
-  &copy; 
-  <span itemprop="copyrightYear">2022</span>
-  <span class="with-love">
-    <i class="fa fa-heart"></i>
-  </span>
-  <span class="author" itemprop="copyrightHolder">ZhaoXin</span>
-</div>
-  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     <i class="iconfont icon-copyright"></i> <span>ZhaoXin, Built by </span> <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> 
   </div>
-
-    </div>
-  </footer>
-
   
-  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
-<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
 
   
 
+  
+</footer>
 
+  <!-- SCRIPTS -->
+  
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
 
 
 
@@ -534,6 +600,110 @@ outputMessage)</code>：将T类型的对象写入到响应流中，同时指定�
 
 
 
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4/anchor.min.js" ></script>
+  
+  
+    <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js" ></script>
+  
+
+
+
+
+  <script defer src="/js/leancloud.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+        typing(title);
+      
+    })(window, document);
+  </script>
+
+
+
+
+
+  
+
+  
+    <!-- MathJax -->
+    <script>
+      MathJax = {
+        tex: {
+          inlineMath: [['$', '$'], ['\\(', '\\)']]
+        },
+        loader: {
+          load: ['ui/lazy']
+        },
+        options: {
+          renderActions: {
+            findScript: [10, doc => {
+              document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+                const display = !!node.type.match(/; *mode=display/);
+                const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+                const text = document.createTextNode('');
+                node.parentNode.replaceChild(text, node);
+                math.start = { node: text, delim: '', n: 0 };
+                math.end = { node: text, delim: '', n: 0 };
+                doc.math.push(math);
+              });
+            }, '', false],
+            insertedScript: [200, () => {
+              document.querySelectorAll('mjx-container').forEach(node => {
+                let target = node.parentNode;
+                if (target.nodeName.toLowerCase() === 'li') {
+                  target.parentNode.classList.add('has-jax');
+                }
+              });
+            }, '', false]
+          }
+        }
+      };
+    </script>
+
+    <script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js" ></script>
+
+  
+
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+
+  
+<script src="/js/music.js"></script>
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
 
 
 </body>

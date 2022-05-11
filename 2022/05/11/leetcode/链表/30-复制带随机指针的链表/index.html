@@ -1,25 +1,21 @@
+
+
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
 <head>
   <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width">
-<meta name="theme-color" content="#222">
-
-
-  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
-  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
-  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
-  <link rel="mask-icon" href="/images/logo.svg" color="#222">
-
-<link rel="stylesheet" href="/css/main.css">
-
-
-
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css" integrity="sha256-DfWjNxDkM94fVBWx1H5BMMp0Zq7luBlV8QRcSES7s+0=" crossorigin="anonymous">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
-
-<script class="next-config" data-name="main" type="application/json">{"hostname":"zhaoquaner.github.io","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.11.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":15,"offset":12,"width":220},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
-
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
+  <link rel="icon" href="/img/favicon.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="ZhaoXin">
+  <meta name="keywords" content="博客">
+  
     <meta name="description" content="自己的做法 算法思想 其实就是根据给定链表复制一个新链表，只不过多了random指针。它指向链表任意一个节点或者null。 因为链表中节点值有可能重复，所以不能以节点值为依据来判断该指向哪个节点。 而链表中索引是一定的，所以我是用索引来决定random指针该指向哪个节点。 设给定链表为head，复制的新链表为newHead。 所以首先创建index数组，来存放head链表每个节">
 <meta property="og:type" content="article">
 <meta property="og:title" content="30-复制带随机指针的链表">
@@ -34,223 +30,233 @@
 <meta property="article:modified_time" content="2022-05-11T07:53:43.386Z">
 <meta property="article:author" content="ZhaoXin">
 <meta property="article:tag" content="算法题">
-<meta name="twitter:card" content="summary">
+<meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="https://crayon-1302863897.cos.ap-beijing.myqcloud.com/image/image-20210508210155323.png">
+  
+  
+  <title>30-复制带随机指针的链表 - 赵圈儿的博客</title>
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/css/bootstrap.min.css" />
 
 
-<link rel="canonical" href="https://zhaoquaner.github.io/2022/05/11/leetcode/%E9%93%BE%E8%A1%A8/30-%E5%A4%8D%E5%88%B6%E5%B8%A6%E9%9A%8F%E6%9C%BA%E6%8C%87%E9%92%88%E7%9A%84%E9%93%BE%E8%A1%A8/">
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4/github-markdown.min.css" />
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hint.css@2/hint.min.css" />
 
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10/styles/github-gist.min.css" />
+    
+  
 
-
-<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://zhaoquaner.github.io/2022/05/11/leetcode/%E9%93%BE%E8%A1%A8/30-%E5%A4%8D%E5%88%B6%E5%B8%A6%E9%9A%8F%E6%9C%BA%E6%8C%87%E9%92%88%E7%9A%84%E9%93%BE%E8%A1%A8/","path":"2022/05/11/leetcode/链表/30-复制带随机指针的链表/","title":"30-复制带随机指针的链表"}</script>
-
-<script class="next-config" data-name="calendar" type="application/json">""</script>
-<title>30-复制带随机指针的链表 | 赵圈儿的博客</title>
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.css" />
   
 
 
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
 
 
 
-  <noscript>
-    <link rel="stylesheet" href="/css/noscript.css">
-  </noscript>
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"zhaoquaner.github.io","root":"/","version":"1.8.14","typing":{"enable":true,"typeSpeed":60,"cursorChar":" ","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":false,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":2},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":"BzK0JfEpsm40LlV9EPIyl4mp-gzGzoHsz","app_key":"MpxSk6ED55Utq83yNrKAMI5c","server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
 </head>
 
-<body itemscope itemtype="http://schema.org/WebPage" class="use-motion"><!-- hexo injector body_begin start --><style>code {font-weight:400;}.post-content {font-weight:600;} #board {border-radius: 1.5rem;} #board-ctn {width:110%;margin-left:-5%;}</style><!-- hexo injector body_begin end -->
-  <div class="headband"></div>
 
-  <main class="main">
-    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
-      <div class="header-inner"><div class="site-brand-container">
-  <div class="site-nav-toggle">
-    <div class="toggle" aria-label="切换导航栏" role="button">
-        <span class="toggle-line"></span>
-        <span class="toggle-line"></span>
-        <span class="toggle-line"></span>
-    </div>
-  </div>
-
-  <div class="site-meta">
-
-    <a href="/" class="brand" rel="start">
-      <i class="logo-line"></i>
-      <p class="site-title">赵圈儿的博客</p>
-      <i class="logo-line"></i>
+<body><!-- hexo injector body_begin start --><style>code {font-weight:400;}.post-content {font-weight:600;} #board {border-radius: 1.5rem;} #board-ctn {width:110%;margin-left:-5%;}</style><!-- hexo injector body_begin end -->
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Personal Blog</strong>
     </a>
-  </div>
 
-  <div class="site-nav-right">
-    <div class="toggle popup-trigger">
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="javascript:;">
+                <i class="iconfont icon-music"></i>
+                播放
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
     </div>
   </div>
-</div>
-
-
-
-<nav class="site-nav">
-  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">23</span></a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">18</span></a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">169</span></a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li>
-  </ul>
 </nav>
 
+    <div class="banner" id="banner" parallax=true
+         style="background: url('/img/article.png') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="30-复制带随机指针的链表">
+              
+            </span>
 
-
-
-</div>
-        
+            
+              <div class="mt-3">
   
-  <div class="toggle sidebar-toggle" role="button">
-    <span class="toggle-line"></span>
-    <span class="toggle-line"></span>
-    <span class="toggle-line"></span>
-  </div>
-
-  <aside class="sidebar">
-
-    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
-      <ul class="sidebar-nav">
-        <li class="sidebar-nav-toc">
-          文章目录
-        </li>
-        <li class="sidebar-nav-overview">
-          站点概览
-        </li>
-      </ul>
-
-      <div class="sidebar-panel-container">
-        <!--noindex-->
-        <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%87%AA%E5%B7%B1%E7%9A%84%E5%81%9A%E6%B3%95"><span class="nav-number">1.</span> <span class="nav-text">自己的做法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AE%97%E6%B3%95%E6%80%9D%E6%83%B3"><span class="nav-number">1.1.</span> <span class="nav-text">算法思想</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AE%97%E6%B3%95%E5%AE%9E%E7%8E%B0"><span class="nav-number">1.2.</span> <span class="nav-text">算法实现</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%80%A7%E8%83%BD%E5%88%86%E6%9E%90"><span class="nav-number">1.3.</span> <span class="nav-text">性能分析</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%82%E8%80%83%E5%81%9A%E6%B3%95"><span class="nav-number">2.</span> <span class="nav-text">参考做法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%BF%AD%E4%BB%A3"><span class="nav-number">2.1.</span> <span class="nav-text">迭代</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%AE%97%E6%B3%95%E6%80%9D%E6%83%B3-1"><span class="nav-number">2.1.1.</span> <span class="nav-text">算法思想</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%80%A7%E8%83%BD%E5%88%86%E6%9E%90-1"><span class="nav-number">2.2.</span> <span class="nav-text">性能分析</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%BF%AD%E4%BB%A3%E7%9A%84%E4%BC%98%E5%8C%96"><span class="nav-number">2.3.</span> <span class="nav-text">迭代的优化</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%AE%97%E6%B3%95%E6%80%9D%E6%83%B3-2"><span class="nav-number">2.3.1.</span> <span class="nav-text">算法思想</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%AE%97%E6%B3%95%E5%AE%9E%E7%8E%B0-1"><span class="nav-number">2.3.2.</span> <span class="nav-text">算法实现</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%80%A7%E8%83%BD%E5%88%86%E6%9E%90-2"><span class="nav-number">2.3.3.</span> <span class="nav-text">性能分析</span></a></li></ol></li></ol></li></ol></div>
-        </div>
-        <!--/noindex-->
-
-        <div class="site-overview-wrap sidebar-panel">
-          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
-    <img class="site-author-image" itemprop="image" alt="ZhaoXin"
-      src="https://crayon-1302863897.cos.ap-beijing.myqcloud.com/blog_images/avatar.png">
-  <p class="site-author-name" itemprop="name">ZhaoXin</p>
-  <div class="site-description" itemprop="description"></div>
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2022-05-11 15:30" pubdate>
+        2022/5/11 15时30分
+      </time>
+    </span>
+  
 </div>
-<div class="site-state-wrap site-overview-item animated">
-  <nav class="site-state">
-      <div class="site-state-item site-state-posts">
-        <a href="/archives/">
-          <span class="site-state-item-count">169</span>
-          <span class="site-state-item-name">日志</span>
-        </a>
-      </div>
-      <div class="site-state-item site-state-categories">
-          <a href="/categories/">
-        <span class="site-state-item-count">18</span>
-        <span class="site-state-item-name">分类</span></a>
-      </div>
-      <div class="site-state-item site-state-tags">
-          <a href="/tags/">
-        <span class="site-state-item-count">23</span>
-        <span class="site-state-item-name">标签</span></a>
-      </div>
-  </nav>
+
+<div class="mt-1">
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      3.9k 字
+    </span>
+  
+
+  
+
+  
+  
+    
+      <!-- LeanCloud 统计文章PV -->
+      <span id="leancloud-page-views-container" class="post-meta" style="display: none">
+        <i class="iconfont icon-eye" aria-hidden="true"></i>
+        <span id="leancloud-page-views"></span> 次
+      </span>
+    
+  
 </div>
-  <div class="links-of-author site-overview-item animated">
-      <span class="links-of-author-item">
-        <a href="https://github.com/zhaoquaner" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;zhaoquaner" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
-      </span>
-      <span class="links-of-author-item">
-        <a href="mailto:zx1522202417@163.com" title="E-Mail → mailto:zx1522202417@163.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
-      </span>
-  </div>
 
+            
+          </div>
 
-
+          
         </div>
       </div>
     </div>
-  </aside>
-  <div class="sidebar-dimmer"></div>
+  </header>
 
-
-    </header>
-
+  <main>
     
-  <div class="back-to-top" role="button" aria-label="返回顶部">
-    <i class="fa fa-arrow-up"></i>
-    <span>0%</span>
-  </div>
-
-<noscript>
-  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
-</noscript>
-
-
-    <div class="main-inner post posts-expand">
-
-
-  
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://zhaoquaner.github.io/2022/05/11/leetcode/%E9%93%BE%E8%A1%A8/30-%E5%A4%8D%E5%88%B6%E5%B8%A6%E9%9A%8F%E6%9C%BA%E6%8C%87%E9%92%88%E7%9A%84%E9%93%BE%E8%A1%A8/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="https://crayon-1302863897.cos.ap-beijing.myqcloud.com/blog_images/avatar.png">
-      <meta itemprop="name" content="ZhaoXin">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="赵圈儿的博客">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="30-复制带随机指针的链表 | 赵圈儿的博客">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          30-复制带随机指针的链表
-        </h1>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
       
 
-      <time title="创建时间：2022-05-11 15:30:39 / 修改时间：15:53:43" itemprop="dateCreated datePublished" datetime="2022-05-11T15:30:39+08:00">2022-05-11</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/leetcode/" itemprop="url" rel="index"><span itemprop="name">LeetCode</span></a>
-        </span>
-          ，
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/leetcode/linkedlist/" itemprop="url" rel="index"><span itemprop="name">链表</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-        <p><img src="https://crayon-1302863897.cos.ap-beijing.myqcloud.com/image/image-20210508210155323.png" alt="image-20210508210155323" style="zoom:50%;" /></p>
-<p><img src="https://crayon-1302863897.cos.ap-beijing.myqcloud.com/image/image-20210508210231779.png" alt="image-20210508210231779" style="zoom:50%;" /></p>
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">30-复制带随机指针的链表</h1>
+            
+            <div class="markdown-body">
+              <p><img src="https://crayon-1302863897.cos.ap-beijing.myqcloud.com/image/image-20210508210155323.png" srcset="/img/loading.gif" lazyload alt="image-20210508210155323" style="zoom:50%;" /></p>
+<p><img src="https://crayon-1302863897.cos.ap-beijing.myqcloud.com/image/image-20210508210231779.png" srcset="/img/loading.gif" lazyload alt="image-20210508210231779" style="zoom:50%;" /></p>
 <h2 id="自己的做法">自己的做法</h2>
 <h3 id="算法思想">算法思想</h3>
 <p>其实就是根据给定链表复制一个新链表，只不过多了random指针。它指向链表任意一个节点或者null。</p>
@@ -265,7 +271,7 @@
 <p>然后依据索引数组，设置newHead链表每个节点的random指针应指向的节点。</p>
 <p>如果索引为-1，则指向null。</p>
 <h3 id="算法实现">算法实现</h3>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function">Node* <span class="title">copyRandomList</span><span class="params">(Node* head)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(head == <span class="literal">nullptr</span>) &#123;<span class="keyword">return</span> <span class="literal">nullptr</span>;&#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment">//生成所有节点的random指针所指向的节点在链表中的索引数组</span></span><br><span class="line">        vector&lt;<span class="type">int</span>&gt; index;</span><br><span class="line">        Node * cur = head;</span><br><span class="line">        <span class="keyword">while</span> (cur) &#123;</span><br><span class="line">            <span class="keyword">if</span>(cur-&gt;random == <span class="literal">nullptr</span>) &#123;</span><br><span class="line">                index.<span class="built_in">push_back</span>(<span class="number">-1</span>);</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                Node * temp = cur-&gt;random;</span><br><span class="line">                Node * node = head;</span><br><span class="line">                <span class="type">int</span> count = <span class="number">0</span>;</span><br><span class="line">                <span class="keyword">while</span> (node) &#123;</span><br><span class="line">                    <span class="keyword">if</span>(temp != node) &#123;</span><br><span class="line">                        count++;</span><br><span class="line">                    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                        index.<span class="built_in">push_back</span>(count);</span><br><span class="line">                    &#125;</span><br><span class="line">                    node = node-&gt;next;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            cur = cur-&gt;next;</span><br><span class="line"></span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment">//创建新链表</span></span><br><span class="line">        Node * newHead = <span class="keyword">new</span> <span class="built_in">Node</span>(head-&gt;val);</span><br><span class="line">        Node * pre = newHead;</span><br><span class="line">        Node * node = head-&gt;next;</span><br><span class="line">        vector&lt;Node *&gt; nodes;</span><br><span class="line">        nodes.<span class="built_in">push_back</span>(newHead);</span><br><span class="line">        <span class="comment">//按照给定链表创建每个节点,同时将新创建的节点放入节点指针数组中</span></span><br><span class="line">        <span class="keyword">while</span> (node) &#123;</span><br><span class="line">            Node * temp = <span class="keyword">new</span> <span class="built_in">Node</span>(node-&gt;val);</span><br><span class="line">            nodes.<span class="built_in">push_back</span>(temp);</span><br><span class="line">            pre-&gt;next = temp;</span><br><span class="line">            pre = temp;</span><br><span class="line">            node = node-&gt;next;</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        node = newHead;</span><br><span class="line">        <span class="comment">//设置新链表节点的random指针</span></span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">0</span>; i &lt; index.<span class="built_in">size</span>(); i++) &#123;</span><br><span class="line">            <span class="keyword">if</span>(index[i] == <span class="number">-1</span>) &#123;</span><br><span class="line">                node-&gt;random = <span class="literal">nullptr</span>;</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                node-&gt;random = nodes[index[i]];</span><br><span class="line">            &#125;</span><br><span class="line">            node = node-&gt;next;</span><br><span class="line"></span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> newHead;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<figure class="highlight c++"><table><tr><td class="gutter"><div class="code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br></pre></div></td><td class="code"><pre><code class="hljs c++"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Solution</span> &#123;<br><span class="hljs-keyword">public</span>:<br>    <span class="hljs-function">Node* <span class="hljs-title">copyRandomList</span><span class="hljs-params">(Node* head)</span> </span>&#123;<br>        <span class="hljs-keyword">if</span>(head == <span class="hljs-literal">nullptr</span>) &#123;<span class="hljs-keyword">return</span> <span class="hljs-literal">nullptr</span>;&#125;<br><br>        <span class="hljs-comment">//生成所有节点的random指针所指向的节点在链表中的索引数组</span><br>        vector&lt;<span class="hljs-type">int</span>&gt; index;<br>        Node * cur = head;<br>        <span class="hljs-keyword">while</span> (cur) &#123;<br>            <span class="hljs-keyword">if</span>(cur-&gt;random == <span class="hljs-literal">nullptr</span>) &#123;<br>                index.<span class="hljs-built_in">push_back</span>(<span class="hljs-number">-1</span>);<br>            &#125; <span class="hljs-keyword">else</span> &#123;<br>                Node * temp = cur-&gt;random;<br>                Node * node = head;<br>                <span class="hljs-type">int</span> count = <span class="hljs-number">0</span>;<br>                <span class="hljs-keyword">while</span> (node) &#123;<br>                    <span class="hljs-keyword">if</span>(temp != node) &#123;<br>                        count++;<br>                    &#125; <span class="hljs-keyword">else</span> &#123;<br>                        index.<span class="hljs-built_in">push_back</span>(count);<br>                    &#125;<br>                    node = node-&gt;next;<br>                &#125;<br>            &#125;<br>            cur = cur-&gt;next;<br><br>        &#125;<br><br>        <span class="hljs-comment">//创建新链表</span><br>        Node * newHead = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Node</span>(head-&gt;val);<br>        Node * pre = newHead;<br>        Node * node = head-&gt;next;<br>        vector&lt;Node *&gt; nodes;<br>        nodes.<span class="hljs-built_in">push_back</span>(newHead);<br>        <span class="hljs-comment">//按照给定链表创建每个节点,同时将新创建的节点放入节点指针数组中</span><br>        <span class="hljs-keyword">while</span> (node) &#123;<br>            Node * temp = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Node</span>(node-&gt;val);<br>            nodes.<span class="hljs-built_in">push_back</span>(temp);<br>            pre-&gt;next = temp;<br>            pre = temp;<br>            node = node-&gt;next;<br>        &#125;<br>        <br>        node = newHead;<br>        <span class="hljs-comment">//设置新链表节点的random指针</span><br>        <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>; i &lt; index.<span class="hljs-built_in">size</span>(); i++) &#123;<br>            <span class="hljs-keyword">if</span>(index[i] == <span class="hljs-number">-1</span>) &#123;<br>                node-&gt;random = <span class="hljs-literal">nullptr</span>;<br>            &#125; <span class="hljs-keyword">else</span> &#123;<br>                node-&gt;random = nodes[index[i]];<br>            &#125;<br>            node = node-&gt;next;<br><br>        &#125;<br>        <span class="hljs-keyword">return</span> newHead;<br><br>    &#125;<br>&#125;;<br><br></code></pre></td></tr></table></figure>
 <h3 id="性能分析">性能分析</h3>
 <p>时间复杂度：在建立索引数组时，每访问一个节点，都需要遍历链表，为<span
 class="math inline">\(O(n^2)\)</span>，然后创建新链表，同时将新创建节点指针放入数组中，然后再次遍历设置random指针，时间复杂度为<span
@@ -294,7 +300,7 @@ class="math inline">\(O(1)\)</span>空间)。</p>
 <li>如果不存在，则创建新节点，同时放入字典中，，并返回该节点引用</li>
 </ul>
 <p>当给定链表遍历完毕，复制完成。</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line"></span><br><span class="line">    unordered_map&lt;Node *, Node *&gt;  visited;</span><br><span class="line"></span><br><span class="line">    <span class="function">Node * <span class="title">getCloneNode</span><span class="params">(Node * node)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(node != <span class="literal">nullptr</span>) &#123;</span><br><span class="line">            <span class="keyword">if</span>(<span class="keyword">this</span>-&gt;visited.<span class="built_in">count</span>(node)) &#123;</span><br><span class="line">                <span class="keyword">return</span> <span class="keyword">this</span>-&gt;visited[node];</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                Node * temp = <span class="keyword">new</span> <span class="built_in">Node</span>(node-&gt;val);</span><br><span class="line">                visited.<span class="built_in">insert</span>(&#123;node, temp&#125;);</span><br><span class="line">                <span class="keyword">return</span> temp;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">nullptr</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function">Node* <span class="title">copyRandomList</span><span class="params">(Node* head)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(head == <span class="literal">nullptr</span>) &#123;<span class="keyword">return</span> <span class="literal">nullptr</span>;&#125;</span><br><span class="line">        Node * oldHead = head;</span><br><span class="line">        Node * newHead = <span class="keyword">new</span> <span class="built_in">Node</span>(head-&gt;val);</span><br><span class="line">        visited.<span class="built_in">insert</span>(&#123;oldHead, newHead&#125;);</span><br><span class="line">        Node * cur = newHead;</span><br><span class="line">        <span class="keyword">while</span> (oldHead) &#123;</span><br><span class="line">            cur-&gt;random = <span class="built_in">getCloneNode</span>(oldHead-&gt;random);</span><br><span class="line">            cur-&gt;next = <span class="built_in">getCloneNode</span>(oldHead-&gt;next);</span><br><span class="line">            oldHead = oldHead-&gt;next;</span><br><span class="line">            cur = cur-&gt;next;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> newHead;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Solution</span> &#123;<br><span class="hljs-keyword">public</span>:<br><br>    unordered_map&lt;Node *, Node *&gt;  visited;<br><br>    <span class="hljs-function">Node * <span class="hljs-title">getCloneNode</span><span class="hljs-params">(Node * node)</span> </span>&#123;<br>        <span class="hljs-keyword">if</span>(node != <span class="hljs-literal">nullptr</span>) &#123;<br>            <span class="hljs-keyword">if</span>(<span class="hljs-keyword">this</span>-&gt;visited.<span class="hljs-built_in">count</span>(node)) &#123;<br>                <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>-&gt;visited[node];<br>            &#125; <span class="hljs-keyword">else</span> &#123;<br>                Node * temp = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Node</span>(node-&gt;val);<br>                visited.<span class="hljs-built_in">insert</span>(&#123;node, temp&#125;);<br>                <span class="hljs-keyword">return</span> temp;<br>            &#125;<br>        &#125;<br>        <span class="hljs-keyword">return</span> <span class="hljs-literal">nullptr</span>;<br>    &#125;<br>    <span class="hljs-function">Node* <span class="hljs-title">copyRandomList</span><span class="hljs-params">(Node* head)</span> </span>&#123;<br>        <span class="hljs-keyword">if</span>(head == <span class="hljs-literal">nullptr</span>) &#123;<span class="hljs-keyword">return</span> <span class="hljs-literal">nullptr</span>;&#125;<br>        Node * oldHead = head;<br>        Node * newHead = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Node</span>(head-&gt;val);<br>        visited.<span class="hljs-built_in">insert</span>(&#123;oldHead, newHead&#125;);<br>        Node * cur = newHead;<br>        <span class="hljs-keyword">while</span> (oldHead) &#123;<br>            cur-&gt;random = <span class="hljs-built_in">getCloneNode</span>(oldHead-&gt;random);<br>            cur-&gt;next = <span class="hljs-built_in">getCloneNode</span>(oldHead-&gt;next);<br>            oldHead = oldHead-&gt;next;<br>            cur = cur-&gt;next;<br>        &#125;<br>        <span class="hljs-keyword">return</span> newHead;<br>    &#125;<br>&#125;;<br></code></pre></td></tr></table></figure>
 <h3 id="性能分析-1">性能分析</h3>
 <p>时间复杂度：遍历链表，为<span
 class="math inline">\(O(n)\)</span>。</p>
@@ -306,81 +312,139 @@ class="math inline">\(O(n)\)</span>。</p>
 <p>首先，对于原链表的每个节点，创建一个新节点放在后面。</p>
 <p>例如，链表ABCD，则创建后的链表变为:AA BB CC DD。</p>
 <p>就是创建一个值相等的节点放在对应结点后面。</p>
-<p><img src="https://crayon-1302863897.cos.ap-beijing.myqcloud.com/image/image-20210508215200799.png" alt="image-20210508215200799" style="zoom:50%;" /></p>
+<p><img src="https://crayon-1302863897.cos.ap-beijing.myqcloud.com/image/image-20210508215200799.png" srcset="/img/loading.gif" lazyload alt="image-20210508215200799" style="zoom:50%;" /></p>
 <p>那么令原节点的random指针指向的节点为a，则新创建的节点的random指针应指向`<code>a-&gt;next</code>。</p>
 <p>例如图中A节点的random指针指向C，则新创建的节点的random指针指向C节点后面的新创建节点。</p>
 <p>next指针也是这个道理。</p>
 <p>这样就可以在不借助额外空间的情况下，以原链表作为map集合，直接创建节点并设置对应指针。</p>
 <p>巧妙~</p>
 <h4 id="算法实现-1">算法实现</h4>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line"></span><br><span class="line">    <span class="function">Node* <span class="title">copyRandomList</span><span class="params">(Node* head)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(head == <span class="literal">nullptr</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">nullptr</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        Node * node = head;</span><br><span class="line">        <span class="keyword">while</span> (node) &#123;</span><br><span class="line">            Node * temp = <span class="keyword">new</span> <span class="built_in">Node</span>(node-&gt;val);</span><br><span class="line">            temp-&gt;next = node-&gt;next;</span><br><span class="line">            node-&gt;next = temp;</span><br><span class="line">            node = node-&gt;next-&gt;next;</span><br><span class="line">        &#125;</span><br><span class="line">        Node * newHead = head-&gt;next;</span><br><span class="line"></span><br><span class="line">        node = head;</span><br><span class="line">        <span class="keyword">while</span> (node) &#123;</span><br><span class="line">            <span class="comment">//修改新创建节点的random指针，注意判断如果原节点random为空，则对应新节点也为空。</span></span><br><span class="line">            node-&gt;next-&gt;random = node-&gt;random != <span class="literal">nullptr</span> ? node-&gt;random-&gt;next : <span class="literal">nullptr</span>;</span><br><span class="line">            node = node-&gt;next-&gt;next;</span><br><span class="line">        &#125;</span><br><span class="line">        node = head;</span><br><span class="line">        <span class="keyword">while</span> (node) &#123;</span><br><span class="line">            <span class="comment">//保存node指针以原链表顺序的下一个节点</span></span><br><span class="line">            Node * rear = node-&gt;next-&gt;next;</span><br><span class="line">            node-&gt;next-&gt;next = rear != <span class="literal">nullptr</span> ? rear-&gt;next : <span class="literal">nullptr</span>;</span><br><span class="line">            node-&gt;next = rear;</span><br><span class="line">            node = rear;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> newHead;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Solution</span> &#123;<br><span class="hljs-keyword">public</span>:<br><br>    <span class="hljs-function">Node* <span class="hljs-title">copyRandomList</span><span class="hljs-params">(Node* head)</span> </span>&#123;<br>        <span class="hljs-keyword">if</span>(head == <span class="hljs-literal">nullptr</span>) &#123;<br>            <span class="hljs-keyword">return</span> <span class="hljs-literal">nullptr</span>;<br>        &#125;<br>        Node * node = head;<br>        <span class="hljs-keyword">while</span> (node) &#123;<br>            Node * temp = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Node</span>(node-&gt;val);<br>            temp-&gt;next = node-&gt;next;<br>            node-&gt;next = temp;<br>            node = node-&gt;next-&gt;next;<br>        &#125;<br>        Node * newHead = head-&gt;next;<br><br>        node = head;<br>        <span class="hljs-keyword">while</span> (node) &#123;<br>            <span class="hljs-comment">//修改新创建节点的random指针，注意判断如果原节点random为空，则对应新节点也为空。</span><br>            node-&gt;next-&gt;random = node-&gt;random != <span class="hljs-literal">nullptr</span> ? node-&gt;random-&gt;next : <span class="hljs-literal">nullptr</span>;<br>            node = node-&gt;next-&gt;next;<br>        &#125;<br>        node = head;<br>        <span class="hljs-keyword">while</span> (node) &#123;<br>            <span class="hljs-comment">//保存node指针以原链表顺序的下一个节点</span><br>            Node * rear = node-&gt;next-&gt;next;<br>            node-&gt;next-&gt;next = rear != <span class="hljs-literal">nullptr</span> ? rear-&gt;next : <span class="hljs-literal">nullptr</span>;<br>            node-&gt;next = rear;<br>            node = rear;<br>        &#125;<br>        <span class="hljs-keyword">return</span> newHead;<br><br>    &#125;<br>&#125;;<br></code></pre></td></tr></table></figure>
 <p>最后旧链表会恢复原状。</p>
 <h4 id="性能分析-2">性能分析</h4>
 <p>时间复杂度：<span class="math inline">\(O(n)\)</span>。</p>
 <p>空间复杂度：<span class="math inline">\(O(1)\)</span>。</p>
 
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/categories/leetcode/">LeetCode</a>
+                    
+                      <a class="hover-with-bg" href="/categories/leetcode/linkedlist/">链表</a>
+                    
+                  </div>
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/algo-prblem/">算法题</a>
+                    
+                  </div>
+                
+              </div>
+              
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
     </div>
-
     
-    
-    
-
-    <footer class="post-footer">
-          <div class="post-tags">
-              <a href="/tags/algo-prblem/" rel="tag"># 算法题</a>
-          </div>
-
-        
-
-          <div class="post-nav">
-            <div class="post-nav-item">
-                <a href="/2022/05/11/leetcode/%E9%93%BE%E8%A1%A8/29-%E5%8F%8D%E8%BD%AC%E9%93%BE%E8%A1%A8II/" rel="prev" title="29-反转链表II">
-                  <i class="fa fa-chevron-left"></i> 29-反转链表II
-                </a>
-            </div>
-            <div class="post-nav-item">
-                <a href="/2022/05/11/leetcode/%E9%93%BE%E8%A1%A8/31-%E7%8E%AF%E5%BD%A2%E9%93%BE%E8%A1%A8%20II/" rel="next" title="31-环形链表 II">
-                  31-环形链表 II <i class="fa fa-chevron-right"></i>
-                </a>
-            </div>
-          </div>
-    </footer>
-  </article>
+  </div>
 </div>
 
+<!-- Custom -->
 
 
+    
 
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
 
-
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
 </div>
+    
+
+    
+      <div class="col-lg-7 mx-auto nopadding-x-md">
+        <div class="container custom mx-auto">
+          <link rel="stylesheet" href="/js/aplayer/APlayer.min.css"> <div id="aplayer" style="display:none"></div> <script src="/js/aplayer/APlayer.min.js"></script>
+        </div>
+      </div>
+    
   </main>
 
-  <footer class="footer">
-    <div class="footer-inner">
-
-
-<div class="copyright">
-  &copy; 
-  <span itemprop="copyrightYear">2022</span>
-  <span class="with-love">
-    <i class="fa fa-heart"></i>
-  </span>
-  <span class="author" itemprop="copyrightHolder">ZhaoXin</span>
-</div>
-  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     <i class="iconfont icon-copyright"></i> <span>ZhaoXin, Built by </span> <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> 
   </div>
-
-    </div>
-  </footer>
-
   
-  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
-<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
 
   
 
+  
+</footer>
 
+  <!-- SCRIPTS -->
+  
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
 
 
 
@@ -388,6 +452,110 @@ class="math inline">\(O(n)\)</span>。</p>
 
 
 
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4/anchor.min.js" ></script>
+  
+  
+    <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js" ></script>
+  
+
+
+
+
+  <script defer src="/js/leancloud.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+        typing(title);
+      
+    })(window, document);
+  </script>
+
+
+
+
+
+  
+
+  
+    <!-- MathJax -->
+    <script>
+      MathJax = {
+        tex: {
+          inlineMath: [['$', '$'], ['\\(', '\\)']]
+        },
+        loader: {
+          load: ['ui/lazy']
+        },
+        options: {
+          renderActions: {
+            findScript: [10, doc => {
+              document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+                const display = !!node.type.match(/; *mode=display/);
+                const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+                const text = document.createTextNode('');
+                node.parentNode.replaceChild(text, node);
+                math.start = { node: text, delim: '', n: 0 };
+                math.end = { node: text, delim: '', n: 0 };
+                doc.math.push(math);
+              });
+            }, '', false],
+            insertedScript: [200, () => {
+              document.querySelectorAll('mjx-container').forEach(node => {
+                let target = node.parentNode;
+                if (target.nodeName.toLowerCase() === 'li') {
+                  target.parentNode.classList.add('has-jax');
+                }
+              });
+            }, '', false]
+          }
+        }
+      };
+    </script>
+
+    <script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js" ></script>
+
+  
+
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+
+  
+<script src="/js/music.js"></script>
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
 
 
 </body>

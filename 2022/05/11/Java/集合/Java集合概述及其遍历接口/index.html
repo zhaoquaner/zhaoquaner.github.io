@@ -1,25 +1,21 @@
+
+
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
 <head>
   <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width">
-<meta name="theme-color" content="#222">
-
-
-  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
-  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
-  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
-  <link rel="mask-icon" href="/images/logo.svg" color="#222">
-
-<link rel="stylesheet" href="/css/main.css">
-
-
-
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css" integrity="sha256-DfWjNxDkM94fVBWx1H5BMMp0Zq7luBlV8QRcSES7s+0=" crossorigin="anonymous">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
-
-<script class="next-config" data-name="main" type="application/json">{"hostname":"zhaoquaner.github.io","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.11.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":15,"offset":12,"width":220},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
-
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
+  <link rel="icon" href="/img/favicon.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="ZhaoXin">
+  <meta name="keywords" content="博客">
+  
     <meta name="description" content="集合主要负责保存其他数据，集合和数组不一样，数组元素可以是基本类型如int，float，但集合里只能保存对象(实际保存的是对象的引用变量)。 Java集合类由两个接口派生而出：Collection和Map，这两个接口又包含了一些子接口和实现类。 继承树  大致分为四种集合：Set、List、Queue和Map 特点  Set是无序集合，元素不能重复 List是有序集合，每个元素有对">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Java集合概述及其遍历接口">
@@ -33,225 +29,235 @@
 <meta property="article:author" content="ZhaoXin">
 <meta property="article:tag" content="Java基础">
 <meta property="article:tag" content="集合">
-<meta name="twitter:card" content="summary">
+<meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="https://crayon-1302863897.cos.ap-beijing.myqcloud.com/image/集合接口.png">
+  
+  
+  <title>Java集合概述及其遍历接口 - 赵圈儿的博客</title>
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/css/bootstrap.min.css" />
 
 
-<link rel="canonical" href="https://zhaoquaner.github.io/2022/05/11/Java/%E9%9B%86%E5%90%88/Java%E9%9B%86%E5%90%88%E6%A6%82%E8%BF%B0%E5%8F%8A%E5%85%B6%E9%81%8D%E5%8E%86%E6%8E%A5%E5%8F%A3/">
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4/github-markdown.min.css" />
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hint.css@2/hint.min.css" />
 
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10/styles/github-gist.min.css" />
+    
+  
 
-
-<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://zhaoquaner.github.io/2022/05/11/Java/%E9%9B%86%E5%90%88/Java%E9%9B%86%E5%90%88%E6%A6%82%E8%BF%B0%E5%8F%8A%E5%85%B6%E9%81%8D%E5%8E%86%E6%8E%A5%E5%8F%A3/","path":"2022/05/11/Java/集合/Java集合概述及其遍历接口/","title":"Java集合概述及其遍历接口"}</script>
-
-<script class="next-config" data-name="calendar" type="application/json">""</script>
-<title>Java集合概述及其遍历接口 | 赵圈儿的博客</title>
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.css" />
   
 
 
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
 
 
 
-  <noscript>
-    <link rel="stylesheet" href="/css/noscript.css">
-  </noscript>
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"zhaoquaner.github.io","root":"/","version":"1.8.14","typing":{"enable":true,"typeSpeed":60,"cursorChar":" ","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":false,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":2},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":"BzK0JfEpsm40LlV9EPIyl4mp-gzGzoHsz","app_key":"MpxSk6ED55Utq83yNrKAMI5c","server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
 </head>
 
-<body itemscope itemtype="http://schema.org/WebPage" class="use-motion"><!-- hexo injector body_begin start --><style>code {font-weight:400;}.post-content {font-weight:600;} #board {border-radius: 1.5rem;} #board-ctn {width:110%;margin-left:-5%;}</style><!-- hexo injector body_begin end -->
-  <div class="headband"></div>
 
-  <main class="main">
-    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
-      <div class="header-inner"><div class="site-brand-container">
-  <div class="site-nav-toggle">
-    <div class="toggle" aria-label="切换导航栏" role="button">
-        <span class="toggle-line"></span>
-        <span class="toggle-line"></span>
-        <span class="toggle-line"></span>
-    </div>
-  </div>
-
-  <div class="site-meta">
-
-    <a href="/" class="brand" rel="start">
-      <i class="logo-line"></i>
-      <p class="site-title">赵圈儿的博客</p>
-      <i class="logo-line"></i>
+<body><!-- hexo injector body_begin start --><style>code {font-weight:400;}.post-content {font-weight:600;} #board {border-radius: 1.5rem;} #board-ctn {width:110%;margin-left:-5%;}</style><!-- hexo injector body_begin end -->
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Personal Blog</strong>
     </a>
-  </div>
 
-  <div class="site-nav-right">
-    <div class="toggle popup-trigger">
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="javascript:;">
+                <i class="iconfont icon-music"></i>
+                播放
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
     </div>
   </div>
-</div>
-
-
-
-<nav class="site-nav">
-  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">23</span></a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">18</span></a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">169</span></a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li>
-  </ul>
 </nav>
 
+    <div class="banner" id="banner" parallax=true
+         style="background: url('/img/article.png') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="Java集合概述及其遍历接口">
+              
+            </span>
 
-
-
-</div>
-        
+            
+              <div class="mt-3">
   
-  <div class="toggle sidebar-toggle" role="button">
-    <span class="toggle-line"></span>
-    <span class="toggle-line"></span>
-    <span class="toggle-line"></span>
-  </div>
-
-  <aside class="sidebar">
-
-    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
-      <ul class="sidebar-nav">
-        <li class="sidebar-nav-toc">
-          文章目录
-        </li>
-        <li class="sidebar-nav-overview">
-          站点概览
-        </li>
-      </ul>
-
-      <div class="sidebar-panel-container">
-        <!--noindex-->
-        <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#collection%E6%8E%A5%E5%8F%A3"><span class="nav-number">1.</span> <span class="nav-text">Collection接口</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8iterator%E9%81%8D%E5%8E%86%E9%9B%86%E5%90%88%E5%85%83%E7%B4%A0"><span class="nav-number">2.</span> <span class="nav-text">使用Iterator遍历集合元素</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8iterator%E6%8E%A5%E5%8F%A3%E7%9A%84%E6%96%B0%E5%A2%9E%E6%96%B9%E6%B3%95%E6%9D%A5%E9%81%8D%E5%8E%86%E9%9B%86%E5%90%88"><span class="nav-number">2.1.</span> <span class="nav-text">使用Iterator接口的新增方法来遍历集合</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8foreach%E5%BE%AA%E7%8E%AF%E6%9D%A5%E9%81%8D%E5%8E%86%E9%9B%86%E5%90%88%E5%85%83%E7%B4%A0"><span class="nav-number">3.</span> <span class="nav-text">使用foreach循环来遍历集合元素</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8predicate%E6%93%8D%E4%BD%9C%E9%9B%86%E5%90%88"><span class="nav-number">4.</span> <span class="nav-text">使用Predicate操作集合</span></a></li></ol></div>
-        </div>
-        <!--/noindex-->
-
-        <div class="site-overview-wrap sidebar-panel">
-          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
-    <img class="site-author-image" itemprop="image" alt="ZhaoXin"
-      src="https://crayon-1302863897.cos.ap-beijing.myqcloud.com/blog_images/avatar.png">
-  <p class="site-author-name" itemprop="name">ZhaoXin</p>
-  <div class="site-description" itemprop="description"></div>
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2022-05-11 09:02" pubdate>
+        2022/5/11 9时2分
+      </time>
+    </span>
+  
 </div>
-<div class="site-state-wrap site-overview-item animated">
-  <nav class="site-state">
-      <div class="site-state-item site-state-posts">
-        <a href="/archives/">
-          <span class="site-state-item-count">169</span>
-          <span class="site-state-item-name">日志</span>
-        </a>
-      </div>
-      <div class="site-state-item site-state-categories">
-          <a href="/categories/">
-        <span class="site-state-item-count">18</span>
-        <span class="site-state-item-name">分类</span></a>
-      </div>
-      <div class="site-state-item site-state-tags">
-          <a href="/tags/">
-        <span class="site-state-item-count">23</span>
-        <span class="site-state-item-name">标签</span></a>
-      </div>
-  </nav>
+
+<div class="mt-1">
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      6.7k 字
+    </span>
+  
+
+  
+
+  
+  
+    
+      <!-- LeanCloud 统计文章PV -->
+      <span id="leancloud-page-views-container" class="post-meta" style="display: none">
+        <i class="iconfont icon-eye" aria-hidden="true"></i>
+        <span id="leancloud-page-views"></span> 次
+      </span>
+    
+  
 </div>
-  <div class="links-of-author site-overview-item animated">
-      <span class="links-of-author-item">
-        <a href="https://github.com/zhaoquaner" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;zhaoquaner" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
-      </span>
-      <span class="links-of-author-item">
-        <a href="mailto:zx1522202417@163.com" title="E-Mail → mailto:zx1522202417@163.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
-      </span>
-  </div>
 
+            
+          </div>
 
-
+          
         </div>
       </div>
     </div>
-  </aside>
-  <div class="sidebar-dimmer"></div>
+  </header>
 
-
-    </header>
-
+  <main>
     
-  <div class="back-to-top" role="button" aria-label="返回顶部">
-    <i class="fa fa-arrow-up"></i>
-    <span>0%</span>
-  </div>
-
-<noscript>
-  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
-</noscript>
-
-
-    <div class="main-inner post posts-expand">
-
-
-  
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://zhaoquaner.github.io/2022/05/11/Java/%E9%9B%86%E5%90%88/Java%E9%9B%86%E5%90%88%E6%A6%82%E8%BF%B0%E5%8F%8A%E5%85%B6%E9%81%8D%E5%8E%86%E6%8E%A5%E5%8F%A3/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="https://crayon-1302863897.cos.ap-beijing.myqcloud.com/blog_images/avatar.png">
-      <meta itemprop="name" content="ZhaoXin">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="赵圈儿的博客">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="Java集合概述及其遍历接口 | 赵圈儿的博客">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          Java集合概述及其遍历接口
-        </h1>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
       
 
-      <time title="创建时间：2022-05-11 09:02:39 / 修改时间：16:53:28" itemprop="dateCreated datePublished" datetime="2022-05-11T09:02:39+08:00">2022-05-11</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/programming/" itemprop="url" rel="index"><span itemprop="name">编程学习</span></a>
-        </span>
-          ，
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/programming/java/" itemprop="url" rel="index"><span itemprop="name">Java基础</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-        <p>集合主要负责保存其他数据，集合和数组不一样，数组元素可以是基本类型如int，float，但集合里只能保存对象(实际保存的是对象的引用变量)。</p>
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">Java集合概述及其遍历接口</h1>
+            
+            <div class="markdown-body">
+              <p>集合主要负责保存其他数据，集合和数组不一样，数组元素可以是基本类型如int，float，但集合里只能保存对象(实际保存的是对象的引用变量)。</p>
 <p>Java集合类由两个接口派生而出：Collection和Map，这两个接口又包含了一些子接口和实现类。</p>
 <p>继承树</p>
-<p><img src="https://crayon-1302863897.cos.ap-beijing.myqcloud.com/image/集合接口.png" alt="集合接口" style="zoom:100%;" /></p>
+<p><img src="https://crayon-1302863897.cos.ap-beijing.myqcloud.com/image/集合接口.png" srcset="/img/loading.gif" lazyload alt="集合接口" style="zoom:100%;" /></p>
 <p>大致分为四种集合：Set、List、Queue和Map</p>
 <p>特点</p>
 <ul>
@@ -296,7 +302,7 @@ action)</strong>：使用Lambda表达式遍历集合元素</li>
 </ul>
 <p>Iterator仅仅用于遍历集合，如果需要创建Iterator对象，则必须有一个需要被迭代的集合。</p>
 <p>例子</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.*;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">IteratorTest</span></span><br><span class="line">&#123;</span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span></span><br><span class="line">	&#123;</span><br><span class="line">		<span class="comment">// 创建集合、添加元素的代码与前一个程序相同</span></span><br><span class="line">		<span class="type">var</span> <span class="variable">books</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">HashSet</span>();</span><br><span class="line">		books.add(<span class="string">&quot;轻量级Java EE企业应用实战&quot;</span>);</span><br><span class="line">		books.add(<span class="string">&quot;疯狂Java讲义&quot;</span>);</span><br><span class="line">		books.add(<span class="string">&quot;疯狂Android讲义&quot;</span>);</span><br><span class="line">		<span class="comment">// 获取books集合对应的迭代器</span></span><br><span class="line">		<span class="type">var</span> <span class="variable">it</span> <span class="operator">=</span> books.iterator();</span><br><span class="line">		<span class="keyword">while</span> (it.hasNext())</span><br><span class="line">		&#123;</span><br><span class="line">			<span class="comment">// it.next()方法返回的数据类型是Object类型，因此需要强制类型转换</span></span><br><span class="line">			<span class="type">var</span> <span class="variable">book</span> <span class="operator">=</span> (String) it.next();</span><br><span class="line">			System.out.println(book);</span><br><span class="line">			<span class="keyword">if</span> (book.equals(<span class="string">&quot;疯狂Java讲义&quot;</span>))</span><br><span class="line">			&#123;</span><br><span class="line">				<span class="comment">// 从集合中删除上一次next方法返回的元素</span></span><br><span class="line">				it.remove();</span><br><span class="line">			&#125;</span><br><span class="line">			<span class="comment">// 对book变量赋值，不会改变集合元素本身</span></span><br><span class="line">			book = <span class="string">&quot;测试字符串&quot;</span>;   <span class="comment">// ①</span></span><br><span class="line">		&#125;</span><br><span class="line">		System.out.println(books);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><div class="code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></div></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">import</span> java.util.*;<br><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">IteratorTest</span><br>&#123;<br>	<span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">main</span><span class="hljs-params">(String[] args)</span><br>	&#123;<br>		<span class="hljs-comment">// 创建集合、添加元素的代码与前一个程序相同</span><br>		<span class="hljs-type">var</span> <span class="hljs-variable">books</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">HashSet</span>();<br>		books.add(<span class="hljs-string">&quot;轻量级Java EE企业应用实战&quot;</span>);<br>		books.add(<span class="hljs-string">&quot;疯狂Java讲义&quot;</span>);<br>		books.add(<span class="hljs-string">&quot;疯狂Android讲义&quot;</span>);<br>		<span class="hljs-comment">// 获取books集合对应的迭代器</span><br>		<span class="hljs-type">var</span> <span class="hljs-variable">it</span> <span class="hljs-operator">=</span> books.iterator();<br>		<span class="hljs-keyword">while</span> (it.hasNext())<br>		&#123;<br>			<span class="hljs-comment">// it.next()方法返回的数据类型是Object类型，因此需要强制类型转换</span><br>			<span class="hljs-type">var</span> <span class="hljs-variable">book</span> <span class="hljs-operator">=</span> (String) it.next();<br>			System.out.println(book);<br>			<span class="hljs-keyword">if</span> (book.equals(<span class="hljs-string">&quot;疯狂Java讲义&quot;</span>))<br>			&#123;<br>				<span class="hljs-comment">// 从集合中删除上一次next方法返回的元素</span><br>				it.remove();<br>			&#125;<br>			<span class="hljs-comment">// 对book变量赋值，不会改变集合元素本身</span><br>			book = <span class="hljs-string">&quot;测试字符串&quot;</span>;   <span class="hljs-comment">// ①</span><br>		&#125;<br>		System.out.println(books);<br>	&#125;<br>&#125;<br></code></pre></td></tr></table></figure>
 <p>当使用Iterator遍历集合时，Iterator并不是把集合元素本身传给迭代变量，而是把对应的值传给迭代变量，所以修改迭代变量的值对集合本身没有影响。</p>
 <p>虽然remove方法可以删除集合元素，但尽量不要使用remove来删除集合元素。</p>
 <h3
@@ -306,16 +312,16 @@ action)，该方法参数是一个函数式接口，可以使用Lambda来遍历�
 <p>当调用该方法时，程序会依次将集合元素传给Consumer的accept(T
 t)方法。</p>
 <p>例子</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.ArrayList;</span><br><span class="line"><span class="keyword">public</span>  <span class="keyword">class</span>  <span class="title class_">Main</span>  &#123;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">public</span>  <span class="keyword">static</span>  <span class="keyword">void</span>  <span class="title function_">main</span><span class="params">(String[]  args)</span> <span class="keyword">throws</span> Exception &#123;</span><br><span class="line"></span><br><span class="line">                <span class="type">var</span> <span class="variable">c</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">ArrayList</span>();</span><br><span class="line"></span><br><span class="line">                c.add(<span class="string">&quot;你好&quot;</span>);</span><br><span class="line">                c.add(<span class="string">&quot;同学&quot;</span>);</span><br><span class="line">                c.add(<span class="string">&quot;再见&quot;</span>);</span><br><span class="line">                </span><br><span class="line">                c.forEach(obj-&gt;&#123;System.out.println(obj);&#125;);</span><br><span class="line"></span><br><span class="line">                </span><br><span class="line">        &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">import</span> java.util.ArrayList;<br><span class="hljs-keyword">public</span>  <span class="hljs-keyword">class</span>  <span class="hljs-title class_">Main</span>  &#123;<br><br>        <span class="hljs-keyword">public</span>  <span class="hljs-keyword">static</span>  <span class="hljs-keyword">void</span>  <span class="hljs-title function_">main</span><span class="hljs-params">(String[]  args)</span> <span class="hljs-keyword">throws</span> Exception &#123;<br><br>                <span class="hljs-type">var</span> <span class="hljs-variable">c</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">ArrayList</span>();<br><br>                c.add(<span class="hljs-string">&quot;你好&quot;</span>);<br>                c.add(<span class="hljs-string">&quot;同学&quot;</span>);<br>                c.add(<span class="hljs-string">&quot;再见&quot;</span>);<br>                <br>                c.forEach(obj-&gt;&#123;System.out.println(obj);&#125;);<br><br>                <br>        &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
 <p>Iterator接口同样有一个forEachRemaining(Consumer
 action)，该方法所需参数是函数式接口，当程序调用Iterator的该方法时，程序会把集合元素传给Consumer的accpet(T
 t)方法</p>
 <p>例子</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span>  <span class="keyword">class</span>  <span class="title class_">Main</span>  &#123;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">public</span>  <span class="keyword">static</span>  <span class="keyword">void</span>  <span class="title function_">main</span><span class="params">(String[]  args)</span> <span class="keyword">throws</span> Exception &#123;</span><br><span class="line"></span><br><span class="line">                <span class="type">var</span> <span class="variable">c</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">ArrayList</span>();</span><br><span class="line"></span><br><span class="line">                c.add(<span class="string">&quot;你好&quot;</span>);</span><br><span class="line">                c.add(<span class="string">&quot;同学&quot;</span>);</span><br><span class="line">                c.add(<span class="string">&quot;再见&quot;</span>);</span><br><span class="line"></span><br><span class="line">                <span class="type">Iterator</span> <span class="variable">a</span> <span class="operator">=</span> c.iterator();</span><br><span class="line"></span><br><span class="line">                a.forEachRemaining(obj-&gt;&#123;System.out.println(obj);&#125;);</span><br><span class="line"></span><br><span class="line">        &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span>  <span class="hljs-keyword">class</span>  <span class="hljs-title class_">Main</span>  &#123;<br><br>        <span class="hljs-keyword">public</span>  <span class="hljs-keyword">static</span>  <span class="hljs-keyword">void</span>  <span class="hljs-title function_">main</span><span class="hljs-params">(String[]  args)</span> <span class="hljs-keyword">throws</span> Exception &#123;<br><br>                <span class="hljs-type">var</span> <span class="hljs-variable">c</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">ArrayList</span>();<br><br>                c.add(<span class="hljs-string">&quot;你好&quot;</span>);<br>                c.add(<span class="hljs-string">&quot;同学&quot;</span>);<br>                c.add(<span class="hljs-string">&quot;再见&quot;</span>);<br><br>                <span class="hljs-type">Iterator</span> <span class="hljs-variable">a</span> <span class="hljs-operator">=</span> c.iterator();<br><br>                a.forEachRemaining(obj-&gt;&#123;System.out.println(obj);&#125;);<br><br>        &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
 <h2
 id="使用foreach循环来遍历集合元素">使用foreach循环来遍历集合元素</h2>
 <p>可以直接使用for each循环来遍历集合，更加方便</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span>  <span class="keyword">class</span>  <span class="title class_">Main</span>  &#123;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">public</span>  <span class="keyword">static</span>  <span class="keyword">void</span>  <span class="title function_">main</span><span class="params">(String[]  args)</span> <span class="keyword">throws</span> Exception &#123;</span><br><span class="line"></span><br><span class="line">                <span class="type">var</span> <span class="variable">c</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">ArrayList</span>();</span><br><span class="line"></span><br><span class="line">                c.add(<span class="string">&quot;你好&quot;</span>);</span><br><span class="line">                c.add(<span class="string">&quot;同学&quot;</span>);</span><br><span class="line">                c.add(<span class="string">&quot;再见&quot;</span>);</span><br><span class="line"></span><br><span class="line">                <span class="keyword">for</span>(<span class="keyword">var</span> obj : c)</span><br><span class="line">                &#123;</span><br><span class="line">                        System.out.println(obj);</span><br><span class="line">                &#125;</span><br><span class="line"></span><br><span class="line">        &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span>  <span class="hljs-keyword">class</span>  <span class="hljs-title class_">Main</span>  &#123;<br><br>        <span class="hljs-keyword">public</span>  <span class="hljs-keyword">static</span>  <span class="hljs-keyword">void</span>  <span class="hljs-title function_">main</span><span class="hljs-params">(String[]  args)</span> <span class="hljs-keyword">throws</span> Exception &#123;<br><br>                <span class="hljs-type">var</span> <span class="hljs-variable">c</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">ArrayList</span>();<br><br>                c.add(<span class="hljs-string">&quot;你好&quot;</span>);<br>                c.add(<span class="hljs-string">&quot;同学&quot;</span>);<br>                c.add(<span class="hljs-string">&quot;再见&quot;</span>);<br><br>                <span class="hljs-keyword">for</span>(<span class="hljs-keyword">var</span> obj : c)<br>                &#123;<br>                        System.out.println(obj);<br>                &#125;<br><br>        &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
 <p>使用foreach循环遍历集合时也不能修改集合元素</p>
 <h2 id="使用predicate操作集合">使用Predicate操作集合</h2>
 <p>Collection集合有一个removeIf(Predicate
@@ -323,7 +329,7 @@ filter)方法，该方法会批量删除符合filter条件的所有元素</p>
 <p>该方法需要一个Predicate对象来作为参数，Predicate是函数式接口，可以用Lambda表达式</p>
 <p>该接口中的唯一抽象方法test，如果符合filter条件，该方法返回true，否则false</p>
 <p>例子</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span>  <span class="keyword">class</span>  <span class="title class_">Main</span>  &#123;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">public</span>  <span class="keyword">static</span>  <span class="keyword">void</span>  <span class="title function_">main</span><span class="params">(String[]  args)</span> <span class="keyword">throws</span> Exception &#123;</span><br><span class="line"></span><br><span class="line">                <span class="type">var</span> <span class="variable">c</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">ArrayList</span>();</span><br><span class="line"></span><br><span class="line">                c.add(<span class="string">&quot;你好&quot;</span>);</span><br><span class="line">                c.add(<span class="string">&quot;同学&quot;</span>);</span><br><span class="line">                c.add(<span class="string">&quot;再见&quot;</span>);</span><br><span class="line">                c.add(<span class="string">&quot;9dorgja[we0uf&quot;</span>);</span><br><span class="line">                c.add(<span class="string">&quot;sidufhsd&quot;</span>);</span><br><span class="line"></span><br><span class="line">                c.removeIf(e-&gt;&#123;<span class="keyword">return</span> ((String)e).length() &gt; <span class="number">10</span>;&#125;);</span><br><span class="line"></span><br><span class="line">                System.out.println(c);</span><br><span class="line">                </span><br><span class="line">        &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span>  <span class="hljs-keyword">class</span>  <span class="hljs-title class_">Main</span>  &#123;<br><br>        <span class="hljs-keyword">public</span>  <span class="hljs-keyword">static</span>  <span class="hljs-keyword">void</span>  <span class="hljs-title function_">main</span><span class="hljs-params">(String[]  args)</span> <span class="hljs-keyword">throws</span> Exception &#123;<br><br>                <span class="hljs-type">var</span> <span class="hljs-variable">c</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">ArrayList</span>();<br><br>                c.add(<span class="hljs-string">&quot;你好&quot;</span>);<br>                c.add(<span class="hljs-string">&quot;同学&quot;</span>);<br>                c.add(<span class="hljs-string">&quot;再见&quot;</span>);<br>                c.add(<span class="hljs-string">&quot;9dorgja[we0uf&quot;</span>);<br>                c.add(<span class="hljs-string">&quot;sidufhsd&quot;</span>);<br><br>                c.removeIf(e-&gt;&#123;<span class="hljs-keyword">return</span> ((String)e).length() &gt; <span class="hljs-number">10</span>;&#125;);<br><br>                System.out.println(c);<br>                <br>        &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
 <p>上述代码会把c集合里长度大于10的字符串删掉。</p>
 <p>其中 <code>c.removeIf(e-&gt;&#123;return ((String)e).length() &gt;
 10;&#125;)</code>的参数e可以用任意名称代替</p>
@@ -337,7 +343,7 @@ filter)方法，该方法会批量删除符合filter条件的所有元素</p>
 <li>调用Builder的build方法获取对应Stream</li>
 <li>调用Stream的聚集方法</li>
 </ol>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span>  <span class="keyword">class</span>  <span class="title class_">Main</span>  &#123;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">public</span>  <span class="keyword">static</span>  <span class="keyword">void</span>  <span class="title function_">main</span><span class="params">(String[]  args)</span> <span class="keyword">throws</span> Exception &#123;</span><br><span class="line"></span><br><span class="line">                IntStream.<span class="type">Builder</span> <span class="variable">a</span> <span class="operator">=</span> IntStream.builder();</span><br><span class="line"></span><br><span class="line">                a.add(<span class="number">4</span>);</span><br><span class="line">                a.add(<span class="number">85</span>);</span><br><span class="line">                a.add(<span class="number">14</span>);</span><br><span class="line">                a.add(-<span class="number">15</span>);</span><br><span class="line">                a.add(-<span class="number">45</span>);</span><br><span class="line">                a.add(<span class="number">26</span>);</span><br><span class="line"></span><br><span class="line">                <span class="type">IntStream</span> <span class="variable">b</span> <span class="operator">=</span> a.build();</span><br><span class="line"></span><br><span class="line">                <span class="comment">// 下面调用聚集方法的代码每次只能执行一个</span></span><br><span class="line"></span><br><span class="line">		System.out.println(<span class="string">&quot;is所有元素的最大值：&quot;</span> + b.max().getAsInt());</span><br><span class="line">		<span class="comment">//System.out.println(&quot;is所有元素的最小值：&quot; + b.min().getAsInt());</span></span><br><span class="line">		<span class="comment">//System.out.println(&quot;is所有元素的总和：&quot; + b.sum());</span></span><br><span class="line">		<span class="comment">//System.out.println(&quot;is所有元素的总数：&quot; + b.count());</span></span><br><span class="line">		<span class="comment">//System.out.println(&quot;is所有元素的平均值：&quot; + b.average());</span></span><br><span class="line"></span><br><span class="line">		System.out.println(<span class="string">&quot;is所有元素的平方是否都大于20:&quot;</span></span><br><span class="line">			+ b.allMatch(ele -&gt; ele * ele &gt; <span class="number">20</span>));</span><br><span class="line"></span><br><span class="line">		System.out.println(<span class="string">&quot;is是否包含任何元素的平方大于20:&quot;</span></span><br><span class="line">			+ b.anyMatch(ele -&gt; ele * ele &gt; <span class="number">20</span>));</span><br><span class="line"></span><br><span class="line">                <span class="comment">// 将is映射成一个新Stream，新Stream的每个元素是原Stream元素的2倍+1</span></span><br><span class="line"></span><br><span class="line">                <span class="type">var</span> <span class="variable">newIs</span> <span class="operator">=</span> b.map(ele -&gt; ele * <span class="number">2</span> + <span class="number">1</span>);</span><br><span class="line"></span><br><span class="line">                <span class="comment">// 使用方法引用的方式来遍历集合元素</span></span><br><span class="line">                newIs.forEach(System.out::println); <span class="comment">// 输出41 27 -3 37</span></span><br><span class="line">                </span><br><span class="line">        &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span>  <span class="hljs-keyword">class</span>  <span class="hljs-title class_">Main</span>  &#123;<br><br>        <span class="hljs-keyword">public</span>  <span class="hljs-keyword">static</span>  <span class="hljs-keyword">void</span>  <span class="hljs-title function_">main</span><span class="hljs-params">(String[]  args)</span> <span class="hljs-keyword">throws</span> Exception &#123;<br><br>                IntStream.<span class="hljs-type">Builder</span> <span class="hljs-variable">a</span> <span class="hljs-operator">=</span> IntStream.builder();<br><br>                a.add(<span class="hljs-number">4</span>);<br>                a.add(<span class="hljs-number">85</span>);<br>                a.add(<span class="hljs-number">14</span>);<br>                a.add(-<span class="hljs-number">15</span>);<br>                a.add(-<span class="hljs-number">45</span>);<br>                a.add(<span class="hljs-number">26</span>);<br><br>                <span class="hljs-type">IntStream</span> <span class="hljs-variable">b</span> <span class="hljs-operator">=</span> a.build();<br><br>                <span class="hljs-comment">// 下面调用聚集方法的代码每次只能执行一个</span><br><br>		System.out.println(<span class="hljs-string">&quot;is所有元素的最大值：&quot;</span> + b.max().getAsInt());<br>		<span class="hljs-comment">//System.out.println(&quot;is所有元素的最小值：&quot; + b.min().getAsInt());</span><br>		<span class="hljs-comment">//System.out.println(&quot;is所有元素的总和：&quot; + b.sum());</span><br>		<span class="hljs-comment">//System.out.println(&quot;is所有元素的总数：&quot; + b.count());</span><br>		<span class="hljs-comment">//System.out.println(&quot;is所有元素的平均值：&quot; + b.average());</span><br><br>		System.out.println(<span class="hljs-string">&quot;is所有元素的平方是否都大于20:&quot;</span><br>			+ b.allMatch(ele -&gt; ele * ele &gt; <span class="hljs-number">20</span>));<br><br>		System.out.println(<span class="hljs-string">&quot;is是否包含任何元素的平方大于20:&quot;</span><br>			+ b.anyMatch(ele -&gt; ele * ele &gt; <span class="hljs-number">20</span>));<br><br>                <span class="hljs-comment">// 将is映射成一个新Stream，新Stream的每个元素是原Stream元素的2倍+1</span><br><br>                <span class="hljs-type">var</span> <span class="hljs-variable">newIs</span> <span class="hljs-operator">=</span> b.map(ele -&gt; ele * <span class="hljs-number">2</span> + <span class="hljs-number">1</span>);<br><br>                <span class="hljs-comment">// 使用方法引用的方式来遍历集合元素</span><br>                newIs.forEach(System.out::println); <span class="hljs-comment">// 输出41 27 -3 37</span><br>                <br>        &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
 <p>上面聚集方法只能执行一行，需要把其他聚集操作注释掉。</p>
 <p>Stream提供了很多方法来进行操作，分为“中间方法”和“末端方法”</p>
 <ul>
@@ -380,71 +386,130 @@ predicate)</strong>：判断流中是否所有元素都不符合Predicate条件<
 </ul>
 <p>Java允许使用这些流来操作集合，Collection提供了一个stream默认方法，该方法返回该集合对应流，然后可以使用流的方法来操作集合元素</p>
 <p>例子：对集合元素进行批量操作</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.*;</span><br><span class="line"><span class="keyword">import</span> java.util.function.*;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">CollectionStream</span></span><br><span class="line">&#123;</span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span></span><br><span class="line">	&#123;</span><br><span class="line">		<span class="comment">// 创建books集合、为books集合添加元素的代码与8.2.5小节的程序相同。</span></span><br><span class="line">		<span class="type">var</span> <span class="variable">books</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">HashSet</span>();</span><br><span class="line">        </span><br><span class="line">		books.add(<span class="string">&quot;轻量级Java EE企业应用实战&quot;</span>);</span><br><span class="line">		books.add(<span class="string">&quot;疯狂Java讲义&quot;</span>);</span><br><span class="line">		books.add(<span class="string">&quot;疯狂iOS讲义&quot;</span>);</span><br><span class="line">		books.add(<span class="string">&quot;疯狂Ajax讲义&quot;</span>);</span><br><span class="line">		books.add(<span class="string">&quot;疯狂Android讲义&quot;</span>);</span><br><span class="line">        </span><br><span class="line">		<span class="comment">// 统计书名包含“疯狂”子串的图书数量</span></span><br><span class="line">        </span><br><span class="line">		System.out.println(books.stream()</span><br><span class="line">			.filter(ele-&gt;((String) ele).contains(<span class="string">&quot;疯狂&quot;</span>))</span><br><span class="line">			.count()); <span class="comment">// 输出4</span></span><br><span class="line">        </span><br><span class="line">		<span class="comment">// 统计书名包含“Java”子串的图书数量</span></span><br><span class="line">		System.out.println(books.stream()</span><br><span class="line">			.filter(ele-&gt;((String) ele).contains(<span class="string">&quot;Java&quot;</span>) )</span><br><span class="line">			.count()); <span class="comment">// 输出2</span></span><br><span class="line">        </span><br><span class="line">		<span class="comment">// 统计书名字符串长度大于10的图书数量</span></span><br><span class="line">		System.out.println(books.stream()</span><br><span class="line">			.filter(ele-&gt;((String) ele).length() &gt; <span class="number">10</span>)</span><br><span class="line">			.count()); <span class="comment">// 输出2</span></span><br><span class="line">        </span><br><span class="line">		<span class="comment">// 先调用Collection对象的stream()方法将集合转换为Stream,</span></span><br><span class="line">		<span class="comment">// 再调用Stream的mapToInt()方法获取原有的Stream对应的IntStream</span></span><br><span class="line">		books.stream().mapToInt(ele -&gt; ((String) ele).length())</span><br><span class="line">			<span class="comment">// 调用forEach()方法遍历IntStream中每个元素</span></span><br><span class="line">			.forEach(System.out::println);<span class="comment">// 输出8 11 16 7 8</span></span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">import</span> java.util.*;<br><span class="hljs-keyword">import</span> java.util.function.*;<br><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">CollectionStream</span><br>&#123;<br>	<span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">main</span><span class="hljs-params">(String[] args)</span><br>	&#123;<br>		<span class="hljs-comment">// 创建books集合、为books集合添加元素的代码与8.2.5小节的程序相同。</span><br>		<span class="hljs-type">var</span> <span class="hljs-variable">books</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">HashSet</span>();<br>        <br>		books.add(<span class="hljs-string">&quot;轻量级Java EE企业应用实战&quot;</span>);<br>		books.add(<span class="hljs-string">&quot;疯狂Java讲义&quot;</span>);<br>		books.add(<span class="hljs-string">&quot;疯狂iOS讲义&quot;</span>);<br>		books.add(<span class="hljs-string">&quot;疯狂Ajax讲义&quot;</span>);<br>		books.add(<span class="hljs-string">&quot;疯狂Android讲义&quot;</span>);<br>        <br>		<span class="hljs-comment">// 统计书名包含“疯狂”子串的图书数量</span><br>        <br>		System.out.println(books.stream()<br>			.filter(ele-&gt;((String) ele).contains(<span class="hljs-string">&quot;疯狂&quot;</span>))<br>			.count()); <span class="hljs-comment">// 输出4</span><br>        <br>		<span class="hljs-comment">// 统计书名包含“Java”子串的图书数量</span><br>		System.out.println(books.stream()<br>			.filter(ele-&gt;((String) ele).contains(<span class="hljs-string">&quot;Java&quot;</span>) )<br>			.count()); <span class="hljs-comment">// 输出2</span><br>        <br>		<span class="hljs-comment">// 统计书名字符串长度大于10的图书数量</span><br>		System.out.println(books.stream()<br>			.filter(ele-&gt;((String) ele).length() &gt; <span class="hljs-number">10</span>)<br>			.count()); <span class="hljs-comment">// 输出2</span><br>        <br>		<span class="hljs-comment">// 先调用Collection对象的stream()方法将集合转换为Stream,</span><br>		<span class="hljs-comment">// 再调用Stream的mapToInt()方法获取原有的Stream对应的IntStream</span><br>		books.stream().mapToInt(ele -&gt; ((String) ele).length())<br>			<span class="hljs-comment">// 调用forEach()方法遍历IntStream中每个元素</span><br>			.forEach(System.out::println);<span class="hljs-comment">// 输出8 11 16 7 8</span><br>	&#125;<br>&#125;<br></code></pre></td></tr></table></figure>
 
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/categories/programming/">编程学习</a>
+                    
+                      <a class="hover-with-bg" href="/categories/programming/java/">Java基础</a>
+                    
+                  </div>
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/java/">Java基础</a>
+                    
+                      <a class="hover-with-bg" href="/tags/collection/">集合</a>
+                    
+                  </div>
+                
+              </div>
+              
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
     </div>
-
     
-    
-    
-
-    <footer class="post-footer">
-          <div class="post-tags">
-              <a href="/tags/java/" rel="tag"># Java基础</a>
-              <a href="/tags/collection/" rel="tag"># 集合</a>
-          </div>
-
-        
-
-          <div class="post-nav">
-            <div class="post-nav-item">
-                <a href="/2022/05/11/Java/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1(%E4%B8%8B)/" rel="prev" title="面向对象(下)">
-                  <i class="fa fa-chevron-left"></i> 面向对象(下)
-                </a>
-            </div>
-            <div class="post-nav-item">
-                <a href="/2022/05/11/Java/%E9%9B%86%E5%90%88/%E6%93%8D%E4%BD%9C%E9%9B%86%E5%90%88%E7%9A%84%E5%B7%A5%E5%85%B7%E7%B1%BB%EF%BC%9ACollections/" rel="next" title="操作集合的工具类：Collections">
-                  操作集合的工具类：Collections <i class="fa fa-chevron-right"></i>
-                </a>
-            </div>
-          </div>
-    </footer>
-  </article>
+  </div>
 </div>
 
+<!-- Custom -->
 
 
+    
 
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
 
-
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
 </div>
+    
+
+    
+      <div class="col-lg-7 mx-auto nopadding-x-md">
+        <div class="container custom mx-auto">
+          <link rel="stylesheet" href="/js/aplayer/APlayer.min.css"> <div id="aplayer" style="display:none"></div> <script src="/js/aplayer/APlayer.min.js"></script>
+        </div>
+      </div>
+    
   </main>
 
-  <footer class="footer">
-    <div class="footer-inner">
-
-
-<div class="copyright">
-  &copy; 
-  <span itemprop="copyrightYear">2022</span>
-  <span class="with-love">
-    <i class="fa fa-heart"></i>
-  </span>
-  <span class="author" itemprop="copyrightHolder">ZhaoXin</span>
-</div>
-  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     <i class="iconfont icon-copyright"></i> <span>ZhaoXin, Built by </span> <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> 
   </div>
-
-    </div>
-  </footer>
-
   
-  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
-<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
 
   
 
+  
+</footer>
 
+  <!-- SCRIPTS -->
+  
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
 
 
 
@@ -452,6 +517,110 @@ predicate)</strong>：判断流中是否所有元素都不符合Predicate条件<
 
 
 
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4/anchor.min.js" ></script>
+  
+  
+    <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js" ></script>
+  
+
+
+
+
+  <script defer src="/js/leancloud.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+        typing(title);
+      
+    })(window, document);
+  </script>
+
+
+
+
+
+  
+
+  
+    <!-- MathJax -->
+    <script>
+      MathJax = {
+        tex: {
+          inlineMath: [['$', '$'], ['\\(', '\\)']]
+        },
+        loader: {
+          load: ['ui/lazy']
+        },
+        options: {
+          renderActions: {
+            findScript: [10, doc => {
+              document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+                const display = !!node.type.match(/; *mode=display/);
+                const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+                const text = document.createTextNode('');
+                node.parentNode.replaceChild(text, node);
+                math.start = { node: text, delim: '', n: 0 };
+                math.end = { node: text, delim: '', n: 0 };
+                doc.math.push(math);
+              });
+            }, '', false],
+            insertedScript: [200, () => {
+              document.querySelectorAll('mjx-container').forEach(node => {
+                let target = node.parentNode;
+                if (target.nodeName.toLowerCase() === 'li') {
+                  target.parentNode.classList.add('has-jax');
+                }
+              });
+            }, '', false]
+          }
+        }
+      };
+    </script>
+
+    <script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js" ></script>
+
+  
+
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+
+  
+<script src="/js/music.js"></script>
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
 
 
 </body>
