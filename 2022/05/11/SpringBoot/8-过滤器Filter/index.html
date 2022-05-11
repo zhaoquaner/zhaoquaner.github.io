@@ -16,12 +16,12 @@
   <meta name="author" content="ZhaoXin">
   <meta name="keywords" content="博客">
   
-    <meta name="description" content="SpringBoot使用过滤器有两种方式。一种是通过注解，另一种使用配置类。 注解 首先创建过滤器类，实现接口Filter。 使用@WebFilter注解，放在过滤器类上。该注解有一个参数urlPatterns，用来指定要过滤的请求url。 然后在启动类Application上加上注解@ServletComponentScan(basePackages &#x3D; &quot;包路径&quot;) 让Spring">
+    <meta name="description" content="SpringBoot使用过滤器有两种方式。一种是通过注解，另一种使用配置类。 注解首先创建过滤器类，实现接口Filter。 使用@WebFilter注解，放在过滤器类上。该注解有一个参数urlPatterns，用来指定要过滤的请求url。 然后在启动类Application上加上注解@ServletComponentScan(basePackages &#x3D; &quot;包路径&quot;) 让Spr">
 <meta property="og:type" content="article">
 <meta property="og:title" content="8-过滤器Filter">
 <meta property="og:url" content="https://zhaoquaner.github.io/2022/05/11/SpringBoot/8-%E8%BF%87%E6%BB%A4%E5%99%A8Filter/index.html">
 <meta property="og:site_name" content="赵圈儿的博客">
-<meta property="og:description" content="SpringBoot使用过滤器有两种方式。一种是通过注解，另一种使用配置类。 注解 首先创建过滤器类，实现接口Filter。 使用@WebFilter注解，放在过滤器类上。该注解有一个参数urlPatterns，用来指定要过滤的请求url。 然后在启动类Application上加上注解@ServletComponentScan(basePackages &#x3D; &quot;包路径&quot;) 让Spring">
+<meta property="og:description" content="SpringBoot使用过滤器有两种方式。一种是通过注解，另一种使用配置类。 注解首先创建过滤器类，实现接口Filter。 使用@WebFilter注解，放在过滤器类上。该注解有一个参数urlPatterns，用来指定要过滤的请求url。 然后在启动类Application上加上注解@ServletComponentScan(basePackages &#x3D; &quot;包路径&quot;) 让Spr">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2022-05-11T06:13:39.000Z">
 <meta property="article:modified_time" content="2022-05-11T09:01:11.640Z">
@@ -254,33 +254,29 @@
             
             <div class="markdown-body">
               <p>SpringBoot使用过滤器有两种方式。一种是通过注解，另一种使用配置类。</p>
-<h2 id="注解">注解</h2>
-<p>首先创建过滤器类，实现接口Filter。</p>
-<p>使用<strong><span class="citation"
-data-cites="WebFilter">@WebFilter</span></strong>注解，放在过滤器类上。该注解有一个参数urlPatterns，用来指定要过滤的请求url。</p>
-<p>然后在启动类Application上加上注解<strong><code>@ServletComponentScan(basePackages
-= "包路径")</code></strong></p>
+<h2 id="注解"><a href="#注解" class="headerlink" title="注解"></a>注解</h2><p>首先创建过滤器类，实现接口Filter。</p>
+<p>使用<strong>@WebFilter</strong>注解，放在过滤器类上。该注解有一个参数urlPatterns，用来指定要过滤的请求url。</p>
+<p>然后在启动类Application上加上注解<strong><code>@ServletComponentScan(basePackages = &quot;包路径&quot;)</code></strong></p>
 <p>让SpringBoot扫描到过滤器类。</p>
 <p>例子：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><div class="code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></div></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@WebFilter()</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">MyFilter</span> <span class="hljs-keyword">implements</span> <span class="hljs-title class_">Filter</span> &#123;<br><br>    <span class="hljs-meta">@Override</span><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">doFilter</span><span class="hljs-params">(ServletRequest request, ServletResponse response, FilterChain chain)</span> <span class="hljs-keyword">throws</span> IOException, ServletException &#123;<br>		 chain.doFilter(request, response);<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
 <p>在启动类加上注解：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@ServletComponentScan(basePackages = &quot;com.example.demo.filter&quot;)</span><br><span class="hljs-meta">@SpringBootApplication</span><br><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">DemoApplication</span> &#123;<br><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">main</span><span class="hljs-params">(String[] args)</span> &#123;<br>        SpringApplication.run(DemoApplication.class, args);<br>    &#125;<br><br>&#125;<br></code></pre></td></tr></table></figure>
 <p>这样就可以使用过滤器了。</p>
-<h2 id="配置类">配置类</h2>
-<p>创建配置类并加上@Configuration注解来配置过滤器类。</p>
+<h2 id="配置类"><a href="#配置类" class="headerlink" title="配置类"></a>配置类</h2><p>创建配置类并加上@Configuration注解来配置过滤器类。</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@Configuration</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">FilterConfig</span> &#123;<br><br>    <span class="hljs-meta">@Bean</span><br>    FilterRegistrationBean <span class="hljs-title function_">filterRegistrationBean</span><span class="hljs-params">()</span> &#123;<br>        <span class="hljs-type">FilterRegistrationBean</span> <span class="hljs-variable">filterRegistrationBean</span><br>                <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">FilterRegistrationBean</span>(<span class="hljs-keyword">new</span> <span class="hljs-title class_">MyFilter</span>());<br>        filterRegistrationBean.addUrlPatterns(<span class="hljs-string">&quot;/*&quot;</span>);<br>        <span class="hljs-keyword">return</span> filterRegistrationBean;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
 <p>在配置类中创建一个方法，用来注册过滤器类，并通过@Bean注解交给Spring容器管理。</p>
 <p>FilterRegistrationBean类用来实现注册过滤器类。创建该对象，将Filter对象作为参数传给该对象构造器，并调用<code>addUrlPatterns()</code>方法设置该过滤器的拦截请求URL。</p>
-<p>通过该对象的<code>setOrder(int
-order)</code>方法来设置过滤器的优先顺序。</p>
+<p>通过该对象的<code>setOrder(int order)</code>方法来设置过滤器的优先顺序。</p>
 <p>参数是int类型，数字越小优先级越高。可以从数字1开始。</p>
-<p>也可以使用@Order(value="")注解放到该方法上，来指定优先级。</p>
-<h2 id="注意"><strong>注意</strong></h2>
-<ul>
-<li><p><strong>如果要设置优先级，则只能使用配置类方法来配置过滤器。注解方式无法设置优先级。(哪怕在过滤器类上加上@Order注解，也不起作用)。</strong></p></li>
-<li><p><strong>注册几个过滤器就需要写几个方法，分别加上@Bean注解。</strong></p></li>
-<li><p><strong>千万别忘了写<code>chain.doFilter(request,
-response);</code></strong></p></li>
+<p>也可以使用@Order(value=””)注解放到该方法上，来指定优先级。</p>
+<h2 id="注意"><a href="#注意" class="headerlink" title="注意"></a><strong>注意</strong></h2><ul>
+<li><p><strong>如果要设置优先级，则只能使用配置类方法来配置过滤器。注解方式无法设置优先级。(哪怕在过滤器类上加上@Order注解，也不起作用)。</strong></p>
+</li>
+<li><p><strong>注册几个过滤器就需要写几个方法，分别加上@Bean注解。</strong></p>
+</li>
+<li><p><strong>千万别忘了写<code>chain.doFilter(request, response);</code></strong></p>
+</li>
 </ul>
 
             </div>

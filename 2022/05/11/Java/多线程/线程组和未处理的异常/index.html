@@ -16,12 +16,12 @@
   <meta name="author" content="ZhaoXin">
   <meta name="keywords" content="博客">
   
-    <meta name="description" content="Java使用ThreadGroup来表示线程组，它可以对一批线程进行分类管理。对线程组的控制相当于同时控制这批线程，用户创建的所有线程都属于指定线程组，如果程序没有显式指定线程属于哪个线程组，则该线程属于默认线程组。默认情况下，子线程属于父线程所在的线程组。 一旦某个线程加入了指定线程组后，该线程将一直属于该线程组，直到该线程死亡，线程运行过程中不允许更改线程组。 Thread类提供了几个构造">
+    <meta name="description" content="Java使用ThreadGroup来表示线程组，它可以对一批线程进行分类管理。对线程组的控制相当于同时控制这批线程，用户创建的所有线程都属于指定线程组，如果程序没有显式指定线程属于哪个线程组，则该线程属于默认线程组。默认情况下，子线程属于父线程所在的线程组。 一旦某个线程加入了指定线程组后，该线程将一直属于该线程组，直到该线程死亡，线程运行过程中不允许更改线程组。 Thread类提供了几个构造器来">
 <meta property="og:type" content="article">
 <meta property="og:title" content="线程组和未处理的异常">
 <meta property="og:url" content="https://zhaoquaner.github.io/2022/05/11/Java/%E5%A4%9A%E7%BA%BF%E7%A8%8B/%E7%BA%BF%E7%A8%8B%E7%BB%84%E5%92%8C%E6%9C%AA%E5%A4%84%E7%90%86%E7%9A%84%E5%BC%82%E5%B8%B8/index.html">
 <meta property="og:site_name" content="赵圈儿的博客">
-<meta property="og:description" content="Java使用ThreadGroup来表示线程组，它可以对一批线程进行分类管理。对线程组的控制相当于同时控制这批线程，用户创建的所有线程都属于指定线程组，如果程序没有显式指定线程属于哪个线程组，则该线程属于默认线程组。默认情况下，子线程属于父线程所在的线程组。 一旦某个线程加入了指定线程组后，该线程将一直属于该线程组，直到该线程死亡，线程运行过程中不允许更改线程组。 Thread类提供了几个构造">
+<meta property="og:description" content="Java使用ThreadGroup来表示线程组，它可以对一批线程进行分类管理。对线程组的控制相当于同时控制这批线程，用户创建的所有线程都属于指定线程组，如果程序没有显式指定线程属于哪个线程组，则该线程属于默认线程组。默认情况下，子线程属于父线程所在的线程组。 一旦某个线程加入了指定线程组后，该线程将一直属于该线程组，直到该线程死亡，线程运行过程中不允许更改线程组。 Thread类提供了几个构造器来">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://zhaoquaner.github.io/2022/05/11/Java/%E5%A4%9A%E7%BA%BF%E7%A8%8B/%E7%BA%BF%E7%A8%8B%E7%BB%84%E5%92%8C%E6%9C%AA%E5%A4%84%E7%90%86%E7%9A%84%E5%BC%82%E5%B8%B8/image/image-20200722115647052.png">
 <meta property="article:published_time" content="2022-05-11T03:00:39.000Z">
@@ -258,19 +258,16 @@
 <p><strong>一旦某个线程加入了指定线程组后，该线程将一直属于该线程组，直到该线程死亡，线程运行过程中不允许更改线程组。</strong></p>
 <p>Thread类提供了几个构造器来设置新创建的线程属于哪个线程组。</p>
 <ul>
-<li>Thread(ThreadGroup group, Runnable
-target)：以target的run方法作为线程执行体创建新线程，属于group线程组</li>
-<li>Thread(ThreadGroup group, Runnable target, String
-name)：以target的run方法作为线程执行体创建新线程，该线程属于group线程组，且线程名为name</li>
-<li>Thread(ThreadGroup group, String
-name)：创建新线程，线程名为name，线程组为group</li>
-</ul>
+<li>Thread(ThreadGroup group, Runnable target)：以target的run方法作为线程执行体创建新线程，属于group线程组</li>
+<li>Thread(ThreadGroup group, Runnable target, String name)：以target的run方法作为线程执行体创建新线程，该线程属于group线程组，且线程名为name</li>
+<li><p>Thread(ThreadGroup group, String name)：创建新线程，线程名为name，线程组为group</p>
 <p>此外，Thread类提供了getThreadGroup()方法来获得线程所在线程组。</p>
+</li>
+</ul>
 <p>ThreadGroup类提供了两个构造器：</p>
 <ul>
 <li>ThreadGroup(String name)：以指定线程组名字来创建新的线程组名称</li>
-<li>ThreadGroup(ThreadGroup parent, String
-name)：以指定的名字、指定的父线程组创建一个线程组</li>
+<li>ThreadGroup(ThreadGroup parent, String name)：以指定的名字、指定的父线程组创建一个线程组</li>
 </ul>
 <p>线程组总会有一个字符串类型的名字，该名字可通过ThreadGroup类的getName方法获得，但不允许更改名字。</p>
 <p>ThreadGroup类提供了几个常用方法来操作整个线程组里的所有线程</p>
@@ -283,25 +280,17 @@ name)：以指定的名字、指定的父线程组创建一个线程组</li>
 </ul>
 <p>例子：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><div class="code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br></pre></div></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">package</span> work;<br><br><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">Main</span> &#123;<br><br><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">main</span><span class="hljs-params">(String[] args)</span> <span class="hljs-keyword">throws</span> Exception&#123;<br><br>        <span class="hljs-comment">//获得默认线程组也就是主线程所在线程组</span><br>        <span class="hljs-type">ThreadGroup</span> <span class="hljs-variable">mainGroup</span> <span class="hljs-operator">=</span> Thread.currentThread().getThreadGroup();<br><br>        System.out.println(<span class="hljs-string">&quot;主线程组的名字为：&quot;</span> + mainGroup.getName());<br>        System.out.println(<span class="hljs-string">&quot;主线程组是否为后台线程组：&quot;</span> + mainGroup.isDaemon());<br>        <span class="hljs-keyword">new</span> <span class="hljs-title class_">MyThread</span>(<span class="hljs-string">&quot;主线程组的线程&quot;</span>).start();<br>        <span class="hljs-type">ThreadGroup</span> <span class="hljs-variable">tg</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">ThreadGroup</span>(<span class="hljs-string">&quot;新线程组&quot;</span>);<br>        tg.setDaemon(<span class="hljs-literal">true</span>);<br>        System.out.println(<span class="hljs-string">&quot;tg线程组是否为后台线程组：&quot;</span> + tg.isDaemon());<br>        <span class="hljs-type">MyThread</span> <span class="hljs-variable">tt</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">MyThread</span>(<span class="hljs-string">&quot;tg组的线程甲&quot;</span>);<br>        tt.start();<br>        <span class="hljs-keyword">new</span> <span class="hljs-title class_">MyThread</span>(tg, <span class="hljs-string">&quot;tg组的线程乙&quot;</span>).start();<br><br><br>    &#125;<br><br>&#125;<br><br><span class="hljs-keyword">class</span> <span class="hljs-title class_">MyThread</span> <span class="hljs-keyword">extends</span> <span class="hljs-title class_">Thread</span> &#123;<br><br>    <span class="hljs-keyword">public</span> <span class="hljs-title function_">MyThread</span><span class="hljs-params">(String name)</span> &#123;<br><br>        <span class="hljs-built_in">super</span>(name);<br>    &#125;<br><br>    <span class="hljs-keyword">public</span> <span class="hljs-title function_">MyThread</span><span class="hljs-params">(ThreadGroup group, String name)</span> &#123;<br><br>        <span class="hljs-built_in">super</span>(group, name);<br>    &#125;<br><br>    <span class="hljs-meta">@Override</span><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">run</span><span class="hljs-params">()</span> &#123;<br><br>        <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> <span class="hljs-variable">i</span> <span class="hljs-operator">=</span> <span class="hljs-number">0</span>; i &lt; <span class="hljs-number">20</span>; i++) &#123;<br>            System.out.println(getName() + <span class="hljs-string">&quot;线程的i变量&quot;</span> + i);<br>        &#125;<br>    &#125;<br>&#125;<br><br><br><br><br><br><br><br><br></code></pre></td></tr></table></figure>
-<p>ThreadGroup线程组还定义了一个方法：void uncaughtException(Thread t,
-Throwable e)：可以处理该线程组内的任意线程所抛出的未处理异常。</p>
-<p>从Java
-5开始，Java加强了线程的异常处理，如果线程执行过程中抛出了一个未处理异常，JVM在结束该线程之前，会自动查找是否有对应的Thread.UncaughtExceptionHandler对象，如果找到该处理器对象，则会调用该对象uncaughtException(Thread
-t, Throwable e)方法来处理该异常</p>
-<p>Thread.uncaughtExceptionHandler是Thread类的一个静态内部接口，该接口内只有一个方法：void
-uncaughtException(Thread t, Throwable
-e)，方法中t代表出现异常的线程，而e代表该线程抛出的异常。</p>
+<p>ThreadGroup线程组还定义了一个方法：void uncaughtException(Thread t, Throwable e)：可以处理该线程组内的任意线程所抛出的未处理异常。</p>
+<p>从Java 5开始，Java加强了线程的异常处理，如果线程执行过程中抛出了一个未处理异常，JVM在结束该线程之前，会自动查找是否有对应的Thread.UncaughtExceptionHandler对象，如果找到该处理器对象，则会调用该对象uncaughtException(Thread t, Throwable e)方法来处理该异常</p>
+<p>Thread.uncaughtExceptionHandler是Thread类的一个静态内部接口，该接口内只有一个方法：void uncaughtException(Thread t, Throwable e)，方法中t代表出现异常的线程，而e代表该线程抛出的异常。</p>
 <p>Thread类提供了两个方法来设置异常处理器</p>
 <ul>
-<li>static
-setDefaultUncaughtExceptionHandler(Thread.UncaughtExceptionHandler
-eh)：为该线程类的所有实例线程设置默认的异常处理器</li>
-<li>setUncaughtExceptionHandler(Thread.UncaughtExceptionHandler
-eh)：为指定线程实例设置异常处理器</li>
+<li>static setDefaultUncaughtExceptionHandler(Thread.UncaughtExceptionHandler eh)：为该线程类的所有实例线程设置默认的异常处理器</li>
+<li>setUncaughtExceptionHandler(Thread.UncaughtExceptionHandler eh)：为指定线程实例设置异常处理器</li>
 </ul>
 <p>ThreadGroup类实现了Thread.UncaughtExceptionHandler接口，所以每个线程所属的线程组将会作为默认的异常处理器。</p>
 <p><strong>当一个线程抛出未处理异常时，JVM会首先查找该异常对应的异常处理器(即使用setUncaughtExceptionHandler设置的异常处理器)，进行异常处理，如果没找到，JVM会调用该线程所属的线程组对象的uncaughtException()方法来处理该异常,线程组处理异常的流程为：</strong></p>
-<ol type="1">
+<ol>
 <li>如果该线程组有父线程组，则调用父线程的uncaughtException()方法处理</li>
 <li>如果该线程实例所属线程类由默认异常处理器(由setDefaultUncaughtExceptionHandler设置的异常处理器)，那么就调用该异常处理器来处理</li>
 <li>如果该异常对象是ThreadDeath的对象，则不做任何处理，否则将异常跟踪栈打印到System.err错误输出流，并结束该线程。</li>
@@ -309,7 +298,7 @@ eh)：为指定线程实例设置异常处理器</li>
 <p>例子：</p>
 <figure class="highlight aspectj"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><code class="hljs aspectj"><span class="hljs-keyword">package</span> work;<br><br><br><br><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Main</span> </span>&#123;<br><br><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">(String[] args)</span> <span class="hljs-keyword">throws</span> Exception</span>&#123;<br><br>			<span class="hljs-comment">//设置当前线程的异常处理器对象</span><br>            Thread.currentThread().setUncaughtExceptionHandler(<span class="hljs-keyword">new</span> MyExHandler());<br><br>            <span class="hljs-keyword">int</span> a = <span class="hljs-number">5</span> / <span class="hljs-number">0</span>;<br>            System.out.println(<span class="hljs-string">&quot;程序正常结束&quot;</span>);<br><br><br>    &#125;<br><br>&#125;<br><br><br><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MyExHandler</span> <span class="hljs-keyword">implements</span> <span class="hljs-title">Thread</span>.<span class="hljs-title">UncaughtExceptionHandler</span> </span>&#123;<br><br>    <span class="hljs-meta">@Override</span><br>    <span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">uncaughtException</span><span class="hljs-params">(Thread t, Throwable e)</span> </span>&#123;<br>        System.out.println(t.getName() + <span class="hljs-string">&quot;线程出现了异常&quot;</span> + e);<br>    &#125;<br>&#125;<br><br><br><br><br><br><br><br></code></pre></td></tr></table></figure>
 <p>运行结果：</p>
-<p><img src="image/image-20200722115647052.png" srcset="/img/loading.gif" lazyload /></p>
+<p><img src="image/image-20200722115647052.png" srcset="/img/loading.gif" lazyload alt=""></p>
 
             </div>
             <hr>

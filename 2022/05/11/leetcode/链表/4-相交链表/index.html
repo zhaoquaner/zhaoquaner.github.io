@@ -16,12 +16,12 @@
   <meta name="author" content="ZhaoXin">
   <meta name="keywords" content="博客">
   
-    <meta name="description" content="自己的解法 算法思想 使用哈希表，首先遍历链表B，将每个链表地址存入set集合。然后遍历链表A，对于链表A的每个节点，在set集合中查找有没有地址相同的元素，如果有，则该节点就是第一个交点。 如果遍历到A链表末尾依然没有，那么这两个链表不相交。 算法实现 123456789101112131415161718192021222324252627282930struct ListN">
+    <meta name="description" content="自己的解法算法思想使用哈希表，首先遍历链表B，将每个链表地址存入set集合。然后遍历链表A，对于链表A的每个节点，在set集合中查找有没有地址相同的元素，如果有，则该节点就是第一个交点。 如果遍历到A链表末尾依然没有，那么这两个链表不相交。 算法实现123456789101112131415161718192021222324252627282930struct ListNode &amp;#123;">
 <meta property="og:type" content="article">
 <meta property="og:title" content="4-相交链表">
 <meta property="og:url" content="https://zhaoquaner.github.io/2022/05/11/leetcode/%E9%93%BE%E8%A1%A8/4-%E7%9B%B8%E4%BA%A4%E9%93%BE%E8%A1%A8/index.html">
 <meta property="og:site_name" content="赵圈儿的博客">
-<meta property="og:description" content="自己的解法 算法思想 使用哈希表，首先遍历链表B，将每个链表地址存入set集合。然后遍历链表A，对于链表A的每个节点，在set集合中查找有没有地址相同的元素，如果有，则该节点就是第一个交点。 如果遍历到A链表末尾依然没有，那么这两个链表不相交。 算法实现 123456789101112131415161718192021222324252627282930struct ListN">
+<meta property="og:description" content="自己的解法算法思想使用哈希表，首先遍历链表B，将每个链表地址存入set集合。然后遍历链表A，对于链表A的每个节点，在set集合中查找有没有地址相同的元素，如果有，则该节点就是第一个交点。 如果遍历到A链表末尾依然没有，那么这两个链表不相交。 算法实现123456789101112131415161718192021222324252627282930struct ListNode &amp;#123;">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://crayon-1302863897.cos.ap-beijing.myqcloud.com/image/image-20210411160829906.png">
 <meta property="og:image" content="https://crayon-1302863897.cos.ap-beijing.myqcloud.com/image/image-20210411160848638.png">
@@ -257,22 +257,15 @@
             <div class="markdown-body">
               <p><img src="https://crayon-1302863897.cos.ap-beijing.myqcloud.com/image/image-20210411160829906.png" srcset="/img/loading.gif" lazyload alt="image-20210411160829906" style="zoom:67%;" /></p>
 <p><img src="https://crayon-1302863897.cos.ap-beijing.myqcloud.com/image/image-20210411160848638.png" srcset="/img/loading.gif" lazyload alt="image-20210411160848638" style="zoom:50%;" /></p>
-<h2 id="自己的解法">自己的解法</h2>
-<h3 id="算法思想">算法思想</h3>
-<p>使用哈希表，首先遍历链表B，将每个链表地址存入set集合。然后遍历链表A，对于链表A的每个节点，在set集合中查找有没有地址相同的元素，如果有，则该节点就是第一个交点。</p>
+<h2 id="自己的解法"><a href="#自己的解法" class="headerlink" title="自己的解法"></a>自己的解法</h2><h3 id="算法思想"><a href="#算法思想" class="headerlink" title="算法思想"></a>算法思想</h3><p>使用哈希表，首先遍历链表B，将每个链表地址存入set集合。然后遍历链表A，对于链表A的每个节点，在set集合中查找有没有地址相同的元素，如果有，则该节点就是第一个交点。</p>
 <p>如果遍历到A链表末尾依然没有，那么这两个链表不相交。</p>
-<h3 id="算法实现">算法实现</h3>
-<figure class="highlight c++"><table><tr><td class="gutter"><div class="code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></div></td><td class="code"><pre><code class="hljs c++"><span class="hljs-keyword">struct</span> <span class="hljs-title class_">ListNode</span> &#123;<br>    <span class="hljs-type">int</span> val;<br>    ListNode *next;<br>    <span class="hljs-built_in">ListNode</span>(<span class="hljs-type">int</span> x) : <span class="hljs-built_in">val</span>(x), <span class="hljs-built_in">next</span>(<span class="hljs-literal">NULL</span>) &#123;&#125;<br>&#125;;<br><br><span class="hljs-keyword">class</span> <span class="hljs-title class_">Solution</span> &#123;<br><br><span class="hljs-keyword">public</span>:<br>    <span class="hljs-function">ListNode *<span class="hljs-title">getIntersectionNode</span><span class="hljs-params">(ListNode *headA, ListNode *headB)</span> </span>&#123;<br>        <span class="hljs-keyword">if</span>(headA == <span class="hljs-literal">nullptr</span> || headB == <span class="hljs-literal">nullptr</span>) &#123;<br>            <span class="hljs-keyword">return</span> <span class="hljs-literal">nullptr</span>;<br>        &#125;<br>        set&lt;ListNode *&gt; address;<br>        ListNode * b = headB;<br>        <span class="hljs-keyword">while</span> (b != <span class="hljs-literal">nullptr</span>) &#123;<br>            address.<span class="hljs-built_in">insert</span>(b);<br>            b = b-&gt;next;<br>        &#125;<br>        ListNode *a = headA;<br>        <span class="hljs-keyword">while</span> (a != <span class="hljs-literal">nullptr</span>) &#123;<br>            <span class="hljs-keyword">if</span>(address.<span class="hljs-built_in">count</span>(a)) &#123;<br>                <span class="hljs-keyword">return</span> a;<br>            &#125;<br>            a = a-&gt;next;<br>        &#125;<br>        <span class="hljs-keyword">return</span> <span class="hljs-literal">nullptr</span>;<br><br>    &#125;<br>&#125;;<br></code></pre></td></tr></table></figure>
-<h2 id="更好的解法">更好的解法</h2>
-<h3 id="算法思想-1">算法思想</h3>
-<p>双指针法。这种解法非常巧妙。</p>
+<h3 id="算法实现"><a href="#算法实现" class="headerlink" title="算法实现"></a>算法实现</h3><figure class="highlight c++"><table><tr><td class="gutter"><div class="code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></div></td><td class="code"><pre><code class="hljs c++"><span class="hljs-keyword">struct</span> <span class="hljs-title class_">ListNode</span> &#123;<br>    <span class="hljs-type">int</span> val;<br>    ListNode *next;<br>    <span class="hljs-built_in">ListNode</span>(<span class="hljs-type">int</span> x) : <span class="hljs-built_in">val</span>(x), <span class="hljs-built_in">next</span>(<span class="hljs-literal">NULL</span>) &#123;&#125;<br>&#125;;<br><br><span class="hljs-keyword">class</span> <span class="hljs-title class_">Solution</span> &#123;<br><br><span class="hljs-keyword">public</span>:<br>    <span class="hljs-function">ListNode *<span class="hljs-title">getIntersectionNode</span><span class="hljs-params">(ListNode *headA, ListNode *headB)</span> </span>&#123;<br>        <span class="hljs-keyword">if</span>(headA == <span class="hljs-literal">nullptr</span> || headB == <span class="hljs-literal">nullptr</span>) &#123;<br>            <span class="hljs-keyword">return</span> <span class="hljs-literal">nullptr</span>;<br>        &#125;<br>        set&lt;ListNode *&gt; address;<br>        ListNode * b = headB;<br>        <span class="hljs-keyword">while</span> (b != <span class="hljs-literal">nullptr</span>) &#123;<br>            address.<span class="hljs-built_in">insert</span>(b);<br>            b = b-&gt;next;<br>        &#125;<br>        ListNode *a = headA;<br>        <span class="hljs-keyword">while</span> (a != <span class="hljs-literal">nullptr</span>) &#123;<br>            <span class="hljs-keyword">if</span>(address.<span class="hljs-built_in">count</span>(a)) &#123;<br>                <span class="hljs-keyword">return</span> a;<br>            &#125;<br>            a = a-&gt;next;<br>        &#125;<br>        <span class="hljs-keyword">return</span> <span class="hljs-literal">nullptr</span>;<br><br>    &#125;<br>&#125;;<br></code></pre></td></tr></table></figure>
+<h2 id="更好的解法"><a href="#更好的解法" class="headerlink" title="更好的解法"></a>更好的解法</h2><h3 id="算法思想-1"><a href="#算法思想-1" class="headerlink" title="算法思想"></a>算法思想</h3><p>双指针法。这种解法非常巧妙。</p>
 <p>我们设链表A的节点数为a，链表B的节点数为b，它们的公共节点数为c。第一个公共节点(就是交点)为node。</p>
 <p>定义两个指针pA和pB分别指向链表A和链表B，同时向后遍历，当pA遍历到A链表末尾，就重定向到链表B头结点；</p>
 <p>同样的，当pB遍历到B链表结尾，就重定向到链表A头结点。</p>
-<p>当指针pA遍历B链表走到node节点时，遍历的节点数是：<code>a + (b - c +
-1)</code>，即走了<code>a + b - c</code>步。</p>
-<p>当指针pB遍历A链表走到node节点时，遍历的节点数是：<code>b + (a - c +
-1)</code>，即走了<code>b + a - c</code>步。</p>
+<p>当指针pA遍历B链表走到node节点时，遍历的节点数是：<code>a + (b - c + 1)</code>，即走了<code>a + b - c</code>步。</p>
+<p>当指针pB遍历A链表走到node节点时，遍历的节点数是：<code>b + (a - c + 1)</code>，即走了<code>b + a - c</code>步。</p>
 <p>注：这里的加1，就是加上第一个公共节点。</p>
 <p>因此指针pA和pB会同时到达公共节点。</p>
 <ul>
@@ -280,21 +273,15 @@
 <li>当c &gt; 0时，pA和pB会同时指向交点。</li>
 </ul>
 <p><img src="https://crayon-1302863897.cos.ap-beijing.myqcloud.com/image/image-20210411163017410.png" srcset="/img/loading.gif" lazyload alt="image-20210411163017410" style="zoom:67%;" /></p>
-<p>这种方法就是用了<code>A + B = B +
-A</code>的思想。虽然各自路程不同，但加起来的路程是相等的。速度一样，最终一定会同时到达。</p>
-<h3 id="算法实现-1">算法实现</h3>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Solution</span> &#123;<br><br><span class="hljs-keyword">public</span>:<br>    <span class="hljs-function">ListNode *<span class="hljs-title">getIntersectionNode</span><span class="hljs-params">(ListNode *headA, ListNode *headB)</span> </span>&#123;<br>        <span class="hljs-keyword">if</span>(headA == <span class="hljs-literal">nullptr</span> || headB == <span class="hljs-literal">nullptr</span>) &#123;<br>            <span class="hljs-keyword">return</span> <span class="hljs-literal">nullptr</span>;<br>        &#125;<br>        ListNode *pA = headA;<br>        ListNode *pB = headB;<br>        <span class="hljs-keyword">while</span> (pA != pB) &#123;<br>            pA = pA!= <span class="hljs-literal">nullptr</span> ? pA-&gt;next : headB;<br>            pB = pB!= <span class="hljs-literal">nullptr</span> ? pB-&gt;next : headA;<br>        &#125;<br>        <span class="hljs-keyword">return</span> pA;<br>    &#125;<br>&#125;;<br></code></pre></td></tr></table></figure>
-<h3 id="性能分析">性能分析</h3>
-<ul>
-<li>时间复杂度：最差情况是链表没有交点，此时时间复杂度为<span
-class="math inline">\(O(a + b)\)</span></li>
-<li>空间复杂度：只用了两个指针，<span
-class="math inline">\(O(1)\)</span>。</li>
+<p>这种方法就是用了<code>A + B = B + A</code>的思想。虽然各自路程不同，但加起来的路程是相等的。速度一样，最终一定会同时到达。</p>
+<h3 id="算法实现-1"><a href="#算法实现-1" class="headerlink" title="算法实现"></a>算法实现</h3><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Solution</span> &#123;<br><br><span class="hljs-keyword">public</span>:<br>    <span class="hljs-function">ListNode *<span class="hljs-title">getIntersectionNode</span><span class="hljs-params">(ListNode *headA, ListNode *headB)</span> </span>&#123;<br>        <span class="hljs-keyword">if</span>(headA == <span class="hljs-literal">nullptr</span> || headB == <span class="hljs-literal">nullptr</span>) &#123;<br>            <span class="hljs-keyword">return</span> <span class="hljs-literal">nullptr</span>;<br>        &#125;<br>        ListNode *pA = headA;<br>        ListNode *pB = headB;<br>        <span class="hljs-keyword">while</span> (pA != pB) &#123;<br>            pA = pA!= <span class="hljs-literal">nullptr</span> ? pA-&gt;next : headB;<br>            pB = pB!= <span class="hljs-literal">nullptr</span> ? pB-&gt;next : headA;<br>        &#125;<br>        <span class="hljs-keyword">return</span> pA;<br>    &#125;<br>&#125;;<br></code></pre></td></tr></table></figure>
+<h3 id="性能分析"><a href="#性能分析" class="headerlink" title="性能分析"></a>性能分析</h3><ul>
+<li>时间复杂度：最差情况是链表没有交点，此时时间复杂度为$O(a + b)$</li>
+<li>空间复杂度：只用了两个指针，$O(1)$。</li>
 </ul>
 <p>贴一个leetcode解法的评论(哈哈哈哈哈哈哈)：</p>
 <blockquote>
-<div
-class="line-block">这个算法也太浪漫了吧，错的人迟早会走散，而对的人迟早会相逢。</div>
+<p>| 这个算法也太浪漫了吧，错的人迟早会走散，而对的人迟早会相逢。</p>
 </blockquote>
 
             </div>

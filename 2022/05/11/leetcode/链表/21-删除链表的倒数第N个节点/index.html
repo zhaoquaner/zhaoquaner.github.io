@@ -16,12 +16,12 @@
   <meta name="author" content="ZhaoXin">
   <meta name="keywords" content="博客">
   
-    <meta name="description" content="自己的做法 算法思想 和18-找到链表倒数第k个节点类似。使用两个指针right和left。right指针先向后走k步，然后两个指针同时向后走，直到right指针指向空，此时left指向的是倒数第k个节点。 但不同的是，18是找到倒数第k个节点，而该题是删除倒数第N个节点，所以需要找到倒数第N个节点的前一个节点。 还要考虑到边界问题，如删除第一个节点。 所以可以使用一个哨兵节点，即在">
+    <meta name="description" content="自己的做法算法思想和18-找到链表倒数第k个节点类似。使用两个指针right和left。right指针先向后走k步，然后两个指针同时向后走，直到right指针指向空，此时left指向的是倒数第k个节点。 但不同的是，18是找到倒数第k个节点，而该题是删除倒数第N个节点，所以需要找到倒数第N个节点的前一个节点。 还要考虑到边界问题，如删除第一个节点。 所以可以使用一个哨兵节点，即在头节点前添加一个">
 <meta property="og:type" content="article">
 <meta property="og:title" content="21-删除链表的倒数第N个节点">
 <meta property="og:url" content="https://zhaoquaner.github.io/2022/05/11/leetcode/%E9%93%BE%E8%A1%A8/21-%E5%88%A0%E9%99%A4%E9%93%BE%E8%A1%A8%E7%9A%84%E5%80%92%E6%95%B0%E7%AC%ACN%E4%B8%AA%E8%8A%82%E7%82%B9/index.html">
 <meta property="og:site_name" content="赵圈儿的博客">
-<meta property="og:description" content="自己的做法 算法思想 和18-找到链表倒数第k个节点类似。使用两个指针right和left。right指针先向后走k步，然后两个指针同时向后走，直到right指针指向空，此时left指向的是倒数第k个节点。 但不同的是，18是找到倒数第k个节点，而该题是删除倒数第N个节点，所以需要找到倒数第N个节点的前一个节点。 还要考虑到边界问题，如删除第一个节点。 所以可以使用一个哨兵节点，即在">
+<meta property="og:description" content="自己的做法算法思想和18-找到链表倒数第k个节点类似。使用两个指针right和left。right指针先向后走k步，然后两个指针同时向后走，直到right指针指向空，此时left指向的是倒数第k个节点。 但不同的是，18是找到倒数第k个节点，而该题是删除倒数第N个节点，所以需要找到倒数第N个节点的前一个节点。 还要考虑到边界问题，如删除第一个节点。 所以可以使用一个哨兵节点，即在头节点前添加一个">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://crayon-1302863897.cos.ap-beijing.myqcloud.com/image/image-20210501163949310.png">
 <meta property="og:image" content="https://crayon-1302863897.cos.ap-beijing.myqcloud.com/image/21年05月01日17时16分46秒.gif">
@@ -212,7 +212,7 @@
   
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      890 字
+      882 字
     </span>
   
 
@@ -255,33 +255,24 @@
             
             <div class="markdown-body">
               <p><img src="https://crayon-1302863897.cos.ap-beijing.myqcloud.com/image/image-20210501163949310.png" srcset="/img/loading.gif" lazyload alt="image-20210501163949310" style="zoom:50%;" /></p>
-<h2 id="自己的做法">自己的做法</h2>
-<h3 id="算法思想">算法思想</h3>
-<p>和18-找到链表倒数第k个节点类似。使用两个指针right和left。right指针先向后走k步，然后两个指针同时向后走，直到right指针指向空，此时left指向的是倒数第k个节点。</p>
+<h2 id="自己的做法"><a href="#自己的做法" class="headerlink" title="自己的做法"></a>自己的做法</h2><h3 id="算法思想"><a href="#算法思想" class="headerlink" title="算法思想"></a>算法思想</h3><p>和18-找到链表倒数第k个节点类似。使用两个指针right和left。right指针先向后走k步，然后两个指针同时向后走，直到right指针指向空，此时left指向的是倒数第k个节点。</p>
 <p>但不同的是，18是找到倒数第k个节点，而该题是删除倒数第N个节点，所以需要找到倒数第N个节点的前一个节点。</p>
 <p>还要考虑到边界问题，如删除第一个节点。</p>
-<p>所以可以使用一个哨兵节点，即在头节点前添加一个节点，这样所有
-有可能被删除的节点都是中间节点，不需要单独考虑边界问题。</p>
+<p>所以可以使用一个哨兵节点，即在头节点前添加一个节点，这样所有 有可能被删除的节点都是中间节点，不需要单独考虑边界问题。</p>
 <p>不过要注意两个问题：</p>
 <ul>
-<li>因为多了一个节点，所以如果righ初始指向哨兵节点，则right指针要走N +
-1步</li>
+<li>因为多了一个节点，所以如果righ初始指向哨兵节点，则right指针要走N + 1步</li>
 <li>最后返回值记得返回哨兵节点的next。</li>
 </ul>
 <p><img src="https://crayon-1302863897.cos.ap-beijing.myqcloud.com/image/21年05月01日17时16分46秒.gif" srcset="/img/loading.gif" lazyload alt="21年05月01日17时16分46秒" style="zoom:43%;" /></p>
-<h3 id="算法实现">算法实现</h3>
-<figure class="highlight c++"><table><tr><td class="gutter"><div class="code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></div></td><td class="code"><pre><code class="hljs c++"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Solution</span> &#123;<br><span class="hljs-keyword">public</span>:<br>    <span class="hljs-function">ListNode* <span class="hljs-title">removeNthFromEnd</span><span class="hljs-params">(ListNode* head, <span class="hljs-type">int</span> n)</span> </span>&#123;<br>        ListNode * temp = <span class="hljs-keyword">new</span> <span class="hljs-built_in">ListNode</span>();<br>        temp-&gt;next = head;<br>        ListNode * left = temp;<br>        ListNode * right = temp;<br>        <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>; i &lt;= n; ++i) &#123;<br>            right = right-&gt;next;<br>        &#125;<br>        <span class="hljs-keyword">while</span> (right != <span class="hljs-literal">nullptr</span>) &#123;<br>            left = left-&gt;next;<br>            right = right-&gt;next;<br>        &#125;<br>        left-&gt;next = left-&gt;next-&gt;next;<br>        <span class="hljs-keyword">return</span> temp-&gt;next;<br>    &#125;<br>&#125;;<br></code></pre></td></tr></table></figure>
-<h3 id="性能分析">性能分析</h3>
-<p>时间复杂度：<span class="math inline">\(O(n)\)</span>。</p>
-<p>空间复杂度：<span class="math inline">\(O(1)\)</span>。</p>
-<h2 id="参考做法">参考做法</h2>
-<p>给出了三个解法。第三个就是我自己的做法。</p>
+<h3 id="算法实现"><a href="#算法实现" class="headerlink" title="算法实现"></a>算法实现</h3><figure class="highlight c++"><table><tr><td class="gutter"><div class="code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></div></td><td class="code"><pre><code class="hljs c++"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Solution</span> &#123;<br><span class="hljs-keyword">public</span>:<br>    <span class="hljs-function">ListNode* <span class="hljs-title">removeNthFromEnd</span><span class="hljs-params">(ListNode* head, <span class="hljs-type">int</span> n)</span> </span>&#123;<br>        ListNode * temp = <span class="hljs-keyword">new</span> <span class="hljs-built_in">ListNode</span>();<br>        temp-&gt;next = head;<br>        ListNode * left = temp;<br>        ListNode * right = temp;<br>        <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>; i &lt;= n; ++i) &#123;<br>            right = right-&gt;next;<br>        &#125;<br>        <span class="hljs-keyword">while</span> (right != <span class="hljs-literal">nullptr</span>) &#123;<br>            left = left-&gt;next;<br>            right = right-&gt;next;<br>        &#125;<br>        left-&gt;next = left-&gt;next-&gt;next;<br>        <span class="hljs-keyword">return</span> temp-&gt;next;<br>    &#125;<br>&#125;;<br></code></pre></td></tr></table></figure>
+<h3 id="性能分析"><a href="#性能分析" class="headerlink" title="性能分析"></a>性能分析</h3><p>时间复杂度：$O(n)$。</p>
+<p>空间复杂度：$O(1)$。</p>
+<h2 id="参考做法"><a href="#参考做法" class="headerlink" title="参考做法"></a>参考做法</h2><p>给出了三个解法。第三个就是我自己的做法。</p>
 <p>第一个做法是先遍历一遍，获得链表长度，然后删除。</p>
 <p>第二个做法是使用栈来保存每个节点的指针，先依次将节点入栈，那么倒数第N个节点，就是弹出栈的第N个节点。</p>
 <p>同时注意边界问题，即删除头节点。所以可以添加一个哨兵节点，再入栈。</p>
-<p>时间复杂度是<span
-class="math inline">\(O(n)\)</span>，空间复杂度也是<span
-class="math inline">\(O(n)\)</span>。</p>
+<p>时间复杂度是$O(n)$，空间复杂度也是$O(n)$。</p>
 
             </div>
             <hr>

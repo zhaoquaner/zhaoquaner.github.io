@@ -16,12 +16,12 @@
   <meta name="author" content="ZhaoXin">
   <meta name="keywords" content="博客">
   
-    <meta name="description" content="SpringBoot推荐使用Thymeleaf模板技术(后面会讲)。所以如果要使用JSP就要手动配置。 在之前的学习中，jsp文件都是放在webapp目录中的，而在刚创建好的SpringBoot项目中没有webapp目录， 所以要手动创建webapp目录并在Project Structure中将webapp目录设置为Web Resource 目录。 并添加相应依赖： 1234567891">
+    <meta name="description" content="SpringBoot推荐使用Thymeleaf模板技术(后面会讲)。所以如果要使用JSP就要手动配置。 在之前的学习中，jsp文件都是放在webapp目录中的，而在刚创建好的SpringBoot项目中没有webapp目录， 所以要手动创建webapp目录并在Project Structure中将webapp目录设置为Web Resource 目录。 并添加相应依赖： 123456789101112">
 <meta property="og:type" content="article">
 <meta property="og:title" content="3-SpringBoot使用JSP">
 <meta property="og:url" content="https://zhaoquaner.github.io/2022/05/11/SpringBoot/3-SpringBoot%E4%BD%BF%E7%94%A8JSP/index.html">
 <meta property="og:site_name" content="赵圈儿的博客">
-<meta property="og:description" content="SpringBoot推荐使用Thymeleaf模板技术(后面会讲)。所以如果要使用JSP就要手动配置。 在之前的学习中，jsp文件都是放在webapp目录中的，而在刚创建好的SpringBoot项目中没有webapp目录， 所以要手动创建webapp目录并在Project Structure中将webapp目录设置为Web Resource 目录。 并添加相应依赖： 1234567891">
+<meta property="og:description" content="SpringBoot推荐使用Thymeleaf模板技术(后面会讲)。所以如果要使用JSP就要手动配置。 在之前的学习中，jsp文件都是放在webapp目录中的，而在刚创建好的SpringBoot项目中没有webapp目录， 所以要手动创建webapp目录并在Project Structure中将webapp目录设置为Web Resource 目录。 并添加相应依赖： 123456789101112">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2022-05-11T06:08:39.000Z">
 <meta property="article:modified_time" content="2022-05-11T09:01:01.339Z">
@@ -255,8 +255,7 @@
             <div class="markdown-body">
               <p>SpringBoot推荐使用Thymeleaf模板技术(后面会讲)。所以如果要使用JSP就要手动配置。</p>
 <p>在之前的学习中，jsp文件都是放在webapp目录中的，而在刚创建好的SpringBoot项目中没有webapp目录，</p>
-<p>所以要手动创建webapp目录并在Project Structure中将webapp目录设置为Web
-Resource 目录。</p>
+<p>所以要手动创建webapp目录并在Project Structure中将webapp目录设置为Web Resource 目录。</p>
 <p>并添加相应依赖：</p>
 <figure class="highlight xml"><table><tr><td class="gutter"><div class="code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></div></td><td class="code"><pre><code class="hljs xml"><span class="hljs-comment">&lt;!--引入Spring Boot内嵌的Tomcat对JSP的解析包，不加解析不了jsp页面--&gt;</span><br><span class="hljs-comment">&lt;!--如果只是使用JSP页面，可以只添加该依赖--&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>org.apache.tomcat.embed<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>tomcat-embed-jasper<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span><br><br><span class="hljs-comment">&lt;!--如果要使用servlet必须添加该以下两个依赖--&gt;</span><br><span class="hljs-comment">&lt;!-- servlet依赖的jar包--&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>javax.servlet<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>javax.servlet-api<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span><br><br><span class="hljs-comment">&lt;!-- jsp依赖jar包--&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>javax.servlet.jsp<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>javax.servlet.jsp-api<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">version</span>&gt;</span>2.3.1<span class="hljs-tag">&lt;/<span class="hljs-name">version</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span><br><br><span class="hljs-comment">&lt;!--如果使用JSTL必须添加该依赖--&gt;</span><br><span class="hljs-comment">&lt;!--jstl标签依赖的jar包start--&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>javax.servlet<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>jstl<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span><br></code></pre></td></tr></table></figure>
 <p>然后要手动指定jsp最后编译的路径。SpringBoot要求jsp文件必须要编译到META-INF/resources目录中才能访问到，否则访问不到。</p>
@@ -265,11 +264,9 @@ Resource 目录。</p>
 <p>然后在application.properties中配置SpringMVC的视图解析器。其实就相当于SpringMVC的配置：</p>
 <figure class="highlight properties"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs properties"><span class="hljs-comment"># 其中:/相当于src/main/webapp</span><br><span class="hljs-attr">spring.mvc.view.prefix</span>=<span class="hljs-string">/</span><br><span class="hljs-attr">spring.mvc.view.suffix</span>=<span class="hljs-string">.jsp</span><br></code></pre></td></tr></table></figure>
 <p>所有这些配置完成以后，使用JSP就和之前一模一样了。</p>
-<h2 id="总结">总结</h2>
-<p>使用JSP步骤为：</p>
-<ol type="1">
-<li>创建webapp目录，并在目录结构中指定该目录为Web Resources
-Directory</li>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>使用JSP步骤为：</p>
+<ol>
+<li>创建webapp目录，并在目录结构中指定该目录为Web Resources Directory</li>
 <li>加入springboot的jsp依赖，以及servlet和servlet-jsp依赖，如要使用jstl，则加入jstl依赖</li>
 <li>在apolication.properties中配置SpringMVC的视图解析器。</li>
 </ol>

@@ -16,13 +16,15 @@
   <meta name="author" content="ZhaoXin">
   <meta name="keywords" content="博客">
   
-    <meta name="description" content="从java代码中把数据传入mapper文件的sql语句，就是传入参数。 parameterType parameterType是、等标签的一个属性，用来表示DAO接口中对应方法参数的数据类型。 parameterType的值时java中数据类型的全限定类名或者是mybatis定义的别名。 例如：parameterType &#x3D; &quot;java.lang.Integer&quot;、parameterTy">
+    <meta name="description" content="从java代码中把数据传入mapper文件的sql语句，就是传入参数。 parameterTypeparameterType是、等标签的一个属性，用来表示DAO接口中对应方法参数的数据类型。 parameterType的值时java中数据类型的全限定类名或者是mybatis定义的别名。 例如：parameterType &#x3D; &quot;java.lang.Integer&quot;、paramet">
 <meta property="og:type" content="article">
 <meta property="og:title" content="4-传参">
 <meta property="og:url" content="https://zhaoquaner.github.io/2022/05/11/MyBatis/4-%E4%BC%A0%E5%8F%82/index.html">
 <meta property="og:site_name" content="赵圈儿的博客">
-<meta property="og:description" content="从java代码中把数据传入mapper文件的sql语句，就是传入参数。 parameterType parameterType是、等标签的一个属性，用来表示DAO接口中对应方法参数的数据类型。 parameterType的值时java中数据类型的全限定类名或者是mybatis定义的别名。 例如：parameterType &#x3D; &quot;java.lang.Integer&quot;、parameterTy">
+<meta property="og:description" content="从java代码中把数据传入mapper文件的sql语句，就是传入参数。 parameterTypeparameterType是、等标签的一个属性，用来表示DAO接口中对应方法参数的数据类型。 parameterType的值时java中数据类型的全限定类名或者是mybatis定义的别名。 例如：parameterType &#x3D; &quot;java.lang.Integer&quot;、paramet">
 <meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://crayon-1302863897.cos.ap-beijing.myqcloud.com/image/image-20201202124300046.png">
+<meta property="og:image" content="https://crayon-1302863897.cos.ap-beijing.myqcloud.com/image/image-20201202124240371.png">
 <meta property="article:published_time" content="2022-05-11T05:58:03.000Z">
 <meta property="article:modified_time" content="2022-05-11T09:00:08.968Z">
 <meta property="article:author" content="ZhaoXin">
@@ -30,6 +32,7 @@
 <meta property="article:tag" content="MyBatis">
 <meta property="article:tag" content="后端">
 <meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://crayon-1302863897.cos.ap-beijing.myqcloud.com/image/image-20201202124300046.png">
   
   
   <title>4-传参 - 赵圈儿的博客</title>
@@ -254,66 +257,56 @@
             
             <div class="markdown-body">
               <p><strong>从java代码中把数据传入mapper文件的sql语句，</strong>就是传入参数。</p>
-<h2 id="parametertype">parameterType</h2>
-<p>parameterType是<select>、<insert>等标签的一个属性，用来表示DAO接口中对应方法参数的数据类型。</p>
+<h2 id="parameterType"><a href="#parameterType" class="headerlink" title="parameterType"></a>parameterType</h2><p>parameterType是<select>、<insert>等标签的一个属性，用来表示DAO接口中对应方法参数的数据类型。</p>
 <p>parameterType的值时java中数据类型的全限定类名或者是mybatis定义的别名。</p>
-<p>例如：<code>parameterType =
-"java.lang.Integer"</code>、<code>parameterType = "int"</code></p>
+<p>例如：<code>parameterType = &quot;java.lang.Integer&quot;</code>、<code>parameterType = &quot;int&quot;</code></p>
 <p>注意：parameterType不是必须的，mybatis能够通过反射机制发现接口参数的数据类型，所以可以没有。一般也不写。</p>
-<h2 id="传入一个简单类型参数">传入一个简单类型参数</h2>
-<p>当DAO接口中的方法只有<strong>一个</strong>简单类型参数时(简单类型就是java的基本数据类型加上String)，那么占位符<code>#&#123;任意字符&#125;</code>获取参数值，括号中的名称和方法参数名无关。可以是任意字符。</p>
+<h2 id="传入一个简单类型参数"><a href="#传入一个简单类型参数" class="headerlink" title="传入一个简单类型参数"></a>传入一个简单类型参数</h2><p>当DAO接口中的方法只有<strong>一个</strong>简单类型参数时(简单类型就是java的基本数据类型加上String)，那么占位符<code>#&#123;任意字符&#125;</code>获取参数值，括号中的名称和方法参数名无关。可以是任意字符。</p>
 <p>例子：</p>
 <p>DAO接口中的方法：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><div class="code-wrapper"><pre><span class="line">1</span><br></pre></div></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> Student <span class="hljs-title function_">selectStudentById</span><span class="hljs-params">(Integer id)</span>;<br></code></pre></td></tr></table></figure>
 <p>映射文件的内容：</p>
 <figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">select</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;selectStudentById&quot;</span> <span class="hljs-attr">resultType</span>=<span class="hljs-string">&quot;org.example.domain.Student&quot;</span> &gt;</span><br>    select id, name, email, age from student where id = #&#123;studentId&#125;<br><span class="hljs-tag">&lt;/<span class="hljs-name">select</span>&gt;</span><br></code></pre></td></tr></table></figure>
 <p>可以看到，接口中方法参数名是id，映射文件中是studentId，并不相同。</p>
-<h2 id="多个参数-使用param掌握">多个参数-使用@Param(掌握)</h2>
-<p>当需要传入多个参数时，可以使用MyBatis提供的@Param注解。</p>
+<h2 id="多个参数-使用-Param-掌握"><a href="#多个参数-使用-Param-掌握" class="headerlink" title="多个参数-使用@Param(掌握)"></a>多个参数-使用@Param(掌握)</h2><p>当需要传入多个参数时，可以使用MyBatis提供的@Param注解。</p>
 <p>使用方法：</p>
 <ul>
-<li>DAO接口定义的方法中，在形参定义之前加上@Param("自定义形参数名")</li>
+<li>DAO接口定义的方法中，在形参定义之前加上@Param(“自定义形参数名”)</li>
 <li>在映射文件中，占位符<code>#&#123;@Param定义的参数名&#125;</code>使用同样的名称来访问该参数</li>
 </ul>
 <p>非常简单。</p>
-<p>例子： 在DAO接口中定义方法：</p>
+<p>例子：<br>在DAO接口中定义方法：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> List&lt;Student&gt; <span class="hljs-title function_">selectStudentsByParams</span><span class="hljs-params">(<span class="hljs-meta">@Param(&quot;studentName&quot;)</span> String name,</span><br><span class="hljs-params">                                            <span class="hljs-meta">@Param(&quot;studentId&quot;)</span> Integer id)</span>;<br></code></pre></td></tr></table></figure>
 <p>在映射文件中编写具体sql语句：</p>
 <figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">select</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;selectStudentsByParams&quot;</span> <span class="hljs-attr">resultType</span>=<span class="hljs-string">&quot;org.example.domain.Student&quot;</span> &gt;</span><br>    select id, name, email, age from student where name = #&#123;studentName&#125; or id = #&#123;studentId&#125;<br><span class="hljs-tag">&lt;/<span class="hljs-name">select</span>&gt;</span><br></code></pre></td></tr></table></figure>
 <p>可以看到占位符使用的名称和@Param定义的名称相同。</p>
 <p>MyBatis推荐使用这种方法。</p>
-<h2
-id="多个参数-使用java对象属性掌握">多个参数-使用Java对象属性(掌握)</h2>
-<p>传入多个参数另一种方法就是传入一个Java对象，该对象的多个属性是数据库实际参数。</p>
-<p>使用对象语法：<code>#&#123;属性名，javaType="类型名称",jdbcType="数据类型"&#125;</code></p>
-<p>​ 其中：</p>
-<p>​ 属性名就是java对象中定义的变量名称；</p>
-<p>​ javaType是java中的属性数据类型；</p>
-<p>​ jdbcType是在数据库中的数据类型。</p>
+<h2 id="多个参数-使用Java对象属性-掌握"><a href="#多个参数-使用Java对象属性-掌握" class="headerlink" title="多个参数-使用Java对象属性(掌握)"></a>多个参数-使用Java对象属性(掌握)</h2><p>传入多个参数另一种方法就是传入一个Java对象，该对象的多个属性是数据库实际参数。</p>
+<p>使用对象语法：<code>#&#123;属性名，javaType=&quot;类型名称&quot;,jdbcType=&quot;数据类型&quot;&#125;</code></p>
+<p>​        其中：</p>
+<p>​                    属性名就是java对象中定义的变量名称；</p>
+<p>​                    javaType是java中的属性数据类型；</p>
+<p>​                    jdbcType是在数据库中的数据类型。</p>
 <p>但是这样写，非常麻烦。</p>
 <p>在实际开发中，一般采用简化模式：<code>#&#123;属性名&#125;</code>，javaType和jdbcType的值MyBatis可以通过反射获取。</p>
 <p>这种方法在之前的例子中已经使用过了，在此不再提供例子。</p>
-<h2 id="多个参数-使用位置了解">多个参数-使用位置(了解)</h2>
-<p>参数位置从0开始，引用参数的语法是：<code>#&#123;arg位置&#125;</code>，例如第一个参数是<code>#&#123;arg0&#125;</code>、第二个是<code>#&#123;arg1&#125;</code>，以此类推。</p>
+<h2 id="多个参数-使用位置-了解"><a href="#多个参数-使用位置-了解" class="headerlink" title="多个参数-使用位置(了解)"></a>多个参数-使用位置(了解)</h2><p>参数位置从0开始，引用参数的语法是：<code>#&#123;arg位置&#125;</code>，例如第一个参数是<code>#&#123;arg0&#125;</code>、第二个是<code>#&#123;arg1&#125;</code>，以此类推。</p>
 <p>在MyBatis3.3之前版本使用<code>#&#123;0&#125;</code>、<code>#&#123;1&#125;</code>方式，从3.4使用<code>#&#123;arg0&#125;</code>方式。</p>
 <p>例子：</p>
 <p>接口方法：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> List&lt;Student&gt; <span class="hljs-title function_">selectStudentsByParams</span><span class="hljs-params">(String name, Integer id)</span>;<br></code></pre></td></tr></table></figure>
 <p>映射文件：</p>
 <figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">select</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;selectStudentsByParams&quot;</span> <span class="hljs-attr">resultType</span>=<span class="hljs-string">&quot;org.example.domain.Student&quot;</span> &gt;</span><br>    select id, name, email, age from student where name = #&#123;arg0&#125; or id = #&#123;arg1&#125;<br><span class="hljs-tag">&lt;/<span class="hljs-name">select</span>&gt;</span><br></code></pre></td></tr></table></figure>
-<h2 id="多个参数-使用map了解">多个参数-使用Map(了解)</h2>
-<p>Map集合可以存储多个值，使用Map向映射文件一次传入多个参数，Mao集合使用String类型的key，Object类型的值存储value。</p>
+<h2 id="多个参数-使用Map-了解"><a href="#多个参数-使用Map-了解" class="headerlink" title="多个参数-使用Map(了解)"></a>多个参数-使用Map(了解)</h2><p>Map集合可以存储多个值，使用Map向映射文件一次传入多个参数，Mao集合使用String类型的key，Object类型的值存储value。</p>
 <p>mapper文件中使用<code>#&#123;key&#125;</code>来引用对应参数值。</p>
-<p>例子： DAO接口中方法：</p>
+<p>例子：<br>DAO接口中方法：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> List&lt;Student&gt; <span class="hljs-title function_">selectStudentsByParams</span><span class="hljs-params">(Map&lt;String, Object&gt; map)</span>;<br></code></pre></td></tr></table></figure>
 <p>映射文件：</p>
 <figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">select</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;selectStudentsByParams&quot;</span> <span class="hljs-attr">resultType</span>=<span class="hljs-string">&quot;org.example.domain.Student&quot;</span> &gt;</span><br>    select id, name, email, age from student where name = #&#123;StudentName&#125; or id = #&#123;StudentId&#125;<br><span class="hljs-tag">&lt;/<span class="hljs-name">select</span>&gt;</span><br></code></pre></td></tr></table></figure>
 <p>测试代码：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@Test</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">testSelectStudentsByParams</span><span class="hljs-params">()</span> &#123;<br>    <span class="hljs-type">SqlSession</span> <span class="hljs-variable">sqlSession</span> <span class="hljs-operator">=</span> MyBatisUtils.getSqlSession();<br>    <span class="hljs-type">StudentDao</span> <span class="hljs-variable">dao</span> <span class="hljs-operator">=</span> sqlSession.getMapper(StudentDao.class);<br>    <br>    Map&lt;String,Object&gt; map = <span class="hljs-keyword">new</span> <span class="hljs-title class_">HashMap</span>&lt;&gt;();<br>    map.put(<span class="hljs-string">&quot;StudentName&quot;</span>, <span class="hljs-string">&quot;李四&quot;</span>);<br>    map.put(<span class="hljs-string">&quot;StudentId&quot;</span>, <span class="hljs-number">1004</span>);<br>    <br>    <br>    List&lt;Student&gt; list = dao.selectStudentsByParams(map);<br>    <span class="hljs-keyword">for</span>(Student stu : list) &#123;<br>        System.out.println(stu);<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
 <p>但这种方法不推荐使用，因为使用Map，不知道传入几个参数，也不知道每个参数的类型。</p>
-<h2 id="和-两个占位符比较">#和$-两个占位符比较</h2>
-<p>#：占位符，是告诉MyBatis用实际参数值来代替。#{..}代替sql语句中的"?"占位符，更安全，更迅速。</p>
-<p>例如： mapper文件中：</p>
+<h2 id="和-两个占位符比较"><a href="#和-两个占位符比较" class="headerlink" title="#和$-两个占位符比较"></a>#和$-两个占位符比较</h2><h1 id="：占位符，是告诉MyBatis用实际参数值来代替。-代替sql语句中的”-”占位符，更安全，更迅速。"><a href="#：占位符，是告诉MyBatis用实际参数值来代替。-代替sql语句中的”-”占位符，更安全，更迅速。" class="headerlink" title="：占位符，是告诉MyBatis用实际参数值来代替。#{..}代替sql语句中的”?”占位符，更安全，更迅速。"></a>：占位符，是告诉MyBatis用实际参数值来代替。#{..}代替sql语句中的”?”占位符，更安全，更迅速。</h1><p>例如：<br>mapper文件中：</p>
 <figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">select</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;selectById&quot;</span> <span class="hljs-attr">resultType</span>=<span class="hljs-string">&quot;org.example.domain.Student&quot;</span>&gt;</span><br>    select id, name, email, age from student where id=#&#123;studentId&#125;<br><span class="hljs-tag">&lt;/<span class="hljs-name">select</span>&gt;</span><br></code></pre></td></tr></table></figure>
 <p>在MyBatis内部执行其实使用的就是JDBC：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-type">String</span> <span class="hljs-variable">sql</span> <span class="hljs-operator">=</span> <span class="hljs-string">&quot;select id, name, email age from student where id = ?&quot;</span><br><span class="hljs-type">PreparedStatement</span> <span class="hljs-variable">ps</span> <span class="hljs-operator">=</span> conn.preparedStatement(sql);<br>ps.setInt(<span class="hljs-number">1</span>, <span class="hljs-number">1001</span>);<br></code></pre></td></tr></table></figure>
@@ -321,8 +314,7 @@ id="多个参数-使用java对象属性掌握">多个参数-使用Java对象属�
 <p>ps.setInt(1, 1001)，1001会替换#{studentId}</p>
 <p>$：这个使用的是字符串拼接的原理。</p>
 <p>注意:$是字符串拼接，所以在传入参数时，要使用单引号括起来，例如：</p>
-<p><code>List&lt;Student&gt; list = dao.selectStudentsByParams("'李四'",
-1004);</code></p>
+<p><code>List&lt;Student&gt; list = dao.selectStudentsByParams(&quot;&#39;李四&#39;&quot;, 1004);</code></p>
 <p>$是字符串拼接，内部使用Statement来执行sql语句。可能会发生SQL注入，是有风险的。</p>
 <p>所以通常，$不用来替换参数值，而是用来替换表名、列名、不同列排序等操作。</p>
 <p>例子：使用不同列来进行查询</p>
@@ -333,26 +325,17 @@ id="多个参数-使用java对象属性掌握">多个参数-使用Java对象属�
 <p>测试代码：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@Test</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">testFindByDiffField</span><span class="hljs-params">()</span> &#123;<br>    <span class="hljs-type">SqlSession</span> <span class="hljs-variable">sqlSession</span> <span class="hljs-operator">=</span> MyBatisUtils.getSqlSession();<br>    <span class="hljs-type">StudentDao</span> <span class="hljs-variable">dao</span> <span class="hljs-operator">=</span> sqlSession.getMapper(StudentDao.class);<br>    <span class="hljs-type">Student</span> <span class="hljs-variable">student</span> <span class="hljs-operator">=</span> dao.findByDiffField(<span class="hljs-string">&quot;name&quot;</span>, <span class="hljs-string">&quot;李四&quot;</span>);<br>    System.out.println(student);<br>&#125;<br></code></pre></td></tr></table></figure>
 <p>可以使用任何一列来进行查询。</p>
-<h3 id="比较两种不同方法">比较两种不同方法</h3>
-<p>$它可以替换#。但是原理是完全不同的，#是占位符。在内部使用PreparedStatement来执行sql语句；</p>
+<h3 id="比较两种不同方法"><a href="#比较两种不同方法" class="headerlink" title="比较两种不同方法"></a>比较两种不同方法</h3><p>$它可以替换#。但是原理是完全不同的，#是占位符。在内部使用PreparedStatement来执行sql语句；</p>
 <p>使用#的控制台日志：</p>
-<figure>
-<img
-src="https://crayon-1302863897.cos.ap-beijing.myqcloud.com/image/image-20201202124300046.png" srcset="/img/loading.gif" lazyload
-alt="image-20201202124300046" />
-<figcaption aria-hidden="true">image-20201202124300046</figcaption>
-</figure>
+<p><img src="https://crayon-1302863897.cos.ap-beijing.myqcloud.com/image/image-20201202124300046.png" srcset="/img/loading.gif" lazyload alt="image-20201202124300046"></p>
 <p>使用$的控制台日志：</p>
-<p>​ <img
-src="https://crayon-1302863897.cos.ap-beijing.myqcloud.com/image/image-20201202124240371.png" srcset="/img/loading.gif" lazyload
-alt="image-20201202124240371" /></p>
+<p>​    <img src="https://crayon-1302863897.cos.ap-beijing.myqcloud.com/image/image-20201202124240371.png" srcset="/img/loading.gif" lazyload alt="image-20201202124240371"></p>
 <p>可以看出区别，一个是?，一个直接把参数写入到了sql语句。</p>
 <p>所以一个是占位符，一个是字符串拼接。</p>
 <p>总上，#和$的区别：</p>
 <ul>
-<li>#使用
-？能够在sql语句做占位符，使用PreparedStatement执行sql，效率高</li>
-<li>#能够避免sql注入，更安全</li>
+<li><h1 id="使用-？能够在sql语句做占位符，使用PreparedStatement执行sql，效率高"><a href="#使用-？能够在sql语句做占位符，使用PreparedStatement执行sql，效率高" class="headerlink" title="使用 ？能够在sql语句做占位符，使用PreparedStatement执行sql，效率高"></a>使用 ？能够在sql语句做占位符，使用PreparedStatement执行sql，效率高</h1></li>
+<li><h1 id="能够避免sql注入，更安全"><a href="#能够避免sql注入，更安全" class="headerlink" title="能够避免sql注入，更安全"></a>能够避免sql注入，更安全</h1></li>
 <li>$不使用占位符，是字符串连接方法，使用Statement对象执行sql，效率低</li>
 <li>$有sql注入的风险，缺乏安全性</li>
 <li>$可以替换表名和列名</li>

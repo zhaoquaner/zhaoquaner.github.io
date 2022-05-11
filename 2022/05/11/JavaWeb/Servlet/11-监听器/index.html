@@ -16,19 +16,24 @@
   <meta name="author" content="ZhaoXin">
   <meta name="keywords" content="博客">
   
-    <meta name="description" content="#　介绍 监听器设计三个组件：事件源，事件对象，事件监听器 三者关系为：事件监听器监听事件源的方法，当触发事件源的事件时，事件监听器就调用对应的方法，同时将该事件对象作为参数传递给该方法。 事件源可以通过事件对象获得。 事件源需要注册监听器对象（简单来说，就是告诉监听器你要监听哪个事件源）。 Servlet监听器 介绍  它们是一组来自Servlet规范下的接口，共有8个 Htt">
+    <meta name="description" content="介绍监听器设计三个组件：事件源，事件对象，事件监听器 三者关系为：事件监听器监听事件源的方法，当触发事件源的事件时，事件监听器就调用对应的方法，同时将该事件对象作为参数传递给该方法。 事件源可以通过事件对象获得。 事件源需要注册监听器对象（简单来说，就是告诉监听器你要监听哪个事件源）。 Servlet监听器介绍 它们是一组来自Servlet规范下的接口，共有8个 Http服务器没有提供实现类，需">
 <meta property="og:type" content="article">
 <meta property="og:title" content="10-监听器">
 <meta property="og:url" content="https://zhaoquaner.github.io/2022/05/11/JavaWeb/Servlet/11-%E7%9B%91%E5%90%AC%E5%99%A8/index.html">
 <meta property="og:site_name" content="赵圈儿的博客">
-<meta property="og:description" content="#　介绍 监听器设计三个组件：事件源，事件对象，事件监听器 三者关系为：事件监听器监听事件源的方法，当触发事件源的事件时，事件监听器就调用对应的方法，同时将该事件对象作为参数传递给该方法。 事件源可以通过事件对象获得。 事件源需要注册监听器对象（简单来说，就是告诉监听器你要监听哪个事件源）。 Servlet监听器 介绍  它们是一组来自Servlet规范下的接口，共有8个 Htt">
+<meta property="og:description" content="介绍监听器设计三个组件：事件源，事件对象，事件监听器 三者关系为：事件监听器监听事件源的方法，当触发事件源的事件时，事件监听器就调用对应的方法，同时将该事件对象作为参数传递给该方法。 事件源可以通过事件对象获得。 事件源需要注册监听器对象（简单来说，就是告诉监听器你要监听哪个事件源）。 Servlet监听器介绍 它们是一组来自Servlet规范下的接口，共有8个 Http服务器没有提供实现类，需">
 <meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://crayon-1302863897.cos.ap-beijing.myqcloud.com/20200814092651.png">
+<meta property="og:image" content="https://crayon-1302863897.cos.ap-beijing.myqcloud.com/20200814111221.png">
+<meta property="og:image" content="https://crayon-1302863897.cos.ap-beijing.myqcloud.com/20200814112021.png">
+<meta property="og:image" content="https://crayon-1302863897.cos.ap-beijing.myqcloud.com/20200814141343.png">
 <meta property="article:published_time" content="2022-05-11T05:44:39.000Z">
 <meta property="article:modified_time" content="2022-05-11T08:55:44.335Z">
 <meta property="article:author" content="ZhaoXin">
 <meta property="article:tag" content="JavaWeb">
 <meta property="article:tag" content="Servlet">
 <meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://crayon-1302863897.cos.ap-beijing.myqcloud.com/20200814092651.png">
   
   
   <title>10-监听器 - 赵圈儿的博客</title>
@@ -252,14 +257,11 @@
             <h1 style="display: none">10-监听器</h1>
             
             <div class="markdown-body">
-              <p>#　介绍</p>
-<p>监听器设计三个组件：事件源，事件对象，事件监听器</p>
+              <h1 id="介绍"><a href="#介绍" class="headerlink" title="　介绍"></a>　介绍</h1><p>监听器设计三个组件：事件源，事件对象，事件监听器</p>
 <p>三者关系为：事件监听器监听事件源的方法，当触发事件源的事件时，事件监听器就调用对应的方法，同时将该事件对象作为参数传递给该方法。</p>
 <p>事件源可以通过事件对象获得。</p>
 <p>事件源需要注册监听器对象（简单来说，就是告诉监听器你要监听哪个事件源）。</p>
-<h2 id="servlet监听器">Servlet监听器</h2>
-<h3 id="介绍">介绍</h3>
-<ul>
+<h2 id="Servlet监听器"><a href="#Servlet监听器" class="headerlink" title="Servlet监听器"></a>Servlet监听器</h2><h3 id="介绍-1"><a href="#介绍-1" class="headerlink" title="介绍"></a>介绍</h3><ul>
 <li>它们是一组来自Servlet规范下的接口，共有8个</li>
 <li>Http服务器没有提供实现类，需要开发人员手动实现</li>
 <li>监听器接口用于监控作用域对象生命周期变化时刻和作用域对象共享数据变化时刻</li>
@@ -272,65 +274,36 @@
 </ul>
 <p>对应的监听器对象分别为ServletContextListener，HttpSessionListener和ServletRequestListener。</p>
 <p>不过和其他事件监听器不同的是，Servlet监听器的注册不是直接注册在事件源上，而是由WEB容器负责注册，开发人员需要在web.xml文件中使用<listener>标签配置好监听器。</p>
-<h3 id="监听类接口实现类开发规范">监听类接口实现类开发规范</h3>
-<p>共分三步：</p>
+<h3 id="监听类接口实现类开发规范"><a href="#监听类接口实现类开发规范" class="headerlink" title="监听类接口实现类开发规范"></a>监听类接口实现类开发规范</h3><p>共分三步：</p>
 <ul>
 <li>根据监听实际情况，选择对应监听器接口进行实现</li>
 <li>重写监听器接口声明(即监听事件处理方法)</li>
 <li>在web.xml文件中将监听器接口实现类注册到Http服务器</li>
 </ul>
-<h2 id="监听器监听对象的创建和销毁">监听器监听对象的创建和销毁</h2>
-<p>HttpSessionListener、ServletContextListener、ServletRequestListener分别监控着Session、
-Context、Request对象的创建和销毁。</p>
+<h2 id="监听器监听对象的创建和销毁"><a href="#监听器监听对象的创建和销毁" class="headerlink" title="监听器监听对象的创建和销毁"></a>监听器监听对象的创建和销毁</h2><p>HttpSessionListener、ServletContextListener、ServletRequestListener分别监控着Session、<br>Context、Request对象的创建和销毁。</p>
 <p>每个接口都定义了两个方法，分为为对象创建和销毁的方法</p>
-<figure>
-<img
-src="https://crayon-1302863897.cos.ap-beijing.myqcloud.com/20200814092651.png" srcset="/img/loading.gif" lazyload
-alt="20200813204102" />
-<figcaption aria-hidden="true">20200813204102</figcaption>
-</figure>
+<p><img src="https://crayon-1302863897.cos.ap-beijing.myqcloud.com/20200814092651.png" srcset="/img/loading.gif" lazyload alt="20200813204102"> </p>
 <p>监听器可以监听到ServletContext的初始化和销毁，Session的创建。(服务器关闭，不代表Session被销毁，Session创建在服务器内存中，所以看不到Session被销毁)</p>
-<h2 id="监听对象属性变化">监听对象属性变化</h2>
-<p>ServletContextAttributeListener、HttpSessionAttributeListener、ServletRequestAttributeListener
-分别监听着Context、Session、Request对象属性的变化。</p>
+<h2 id="监听对象属性变化"><a href="#监听对象属性变化" class="headerlink" title="监听对象属性变化"></a>监听对象属性变化</h2><p>ServletContextAttributeListener、HttpSessionAttributeListener、ServletRequestAttributeListener<br>分别监听着Context、Session、Request对象属性的变化。</p>
 <p>三个接口都定义了三个方法来处理被监听对象中的属性增加，删除和替换的事件，同一个事件在这三个接口中对应方法名称完全相同，只是接受参数类型不同。</p>
-<figure>
-<img
-src="https://crayon-1302863897.cos.ap-beijing.myqcloud.com/20200814111221.png" srcset="/img/loading.gif" lazyload
-alt="image-20200814111213577" />
-<figcaption aria-hidden="true">image-20200814111213577</figcaption>
-</figure>
+<p><img src="https://crayon-1302863897.cos.ap-beijing.myqcloud.com/20200814111221.png" srcset="/img/loading.gif" lazyload alt="image-20200814111213577"></p>
 <p>只演示Context对象，其他都可依此类推。</p>
 <p>监听器对象：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><div class="code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></div></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">Listener</span> <span class="hljs-keyword">implements</span> <span class="hljs-title class_">ServletContextAttributeListener</span> &#123;<br><br>    <span class="hljs-keyword">public</span> <span class="hljs-title function_">Listener</span><span class="hljs-params">()</span> &#123;<br><br>    &#125;<br><br>    <span class="hljs-meta">@Override</span><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">attributeAdded</span><span class="hljs-params">(ServletContextAttributeEvent scae)</span> &#123;<br>        System.out.println(<span class="hljs-string">&quot;Ｃｏｎｔｅｘｔ对象增加了属性&quot;</span>);<br>    &#125;<br><br>    <span class="hljs-meta">@Override</span><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">attributeRemoved</span><span class="hljs-params">(ServletContextAttributeEvent scae)</span> &#123;<br>        System.out.println(<span class="hljs-string">&quot;Ｃｏｎｔｅｘｔ对象删除了属性&quot;</span>);<br>        <br>    &#125;<br><br>    <span class="hljs-meta">@Override</span><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">attributeReplaced</span><span class="hljs-params">(ServletContextAttributeEvent scae)</span> &#123;<br>        System.out.println(<span class="hljs-string">&quot;Ｃｏｎｔｅｘｔ对象更新了属性&quot;</span>);<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
 <p>用于测试Servlet对象：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">TestServlet</span> <span class="hljs-keyword">extends</span> <span class="hljs-title class_">HttpServlet</span> &#123;<br><br>    <span class="hljs-meta">@Override</span><br>    <span class="hljs-keyword">protected</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">doGet</span><span class="hljs-params">(HttpServletRequest request, HttpServletResponse response)</span> <span class="hljs-keyword">throws</span> ServletException, IOException &#123;<br><br>        <span class="hljs-type">ServletContext</span> <span class="hljs-variable">servletContext</span> <span class="hljs-operator">=</span> request.getServletContext();<br>        servletContext.setAttribute(<span class="hljs-string">&quot;name&quot;</span>, <span class="hljs-string">&quot;哈哈哈ce&quot;</span>);<br>        servletContext.setAttribute(<span class="hljs-string">&quot;name&quot;</span>, <span class="hljs-string">&quot;哈哈哈哈&quot;</span>);<br>        servletContext.removeAttribute(<span class="hljs-string">&quot;name&quot;</span>);<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
 <p>测试结果为：</p>
-<figure>
-<img
-src="https://crayon-1302863897.cos.ap-beijing.myqcloud.com/20200814112021.png" srcset="/img/loading.gif" lazyload
-alt="image-20200814112021198" />
-<figcaption aria-hidden="true">image-20200814112021198</figcaption>
-</figure>
-<h2 id="监听session内的对象">监听Session内的对象</h2>
-<p>除了上述六种Listener，还有两种Listener监听Session内的对象，分别是HttpSessionBindingListener和HttpSessionActivationListener，实现这两个接口不需要在web.xml文件中注册。</p>
+<p><img src="https://crayon-1302863897.cos.ap-beijing.myqcloud.com/20200814112021.png" srcset="/img/loading.gif" lazyload alt="image-20200814112021198"></p>
+<h2 id="监听Session内的对象"><a href="#监听Session内的对象" class="headerlink" title="监听Session内的对象"></a>监听Session内的对象</h2><p>除了上述六种Listener，还有两种Listener监听Session内的对象，分别是HttpSessionBindingListener和HttpSessionActivationListener，实现这两个接口不需要在web.xml文件中注册。</p>
 <ul>
 <li>实现HttpSessionBindingListener接口，JavaBean对象可以感知自己被绑定到Session中和从Session中删除的事件(和HttpSessionAttributeListener的作用差不多)</li>
 <li>实现HttpSessionActivationListener接口，JavaBean对象可以感知自己被活化和钝化的事件(当服务器关闭的时候，会将Session的内容保存在硬盘上，称为钝化；服务器开启时，会将Session的内容在硬盘上重新加载，称为活化)</li>
 </ul>
-<figure>
-<img
-src="https://crayon-1302863897.cos.ap-beijing.myqcloud.com/20200814141343.png" srcset="/img/loading.gif" lazyload
-alt="image-20200814141343471" />
-<figcaption aria-hidden="true">image-20200814141343471</figcaption>
-</figure>
+<p><img src="https://crayon-1302863897.cos.ap-beijing.myqcloud.com/20200814141343.png" srcset="/img/loading.gif" lazyload alt="image-20200814141343471"></p>
 <p>如果想要测试Session的硬化和钝化，需要修改Tomcat配置。在META-INF目录下的context.xml文件中添加代码：</p>
 <figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">Context</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">Manager</span> <span class="hljs-attr">className</span>=<span class="hljs-string">&quot;org.apache.catalina.session.PersistentManager&quot;</span></span><br><span class="hljs-tag"><span class="hljs-attr">maxIdleSwap</span>=<span class="hljs-string">&quot;1&quot;</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">Store</span> <span class="hljs-attr">className</span>=<span class="hljs-string">&quot;org.apache.catalina.session.FileStore&quot;</span></span><br><span class="hljs-tag"><span class="hljs-attr">directory</span>=<span class="hljs-string">&quot;zhongfucheng&quot;</span>/&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">Manager</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">Context</span>&gt;</span><br></code></pre></td></tr></table></figure>
-<h2 id="监听器的简单应用">监听器的简单应用</h2>
-<h3 id="加快程序运行速度">加快程序运行速度</h3>
-<p>例如在之前做的在线考试管理系统中，用户注册需要连接数据库，插入数据，其中Connection的创建和销毁非常消耗时间，所以需要在服务器启动时就创建一批Connection，即数据库连接池，那么程序如何知道Tomcat服务器什么时候启动呢，就可以使用全局作用域对象ServletContext对象的监听器，其中的初始化方法，服务器在启动时，一定会创建ServletContext对象，就可以编写监听器对象方法，在这个方法中，创建一批Connection对象，即可加快程序运行速度</p>
-<h3 id="统计网站在线人数">统计网站在线人数</h3>
-<p>在网站中使用Session来标识用户是否登录，如果登录了，就在Session域中保存相应属性，如果没有登录，那么Session属性就为空。</p>
+<h2 id="监听器的简单应用"><a href="#监听器的简单应用" class="headerlink" title="监听器的简单应用"></a>监听器的简单应用</h2><h3 id="加快程序运行速度"><a href="#加快程序运行速度" class="headerlink" title="加快程序运行速度"></a>加快程序运行速度</h3><p>例如在之前做的在线考试管理系统中，用户注册需要连接数据库，插入数据，其中Connection的创建和销毁非常消耗时间，所以需要在服务器启动时就创建一批Connection，即数据库连接池，那么程序如何知道Tomcat服务器什么时候启动呢，就可以使用全局作用域对象ServletContext对象的监听器，其中的初始化方法，服务器在启动时，一定会创建ServletContext对象，就可以编写监听器对象方法，在这个方法中，创建一批Connection对象，即可加快程序运行速度</p>
+<h3 id="统计网站在线人数"><a href="#统计网站在线人数" class="headerlink" title="统计网站在线人数"></a>统计网站在线人数</h3><p>在网站中使用Session来标识用户是否登录，如果登录了，就在Session域中保存相应属性，如果没有登录，那么Session属性就为空。</p>
 <p>要统计网站在线人数，应该这样做：监听是否有新的Session创建了，如果有，那么在线人数就+1，这个在线人数是针对整个网站的，所以需要使用Context全局作用域对象来保存</p>
 <p>所以思路就是：</p>
 <ul>
