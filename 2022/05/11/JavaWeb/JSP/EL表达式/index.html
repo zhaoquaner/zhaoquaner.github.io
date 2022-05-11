@@ -1,304 +1,267 @@
-
-
 <!DOCTYPE html>
-<html lang="zh-CN" data-default-color-scheme=auto>
-
-
-
+<html lang="zh-CN">
 <head>
   <meta charset="UTF-8">
-  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
-  <link rel="icon" href="/img/favicon.png">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
-  <meta http-equiv="x-ua-compatible" content="ie=edge">
-  
-  <meta name="theme-color" content="#2f4154">
-  <meta name="author" content="ZhaoXin">
-  <meta name="keywords" content="博客">
-  
-    <meta name="description" content="什么是EL表达式 表达式语言(Expression Language, EL) ,EL表达式是用&quot;${}&quot; 括起来的脚本，用来更方便的读取对象。EL表达式主要用来读取数据，进行内容显示。 为什么使用EL 表达式 使用EL表达式，可以更简洁的读取对象中的属性，提交的参数、JavaBean、甚至集合。 例如在1.jsp中session设置了一个名为 name的属性 那么在2.jsp中间可以">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css" integrity="sha256-DfWjNxDkM94fVBWx1H5BMMp0Zq7luBlV8QRcSES7s+0=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"zhaoquaner.github.io","root":"/","images":"/images","scheme":"Muse","darkmode":false,"version":"8.11.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="什么是EL表达式表达式语言(Expression Language, EL) ,EL表达式是用”${}” 括起来的脚本，用来更方便的读取对象。EL表达式主要用来读取数据，进行内容显示。 为什么使用EL 表达式使用EL表达式，可以更简洁的读取对象中的属性，提交的参数、JavaBean、甚至集合。 例如在1.jsp中session设置了一个名为 name的属性 那么在2.jsp中间可以使用 $&amp;#12">
 <meta property="og:type" content="article">
 <meta property="og:title" content="EL表达式">
 <meta property="og:url" content="https://zhaoquaner.github.io/2022/05/11/JavaWeb/JSP/EL%E8%A1%A8%E8%BE%BE%E5%BC%8F/index.html">
 <meta property="og:site_name" content="赵圈儿的博客">
-<meta property="og:description" content="什么是EL表达式 表达式语言(Expression Language, EL) ,EL表达式是用&quot;${}&quot; 括起来的脚本，用来更方便的读取对象。EL表达式主要用来读取数据，进行内容显示。 为什么使用EL 表达式 使用EL表达式，可以更简洁的读取对象中的属性，提交的参数、JavaBean、甚至集合。 例如在1.jsp中session设置了一个名为 name的属性 那么在2.jsp中间可以">
+<meta property="og:description" content="什么是EL表达式表达式语言(Expression Language, EL) ,EL表达式是用”${}” 括起来的脚本，用来更方便的读取对象。EL表达式主要用来读取数据，进行内容显示。 为什么使用EL 表达式使用EL表达式，可以更简洁的读取对象中的属性，提交的参数、JavaBean、甚至集合。 例如在1.jsp中session设置了一个名为 name的属性 那么在2.jsp中间可以使用 $&amp;#12">
 <meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://crayon-1302863897.cos.ap-beijing.myqcloud.com/20200908100149.png">
 <meta property="article:published_time" content="2022-05-11T05:55:39.000Z">
 <meta property="article:modified_time" content="2022-05-11T08:55:13.145Z">
 <meta property="article:author" content="ZhaoXin">
 <meta property="article:tag" content="JavaWeb">
 <meta property="article:tag" content="JSP">
-<meta name="twitter:card" content="summary_large_image">
-  
-  
-  <title>EL表达式 - 赵圈儿的博客</title>
-
-  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/css/bootstrap.min.css" />
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://crayon-1302863897.cos.ap-beijing.myqcloud.com/20200908100149.png">
 
 
-  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4/github-markdown.min.css" />
-  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hint.css@2/hint.min.css" />
+<link rel="canonical" href="https://zhaoquaner.github.io/2022/05/11/JavaWeb/JSP/EL%E8%A1%A8%E8%BE%BE%E5%BC%8F/">
 
-  
-    
-    
-      
-      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10/styles/github-gist.min.css" />
-    
-  
 
-  
-    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.css" />
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://zhaoquaner.github.io/2022/05/11/JavaWeb/JSP/EL%E8%A1%A8%E8%BE%BE%E5%BC%8F/","path":"2022/05/11/JavaWeb/JSP/EL表达式/","title":"EL表达式"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>EL表达式 | 赵圈儿的博客</title>
   
 
 
-<!-- 主题依赖的图标库，不要自行修改 -->
-
-<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
 
 
 
-<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
-
-
-<link  rel="stylesheet" href="/css/main.css" />
-
-<!-- 自定义样式保持在最底部 -->
-
-
-  <script id="fluid-configs">
-    var Fluid = window.Fluid || {};
-    var CONFIG = {"hostname":"zhaoquaner.github.io","root":"/","version":"1.8.14","typing":{"enable":true,"typeSpeed":60,"cursorChar":" ","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":false,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":2},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":"BzK0JfEpsm40LlV9EPIyl4mp-gzGzoHsz","app_key":"MpxSk6ED55Utq83yNrKAMI5c","server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
-  </script>
-  <script  src="/js/utils.js" ></script>
-  <script  src="/js/color-schema.js" ></script>
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
 </head>
 
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion"><!-- hexo injector body_begin start --><style>code {font-weight:400;}.post-content {font-weight:600;} #board {border-radius: 1.5rem;} #board-ctn {width:110%;margin-left:-5%;}</style><!-- hexo injector body_begin end -->
+  <div class="headband"></div>
 
-<body><!-- hexo injector body_begin start --><style>code {font-weight:400;}.post-content {font-weight:600;} #board {border-radius: 1.5rem;} #board-ctn {width:110%;margin-left:-5%;}</style><!-- hexo injector body_begin end -->
-  <header style="height: 70vh;">
-    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
-  <div class="container">
-    <a class="navbar-brand" href="/">
-      <strong>Personal Blog</strong>
-    </a>
-
-    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
-            data-target="#navbarSupportedContent"
-            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <div class="animated-icon"><span></span><span></span><span></span></div>
-    </button>
-
-    <!-- Collapsible content -->
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav ml-auto text-center">
-        
-          
-          
-          
-          
-            <li class="nav-item">
-              <a class="nav-link" href="/">
-                <i class="iconfont icon-home-fill"></i>
-                首页
-              </a>
-            </li>
-          
-        
-          
-          
-          
-          
-            <li class="nav-item">
-              <a class="nav-link" href="/archives/">
-                <i class="iconfont icon-archive-fill"></i>
-                归档
-              </a>
-            </li>
-          
-        
-          
-          
-          
-          
-            <li class="nav-item">
-              <a class="nav-link" href="/categories/">
-                <i class="iconfont icon-category-fill"></i>
-                分类
-              </a>
-            </li>
-          
-        
-          
-          
-          
-          
-            <li class="nav-item">
-              <a class="nav-link" href="/tags/">
-                <i class="iconfont icon-tags-fill"></i>
-                标签
-              </a>
-            </li>
-          
-        
-          
-          
-          
-          
-            <li class="nav-item">
-              <a class="nav-link" href="/about/">
-                <i class="iconfont icon-user-fill"></i>
-                关于
-              </a>
-            </li>
-          
-        
-          
-          
-          
-          
-            <li class="nav-item">
-              <a class="nav-link" href="javascript:;">
-                <i class="iconfont icon-music"></i>
-                播放
-              </a>
-            </li>
-          
-        
-        
-          <li class="nav-item" id="search-btn">
-            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
-              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
-            </a>
-          </li>
-        
-        
-          <li class="nav-item" id="color-toggle-btn">
-            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
-                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
-          </li>
-        
-      </ul>
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
     </div>
   </div>
-</nav>
 
-    <div class="banner" id="banner" parallax=true
-         style="background: url('/img/article.png') no-repeat center center;
-           background-size: cover;">
-      <div class="full-bg-img">
-        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
-          <div class="page-header text-center fade-in-up">
-            <span class="h2" id="subtitle" title="EL表达式">
-              
-            </span>
+  <div class="site-meta">
 
-            
-              <div class="mt-3">
-  
-  
-    <span class="post-meta">
-      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-      <time datetime="2022-05-11 13:55" pubdate>
-        2022/5/11 13时55分
-      </time>
-    </span>
-  
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">赵圈儿的博客</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
 </div>
 
-<div class="mt-1">
-  
-    <span class="post-meta mr-2">
-      <i class="iconfont icon-chart"></i>
-      4.7k 字
-    </span>
-  
 
-  
 
+
+
+
+
+</div>
+        
   
-  
-    
-      <!-- LeanCloud 统计文章PV -->
-      <span id="leancloud-page-views-container" class="post-meta" style="display: none">
-        <i class="iconfont icon-eye" aria-hidden="true"></i>
-        <span id="leancloud-page-views"></span> 次
-      </span>
-    
-  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BB%80%E4%B9%88%E6%98%AFEL%E8%A1%A8%E8%BE%BE%E5%BC%8F"><span class="nav-number">1.</span> <span class="nav-text">什么是EL表达式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88%E4%BD%BF%E7%94%A8EL-%E8%A1%A8%E8%BE%BE%E5%BC%8F"><span class="nav-number">2.</span> <span class="nav-text">为什么使用EL 表达式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#EL%E8%A1%A8%E8%BE%BE%E5%BC%8F%E4%BD%9C%E7%94%A8"><span class="nav-number">3.</span> <span class="nav-text">EL表达式作用</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%8E%B7%E5%8F%96%E5%90%84%E7%B1%BB%E6%95%B0%E6%8D%AE"><span class="nav-number">3.1.</span> <span class="nav-text">获取各类数据</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%8E%B7%E5%8F%96%E5%9F%9F%E5%AF%B9%E8%B1%A1%E6%95%B0%E6%8D%AE"><span class="nav-number">3.1.1.</span> <span class="nav-text">获取域对象数据</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%8E%B7%E5%8F%96JavaBean%E7%9A%84%E5%B1%9E%E6%80%A7"><span class="nav-number">3.1.2.</span> <span class="nav-text">获取JavaBean的属性</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%8E%B7%E5%8F%96%E9%9B%86%E5%90%88%E6%95%B0%E6%8D%AE"><span class="nav-number">4.</span> <span class="nav-text">获取集合数据</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#EL%E8%BF%90%E7%AE%97%E7%AC%A6"><span class="nav-number">5.</span> <span class="nav-text">EL运算符</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#EL%E8%A1%A8%E8%BE%BE%E5%BC%8F11%E4%B8%AA%E5%86%85%E7%BD%AE%E5%AF%B9%E8%B1%A1"><span class="nav-number">6.</span> <span class="nav-text">EL表达式11个内置对象</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#EL%E8%A1%A8%E8%BE%BE%E5%BC%8F%E5%9B%9E%E6%98%BE%E6%95%B0%E6%8D%AE"><span class="nav-number">7.</span> <span class="nav-text">EL表达式回显数据</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">ZhaoXin</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">169</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">18</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">23</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
 </div>
 
-            
-          </div>
 
-          
+
         </div>
       </div>
     </div>
-  </header>
+  </aside>
+  <div class="sidebar-dimmer"></div>
 
-  <main>
+
+    </header>
+
     
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://zhaoquaner.github.io/2022/05/11/JavaWeb/JSP/EL%E8%A1%A8%E8%BE%BE%E5%BC%8F/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="ZhaoXin">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="赵圈儿的博客">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="EL表达式 | 赵圈儿的博客">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          EL表达式
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
       
 
-<div class="container-fluid nopadding-x">
-  <div class="row nomargin-x">
-    <div class="d-none d-lg-block col-lg-2"></div>
-    <div class="col-lg-8 nopadding-x-md">
-      <div class="container nopadding-x-md" id="board-ctn">
-        <div class="py-5" id="board">
-          <article class="post-content mx-auto">
-            <!-- SEO header -->
-            <h1 style="display: none">EL表达式</h1>
-            
-            <div class="markdown-body">
-              <h2 id="什么是el表达式">什么是EL表达式</h2>
-<p>表达式语言(Expression Language, EL) ,EL表达式是用"${}"
-括起来的脚本，用来更方便的读取对象。EL表达式主要用来读取数据，进行内容显示。</p>
-<h2 id="为什么使用el-表达式">为什么使用EL 表达式</h2>
-<p>使用EL表达式，可以更简洁的读取对象中的属性，提交的参数、JavaBean、甚至集合。</p>
+      <time title="创建时间：2022-05-11 13:55:39 / 修改时间：16:55:13" itemprop="dateCreated datePublished" datetime="2022-05-11T13:55:39+08:00">2022-05-11</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/programming/" itemprop="url" rel="index"><span itemprop="name">编程学习</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/programming/javaweb/" itemprop="url" rel="index"><span itemprop="name">JavaWeb</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <h2 id="什么是EL表达式"><a href="#什么是EL表达式" class="headerlink" title="什么是EL表达式"></a>什么是EL表达式</h2><p>表达式语言(Expression Language, EL) ,EL表达式是用”${}” 括起来的脚本，用来更方便的读取对象。EL表达式主要用来读取数据，进行内容显示。</p>
+<h2 id="为什么使用EL-表达式"><a href="#为什么使用EL-表达式" class="headerlink" title="为什么使用EL 表达式"></a>为什么使用EL 表达式</h2><p>使用EL表达式，可以更简洁的读取对象中的属性，提交的参数、JavaBean、甚至集合。</p>
 <p>例如在1.jsp中session设置了一个名为 name的属性</p>
 <p>那么在2.jsp中间可以使用 <code>$&#123;name&#125;</code>来读取该参数。</p>
-<h2 id="el表达式作用">EL表达式作用</h2>
-<p>首先EL表达式语法为：</p>
+<h2 id="EL表达式作用"><a href="#EL表达式作用" class="headerlink" title="EL表达式作用"></a>EL表达式作用</h2><p>首先EL表达式语法为：</p>
 <p>${标识符}</p>
-<p><strong>EL表达式如果找不到相应的对象属性，返回的是一个空白字符串"",而不是null，这是EL表达式最大的特点。</strong></p>
-<h3 id="获取各类数据">获取各类数据</h3>
-<h4 id="获取域对象数据">获取域对象数据</h4>
-<p>在1.jsp中设置ServletContext属性(就是application)</p>
-<figure class="highlight jsp"><table><tr><td class="gutter"><div class="code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></div></td><td class="code"><pre><code class="hljs jsp">&lt;%<br><span class="hljs-comment">//向ServletContext设置⼀个属性</span><br>application.setAttribute(<span class="hljs-string">&quot;name&quot;</span>, <span class="hljs-string">&quot;aaa&quot;</span>);<br>System.out.println(<span class="hljs-string">&quot;向application设置了⼀个属性&quot;</span>);<br>%&gt;<br></code></pre></td></tr></table></figure>
+<p><strong>EL表达式如果找不到相应的对象属性，返回的是一个空白字符串””,而不是null，这是EL表达式最大的特点。</strong></p>
+<h3 id="获取各类数据"><a href="#获取各类数据" class="headerlink" title="获取各类数据"></a>获取各类数据</h3><h4 id="获取域对象数据"><a href="#获取域对象数据" class="headerlink" title="获取域对象数据"></a>获取域对象数据</h4><p>在1.jsp中设置ServletContext属性(就是application)</p>
+<figure class="highlight jsp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;%</span><br><span class="line"><span class="comment">//向ServletContext设置⼀个属性</span></span><br><span class="line">application.setAttribute(<span class="string">&quot;name&quot;</span>, <span class="string">&quot;aaa&quot;</span>);</span><br><span class="line">System.out.println(<span class="string">&quot;向application设置了⼀个属性&quot;</span>);</span><br><span class="line">%&gt;</span><br></pre></td></tr></table></figure>
 <p>在2.jsp中获取该属性</p>
-<figure class="highlight jsp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs jsp">&lt;%<br>	$&#123;name&#125;<br>%&gt;<br></code></pre></td></tr></table></figure>
-<p>之前讲ServletContext对象时讲过一个方法findAttribute(String
-name)，EL表达式语句执行时会调用该方法，用标识符作为关键词分别从page、request、session、application四个域中查找相应对象。</p>
+<figure class="highlight jsp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;%</span><br><span class="line">	$&#123;name&#125;</span><br><span class="line">%&gt;</span><br></pre></td></tr></table></figure>
+<p>之前讲ServletContext对象时讲过一个方法findAttribute(String name)，EL表达式语句执行时会调用该方法，用标识符作为关键词分别从page、request、session、application四个域中查找相应对象。</p>
 <p>查找顺序就是从小到大，上图所写顺序。</p>
-<h4 id="获取javabean的属性">获取JavaBean的属性</h4>
-<p>之前在JSP页面获取JavaBean属性需要先获取该对象，然后再访问该对象属性。使用EL表达式就很简单。</p>
+<h4 id="获取JavaBean的属性"><a href="#获取JavaBean的属性" class="headerlink" title="获取JavaBean的属性"></a>获取JavaBean的属性</h4><p>之前在JSP页面获取JavaBean属性需要先获取该对象，然后再访问该对象属性。使用EL表达式就很简单。</p>
 <p>例如在1.jsp中定义了一个person对象，那么在2.jsp中直接使用<code>$&#123;person.age&#125;</code>就可以访问person的age属性。</p>
-<h2 id="获取集合数据">获取集合数据</h2>
-<p>EL表达式可以方便读取Collection和Map集合的内容。</p>
+<h2 id="获取集合数据"><a href="#获取集合数据" class="headerlink" title="获取集合数据"></a>获取集合数据</h2><p>EL表达式可以方便读取Collection和Map集合的内容。</p>
 <p>例如，在1.jsp中设置session的属性，session属性的值为List集合，List集合装载Person对象</p>
-<figure class="highlight jsp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><code class="hljs jsp">&lt;%@ page contentType=<span class="hljs-string">&quot;text/html;charset=UTF-8&quot;</span> language=<span class="hljs-string">&quot;java&quot;</span> errorPage=<span class="hljs-string">&quot;error.jsp&quot;</span> %&gt;<br>&lt;html&gt;<br>&lt;head&gt;<br>    &lt;title&gt;我是页头&lt;/title&gt;<br>&lt;/head&gt;<br>&lt;body&gt;<br><br>&lt;%<br>    List&lt;Person&gt; list = <span class="hljs-keyword">new</span> <span class="hljs-title class_">ArrayList</span>&lt;&gt;();<br>    <span class="hljs-type">Person</span> <span class="hljs-variable">person1</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Person</span>();<br>    person1.setUserName(<span class="hljs-string">&quot;mike&quot;</span>);<br>    person1.setAge(<span class="hljs-number">25</span>);<br>    <span class="hljs-type">Person</span> <span class="hljs-variable">person2</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Person</span>();<br>    person2.setUserName(<span class="hljs-string">&quot;smith&quot;</span>);<br>    person2.setAge(<span class="hljs-number">55</span>);<br>    list.add(person1);<br>    list.add(person2);<br>    session.setAttribute(<span class="hljs-string">&quot;list&quot;</span>, list);<br>%&gt;<br>&lt;jsp:forward page=<span class="hljs-string">&quot;2.jsp&quot;</span>/&gt;&gt;<br><br>&lt;/body&gt;<br>&lt;/html&gt;<br></code></pre></td></tr></table></figure>
+<figure class="highlight jsp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">&lt;%@ page contentType=<span class="string">&quot;text/html;charset=UTF-8&quot;</span> language=<span class="string">&quot;java&quot;</span> errorPage=<span class="string">&quot;error.jsp&quot;</span> %&gt;</span><br><span class="line">&lt;html&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">    &lt;title&gt;我是页头&lt;/title&gt;</span><br><span class="line">&lt;/head&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line"></span><br><span class="line">&lt;%</span><br><span class="line">    List&lt;Person&gt; list = <span class="keyword">new</span> <span class="title class_">ArrayList</span>&lt;&gt;();</span><br><span class="line">    <span class="type">Person</span> <span class="variable">person1</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Person</span>();</span><br><span class="line">    person1.setUserName(<span class="string">&quot;mike&quot;</span>);</span><br><span class="line">    person1.setAge(<span class="number">25</span>);</span><br><span class="line">    <span class="type">Person</span> <span class="variable">person2</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Person</span>();</span><br><span class="line">    person2.setUserName(<span class="string">&quot;smith&quot;</span>);</span><br><span class="line">    person2.setAge(<span class="number">55</span>);</span><br><span class="line">    list.add(person1);</span><br><span class="line">    list.add(person2);</span><br><span class="line">    session.setAttribute(<span class="string">&quot;list&quot;</span>, list);</span><br><span class="line">%&gt;</span><br><span class="line">&lt;jsp:forward page=<span class="string">&quot;2.jsp&quot;</span>/&gt;&gt;</span><br><span class="line"></span><br><span class="line">&lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure>
 <p>在2.jsp中使用EL表达式，读取list集合内容</p>
-<figure class="highlight jsp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs jsp">&lt;%@ page contentType=<span class="hljs-string">&quot;text/html;charset=UTF-8&quot;</span> language=<span class="hljs-string">&quot;java&quot;</span> %&gt;<br>&lt;html&gt;<br>&lt;head&gt;<br>    &lt;title&gt;我是页尾&lt;/title&gt;<br>&lt;/head&gt;<br>&lt;body&gt;<br>    &lt;%--取出person对象的属性--%&gt;<br>对象person1的用户名为：$&#123;list[<span class="hljs-number">0</span>].userName&#125;,年龄为：$&#123;list[<span class="hljs-number">0</span>].age&#125;&lt;br&gt;<br>对象person2的用户名为：$&#123;list[<span class="hljs-number">1</span>].userName&#125;,年龄为：$&#123;list[<span class="hljs-number">1</span>].age&#125;<br>&lt;/body&gt;<br>&lt;/html&gt;<br></code></pre></td></tr></table></figure>
+<figure class="highlight jsp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&lt;%@ page contentType=<span class="string">&quot;text/html;charset=UTF-8&quot;</span> language=<span class="string">&quot;java&quot;</span> %&gt;</span><br><span class="line">&lt;html&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">    &lt;title&gt;我是页尾&lt;/title&gt;</span><br><span class="line">&lt;/head&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line">    &lt;%--取出person对象的属性--%&gt;</span><br><span class="line">对象person1的用户名为：$&#123;list[<span class="number">0</span>].userName&#125;,年龄为：$&#123;list[<span class="number">0</span>].age&#125;&lt;br&gt;</span><br><span class="line">对象person2的用户名为：$&#123;list[<span class="number">1</span>].userName&#125;,年龄为：$&#123;list[<span class="number">1</span>].age&#125;</span><br><span class="line">&lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure>
 <p>再使用Map集合</p>
 <p>在1.jsp中session属性存储了Map集合，Map集合的关键词是字符串，值是Person对象</p>
-<figure class="highlight jsp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><code class="hljs jsp">&lt;%@ page contentType=<span class="hljs-string">&quot;text/html;charset=UTF-8&quot;</span> language=<span class="hljs-string">&quot;java&quot;</span> errorPage=<span class="hljs-string">&quot;error.jsp&quot;</span> %&gt;<br>&lt;html&gt;<br>&lt;head&gt;<br>    &lt;title&gt;我是页头&lt;/title&gt;<br>&lt;/head&gt;<br>&lt;body&gt;<br><br>&lt;%<br>    Map&lt;String,Person&gt; map = <span class="hljs-keyword">new</span> <span class="hljs-title class_">HashMap</span>&lt;&gt;();<br>    <span class="hljs-type">Person</span> <span class="hljs-variable">person1</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Person</span>();<br>    person1.setUserName(<span class="hljs-string">&quot;mike&quot;</span>);<br>    person1.setAge(<span class="hljs-number">18</span>);<br>    <span class="hljs-type">Person</span> <span class="hljs-variable">person2</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Person</span>();<br>    person2.setUserName(<span class="hljs-string">&quot;smith&quot;</span>);<br>    person2.setAge(<span class="hljs-number">78</span>);<br>    map.put(<span class="hljs-string">&quot;aa&quot;</span>, person1);<br>    map.put(<span class="hljs-string">&quot;bb&quot;</span>, person2);<br>    session.setAttribute(<span class="hljs-string">&quot;map&quot;</span>, map);<br>%&gt;<br>&lt;jsp:forward page=<span class="hljs-string">&quot;2.jsp&quot;</span>/&gt;&gt;<br><br>&lt;/body&gt;<br>&lt;/html&gt;<br></code></pre></td></tr></table></figure>
+<figure class="highlight jsp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">&lt;%@ page contentType=<span class="string">&quot;text/html;charset=UTF-8&quot;</span> language=<span class="string">&quot;java&quot;</span> errorPage=<span class="string">&quot;error.jsp&quot;</span> %&gt;</span><br><span class="line">&lt;html&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">    &lt;title&gt;我是页头&lt;/title&gt;</span><br><span class="line">&lt;/head&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line"></span><br><span class="line">&lt;%</span><br><span class="line">    Map&lt;String,Person&gt; map = <span class="keyword">new</span> <span class="title class_">HashMap</span>&lt;&gt;();</span><br><span class="line">    <span class="type">Person</span> <span class="variable">person1</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Person</span>();</span><br><span class="line">    person1.setUserName(<span class="string">&quot;mike&quot;</span>);</span><br><span class="line">    person1.setAge(<span class="number">18</span>);</span><br><span class="line">    <span class="type">Person</span> <span class="variable">person2</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Person</span>();</span><br><span class="line">    person2.setUserName(<span class="string">&quot;smith&quot;</span>);</span><br><span class="line">    person2.setAge(<span class="number">78</span>);</span><br><span class="line">    map.put(<span class="string">&quot;aa&quot;</span>, person1);</span><br><span class="line">    map.put(<span class="string">&quot;bb&quot;</span>, person2);</span><br><span class="line">    session.setAttribute(<span class="string">&quot;map&quot;</span>, map);</span><br><span class="line">%&gt;</span><br><span class="line">&lt;jsp:forward page=<span class="string">&quot;2.jsp&quot;</span>/&gt;&gt;</span><br><span class="line"></span><br><span class="line">&lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure>
 <p>在2.jsp中进行读取</p>
-<figure class="highlight jsp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs jsp">&lt;%@ page contentType=<span class="hljs-string">&quot;text/html;charset=UTF-8&quot;</span> language=<span class="hljs-string">&quot;java&quot;</span> %&gt;<br>&lt;html&gt;<br>&lt;head&gt;<br>    &lt;title&gt;我是页尾&lt;/title&gt;<br>&lt;/head&gt;<br>&lt;body&gt;<br>对象person1的用户名为：$&#123;map.aa.userName&#125;,年龄为：$&#123;map.aa.age&#125;&lt;br&gt;<br>对象person2的用户名为：$&#123;map.bb.userName&#125;,年龄为：$&#123;map.bb.age&#125;<br>&lt;/body&gt;<br>&lt;/html&gt;<br></code></pre></td></tr></table></figure>
-<p>如果Map集合存储键值不是字符串，而是一个数字，就不能使用"."号运算符了，可以这样：</p>
-<figure class="highlight jsp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs jsp">$&#123;map[<span class="hljs-string">&quot;1&quot;</span>].userName&#125;<br>$&#123;map[<span class="hljs-string">&quot;2&quot;</span>].userName&#125;<br></code></pre></td></tr></table></figure>
-<h2 id="el运算符">EL运算符</h2>
-<p>EL表达式支持简单运算符：加减乘除取模，逻辑运算符，empty运算符(判断是否为null)和三目运算符</p>
-<figure>
-<img
-src="https://crayon-1302863897.cos.ap-beijing.myqcloud.com/20200908100149.png" srcset="/img/loading.gif" lazyload
-alt="image-20200908093738083" />
-<figcaption aria-hidden="true">image-20200908093738083</figcaption>
-</figure>
-<h2 id="el表达式11个内置对象">EL表达式11个内置对象</h2>
-<p>EL表达式主要用来对内容显示，为了显示方便，EL表达式提供了11个内置对象。</p>
-<ol type="1">
+<figure class="highlight jsp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&lt;%@ page contentType=<span class="string">&quot;text/html;charset=UTF-8&quot;</span> language=<span class="string">&quot;java&quot;</span> %&gt;</span><br><span class="line">&lt;html&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">    &lt;title&gt;我是页尾&lt;/title&gt;</span><br><span class="line">&lt;/head&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line">对象person1的用户名为：$&#123;map.aa.userName&#125;,年龄为：$&#123;map.aa.age&#125;&lt;br&gt;</span><br><span class="line">对象person2的用户名为：$&#123;map.bb.userName&#125;,年龄为：$&#123;map.bb.age&#125;</span><br><span class="line">&lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure>
+<p>如果Map集合存储键值不是字符串，而是一个数字，就不能使用”.”号运算符了，可以这样：</p>
+<figure class="highlight jsp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$&#123;map[<span class="string">&quot;1&quot;</span>].userName&#125;</span><br><span class="line">$&#123;map[<span class="string">&quot;2&quot;</span>].userName&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="EL运算符"><a href="#EL运算符" class="headerlink" title="EL运算符"></a>EL运算符</h2><p>EL表达式支持简单运算符：加减乘除取模，逻辑运算符，empty运算符(判断是否为null)和三目运算符</p>
+<p><img src="https://crayon-1302863897.cos.ap-beijing.myqcloud.com/20200908100149.png" alt="image-20200908093738083"></p>
+<h2 id="EL表达式11个内置对象"><a href="#EL表达式11个内置对象" class="headerlink" title="EL表达式11个内置对象"></a>EL表达式11个内置对象</h2><p>EL表达式主要用来对内容显示，为了显示方便，EL表达式提供了11个内置对象。</p>
+<ol>
 <li>pageContext：对应JSP页面的pageContext对象</li>
 <li>pageScope：代表page域中保存属性的Map对象</li>
 <li>requestScope：代表request域中保存属性的Map对象</li>
@@ -313,217 +276,74 @@ alt="image-20200908093738083" />
 </ol>
 <p>注意事项：</p>
 <ul>
-<li>测试headerValues时，如果头里面有“-”，例如Accept-Encoding，则要headValues["Accept-Encoding"]</li>
+<li>测试headerValues时，如果头里面有“-”，例如Accept-Encoding，则要headValues[“Accept-Encoding”]</li>
 <li>测试cookie时，例如<code>$&#123;cookie.key&#125;</code>取的是cooike对象，如果要访问cookie的名称和值，需要<code>$&#123;cookie.key.name&#125;</code>或者${cookie.key.value}</li>
 <li>测试initParam时，初始化参数要的web.xml中的配置Context的，仅仅是jsp的参数是获取不到的</li>
 <li>对于param和paramValues内置对象一般都是别的页面带数据来的，如表单、地址栏。</li>
 </ul>
-<h2 id="el表达式回显数据">EL表达式回显数据</h2>
-<p>EL表达式最大特点就是如果获取到的数据为null，输出空白字符串"",这个特点可以让我们数据回显。</p>
+<h2 id="EL表达式回显数据"><a href="#EL表达式回显数据" class="headerlink" title="EL表达式回显数据"></a>EL表达式回显数据</h2><p>EL表达式最大特点就是如果获取到的数据为null，输出空白字符串””,这个特点可以让我们数据回显。</p>
 <p>在1.jsp中模拟一下：</p>
-<figure class="highlight jsp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><code class="hljs jsp">&lt;%@ page contentType=<span class="hljs-string">&quot;text/html;charset=UTF-8&quot;</span> language=<span class="hljs-string">&quot;java&quot;</span> errorPage=<span class="hljs-string">&quot;error.jsp&quot;</span> %&gt;<br>&lt;html&gt;<br>&lt;head&gt;<br>    &lt;title&gt;我是页头&lt;/title&gt;<br>&lt;/head&gt;<br>&lt;body&gt;<br><br>&lt;%<br>    <span class="hljs-type">Person</span> <span class="hljs-variable">person</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Person</span>();<br>    person.setUserName(<span class="hljs-string">&quot;male&quot;</span>);<br>    <span class="hljs-comment">//回显数据</span><br>    request.setAttribute(<span class="hljs-string">&quot;person&quot;</span>, person);<br>%&gt;<br>&lt;input type=<span class="hljs-string">&quot;radio&quot;</span> name=<span class="hljs-string">&quot;sex&quot;</span> value=<span class="hljs-string">&quot;male&quot;</span> $&#123;person.userName==<span class="hljs-string">&#x27;male&#x27;</span> ? <span class="hljs-string">&#x27;checked&#x27;</span> : <span class="hljs-string">&#x27;&#x27;</span>&#125;&gt;女<br>&lt;input type=<span class="hljs-string">&quot;radio&quot;</span> name=<span class="hljs-string">&quot;sex&quot;</span> value=<span class="hljs-string">&quot;female&quot;</span> $&#123;person.userName==<span class="hljs-string">&#x27;female&#x27;</span> ? <span class="hljs-string">&#x27;checked&#x27;</span> : <span class="hljs-string">&#x27;&#x27;</span>&#125;&gt;男<br><br><br>&lt;/body&gt;<br>&lt;/html&gt;<br></code></pre></td></tr></table></figure>
+<figure class="highlight jsp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">&lt;%@ page contentType=<span class="string">&quot;text/html;charset=UTF-8&quot;</span> language=<span class="string">&quot;java&quot;</span> errorPage=<span class="string">&quot;error.jsp&quot;</span> %&gt;</span><br><span class="line">&lt;html&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">    &lt;title&gt;我是页头&lt;/title&gt;</span><br><span class="line">&lt;/head&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line"></span><br><span class="line">&lt;%</span><br><span class="line">    <span class="type">Person</span> <span class="variable">person</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Person</span>();</span><br><span class="line">    person.setUserName(<span class="string">&quot;male&quot;</span>);</span><br><span class="line">    <span class="comment">//回显数据</span></span><br><span class="line">    request.setAttribute(<span class="string">&quot;person&quot;</span>, person);</span><br><span class="line">%&gt;</span><br><span class="line">&lt;input type=<span class="string">&quot;radio&quot;</span> name=<span class="string">&quot;sex&quot;</span> value=<span class="string">&quot;male&quot;</span> $&#123;person.userName==<span class="string">&#x27;male&#x27;</span> ? <span class="string">&#x27;checked&#x27;</span> : <span class="string">&#x27;&#x27;</span>&#125;&gt;女</span><br><span class="line">&lt;input type=<span class="string">&quot;radio&quot;</span> name=<span class="string">&quot;sex&quot;</span> value=<span class="string">&quot;female&quot;</span> $&#123;person.userName==<span class="string">&#x27;female&#x27;</span> ? <span class="string">&#x27;checked&#x27;</span> : <span class="string">&#x27;&#x27;</span>&#125;&gt;男</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure>
 
-            </div>
-            <hr>
-            <div>
-              <div class="post-metas mb-3">
-                
-                  <div class="post-meta mr-3">
-                    <i class="iconfont icon-category"></i>
-                    
-                      <a class="hover-with-bg" href="/categories/programming/">编程学习</a>
-                    
-                      <a class="hover-with-bg" href="/categories/programming/javaweb/">JavaWeb</a>
-                    
-                  </div>
-                
-                
-                  <div class="post-meta">
-                    <i class="iconfont icon-tags"></i>
-                    
-                      <a class="hover-with-bg" href="/tags/javaweb/">JavaWeb</a>
-                    
-                      <a class="hover-with-bg" href="/tags/jsp/">JSP</a>
-                    
-                  </div>
-                
-              </div>
-              
-              
-            </div>
-
-            
-          </article>
-        </div>
-      </div>
     </div>
+
     
-  </div>
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/javaweb/" rel="tag"># JavaWeb</a>
+              <a href="/tags/jsp/" rel="tag"># JSP</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2022/05/11/JavaWeb/JSP/JavaBean/" rel="prev" title="JavaBean">
+                  <i class="fa fa-chevron-left"></i> JavaBean
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2022/05/11/JavaWeb/JSP/%E5%86%85%E7%BD%AE%E5%AF%B9%E8%B1%A1/" rel="next" title="内置对象">
+                  内置对象 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
 </div>
 
-<!-- Custom -->
 
 
-    
 
-    
-      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
-        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
-      </a>
-    
 
-    
-      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
-     aria-hidden="true">
-  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
-    <div class="modal-content">
-      <div class="modal-header text-center">
-        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
-        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body mx-3">
-        <div class="md-form mb-5">
-          <input type="text" id="local-search-input" class="form-control validate">
-          <label data-error="x" data-success="v"
-                 for="local-search-input">关键词</label>
-        </div>
-        <div class="list-group" id="local-search-result"></div>
-      </div>
-    </div>
-  </div>
+
 </div>
-    
-
-    
-      <div class="col-lg-7 mx-auto nopadding-x-md">
-        <div class="container custom mx-auto">
-          <link rel="stylesheet" href="/js/aplayer/APlayer.min.css"> <div id="aplayer" style="display:none"></div> <script src="/js/aplayer/APlayer.min.js"></script>
-        </div>
-      </div>
-    
   </main>
 
-  <footer class="text-center mt-5 py-3">
-  <div class="footer-content">
-     <i class="iconfont icon-copyright"></i> <span>ZhaoXin, Built by </span> <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> 
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">ZhaoXin</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/muse/" rel="noopener" target="_blank">NexT.Muse</a> 强力驱动
   </div>
-  
+
+    </div>
+  </footer>
 
   
-
-  
-</footer>
-
-  <!-- SCRIPTS -->
-  
-  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.js" ></script>
-  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.css" />
-
-  <script>
-    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
-    NProgress.start()
-    window.addEventListener('load', function() {
-      NProgress.done();
-    })
-  </script>
-
-
-<script  src="https://cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js" ></script>
-<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/js/bootstrap.min.js" ></script>
-<script  src="/js/events.js" ></script>
-<script  src="/js/plugins.js" ></script>
-
-<!-- Plugins -->
-
-
-  <script  src="/js/local-search.js" ></script>
-
-
-
-  
-    <script  src="/js/img-lazyload.js" ></script>
-  
-
-
-
-  
-
-
-
-  
-  
-    <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.js" ></script>
-  
-  
-    <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4/anchor.min.js" ></script>
-  
-  
-    <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js" ></script>
-  
-
-
-
-
-  <script defer src="/js/leancloud.js" ></script>
-
-
-
-  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2/lib/typed.min.js" ></script>
-  <script>
-    (function (window, document) {
-      var typing = Fluid.plugins.typing;
-      var title = document.getElementById('subtitle').title;
-      
-        typing(title);
-      
-    })(window, document);
-  </script>
-
-
-
-
-
-  
-
-  
-    <!-- MathJax -->
-    <script>
-      MathJax = {
-        tex: {
-          inlineMath: [['$', '$'], ['\\(', '\\)']]
-        },
-        loader: {
-          load: ['ui/lazy']
-        },
-        options: {
-          renderActions: {
-            findScript: [10, doc => {
-              document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
-                const display = !!node.type.match(/; *mode=display/);
-                const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
-                const text = document.createTextNode('');
-                node.parentNode.replaceChild(text, node);
-                math.start = { node: text, delim: '', n: 0 };
-                math.end = { node: text, delim: '', n: 0 };
-                doc.math.push(math);
-              });
-            }, '', false],
-            insertedScript: [200, () => {
-              document.querySelectorAll('mjx-container').forEach(node => {
-                let target = node.parentNode;
-                if (target.nodeName.toLowerCase() === 'li') {
-                  target.parentNode.classList.add('has-jax');
-                }
-              });
-            }, '', false]
-          }
-        }
-      };
-    </script>
-
-    <script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js" ></script>
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/schemes/muse.js"></script><script src="/js/next-boot.js"></script>
 
   
 
@@ -531,31 +351,10 @@ alt="image-20200908093738083" />
 
 
 
-
-
-
-  
-
-  
-
-  
-
-  
-
-  
-
   
 
 
 
-
-  
-<script src="/js/music.js"></script>
-
-
-
-<!-- 主题的启动项 保持在最底部 -->
-<script  src="/js/boot.js" ></script>
 
 
 </body>

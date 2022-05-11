@@ -1,28 +1,35 @@
-
-
 <!DOCTYPE html>
-<html lang="zh-CN" data-default-color-scheme=auto>
-
-
-
+<html lang="zh-CN">
 <head>
   <meta charset="UTF-8">
-  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
-  <link rel="icon" href="/img/favicon.png">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
-  <meta http-equiv="x-ua-compatible" content="ie=edge">
-  
-  <meta name="theme-color" content="#2f4154">
-  <meta name="author" content="ZhaoXin">
-  <meta name="keywords" content="博客">
-  
-    <meta name="description" content="请求转发和重定向 当处理器对请求处理完毕后，向其他资源跳转时，有两种跳转方式：请求转发和重定向。 请求转发，是在服务器内进行跳转，不经过客户端，浏览器地址栏是不变的；而重定向是告诉客户端下一个访问的地址，让客户端重新发起一次请求，浏览器地址会改变。 而根据所要跳转的资源类型，又分为两类：跳转到页面、跳转到其他处理器方法。 但是注意：对于请求转发的页面，可以是WEB-INF中页面；但是重定向">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css" integrity="sha256-DfWjNxDkM94fVBWx1H5BMMp0Zq7luBlV8QRcSES7s+0=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"zhaoquaner.github.io","root":"/","images":"/images","scheme":"Muse","darkmode":false,"version":"8.11.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="请求转发和重定向当处理器对请求处理完毕后，向其他资源跳转时，有两种跳转方式：请求转发和重定向。 请求转发，是在服务器内进行跳转，不经过客户端，浏览器地址栏是不变的；而重定向是告诉客户端下一个访问的地址，让客户端重新发起一次请求，浏览器地址会改变。 而根据所要跳转的资源类型，又分为两类：跳转到页面、跳转到其他处理器方法。 但是注意：对于请求转发的页面，可以是WEB-INF中页面；但是重定向页面，是不">
 <meta property="og:type" content="article">
 <meta property="og:title" content="5-SpringMVC核心技术">
 <meta property="og:url" content="https://zhaoquaner.github.io/2022/05/11/Spring-MVC/5-SpringMVC%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF/index.html">
 <meta property="og:site_name" content="赵圈儿的博客">
-<meta property="og:description" content="请求转发和重定向 当处理器对请求处理完毕后，向其他资源跳转时，有两种跳转方式：请求转发和重定向。 请求转发，是在服务器内进行跳转，不经过客户端，浏览器地址栏是不变的；而重定向是告诉客户端下一个访问的地址，让客户端重新发起一次请求，浏览器地址会改变。 而根据所要跳转的资源类型，又分为两类：跳转到页面、跳转到其他处理器方法。 但是注意：对于请求转发的页面，可以是WEB-INF中页面；但是重定向">
+<meta property="og:description" content="请求转发和重定向当处理器对请求处理完毕后，向其他资源跳转时，有两种跳转方式：请求转发和重定向。 请求转发，是在服务器内进行跳转，不经过客户端，浏览器地址栏是不变的；而重定向是告诉客户端下一个访问的地址，让客户端重新发起一次请求，浏览器地址会改变。 而根据所要跳转的资源类型，又分为两类：跳转到页面、跳转到其他处理器方法。 但是注意：对于请求转发的页面，可以是WEB-INF中页面；但是重定向页面，是不">
 <meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://crayon-1302863897.cos.ap-beijing.myqcloud.com/image/FfWQyjZeRl.gif">
+<meta property="og:image" content="https://crayon-1302863897.cos.ap-beijing.myqcloud.com/image/q9xo4jcpGj.gif">
+<meta property="og:image" content="https://crayon-1302863897.cos.ap-beijing.myqcloud.com/image/DXq8izZuEb.gif">
 <meta property="og:image" content="https://crayon-1302863897.cos.ap-beijing.myqcloud.com/image/image-20201222195256643.png">
 <meta property="og:image" content="https://crayon-1302863897.cos.ap-beijing.myqcloud.com/image/image-20201222201818458.png">
 <meta property="og:image" content="https://crayon-1302863897.cos.ap-beijing.myqcloud.com/image/image-20201226151415085.png">
@@ -33,621 +40,409 @@
 <meta property="article:tag" content="JavaWeb">
 <meta property="article:tag" content="后端">
 <meta property="article:tag" content="SpringMVC">
-<meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://crayon-1302863897.cos.ap-beijing.myqcloud.com/image/image-20201222195256643.png">
-  
-  
-  <title>5-SpringMVC核心技术 - 赵圈儿的博客</title>
-
-  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/css/bootstrap.min.css" />
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://crayon-1302863897.cos.ap-beijing.myqcloud.com/image/FfWQyjZeRl.gif">
 
 
-  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4/github-markdown.min.css" />
-  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hint.css@2/hint.min.css" />
+<link rel="canonical" href="https://zhaoquaner.github.io/2022/05/11/Spring-MVC/5-SpringMVC%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF/">
 
-  
-    
-    
-      
-      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10/styles/github-gist.min.css" />
-    
-  
 
-  
-    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.css" />
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://zhaoquaner.github.io/2022/05/11/Spring-MVC/5-SpringMVC%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF/","path":"2022/05/11/Spring-MVC/5-SpringMVC核心技术/","title":"5-SpringMVC核心技术"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>5-SpringMVC核心技术 | 赵圈儿的博客</title>
   
 
 
-<!-- 主题依赖的图标库，不要自行修改 -->
-
-<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
 
 
 
-<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
-
-
-<link  rel="stylesheet" href="/css/main.css" />
-
-<!-- 自定义样式保持在最底部 -->
-
-
-  <script id="fluid-configs">
-    var Fluid = window.Fluid || {};
-    var CONFIG = {"hostname":"zhaoquaner.github.io","root":"/","version":"1.8.14","typing":{"enable":true,"typeSpeed":60,"cursorChar":" ","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":false,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":2},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":"BzK0JfEpsm40LlV9EPIyl4mp-gzGzoHsz","app_key":"MpxSk6ED55Utq83yNrKAMI5c","server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
-  </script>
-  <script  src="/js/utils.js" ></script>
-  <script  src="/js/color-schema.js" ></script>
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
 </head>
 
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion"><!-- hexo injector body_begin start --><style>code {font-weight:400;}.post-content {font-weight:600;} #board {border-radius: 1.5rem;} #board-ctn {width:110%;margin-left:-5%;}</style><!-- hexo injector body_begin end -->
+  <div class="headband"></div>
 
-<body><!-- hexo injector body_begin start --><style>code {font-weight:400;}.post-content {font-weight:600;} #board {border-radius: 1.5rem;} #board-ctn {width:110%;margin-left:-5%;}</style><!-- hexo injector body_begin end -->
-  <header style="height: 70vh;">
-    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
-  <div class="container">
-    <a class="navbar-brand" href="/">
-      <strong>Personal Blog</strong>
-    </a>
-
-    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
-            data-target="#navbarSupportedContent"
-            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <div class="animated-icon"><span></span><span></span><span></span></div>
-    </button>
-
-    <!-- Collapsible content -->
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav ml-auto text-center">
-        
-          
-          
-          
-          
-            <li class="nav-item">
-              <a class="nav-link" href="/">
-                <i class="iconfont icon-home-fill"></i>
-                首页
-              </a>
-            </li>
-          
-        
-          
-          
-          
-          
-            <li class="nav-item">
-              <a class="nav-link" href="/archives/">
-                <i class="iconfont icon-archive-fill"></i>
-                归档
-              </a>
-            </li>
-          
-        
-          
-          
-          
-          
-            <li class="nav-item">
-              <a class="nav-link" href="/categories/">
-                <i class="iconfont icon-category-fill"></i>
-                分类
-              </a>
-            </li>
-          
-        
-          
-          
-          
-          
-            <li class="nav-item">
-              <a class="nav-link" href="/tags/">
-                <i class="iconfont icon-tags-fill"></i>
-                标签
-              </a>
-            </li>
-          
-        
-          
-          
-          
-          
-            <li class="nav-item">
-              <a class="nav-link" href="/about/">
-                <i class="iconfont icon-user-fill"></i>
-                关于
-              </a>
-            </li>
-          
-        
-          
-          
-          
-          
-            <li class="nav-item">
-              <a class="nav-link" href="javascript:;">
-                <i class="iconfont icon-music"></i>
-                播放
-              </a>
-            </li>
-          
-        
-        
-          <li class="nav-item" id="search-btn">
-            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
-              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
-            </a>
-          </li>
-        
-        
-          <li class="nav-item" id="color-toggle-btn">
-            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
-                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
-          </li>
-        
-      </ul>
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
     </div>
   </div>
-</nav>
 
-    <div class="banner" id="banner" parallax=true
-         style="background: url('/img/article.png') no-repeat center center;
-           background-size: cover;">
-      <div class="full-bg-img">
-        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
-          <div class="page-header text-center fade-in-up">
-            <span class="h2" id="subtitle" title="5-SpringMVC核心技术">
-              
-            </span>
+  <div class="site-meta">
 
-            
-              <div class="mt-3">
-  
-  
-    <span class="post-meta">
-      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-      <time datetime="2022-05-11 14:05" pubdate>
-        2022/5/11 14时5分
-      </time>
-    </span>
-  
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">赵圈儿的博客</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
 </div>
 
-<div class="mt-1">
-  
-    <span class="post-meta mr-2">
-      <i class="iconfont icon-chart"></i>
-      13k 字
-    </span>
-  
 
-  
 
+
+
+
+
+</div>
+        
   
-  
-    
-      <!-- LeanCloud 统计文章PV -->
-      <span id="leancloud-page-views-container" class="post-meta" style="display: none">
-        <i class="iconfont icon-eye" aria-hidden="true"></i>
-        <span id="leancloud-page-views"></span> 次
-      </span>
-    
-  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%AF%B7%E6%B1%82%E8%BD%AC%E5%8F%91%E5%92%8C%E9%87%8D%E5%AE%9A%E5%90%91"><span class="nav-number">1.</span> <span class="nav-text">请求转发和重定向</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%AF%B7%E6%B1%82%E8%BD%AC%E5%8F%91"><span class="nav-number">1.1.</span> <span class="nav-text">请求转发</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%A4%84%E7%90%86%E5%99%A8%E6%96%B9%E6%B3%95%E8%BF%94%E5%9B%9EModelAndView"><span class="nav-number">1.1.1.</span> <span class="nav-text">处理器方法返回ModelAndView</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%BF%94%E5%9B%9EString"><span class="nav-number">1.1.2.</span> <span class="nav-text">返回String</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%87%8D%E5%AE%9A%E5%90%91"><span class="nav-number">1.2.</span> <span class="nav-text">重定向</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%BC%82%E5%B8%B8%E5%A4%84%E7%90%86"><span class="nav-number">2.</span> <span class="nav-text">异常处理</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#ExceptionHandler"><span class="nav-number">2.1.</span> <span class="nav-text">@ExceptionHandler</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ControllerAdvice"><span class="nav-number">2.2.</span> <span class="nav-text">@ControllerAdvice</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%BC%82%E5%B8%B8%E5%A4%84%E7%90%86%E6%AD%A5%E9%AA%A4"><span class="nav-number">2.3.</span> <span class="nav-text">异常处理步骤</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%80%E4%B8%AA%E4%BE%8B%E5%AD%90"><span class="nav-number">2.4.</span> <span class="nav-text">一个例子</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%88%9B%E5%BB%BA%E5%BC%82%E5%B8%B8%E7%B1%BB"><span class="nav-number">2.4.1.</span> <span class="nav-text">创建异常类</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%88%9B%E5%BB%BA%E5%BC%82%E5%B8%B8%E5%A4%84%E7%90%86%E7%B1%BB"><span class="nav-number">2.5.</span> <span class="nav-text">创建异常处理类</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%88%9B%E5%BB%BA%E5%BC%82%E5%B8%B8%E9%A1%B5%E9%9D%A2"><span class="nav-number">2.5.1.</span> <span class="nav-text">创建异常页面</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BF%AE%E6%94%B9springmvc%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6"><span class="nav-number">2.5.2.</span> <span class="nav-text">修改springmvc配置文件</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%A4%84%E7%90%86%E5%99%A8%E6%96%B9%E6%B3%95"><span class="nav-number">2.5.3.</span> <span class="nav-text">处理器方法</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%8B%A6%E6%88%AA%E5%99%A8"><span class="nav-number">3.</span> <span class="nav-text">拦截器</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%87%AA%E5%AE%9A%E4%B9%89%E6%8B%A6%E6%88%AA%E5%99%A8"><span class="nav-number">3.1.</span> <span class="nav-text">自定义拦截器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%8B%A6%E6%88%AA%E5%99%A8%E4%BD%BF%E7%94%A8%E6%AD%A5%E9%AA%A4"><span class="nav-number">3.2.</span> <span class="nav-text">拦截器使用步骤</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%A4%9A%E4%B8%AA%E6%8B%A6%E6%88%AA%E5%99%A8"><span class="nav-number">3.3.</span> <span class="nav-text">多个拦截器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9D%83%E9%99%90%E6%8B%A6%E6%88%AA%E5%99%A8"><span class="nav-number">3.4.</span> <span class="nav-text">权限拦截器</span></a></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">ZhaoXin</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">169</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">18</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">23</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
 </div>
 
-            
-          </div>
 
-          
+
         </div>
       </div>
     </div>
-  </header>
+  </aside>
+  <div class="sidebar-dimmer"></div>
 
-  <main>
+
+    </header>
+
     
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://zhaoquaner.github.io/2022/05/11/Spring-MVC/5-SpringMVC%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="ZhaoXin">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="赵圈儿的博客">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="5-SpringMVC核心技术 | 赵圈儿的博客">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          5-SpringMVC核心技术
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
       
 
-<div class="container-fluid nopadding-x">
-  <div class="row nomargin-x">
-    <div class="d-none d-lg-block col-lg-2"></div>
-    <div class="col-lg-8 nopadding-x-md">
-      <div class="container nopadding-x-md" id="board-ctn">
-        <div class="py-5" id="board">
-          <article class="post-content mx-auto">
-            <!-- SEO header -->
-            <h1 style="display: none">5-SpringMVC核心技术</h1>
-            
-            <div class="markdown-body">
-              <h2 id="请求转发和重定向">请求转发和重定向</h2>
-<p>当处理器对请求处理完毕后，向其他资源跳转时，有两种跳转方式：请求转发和重定向。</p>
+      <time title="创建时间：2022-05-11 14:05:39 / 修改时间：17:00:47" itemprop="dateCreated datePublished" datetime="2022-05-11T14:05:39+08:00">2022-05-11</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/programming/" itemprop="url" rel="index"><span itemprop="name">编程学习</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/programming/springmvc/" itemprop="url" rel="index"><span itemprop="name">SpringMVC</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <h2 id="请求转发和重定向"><a href="#请求转发和重定向" class="headerlink" title="请求转发和重定向"></a>请求转发和重定向</h2><p>当处理器对请求处理完毕后，向其他资源跳转时，有两种跳转方式：请求转发和重定向。</p>
 <p><strong>请求转发，是在服务器内进行跳转，不经过客户端，浏览器地址栏是不变的；而重定向是告诉客户端下一个访问的地址，让客户端重新发起一次请求，浏览器地址会改变。</strong></p>
 <p>而根据所要跳转的资源类型，又分为两类：跳转到页面、跳转到其他处理器方法。</p>
 <p><strong>但是注意：对于请求转发的页面，可以是WEB-INF中页面；但是重定向页面，是不能为WEB-INF中页面的。因为重定向相当于用于重新发起一次请求，而用户是不能直接访问WEB-IN目录的。</strong></p>
 <p>SpringMVC框架对Serlvet中的请求转发和重定向操作进行了封装：</p>
 <ul>
-<li>forward：表示转发，等于<code>request.getRequestDispather("xx").forward(request,
-response)</code></li>
-<li>redirect：表示重定向，相当于<code>response.sendRedirect("xxx")</code></li>
+<li>forward：表示转发，等于<code>request.getRequestDispather(&quot;xx&quot;).forward(request, response)</code></li>
+<li>redirect：表示重定向，相当于<code>response.sendRedirect(&quot;xxx&quot;)</code></li>
 </ul>
-<h3 id="请求转发">请求转发</h3>
-<h4 id="处理器方法返回modelandview">处理器方法返回ModelAndView</h4>
-<p>返回ModelAndView时，要在<code>setViewName("视图路径")</code>前加上forward，即：<code>setViewName("forward:视图完整路径")</code></p>
+<h3 id="请求转发"><a href="#请求转发" class="headerlink" title="请求转发"></a>请求转发</h3><h4 id="处理器方法返回ModelAndView"><a href="#处理器方法返回ModelAndView" class="headerlink" title="处理器方法返回ModelAndView"></a>处理器方法返回ModelAndView</h4><p>返回ModelAndView时，要在<code>setViewName(&quot;视图路径&quot;)</code>前加上forward，即：<code>setViewName(&quot;forward:视图完整路径&quot;)</code></p>
 <p><strong>注意：使用请求转发到视图时，必须要写完整路径，即以resources为根目录；并且不和视图解析器一同使用，使用请求转发时，就当没有视图解析器。</strong></p>
-<p>例如：<code>mv.setViewName("forward:/WEB-INF/result.jsp");</code></p>
-<h4 id="返回string">返回String</h4>
-<p>和返回ModelAndView一样，字符串格式：<code>"forward:视图完整路径"</code></p>
-<h3 id="重定向">重定向</h3>
-<p>重定向使用方式和请求转发差不多，格式<code>"redirect:视图完整路径"</code>。同样不和视图解析器一同使用。</p>
+<p>例如：<code>mv.setViewName(&quot;forward:/WEB-INF/result.jsp&quot;);</code></p>
+<h4 id="返回String"><a href="#返回String" class="headerlink" title="返回String"></a>返回String</h4><p>和返回ModelAndView一样，字符串格式：<code>&quot;forward:视图完整路径&quot;</code></p>
+<h3 id="重定向"><a href="#重定向" class="headerlink" title="重定向"></a>重定向</h3><p>重定向使用方式和请求转发差不多，格式<code>&quot;redirect:视图完整路径&quot;</code>。同样不和视图解析器一同使用。</p>
 <p><strong>但是重定向不能访问WEB-INF目录下资源。</strong></p>
 <p><strong>注意：如果在一个页面传递参数给服务器，服务器进行重定向，并将相应参数通过mv.addObject()传递给jsp文件，然后重定向的jsp调用了这个参数，那么是获取不到的。</strong></p>
-<p>举个例子：
-注册页面，传递参数给服务器，然后处理器方法将参数使用<code>addObject()</code>添加到ModelAndView中，并重定向到result.jsp中，jsp文件调用了这个参数。</p>
+<p>举个例子：<br>注册页面，传递参数给服务器，然后处理器方法将参数使用<code>addObject()</code>添加到ModelAndView中，并重定向到result.jsp中，jsp文件调用了这个参数。</p>
 <p>注册页面代码：</p>
-<figure class="highlight jsp"><table><tr><td class="gutter"><div class="code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></div></td><td class="code"><pre><code class="hljs jsp">&lt;%@ page contentType=<span class="hljs-string">&quot;text/html;charset=UTF-8&quot;</span> language=<span class="hljs-string">&quot;java&quot;</span> %&gt;<br>&lt;!DOCTYPE html&gt;<br>&lt;html lang=<span class="hljs-string">&quot;en&quot;</span>&gt;<br>&lt;head&gt;<br>    &lt;meta charset=<span class="hljs-string">&quot;UTF-8&quot;</span>&gt;<br>    &lt;title&gt;注册页面&lt;/title&gt;<br>    &lt;base href=<span class="hljs-string">&quot;http://localhost:80/myweb/&quot;</span>&gt;<br>&lt;/head&gt;<br>&lt;body&gt;<br>    &lt;div align=<span class="hljs-string">&quot;center&quot;</span>&gt;<br>        &lt;form action=<span class="hljs-string">&quot;student/addStudent.do&quot;</span> method=<span class="hljs-string">&quot;post&quot;</span>&gt;<br>            &lt;table&gt;<br>                &lt;tr&gt;<br>                    &lt;td&gt;姓名&lt;/td&gt;<br>                    &lt;td&gt;&lt;input type=<span class="hljs-string">&quot;text&quot;</span> name=<span class="hljs-string">&quot;name&quot;</span>&gt;&lt;/td&gt;<br>                &lt;/tr&gt;<br>                &lt;tr&gt;<br>                    &lt;td&gt;Email&lt;/td&gt;<br>                    &lt;td&gt;&lt;input type=<span class="hljs-string">&quot;text&quot;</span> name=<span class="hljs-string">&quot;email&quot;</span>&gt;&lt;/td&gt;<br>                &lt;/tr&gt;<br>                &lt;tr&gt;<br>                    &lt;td&gt;年龄&lt;/td&gt;<br>                    &lt;td&gt;&lt;input type=<span class="hljs-string">&quot;text&quot;</span> name=<span class="hljs-string">&quot;age&quot;</span>&gt;&lt;/td&gt;<br>                &lt;/tr&gt;<br>                &lt;tr&gt;<br>                    &lt;td&gt;&lt;input type=<span class="hljs-string">&quot;submit&quot;</span> value=<span class="hljs-string">&quot;注册&quot;</span>&gt;&lt;/td&gt;<br>                &lt;/tr&gt;<br>            &lt;/table&gt;<br>        &lt;/form&gt;<br>    &lt;/div&gt;<br>&lt;/body&gt;<br>&lt;/html&gt;<br></code></pre></td></tr></table></figure>
+<figure class="highlight jsp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line">&lt;%@ page contentType=<span class="string">&quot;text/html;charset=UTF-8&quot;</span> language=<span class="string">&quot;java&quot;</span> %&gt;</span><br><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html lang=<span class="string">&quot;en&quot;</span>&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">    &lt;meta charset=<span class="string">&quot;UTF-8&quot;</span>&gt;</span><br><span class="line">    &lt;title&gt;注册页面&lt;/title&gt;</span><br><span class="line">    &lt;base href=<span class="string">&quot;http://localhost:80/myweb/&quot;</span>&gt;</span><br><span class="line">&lt;/head&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line">    &lt;div align=<span class="string">&quot;center&quot;</span>&gt;</span><br><span class="line">        &lt;form action=<span class="string">&quot;student/addStudent.do&quot;</span> method=<span class="string">&quot;post&quot;</span>&gt;</span><br><span class="line">            &lt;table&gt;</span><br><span class="line">                &lt;tr&gt;</span><br><span class="line">                    &lt;td&gt;姓名&lt;/td&gt;</span><br><span class="line">                    &lt;td&gt;&lt;input type=<span class="string">&quot;text&quot;</span> name=<span class="string">&quot;name&quot;</span>&gt;&lt;/td&gt;</span><br><span class="line">                &lt;/tr&gt;</span><br><span class="line">                &lt;tr&gt;</span><br><span class="line">                    &lt;td&gt;Email&lt;/td&gt;</span><br><span class="line">                    &lt;td&gt;&lt;input type=<span class="string">&quot;text&quot;</span> name=<span class="string">&quot;email&quot;</span>&gt;&lt;/td&gt;</span><br><span class="line">                &lt;/tr&gt;</span><br><span class="line">                &lt;tr&gt;</span><br><span class="line">                    &lt;td&gt;年龄&lt;/td&gt;</span><br><span class="line">                    &lt;td&gt;&lt;input type=<span class="string">&quot;text&quot;</span> name=<span class="string">&quot;age&quot;</span>&gt;&lt;/td&gt;</span><br><span class="line">                &lt;/tr&gt;</span><br><span class="line">                &lt;tr&gt;</span><br><span class="line">                    &lt;td&gt;&lt;input type=<span class="string">&quot;submit&quot;</span> value=<span class="string">&quot;注册&quot;</span>&gt;&lt;/td&gt;</span><br><span class="line">                &lt;/tr&gt;</span><br><span class="line">            &lt;/table&gt;</span><br><span class="line">        &lt;/form&gt;</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">&lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure>
 <p>处理器方法：</p>
-<p>​</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@RequestMapping(value = &quot;/addStudent.do&quot;)</span><br><span class="hljs-keyword">public</span> ModelAndView <span class="hljs-title function_">addStudent</span><span class="hljs-params">(Student student)</span> &#123;<br>    <span class="hljs-type">ModelAndView</span> <span class="hljs-variable">mv</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">ModelAndView</span>();<br>    String tip;<br>    <span class="hljs-type">int</span> <span class="hljs-variable">num</span> <span class="hljs-operator">=</span> service.addStuent(student);<br><br>    mv.addObject(<span class="hljs-string">&quot;myname&quot;</span>, student.getName());<br>    mv.addObject(<span class="hljs-string">&quot;myage&quot;</span>, student.getAge());<br>    mv.setViewName(<span class="hljs-string">&quot;redirect:/views/result.jsp&quot;</span>);<br>    <span class="hljs-keyword">return</span> mv;<br>&#125;<br></code></pre></td></tr></table></figure>
+<p>​    </p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@RequestMapping(value = &quot;/addStudent.do&quot;)</span></span><br><span class="line"><span class="keyword">public</span> ModelAndView <span class="title function_">addStudent</span><span class="params">(Student student)</span> &#123;</span><br><span class="line">    <span class="type">ModelAndView</span> <span class="variable">mv</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">ModelAndView</span>();</span><br><span class="line">    String tip;</span><br><span class="line">    <span class="type">int</span> <span class="variable">num</span> <span class="operator">=</span> service.addStuent(student);</span><br><span class="line"></span><br><span class="line">    mv.addObject(<span class="string">&quot;myname&quot;</span>, student.getName());</span><br><span class="line">    mv.addObject(<span class="string">&quot;myage&quot;</span>, student.getAge());</span><br><span class="line">    mv.setViewName(<span class="string">&quot;redirect:/views/result.jsp&quot;</span>);</span><br><span class="line">    <span class="keyword">return</span> mv;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>result.jsp：</p>
-<figure class="highlight jsp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs jsp">&lt;%@ page contentType=<span class="hljs-string">&quot;text/html;charset=UTF-8&quot;</span> language=<span class="hljs-string">&quot;java&quot;</span> %&gt;<br>&lt;html&gt;<br>&lt;head&gt;<br>    &lt;title&gt;Title&lt;/title&gt;<br>&lt;/head&gt;<br>&lt;body&gt;<br>    &lt;div align=<span class="hljs-string">&quot;center&quot;</span>&gt;<br>        姓名:$&#123;myname&#125;&lt;br&gt;<br>        年龄:$&#123;myage&#125;<br>    &lt;/div&gt;<br>    <br>&lt;/body&gt;<br>&lt;/html&gt;<br></code></pre></td></tr></table></figure>
+<figure class="highlight jsp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">&lt;%@ page contentType=<span class="string">&quot;text/html;charset=UTF-8&quot;</span> language=<span class="string">&quot;java&quot;</span> %&gt;</span><br><span class="line">&lt;html&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">    &lt;title&gt;Title&lt;/title&gt;</span><br><span class="line">&lt;/head&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line">    &lt;div align=<span class="string">&quot;center&quot;</span>&gt;</span><br><span class="line">        姓名:$&#123;myname&#125;&lt;br&gt;</span><br><span class="line">        年龄:$&#123;myage&#125;</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">    </span><br><span class="line">&lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure>
 <p>运行结果：</p>
-<figure>
-<img
-src="https://crayon-1302863897.cos.ap-beijing.myqcloud.com/image/FfWQyjZeRl.gif" srcset="/img/loading.gif" lazyload
-alt="FfWQyjZeRl" />
-<figcaption aria-hidden="true">FfWQyjZeRl</figcaption>
-</figure>
+<p><img src="https://crayon-1302863897.cos.ap-beijing.myqcloud.com/image/FfWQyjZeRl.gif" alt="FfWQyjZeRl"></p>
 <p>可以看到，在result.jsp页面获取不到处理器方法传递的数据。但是地址栏发生了改变而且带上了处理器方法放入到ModelAndView的两个参数myname和myage。</p>
 <p><strong>这是因为：框架会把Model中的简单类型的数据，转为String，作为重定向页面的get请求参数使用，目的是在这两次请求之间传递参数。</strong></p>
-<p>但result.jsp使用${}获取不到数据，是因为，重定向是两次请求，用了两个request对象，所以获取不到。那么正确的用法应该是result.jsp从URL中获取参数，也就是<code>request.getParameter("myname")</code>。才可以获取到参数。</p>
+<p>但result.jsp使用${}获取不到数据，是因为，重定向是两次请求，用了两个request对象，所以获取不到。那么正确的用法应该是result.jsp从URL中获取参数，也就是<code>request.getParameter(&quot;myname&quot;)</code>。才可以获取到参数。</p>
 <p>把result.jsp改为：</p>
-<figure class="highlight jsp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs jsp">&lt;%@ page contentType=<span class="hljs-string">&quot;text/html;charset=UTF-8&quot;</span> language=<span class="hljs-string">&quot;java&quot;</span> %&gt;<br>&lt;html&gt;<br>&lt;head&gt;<br>    &lt;title&gt;Title&lt;/title&gt;<br>&lt;/head&gt;<br>&lt;body&gt;<br>    &lt;div align=<span class="hljs-string">&quot;center&quot;</span>&gt;<br>        姓名:&lt;%=request.getParameter(<span class="hljs-string">&quot;myname&quot;</span>)%&gt;&lt;br&gt;<br>        年龄:&lt;%=request.getParameter(<span class="hljs-string">&quot;myage&quot;</span>)%&gt;<br>    &lt;/div&gt;<br>&lt;/body&gt;<br>&lt;/html&gt;<br></code></pre></td></tr></table></figure>
+<figure class="highlight jsp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">&lt;%@ page contentType=<span class="string">&quot;text/html;charset=UTF-8&quot;</span> language=<span class="string">&quot;java&quot;</span> %&gt;</span><br><span class="line">&lt;html&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">    &lt;title&gt;Title&lt;/title&gt;</span><br><span class="line">&lt;/head&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line">    &lt;div align=<span class="string">&quot;center&quot;</span>&gt;</span><br><span class="line">        姓名:&lt;%=request.getParameter(<span class="string">&quot;myname&quot;</span>)%&gt;&lt;br&gt;</span><br><span class="line">        年龄:&lt;%=request.getParameter(<span class="string">&quot;myage&quot;</span>)%&gt;</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">&lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure>
 <p>或者也可以使用<code>$&#123;param.myname&#125;</code>和<code>$&#123;param.myage&#125;</code></p>
 <p>运行结果：</p>
-<figure>
-<img
-src="https://crayon-1302863897.cos.ap-beijing.myqcloud.com/image/q9xo4jcpGj.gif" srcset="/img/loading.gif" lazyload
-alt="q9xo4jcpGj" />
-<figcaption aria-hidden="true">q9xo4jcpGj</figcaption>
-</figure>
+<p><img src="https://crayon-1302863897.cos.ap-beijing.myqcloud.com/image/q9xo4jcpGj.gif" alt="q9xo4jcpGj"></p>
 <p>这次可以看到，result.jsp正确获取到了数据。</p>
 <p>以上面为例，来梳理一下重定向处理过程 ：</p>
 <p>首先点击注册，客户端发送请求<code>/student/addStudent.do</code>，<strong>这时会创建一个request对象，包含参数</strong>；然后处理器方法添加myname和myage两个参数到ModelAndView中，然后执行重定向这行，最后服务器会把mv对象返回给客户端，客户端收到重定向指令后，<strong>会再次携带ModelAndView存放的参数，向ModelAndView指定的页面result.jsp发送get请求，同时参数也会出现在地址栏中。服务器收到后，会再次创建一个request对象，所以这时在result.jsp中使用<code>$&#123;myname&#125;</code>是获取不到数据的。只有使用<code>request.getParameter()</code>获取客户端发送来的参数才可以。</strong></p>
-<h2 id="异常处理">异常处理</h2>
-<p>通常处理异常的方式就是try/catch代码块。但是当代码一多，方法一多了以后，这种方法就非常繁琐。而且也不便于维护。</p>
-<p>SpringMVC框架处理异常的方式是：使用@ExceptionHandler注解和<span
-class="citation"
-data-cites="ControllerAdvice注解处理异常">@ControllerAdvice注解处理异常</span>。</p>
+<h2 id="异常处理"><a href="#异常处理" class="headerlink" title="异常处理"></a>异常处理</h2><p>通常处理异常的方式就是try/catch代码块。但是当代码一多，方法一多了以后，这种方法就非常繁琐。而且也不便于维护。</p>
+<p>SpringMVC框架处理异常的方式是：使用@ExceptionHandler注解和@ControllerAdvice注解处理异常。</p>
 <p>SpringMVC框架采用的是统一的、全局的异常处理。把Controller中的所有异常处理集中到一个地方，采用AOP思想，把业务逻辑代码和异常处理代码分开，解耦合。</p>
-<h3 id="exceptionhandler"><span class="citation"
-data-cites="ExceptionHandler">@ExceptionHandler</span></h3>
-<p>使用@ExceptionHandler可以将一个方法指定为异常处理方法，该注解只有一个可选属性</p>
+<h3 id="ExceptionHandler"><a href="#ExceptionHandler" class="headerlink" title="@ExceptionHandler"></a>@ExceptionHandler</h3><p>使用@ExceptionHandler可以将一个方法指定为异常处理方法，该注解只有一个可选属性</p>
 <ul>
 <li>value：他是一个Class&lt;?&gt;数组，用于指定该注解的方法要处理的异常类。就是当发生哪些异常，使用该方法处理。默认为空数组</li>
 </ul>
 <p>被注解的方法，返回值可以是ModelAndView、String、void和对象等，方法名任意。</p>
 <p>方法参数可以是Exception和子类对象，HttpServletRequest、HTTPServletResponse等。系统会自动给这些参数赋值。</p>
-<h3 id="controlleradvice"><span class="citation"
-data-cites="ControllerAdvice">@ControllerAdvice</span></h3>
-<p>这个注解字面意思是：控制器增强，也就是给控制器增加功能。</p>
+<h3 id="ControllerAdvice"><a href="#ControllerAdvice" class="headerlink" title="@ControllerAdvice"></a>@ControllerAdvice</h3><p>这个注解字面意思是：控制器增强，也就是给控制器增加功能。</p>
 <p>它放在类的上面，表明这是一个异常处理类。</p>
 <p>使用@ControllerAdvice的类可以创建异常处理方法，并在方法上加上@ExceptionHandler。</p>
 <p>说简单点，就是被@ExceptionHandler注解的类，就表明是一个专门处理controller方法异常的类。</p>
 <p>这个类中的方法来处理异常。</p>
 <p><strong>注意：需要在springMVC配置文件中配置组件扫描器，指定@ControllerAdvice所在包名。</strong></p>
-<h3 id="异常处理步骤">异常处理步骤</h3>
-<ol type="1">
-<li><p>在exception包中创建自定义异常类</p></li>
+<h3 id="异常处理步骤"><a href="#异常处理步骤" class="headerlink" title="异常处理步骤"></a>异常处理步骤</h3><ol>
+<li><p>在exception包中创建自定义异常类</p>
+</li>
 <li><p>在handler包中创建异常处理类，并加上@ControllerAdvice注解</p>
-<p>并创建处理异常方法，加上@ExceptionHandler注解</p></li>
-<li><p>创建处理异常页面视图</p></li>
-<li><p>在springMVC中配置@ControllerAdvice注解所在包名，并声明注解驱动</p></li>
-<li><p>在处理器方法中抛出异常</p></li>
+<p> 并创建处理异常方法，加上@ExceptionHandler注解</p>
+</li>
+<li><p>创建处理异常页面视图</p>
+</li>
+<li><p>在springMVC中配置@ControllerAdvice注解所在包名，并声明注解驱动</p>
+</li>
+<li><p>在处理器方法中抛出异常</p>
+</li>
 </ol>
-<p><strong>注意：当异常处理类中有多个方法时，那就和catch差不多。我们一般只会处理几个特定的类，将其他的所有异常抛给虚拟机。异常处理类也是这样。
-使用@ExceptionHandler中value属性指定我们要处理的异常类；不指定value属性代表其他所有异常。所以没有指定value属性的被注解方法只能有一个。</strong></p>
+<p><strong>注意：当异常处理类中有多个方法时，那就和catch差不多。我们一般只会处理几个特定的类，将其他的所有异常抛给虚拟机。异常处理类也是这样。 使用@ExceptionHandler中value属性指定我们要处理的异常类；不指定value属性代表其他所有异常。所以没有指定value属性的被注解方法只能有一个。</strong></p>
 <p>异常发生处理一般有几个方面：</p>
 <ul>
 <li>记录异常，包括记录到数据库，日志文件，日志发生的时间，错误内容等</li>
 <li>发送通知给相关人员</li>
 <li>给用户提示</li>
 </ul>
-<h3 id="一个例子">一个例子</h3>
-<p>学生注册，当姓名或者年龄不符合要求就抛出异常。</p>
-<h4 id="创建异常类">创建异常类</h4>
-<p>创建三个异常类：UserException、NameException、AgeException。后两个类是UserException的子类</p>
+<h3 id="一个例子"><a href="#一个例子" class="headerlink" title="一个例子"></a>一个例子</h3><p>学生注册，当姓名或者年龄不符合要求就抛出异常。</p>
+<h4 id="创建异常类"><a href="#创建异常类" class="headerlink" title="创建异常类"></a>创建异常类</h4><p>创建三个异常类：UserException、NameException、AgeException。后两个类是UserException的子类</p>
 <p>这三个方法实现无参构造器和有参数message构造器。</p>
-<h3 id="创建异常处理类">创建异常处理类</h3>
-<p>GlobalExceptionHandler类</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@ControllerAdvice</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">GlobalExceptionHandler</span> &#123;<br><br>    <span class="hljs-meta">@ExceptionHandler(value = &#123;NameException.class&#125;)</span><br>    <span class="hljs-keyword">public</span> ModelAndView <span class="hljs-title function_">doNameException</span><span class="hljs-params">(Exception ex)</span> &#123;<br>        <span class="hljs-type">ModelAndView</span> <span class="hljs-variable">mv</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">ModelAndView</span>();<br>        mv.addObject(<span class="hljs-string">&quot;msg&quot;</span>, ex.getMessage());<br>        mv.setViewName(<span class="hljs-string">&quot;nameError&quot;</span>);<br>        <span class="hljs-keyword">return</span> mv;<br>    &#125;<br><br>    <span class="hljs-meta">@ExceptionHandler(value = &#123;AgeException.class&#125;)</span><br>    <span class="hljs-keyword">public</span> ModelAndView <span class="hljs-title function_">doAgeException</span><span class="hljs-params">(Exception ex)</span> &#123;<br>        <span class="hljs-type">ModelAndView</span> <span class="hljs-variable">mv</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">ModelAndView</span>();<br>        mv.addObject(<span class="hljs-string">&quot;msg&quot;</span>, ex.getMessage());<br>        mv.setViewName(<span class="hljs-string">&quot;ageError&quot;</span>);<br>        <span class="hljs-keyword">return</span> mv;<br>    &#125;<br><br>    <span class="hljs-meta">@ExceptionHandler</span><br>    <span class="hljs-keyword">public</span> ModelAndView <span class="hljs-title function_">doDefaultException</span><span class="hljs-params">(Exception ex)</span> &#123;<br>        <span class="hljs-type">ModelAndView</span> <span class="hljs-variable">mv</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">ModelAndView</span>();<br>        mv.addObject(<span class="hljs-string">&quot;msg&quot;</span>, ex.getMessage());<br>        mv.setViewName(<span class="hljs-string">&quot;defaultError&quot;</span>);<br>        <span class="hljs-keyword">return</span> mv;<br>    &#125;<br><br>&#125;<br></code></pre></td></tr></table></figure>
+<h3 id="创建异常处理类"><a href="#创建异常处理类" class="headerlink" title="创建异常处理类"></a>创建异常处理类</h3><p>GlobalExceptionHandler类</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@ControllerAdvice</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">GlobalExceptionHandler</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@ExceptionHandler(value = &#123;NameException.class&#125;)</span></span><br><span class="line">    <span class="keyword">public</span> ModelAndView <span class="title function_">doNameException</span><span class="params">(Exception ex)</span> &#123;</span><br><span class="line">        <span class="type">ModelAndView</span> <span class="variable">mv</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">ModelAndView</span>();</span><br><span class="line">        mv.addObject(<span class="string">&quot;msg&quot;</span>, ex.getMessage());</span><br><span class="line">        mv.setViewName(<span class="string">&quot;nameError&quot;</span>);</span><br><span class="line">        <span class="keyword">return</span> mv;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@ExceptionHandler(value = &#123;AgeException.class&#125;)</span></span><br><span class="line">    <span class="keyword">public</span> ModelAndView <span class="title function_">doAgeException</span><span class="params">(Exception ex)</span> &#123;</span><br><span class="line">        <span class="type">ModelAndView</span> <span class="variable">mv</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">ModelAndView</span>();</span><br><span class="line">        mv.addObject(<span class="string">&quot;msg&quot;</span>, ex.getMessage());</span><br><span class="line">        mv.setViewName(<span class="string">&quot;ageError&quot;</span>);</span><br><span class="line">        <span class="keyword">return</span> mv;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@ExceptionHandler</span></span><br><span class="line">    <span class="keyword">public</span> ModelAndView <span class="title function_">doDefaultException</span><span class="params">(Exception ex)</span> &#123;</span><br><span class="line">        <span class="type">ModelAndView</span> <span class="variable">mv</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">ModelAndView</span>();</span><br><span class="line">        mv.addObject(<span class="string">&quot;msg&quot;</span>, ex.getMessage());</span><br><span class="line">        mv.setViewName(<span class="string">&quot;defaultError&quot;</span>);</span><br><span class="line">        <span class="keyword">return</span> mv;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>三个方法分别处理NameException、AgeException和其他异常。</p>
-<h4 id="创建异常页面">创建异常页面</h4>
-<p>对应有三个页面：nameError、ageError和defaultError、</p>
+<h4 id="创建异常页面"><a href="#创建异常页面" class="headerlink" title="创建异常页面"></a>创建异常页面</h4><p>对应有三个页面：nameError、ageError和defaultError、</p>
 <p>nameError：</p>
-<figure class="highlight jsp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs jsp">&lt;body&gt;<br>    &lt;div align=<span class="hljs-string">&quot;center&quot;</span>&gt;<br>        nameError&lt;br&gt;<br>        $&#123;msg&#125;<br>    &lt;/div&gt;<br>&lt;/body&gt;<br></code></pre></td></tr></table></figure>
+<figure class="highlight jsp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&lt;body&gt;</span><br><span class="line">    &lt;div align=<span class="string">&quot;center&quot;</span>&gt;</span><br><span class="line">        nameError&lt;br&gt;</span><br><span class="line">        $&#123;msg&#125;</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">&lt;/body&gt;</span><br></pre></td></tr></table></figure>
 <p>ageError：</p>
-<figure class="highlight jsp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs jsp">&lt;body&gt;<br>    &lt;div align=<span class="hljs-string">&quot;center&quot;</span>&gt;<br>        ageError&lt;br&gt;<br>        $&#123;msg&#125;<br>    &lt;/div&gt;<br>&lt;/body&gt;<br></code></pre></td></tr></table></figure>
+<figure class="highlight jsp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&lt;body&gt;</span><br><span class="line">    &lt;div align=<span class="string">&quot;center&quot;</span>&gt;</span><br><span class="line">        ageError&lt;br&gt;</span><br><span class="line">        $&#123;msg&#125;</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">&lt;/body&gt;</span><br></pre></td></tr></table></figure>
 <p>defaltuError：</p>
-<figure class="highlight jsp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs jsp">&lt;body&gt;<br>    &lt;div align=<span class="hljs-string">&quot;center&quot;</span>&gt;<br>        defaultError&lt;br&gt;<br>        $&#123;msg&#125;<br>    &lt;/div&gt;<br>&lt;/body&gt;<br></code></pre></td></tr></table></figure>
-<h4 id="修改springmvc配置文件">修改springmvc配置文件</h4>
-<p>在配置文件中加上对handler的注解扫描器，和注解驱动。</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">context:component-scan</span> <span class="hljs-attr">base-package</span>=<span class="hljs-string">&quot;org.example.handler&quot;</span> /&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">mvc:annotation-driven</span>/&gt;</span><br></code></pre></td></tr></table></figure>
-<h4 id="处理器方法">处理器方法</h4>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@RequestMapping(value = &quot;/addStudent.do&quot;)</span><br><span class="hljs-keyword">public</span> ModelAndView <span class="hljs-title function_">addStudent</span><span class="hljs-params">(Student student)</span> <span class="hljs-keyword">throws</span> UserException &#123;<br>    <span class="hljs-type">ModelAndView</span> <span class="hljs-variable">mv</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">ModelAndView</span>();<br>    <span class="hljs-keyword">if</span>(!student.getName().equals(<span class="hljs-string">&quot;大傻子&quot;</span>))&#123;<br>        <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">NameException</span>(<span class="hljs-string">&quot;姓名只能为大傻子，其他姓名不行&quot;</span>);<br>    &#125;<br>    <span class="hljs-keyword">if</span>(student.getAge() &gt; <span class="hljs-number">80</span>) &#123;<br>        <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">AgeException</span>(<span class="hljs-string">&quot;年龄要小于80岁&quot;</span>);<br>    &#125;<br><br>    <span class="hljs-type">int</span> <span class="hljs-variable">num</span> <span class="hljs-operator">=</span> service.addStuent(student);<br><br>    mv.addObject(<span class="hljs-string">&quot;myname&quot;</span>, student.getName());<br>    mv.addObject(<span class="hljs-string">&quot;myage&quot;</span>, student.getAge());<br>    mv.setViewName(<span class="hljs-string">&quot;redirect:/views/result.jsp&quot;</span>);<br>    <span class="hljs-keyword">return</span> mv;<br>&#125;<br></code></pre></td></tr></table></figure>
+<figure class="highlight jsp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&lt;body&gt;</span><br><span class="line">    &lt;div align=<span class="string">&quot;center&quot;</span>&gt;</span><br><span class="line">        defaultError&lt;br&gt;</span><br><span class="line">        $&#123;msg&#125;</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">&lt;/body&gt;</span><br></pre></td></tr></table></figure>
+<h4 id="修改springmvc配置文件"><a href="#修改springmvc配置文件" class="headerlink" title="修改springmvc配置文件"></a>修改springmvc配置文件</h4><p>在配置文件中加上对handler的注解扫描器，和注解驱动。</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">context:component-scan</span> <span class="attr">base-package</span>=<span class="string">&quot;org.example.handler&quot;</span> /&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">mvc:annotation-driven</span>/&gt;</span></span><br></pre></td></tr></table></figure>
+<h4 id="处理器方法"><a href="#处理器方法" class="headerlink" title="处理器方法"></a>处理器方法</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@RequestMapping(value = &quot;/addStudent.do&quot;)</span></span><br><span class="line"><span class="keyword">public</span> ModelAndView <span class="title function_">addStudent</span><span class="params">(Student student)</span> <span class="keyword">throws</span> UserException &#123;</span><br><span class="line">    <span class="type">ModelAndView</span> <span class="variable">mv</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">ModelAndView</span>();</span><br><span class="line">    <span class="keyword">if</span>(!student.getName().equals(<span class="string">&quot;大傻子&quot;</span>))&#123;</span><br><span class="line">        <span class="keyword">throw</span> <span class="keyword">new</span> <span class="title class_">NameException</span>(<span class="string">&quot;姓名只能为大傻子，其他姓名不行&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span>(student.getAge() &gt; <span class="number">80</span>) &#123;</span><br><span class="line">        <span class="keyword">throw</span> <span class="keyword">new</span> <span class="title class_">AgeException</span>(<span class="string">&quot;年龄要小于80岁&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="type">int</span> <span class="variable">num</span> <span class="operator">=</span> service.addStuent(student);</span><br><span class="line"></span><br><span class="line">    mv.addObject(<span class="string">&quot;myname&quot;</span>, student.getName());</span><br><span class="line">    mv.addObject(<span class="string">&quot;myage&quot;</span>, student.getAge());</span><br><span class="line">    mv.setViewName(<span class="string">&quot;redirect:/views/result.jsp&quot;</span>);</span><br><span class="line">    <span class="keyword">return</span> mv;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>运行结果：</p>
 <p>对应三个异常，分别进行验证。</p>
 <p>输入名称二傻子验证NameException，输入年龄90验证ageException，输入年龄abc验证其他异常。</p>
-<figure>
-<img
-src="https://crayon-1302863897.cos.ap-beijing.myqcloud.com/image/DXq8izZuEb.gif" srcset="/img/loading.gif" lazyload
-alt="DXq8izZuEb" />
-<figcaption aria-hidden="true">DXq8izZuEb</figcaption>
-</figure>
-<h2 id="拦截器">拦截器</h2>
-<p>SpringMVC拦截器的主要作用是拦截指定的用户请求，并进行响应的预处理和后处理。拦截的时间点在：<strong>处理器映射器根据用户提供的请求映射出了所要执行的处理器类，并且找到了要执行该处理器类的处理器适配器，在处理器适配器执行处理器之前。进行拦截。</strong>当然，在处理器映射器映射出所要执行的处理器类时，已经将拦截器和处理器组合为一个处理器执行链，并返回给了中央调度器。</p>
-<h3 id="自定义拦截器">自定义拦截器</h3>
-<p>实现HandlerInterceptor接口，来自定义拦截器类，该接口有三个方法：</p>
+<p><img src="https://crayon-1302863897.cos.ap-beijing.myqcloud.com/image/DXq8izZuEb.gif" alt="DXq8izZuEb"></p>
+<h2 id="拦截器"><a href="#拦截器" class="headerlink" title="拦截器"></a>拦截器</h2><p>SpringMVC拦截器的主要作用是拦截指定的用户请求，并进行响应的预处理和后处理。拦截的时间点在：<strong>处理器映射器根据用户提供的请求映射出了所要执行的处理器类，并且找到了要执行该处理器类的处理器适配器，在处理器适配器执行处理器之前。进行拦截。</strong>当然，在处理器映射器映射出所要执行的处理器类时，已经将拦截器和处理器组合为一个处理器执行链，并返回给了中央调度器。</p>
+<h3 id="自定义拦截器"><a href="#自定义拦截器" class="headerlink" title="自定义拦截器"></a>自定义拦截器</h3><p>实现HandlerInterceptor接口，来自定义拦截器类，该接口有三个方法：</p>
 <ul>
-<li><code>public boolean preHandle(request,response, Object
-handler)</code>：该方法在处理器方法执行之前执行，返回值为Boolean，若为true，则执行处理器方法，并将afterCompletion()方法放入到专门方法栈中等待执行；若为false，则不执行处理器方法</li>
-<li><code>public boolean postHandle(request,response, Object
-handler,modelAndView)</code>：该方法在处理器方法执行之后执行，若处理器方法不执行，那么该方法不会执行。由于该方法在处理器方法执行后执行，且方法参数中包含ModelAndView，所以该方法可以修改处理器方法的处理结果数据，也可以修改跳转方向。</li>
-<li><code>afterCompletion(request, response, Object handler, Exception
-ex)</code>：当preHandler()方法返回true时，会将该方法放到专门方法栈中，等到对请求进行响应的所有工作完成之后，才执行该方法。<strong>即：该方法是在中央调度器渲染(数据填充)了相应页面后执行的，所有该方法对ModelAndView操作对不影响响应结果。</strong></li>
+<li><code>public boolean preHandle(request,response, Object handler)</code>：该方法在处理器方法执行之前执行，返回值为Boolean，若为true，则执行处理器方法，并将afterCompletion()方法放入到专门方法栈中等待执行；若为false，则不执行处理器方法</li>
+<li><code>public boolean postHandle(request,response, Object handler,modelAndView)</code>：该方法在处理器方法执行之后执行，若处理器方法不执行，那么该方法不会执行。由于该方法在处理器方法执行后执行，且方法参数中包含ModelAndView，所以该方法可以修改处理器方法的处理结果数据，也可以修改跳转方向。</li>
+<li><code>afterCompletion(request, response, Object handler, Exception ex)</code>：当preHandler()方法返回true时，会将该方法放到专门方法栈中，等到对请求进行响应的所有工作完成之后，才执行该方法。<strong>即：该方法是在中央调度器渲染(数据填充)了相应页面后执行的，所有该方法对ModelAndView操作对不影响响应结果。</strong></li>
 </ul>
 <p>处理过程：</p>
-<p><img src="https://crayon-1302863897.cos.ap-beijing.myqcloud.com/image/image-20201222195256643.png" srcset="/img/loading.gif" lazyload alt="image-20201222195256643" style="zoom:80%;" /></p>
-<h3 id="拦截器使用步骤">拦截器使用步骤</h3>
-<ol type="1">
+<p><img src="https://crayon-1302863897.cos.ap-beijing.myqcloud.com/image/image-20201222195256643.png" alt="image-20201222195256643" style="zoom:80%;" /></p>
+<h3 id="拦截器使用步骤"><a href="#拦截器使用步骤" class="headerlink" title="拦截器使用步骤"></a>拦截器使用步骤</h3><ol>
 <li>定义拦截器类</li>
 <li>在springmvc配置文件中注册拦截器，并设置要拦截的请求。</li>
 </ol>
 <p>例子：</p>
 <p>定义拦截器类：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">MyInterceptor</span> <span class="hljs-keyword">implements</span> <span class="hljs-title class_">HandlerInterceptor</span> &#123;<br><br>    <span class="hljs-meta">@Override</span><br>    <span class="hljs-keyword">public</span> <span class="hljs-type">boolean</span> <span class="hljs-title function_">preHandle</span><span class="hljs-params">(HttpServletRequest request, HttpServletResponse response, Object handler)</span> <span class="hljs-keyword">throws</span> Exception &#123;<br>        System.out.println(<span class="hljs-string">&quot;在处理器方法之前执行了preHandle方法&quot;</span>);<br>        <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;<br>    &#125;<br><br>    <span class="hljs-meta">@Override</span><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">postHandle</span><span class="hljs-params">(HttpServletRequest request, HttpServletResponse response, Object handler, ModelAndView modelAndView)</span> <span class="hljs-keyword">throws</span> Exception &#123;<br>        System.out.println(<span class="hljs-string">&quot;在处理器方法之后执行了postHandle方法&quot;</span>);<br>    &#125;<br><br>    <span class="hljs-meta">@Override</span><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">afterCompletion</span><span class="hljs-params">(HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex)</span> <span class="hljs-keyword">throws</span> Exception &#123;<br>        System.out.println(<span class="hljs-string">&quot;执行了afterCompletion方法&quot;</span>);<br>        <span class="hljs-type">HttpSession</span> <span class="hljs-variable">session</span> <span class="hljs-operator">=</span> request.getSession();<br>        <span class="hljs-type">Object</span> <span class="hljs-variable">attr</span> <span class="hljs-operator">=</span> session.getAttribute(<span class="hljs-string">&quot;attr&quot;</span>);<br>        System.out.println(<span class="hljs-string">&quot;attr删除之前====&quot;</span> + session.getAttribute(<span class="hljs-string">&quot;attr&quot;</span>));<br>        session.removeAttribute(<span class="hljs-string">&quot;attr&quot;</span>);<br>        System.out.println(<span class="hljs-string">&quot;attr删除之后====&quot;</span> + session.getAttribute(<span class="hljs-string">&quot;attr&quot;</span>));<br><br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">MyInterceptor</span> <span class="keyword">implements</span> <span class="title class_">HandlerInterceptor</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> <span class="type">boolean</span> <span class="title function_">preHandle</span><span class="params">(HttpServletRequest request, HttpServletResponse response, Object handler)</span> <span class="keyword">throws</span> Exception &#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;在处理器方法之前执行了preHandle方法&quot;</span>);</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">postHandle</span><span class="params">(HttpServletRequest request, HttpServletResponse response, Object handler, ModelAndView modelAndView)</span> <span class="keyword">throws</span> Exception &#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;在处理器方法之后执行了postHandle方法&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">afterCompletion</span><span class="params">(HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex)</span> <span class="keyword">throws</span> Exception &#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;执行了afterCompletion方法&quot;</span>);</span><br><span class="line">        <span class="type">HttpSession</span> <span class="variable">session</span> <span class="operator">=</span> request.getSession();</span><br><span class="line">        <span class="type">Object</span> <span class="variable">attr</span> <span class="operator">=</span> session.getAttribute(<span class="string">&quot;attr&quot;</span>);</span><br><span class="line">        System.out.println(<span class="string">&quot;attr删除之前====&quot;</span> + session.getAttribute(<span class="string">&quot;attr&quot;</span>));</span><br><span class="line">        session.removeAttribute(<span class="string">&quot;attr&quot;</span>);</span><br><span class="line">        System.out.println(<span class="string">&quot;attr删除之后====&quot;</span> + session.getAttribute(<span class="string">&quot;attr&quot;</span>));</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>处理器方法：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@RequestMapping(value = &quot;/listStudents.do&quot;)</span><br><span class="hljs-meta">@ResponseBody</span><br><span class="hljs-keyword">public</span> List&lt;Student&gt; <span class="hljs-title function_">listStudents</span><span class="hljs-params">(HttpSession session)</span> &#123;<br>    System.out.println(<span class="hljs-string">&quot;收到请求&quot;</span>);<br>    List&lt;Student&gt; list = service.selectStudents();<br>    session.setAttribute(<span class="hljs-string">&quot;attr&quot;</span>, <span class="hljs-string">&quot;session中数据&quot;</span>);<br>    <span class="hljs-keyword">return</span> list;<br>&#125;<br></code></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@RequestMapping(value = &quot;/listStudents.do&quot;)</span></span><br><span class="line"><span class="meta">@ResponseBody</span></span><br><span class="line"><span class="keyword">public</span> List&lt;Student&gt; <span class="title function_">listStudents</span><span class="params">(HttpSession session)</span> &#123;</span><br><span class="line">    System.out.println(<span class="string">&quot;收到请求&quot;</span>);</span><br><span class="line">    List&lt;Student&gt; list = service.selectStudents();</span><br><span class="line">    session.setAttribute(<span class="string">&quot;attr&quot;</span>, <span class="string">&quot;session中数据&quot;</span>);</span><br><span class="line">    <span class="keyword">return</span> list;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>springmvc配置文件中注册拦截器：</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">mvc:interceptors</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">mvc:interceptor</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">mvc:mapping</span> <span class="hljs-attr">path</span>=<span class="hljs-string">&quot;/student/listStudents.do&quot;</span>/&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">bean</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;org.example.interceptor.MyInterceptor&quot;</span> /&gt;</span><br>    <span class="hljs-tag">&lt;/<span class="hljs-name">mvc:interceptor</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">mvc:interceptors</span>&gt;</span><br></code></pre></td></tr></table></figure>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">mvc:interceptors</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">mvc:interceptor</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">mvc:mapping</span> <span class="attr">path</span>=<span class="string">&quot;/student/listStudents.do&quot;</span>/&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">bean</span> <span class="attr">class</span>=<span class="string">&quot;org.example.interceptor.MyInterceptor&quot;</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">mvc:interceptor</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">mvc:interceptors</span>&gt;</span></span><br></pre></td></tr></table></figure>
 <p>运行结果：</p>
-<p><img src="https://crayon-1302863897.cos.ap-beijing.myqcloud.com/image/image-20201222201818458.png" srcset="/img/loading.gif" lazyload alt="image-20201222201818458" style="zoom:80%;" /></p>
-<h3 id="多个拦截器">多个拦截器</h3>
-<p>当有多个拦截器时，在springmvc配置文件中就要注册多个拦截器。</p>
+<p><img src="https://crayon-1302863897.cos.ap-beijing.myqcloud.com/image/image-20201222201818458.png" alt="image-20201222201818458" style="zoom:80%;" /></p>
+<h3 id="多个拦截器"><a href="#多个拦截器" class="headerlink" title="多个拦截器"></a>多个拦截器</h3><p>当有多个拦截器时，在springmvc配置文件中就要注册多个拦截器。</p>
 <p>当有多个拦截器时，<strong>形成拦截器链，拦截器链的执行顺序和在配置文件中的注册顺序一样。</strong></p>
 <p><strong>注意：当某一个拦截器的preHandle()方法返回true并被执行时，会向专门的方法栈中放入该拦截器的afterCompletion。</strong></p>
 <p>只要有一个preHandle()方法返回false，那么执行链会被断开，后续的处理器方法和postHandle()方法会无法执行。</p>
 <p><strong>但是，无论执行链执行情况怎样，只要方法栈中有方法，即执行链中有preHandle方法返回true且被执行，那么就会执行方法栈中的afterCompletion方法。</strong></p>
-<p>也就是只执行执行链断开前
-执行过的preHandle方法对应的afterCompletion方法。</p>
+<p>也就是只执行执行链断开前 执行过的preHandle方法对应的afterCompletion方法。</p>
 <p>例子：</p>
 <p>创建了三个拦截器，大致相同，第一个拦截器代码：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">MyInterceptor1</span> <span class="hljs-keyword">implements</span> <span class="hljs-title class_">HandlerInterceptor</span> &#123;<br><br>    <span class="hljs-meta">@Override</span><br>    <span class="hljs-keyword">public</span> <span class="hljs-type">boolean</span> <span class="hljs-title function_">preHandle</span><span class="hljs-params">(HttpServletRequest request, HttpServletResponse response, Object handler)</span> <span class="hljs-keyword">throws</span> Exception &#123;<br>        System.out.println(<span class="hljs-string">&quot;在处理器方法之前执行了第一个拦截器的preHandle方法&quot;</span>);<br>        <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;<br>    &#125;<br><br>    <span class="hljs-meta">@Override</span><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">postHandle</span><span class="hljs-params">(HttpServletRequest request, HttpServletResponse response, Object handler, ModelAndView modelAndView)</span> <span class="hljs-keyword">throws</span> Exception &#123;<br>        System.out.println(<span class="hljs-string">&quot;在处理器方法之后执行了第一个拦截器的postHandle方法&quot;</span>);<br>    &#125;<br><br>    <span class="hljs-meta">@Override</span><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">afterCompletion</span><span class="hljs-params">(HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex)</span> <span class="hljs-keyword">throws</span> Exception &#123;<br>        System.out.println(<span class="hljs-string">&quot;执行了第一个拦截器的afterCompletion方法&quot;</span>);<br><br>    &#125;<br>&#125;<br><br></code></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">MyInterceptor1</span> <span class="keyword">implements</span> <span class="title class_">HandlerInterceptor</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> <span class="type">boolean</span> <span class="title function_">preHandle</span><span class="params">(HttpServletRequest request, HttpServletResponse response, Object handler)</span> <span class="keyword">throws</span> Exception &#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;在处理器方法之前执行了第一个拦截器的preHandle方法&quot;</span>);</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">postHandle</span><span class="params">(HttpServletRequest request, HttpServletResponse response, Object handler, ModelAndView modelAndView)</span> <span class="keyword">throws</span> Exception &#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;在处理器方法之后执行了第一个拦截器的postHandle方法&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">afterCompletion</span><span class="params">(HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex)</span> <span class="keyword">throws</span> Exception &#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;执行了第一个拦截器的afterCompletion方法&quot;</span>);</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 <p>其他两个，把输出语句改成对应序号就可以了。<strong>把第二个拦截器的preHandle返回值改为false。</strong></p>
 <p>控制器方法：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@RequestMapping(value = &quot;/listStudents.do&quot;)</span><br><span class="hljs-meta">@ResponseBody</span><br><span class="hljs-keyword">public</span> List&lt;Student&gt; <span class="hljs-title function_">listStudents</span><span class="hljs-params">(HttpSession session)</span> &#123;<br>    System.out.println(<span class="hljs-string">&quot;收到请求&quot;</span>);<br>    List&lt;Student&gt; list = service.selectStudents();<br>    <span class="hljs-keyword">return</span> list;<br>&#125;<br></code></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@RequestMapping(value = &quot;/listStudents.do&quot;)</span></span><br><span class="line"><span class="meta">@ResponseBody</span></span><br><span class="line"><span class="keyword">public</span> List&lt;Student&gt; <span class="title function_">listStudents</span><span class="params">(HttpSession session)</span> &#123;</span><br><span class="line">    System.out.println(<span class="string">&quot;收到请求&quot;</span>);</span><br><span class="line">    List&lt;Student&gt; list = service.selectStudents();</span><br><span class="line">    <span class="keyword">return</span> list;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>springmvc配置文件注册拦截器：</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">mvc:interceptors</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">mvc:interceptor</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">mvc:mapping</span> <span class="hljs-attr">path</span>=<span class="hljs-string">&quot;/student/listStudents.do&quot;</span>/&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">bean</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;org.example.interceptor.MyInterceptor1&quot;</span> /&gt;</span><br>    <span class="hljs-tag">&lt;/<span class="hljs-name">mvc:interceptor</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">mvc:interceptors</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">mvc:interceptors</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">mvc:interceptor</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">mvc:mapping</span> <span class="hljs-attr">path</span>=<span class="hljs-string">&quot;/student/listStudents.do&quot;</span>/&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">bean</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;org.example.interceptor.MyInterceptor2&quot;</span>/&gt;</span><br>    <span class="hljs-tag">&lt;/<span class="hljs-name">mvc:interceptor</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">mvc:interceptors</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">mvc:interceptors</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">mvc:interceptor</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">mvc:mapping</span> <span class="hljs-attr">path</span>=<span class="hljs-string">&quot;/student/listStudents.do&quot;</span>/&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">bean</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;org.example.interceptor.MyInterceptor3&quot;</span> /&gt;</span><br>    <span class="hljs-tag">&lt;/<span class="hljs-name">mvc:interceptor</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">mvc:interceptors</span>&gt;</span><br></code></pre></td></tr></table></figure>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">mvc:interceptors</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">mvc:interceptor</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">mvc:mapping</span> <span class="attr">path</span>=<span class="string">&quot;/student/listStudents.do&quot;</span>/&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">bean</span> <span class="attr">class</span>=<span class="string">&quot;org.example.interceptor.MyInterceptor1&quot;</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">mvc:interceptor</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">mvc:interceptors</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">mvc:interceptors</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">mvc:interceptor</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">mvc:mapping</span> <span class="attr">path</span>=<span class="string">&quot;/student/listStudents.do&quot;</span>/&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">bean</span> <span class="attr">class</span>=<span class="string">&quot;org.example.interceptor.MyInterceptor2&quot;</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">mvc:interceptor</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">mvc:interceptors</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">mvc:interceptors</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">mvc:interceptor</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">mvc:mapping</span> <span class="attr">path</span>=<span class="string">&quot;/student/listStudents.do&quot;</span>/&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">bean</span> <span class="attr">class</span>=<span class="string">&quot;org.example.interceptor.MyInterceptor3&quot;</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">mvc:interceptor</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">mvc:interceptors</span>&gt;</span></span><br></pre></td></tr></table></figure>
 <p>注册顺序是123</p>
-<p>执行结果：
-<img src="https://crayon-1302863897.cos.ap-beijing.myqcloud.com/image/image-20201226151415085.png" srcset="/img/loading.gif" lazyload alt="image-20201226151415085" style="zoom:80%;" /></p>
+<p>执行结果：<br>    <img src="https://crayon-1302863897.cos.ap-beijing.myqcloud.com/image/image-20201226151415085.png" alt="image-20201226151415085" style="zoom:80%;" /></p>
 <p>可以看到，执行链在执行到第二个拦截器的preHandle后断开，那么只有第一个拦截器的afterCompletion被执行了。</p>
-<h3 id="权限拦截器">权限拦截器</h3>
-<p>可以使用拦截器来验证权限，没有权限的不能访问。</p>
+<h3 id="权限拦截器"><a href="#权限拦截器" class="headerlink" title="权限拦截器"></a>权限拦截器</h3><p>可以使用拦截器来验证权限，没有权限的不能访问。</p>
 <p>只有先点击登录，才后台添加session，才可以查看学生信息，否则无法查看学生信息。</p>
 <p>控制器代码：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@RequestMapping(value = &quot;/listStudents.do&quot;)</span><br><span class="hljs-meta">@ResponseBody</span><br><span class="hljs-keyword">public</span> List&lt;Student&gt; <span class="hljs-title function_">listStudents</span><span class="hljs-params">()</span> &#123;<br>    System.out.println(<span class="hljs-string">&quot;收到请求&quot;</span>);<br>    List&lt;Student&gt; list = service.selectStudents();<br>    <span class="hljs-keyword">return</span> list;<br>&#125;<br><br><span class="hljs-meta">@RequestMapping(value = &quot;/login.do&quot;)</span><br><span class="hljs-keyword">public</span> String <span class="hljs-title function_">login</span><span class="hljs-params">(HttpSession session)</span>&#123;<br>    session.setAttribute(<span class="hljs-string">&quot;attr&quot;</span>, <span class="hljs-string">&quot;success&quot;</span>);<br>    <span class="hljs-keyword">return</span> <span class="hljs-string">&quot;index&quot;</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@RequestMapping(value = &quot;/listStudents.do&quot;)</span></span><br><span class="line"><span class="meta">@ResponseBody</span></span><br><span class="line"><span class="keyword">public</span> List&lt;Student&gt; <span class="title function_">listStudents</span><span class="params">()</span> &#123;</span><br><span class="line">    System.out.println(<span class="string">&quot;收到请求&quot;</span>);</span><br><span class="line">    List&lt;Student&gt; list = service.selectStudents();</span><br><span class="line">    <span class="keyword">return</span> list;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="meta">@RequestMapping(value = &quot;/login.do&quot;)</span></span><br><span class="line"><span class="keyword">public</span> String <span class="title function_">login</span><span class="params">(HttpSession session)</span>&#123;</span><br><span class="line">    session.setAttribute(<span class="string">&quot;attr&quot;</span>, <span class="string">&quot;success&quot;</span>);</span><br><span class="line">    <span class="keyword">return</span> <span class="string">&quot;index&quot;</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>index.jsp</p>
-<figure class="highlight jsp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs jsp">&lt;html&gt;<br>&lt;head&gt;<br>    &lt;base href=<span class="hljs-string">&quot;&lt;%=basePath%&gt;views/&quot;</span>&gt;<br>&lt;/head&gt;<br>&lt;body&gt;<br>&lt;h2&gt;SSM整合开发&lt;/h2&gt;<br>&lt;a href=<span class="hljs-string">&quot;register.jsp&quot;</span>&gt;学生注册&lt;/a&gt;&lt;br&gt;<br>&lt;a href=<span class="hljs-string">&quot;listStudents.jsp&quot;</span>&gt;查看学生信息&lt;/a&gt;<br>&lt;a href=<span class="hljs-string">&quot;/myweb/student/login.do&quot;</span>&gt;登录&lt;/a&gt;<br>&lt;/body&gt;<br>&lt;/html&gt;<br></code></pre></td></tr></table></figure>
+<figure class="highlight jsp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&lt;html&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">    &lt;base href=<span class="string">&quot;&lt;%=basePath%&gt;views/&quot;</span>&gt;</span><br><span class="line">&lt;/head&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line">&lt;h2&gt;SSM整合开发&lt;/h2&gt;</span><br><span class="line">&lt;a href=<span class="string">&quot;register.jsp&quot;</span>&gt;学生注册&lt;/a&gt;&lt;br&gt;</span><br><span class="line">&lt;a href=<span class="string">&quot;listStudents.jsp&quot;</span>&gt;查看学生信息&lt;/a&gt;</span><br><span class="line">&lt;a href=<span class="string">&quot;/myweb/student/login.do&quot;</span>&gt;登录&lt;/a&gt;</span><br><span class="line">&lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure>
 <p>拦截器代码：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">MyInterceptor1</span> <span class="hljs-keyword">implements</span> <span class="hljs-title class_">HandlerInterceptor</span> &#123;<br><br>    <span class="hljs-meta">@Override</span><br>    <span class="hljs-keyword">public</span> <span class="hljs-type">boolean</span> <span class="hljs-title function_">preHandle</span><span class="hljs-params">(HttpServletRequest request, HttpServletResponse response, Object handler)</span> <span class="hljs-keyword">throws</span> Exception &#123;<br>        <span class="hljs-type">HttpSession</span> <span class="hljs-variable">session</span> <span class="hljs-operator">=</span> request.getSession();<br>        <span class="hljs-type">Object</span> <span class="hljs-variable">attr</span> <span class="hljs-operator">=</span> session.getAttribute(<span class="hljs-string">&quot;attr&quot;</span>);<br>        <span class="hljs-keyword">if</span>(attr == <span class="hljs-literal">null</span>) &#123;<br>            <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;<br>        &#125;<br>        <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;<br>    &#125;<br><br>    <span class="hljs-meta">@Override</span><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">postHandle</span><span class="hljs-params">(HttpServletRequest request, HttpServletResponse response, Object handler, ModelAndView modelAndView)</span> <span class="hljs-keyword">throws</span> Exception &#123;<br>        System.out.println(<span class="hljs-string">&quot;在处理器方法之后执行了postHandle方法&quot;</span>);<br>    &#125;<br><br>    <span class="hljs-meta">@Override</span><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">afterCompletion</span><span class="hljs-params">(HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex)</span> <span class="hljs-keyword">throws</span> Exception &#123;<br>        System.out.println(<span class="hljs-string">&quot;执行了afterCompletion方法&quot;</span>);<br><br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">MyInterceptor1</span> <span class="keyword">implements</span> <span class="title class_">HandlerInterceptor</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> <span class="type">boolean</span> <span class="title function_">preHandle</span><span class="params">(HttpServletRequest request, HttpServletResponse response, Object handler)</span> <span class="keyword">throws</span> Exception &#123;</span><br><span class="line">        <span class="type">HttpSession</span> <span class="variable">session</span> <span class="operator">=</span> request.getSession();</span><br><span class="line">        <span class="type">Object</span> <span class="variable">attr</span> <span class="operator">=</span> session.getAttribute(<span class="string">&quot;attr&quot;</span>);</span><br><span class="line">        <span class="keyword">if</span>(attr == <span class="literal">null</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">postHandle</span><span class="params">(HttpServletRequest request, HttpServletResponse response, Object handler, ModelAndView modelAndView)</span> <span class="keyword">throws</span> Exception &#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;在处理器方法之后执行了postHandle方法&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">afterCompletion</span><span class="params">(HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex)</span> <span class="keyword">throws</span> Exception &#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;执行了afterCompletion方法&quot;</span>);</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>springmvc配置拦截器：</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">mvc:interceptors</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">mvc:interceptor</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">mvc:mapping</span> <span class="hljs-attr">path</span>=<span class="hljs-string">&quot;/student/listStudents.do&quot;</span>/&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">bean</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;org.example.interceptor.MyInterceptor1&quot;</span> /&gt;</span><br>    <span class="hljs-tag">&lt;/<span class="hljs-name">mvc:interceptor</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">mvc:interceptors</span>&gt;</span><br></code></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&lt;mvc:interceptors&gt;</span><br><span class="line">    &lt;mvc:interceptor&gt;</span><br><span class="line">        &lt;mvc:mapping path=&quot;/student/listStudents.do&quot;/&gt;</span><br><span class="line">        &lt;bean class=&quot;org.example.interceptor.MyInterceptor1&quot; /&gt;</span><br><span class="line">    &lt;/mvc:interceptor&gt;</span><br><span class="line">&lt;/mvc:interceptors&gt;</span><br></pre></td></tr></table></figure>
 <p>执行结果：</p>
-<p><img src="https://crayon-1302863897.cos.ap-beijing.myqcloud.com/image/Olxo61hNGB.gif" srcset="/img/loading.gif" lazyload alt="Olxo61hNGB" style="zoom:80%;" /></p>
+<p><img src="https://crayon-1302863897.cos.ap-beijing.myqcloud.com/image/Olxo61hNGB.gif" alt="Olxo61hNGB" style="zoom:80%;" /></p>
 <p>首先点击查看学生信息，可以看到，没有任何信息；点击登录，再查看信息，有了。</p>
 
-            </div>
-            <hr>
-            <div>
-              <div class="post-metas mb-3">
-                
-                  <div class="post-meta mr-3">
-                    <i class="iconfont icon-category"></i>
-                    
-                      <a class="hover-with-bg" href="/categories/programming/">编程学习</a>
-                    
-                      <a class="hover-with-bg" href="/categories/programming/springmvc/">SpringMVC</a>
-                    
-                  </div>
-                
-                
-                  <div class="post-meta">
-                    <i class="iconfont icon-tags"></i>
-                    
-                      <a class="hover-with-bg" href="/tags/javaweb/">JavaWeb</a>
-                    
-                      <a class="hover-with-bg" href="/tags/backend/">后端</a>
-                    
-                      <a class="hover-with-bg" href="/tags/springmvc/">SpringMVC</a>
-                    
-                  </div>
-                
-              </div>
-              
-              
-            </div>
-
-            
-          </article>
-        </div>
-      </div>
     </div>
+
     
-  </div>
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/javaweb/" rel="tag"># JavaWeb</a>
+              <a href="/tags/backend/" rel="tag"># 后端</a>
+              <a href="/tags/springmvc/" rel="tag"># SpringMVC</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2022/05/11/Spring-MVC/4-SSM%E6%95%B4%E5%90%88%E5%BC%80%E5%8F%91/" rel="prev" title="4-SSM整合开发">
+                  <i class="fa fa-chevron-left"></i> 4-SSM整合开发
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2022/05/11/SpringBoot/1-SpringBoot%E6%A6%82%E8%BF%B0/" rel="next" title="1-SpringBoot概述">
+                  1-SpringBoot概述 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
 </div>
 
-<!-- Custom -->
 
 
-    
 
-    
-      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
-        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
-      </a>
-    
 
-    
-      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
-     aria-hidden="true">
-  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
-    <div class="modal-content">
-      <div class="modal-header text-center">
-        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
-        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body mx-3">
-        <div class="md-form mb-5">
-          <input type="text" id="local-search-input" class="form-control validate">
-          <label data-error="x" data-success="v"
-                 for="local-search-input">关键词</label>
-        </div>
-        <div class="list-group" id="local-search-result"></div>
-      </div>
-    </div>
-  </div>
+
 </div>
-    
-
-    
-      <div class="col-lg-7 mx-auto nopadding-x-md">
-        <div class="container custom mx-auto">
-          <link rel="stylesheet" href="/js/aplayer/APlayer.min.css"> <div id="aplayer" style="display:none"></div> <script src="/js/aplayer/APlayer.min.js"></script>
-        </div>
-      </div>
-    
   </main>
 
-  <footer class="text-center mt-5 py-3">
-  <div class="footer-content">
-     <i class="iconfont icon-copyright"></i> <span>ZhaoXin, Built by </span> <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> 
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">ZhaoXin</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/muse/" rel="noopener" target="_blank">NexT.Muse</a> 强力驱动
   </div>
-  
+
+    </div>
+  </footer>
 
   
-
-  
-</footer>
-
-  <!-- SCRIPTS -->
-  
-  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.js" ></script>
-  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.css" />
-
-  <script>
-    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
-    NProgress.start()
-    window.addEventListener('load', function() {
-      NProgress.done();
-    })
-  </script>
-
-
-<script  src="https://cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js" ></script>
-<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/js/bootstrap.min.js" ></script>
-<script  src="/js/events.js" ></script>
-<script  src="/js/plugins.js" ></script>
-
-<!-- Plugins -->
-
-
-  <script  src="/js/local-search.js" ></script>
-
-
-
-  
-    <script  src="/js/img-lazyload.js" ></script>
-  
-
-
-
-  
-
-
-
-  
-  
-    <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.js" ></script>
-  
-  
-    <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4/anchor.min.js" ></script>
-  
-  
-    <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js" ></script>
-  
-
-
-
-
-  <script defer src="/js/leancloud.js" ></script>
-
-
-
-  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2/lib/typed.min.js" ></script>
-  <script>
-    (function (window, document) {
-      var typing = Fluid.plugins.typing;
-      var title = document.getElementById('subtitle').title;
-      
-        typing(title);
-      
-    })(window, document);
-  </script>
-
-
-
-
-
-  
-
-  
-    <!-- MathJax -->
-    <script>
-      MathJax = {
-        tex: {
-          inlineMath: [['$', '$'], ['\\(', '\\)']]
-        },
-        loader: {
-          load: ['ui/lazy']
-        },
-        options: {
-          renderActions: {
-            findScript: [10, doc => {
-              document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
-                const display = !!node.type.match(/; *mode=display/);
-                const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
-                const text = document.createTextNode('');
-                node.parentNode.replaceChild(text, node);
-                math.start = { node: text, delim: '', n: 0 };
-                math.end = { node: text, delim: '', n: 0 };
-                doc.math.push(math);
-              });
-            }, '', false],
-            insertedScript: [200, () => {
-              document.querySelectorAll('mjx-container').forEach(node => {
-                let target = node.parentNode;
-                if (target.nodeName.toLowerCase() === 'li') {
-                  target.parentNode.classList.add('has-jax');
-                }
-              });
-            }, '', false]
-          }
-        }
-      };
-    </script>
-
-    <script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js" ></script>
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/schemes/muse.js"></script><script src="/js/next-boot.js"></script>
 
   
 
@@ -655,31 +450,10 @@ ex)</code>：当preHandler()方法返回true时，会将该方法放到专门方
 
 
 
-
-
-
-  
-
-  
-
-  
-
-  
-
-  
-
   
 
 
 
-
-  
-<script src="/js/music.js"></script>
-
-
-
-<!-- 主题的启动项 保持在最底部 -->
-<script  src="/js/boot.js" ></script>
 
 
 </body>

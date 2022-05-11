@@ -1,258 +1,235 @@
-
-
 <!DOCTYPE html>
-<html lang="zh-CN" data-default-color-scheme=auto>
-
-
-
+<html lang="zh-CN">
 <head>
   <meta charset="UTF-8">
-  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
-  <link rel="icon" href="/img/favicon.png">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
-  <meta http-equiv="x-ua-compatible" content="ie=edge">
-  
-  <meta name="theme-color" content="#2f4154">
-  <meta name="author" content="ZhaoXin">
-  <meta name="keywords" content="博客">
-  
-    <meta name="description" content="如果使用synchronized关键词，实现线程同步，可以使用Object类提供的三个方法，这三个方法必须使用同步监视器来调用，对于同步方法，可以直接使用，因为该类默认实例this就是同步监视器，对于同步代码块，必须使用同步监视器对象来调用这三个方法。  wait()：导致当前线程等待，直到其他线程调用该同步监视器notify()方法或者notifyAll()方法来唤醒该线程。该方法有三种形式">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css" integrity="sha256-DfWjNxDkM94fVBWx1H5BMMp0Zq7luBlV8QRcSES7s+0=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"zhaoquaner.github.io","root":"/","images":"/images","scheme":"Muse","darkmode":false,"version":"8.11.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="如果使用synchronized关键词，实现线程同步，可以使用Object类提供的三个方法，这三个方法必须使用同步监视器来调用，对于同步方法，可以直接使用，因为该类默认实例this就是同步监视器，对于同步代码块，必须使用同步监视器对象来调用这三个方法。  wait()：导致当前线程等待，直到其他线程调用该同步监视器notify()方法或者notifyAll()方法来唤醒该线程。该方法有三种形式：无">
 <meta property="og:type" content="article">
 <meta property="og:title" content="线程通信">
 <meta property="og:url" content="https://zhaoquaner.github.io/2022/05/11/Java/%E5%A4%9A%E7%BA%BF%E7%A8%8B/%E7%BA%BF%E7%A8%8B%E9%80%9A%E4%BF%A1/index.html">
 <meta property="og:site_name" content="赵圈儿的博客">
-<meta property="og:description" content="如果使用synchronized关键词，实现线程同步，可以使用Object类提供的三个方法，这三个方法必须使用同步监视器来调用，对于同步方法，可以直接使用，因为该类默认实例this就是同步监视器，对于同步代码块，必须使用同步监视器对象来调用这三个方法。  wait()：导致当前线程等待，直到其他线程调用该同步监视器notify()方法或者notifyAll()方法来唤醒该线程。该方法有三种形式">
+<meta property="og:description" content="如果使用synchronized关键词，实现线程同步，可以使用Object类提供的三个方法，这三个方法必须使用同步监视器来调用，对于同步方法，可以直接使用，因为该类默认实例this就是同步监视器，对于同步代码块，必须使用同步监视器对象来调用这三个方法。  wait()：导致当前线程等待，直到其他线程调用该同步监视器notify()方法或者notifyAll()方法来唤醒该线程。该方法有三种形式：无">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2022-05-11T02:58:39.000Z">
 <meta property="article:modified_time" content="2022-05-11T08:53:05.520Z">
 <meta property="article:author" content="ZhaoXin">
 <meta property="article:tag" content="Java基础">
 <meta property="article:tag" content="线程">
-<meta name="twitter:card" content="summary_large_image">
-  
-  
-  <title>线程通信 - 赵圈儿的博客</title>
-
-  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/css/bootstrap.min.css" />
+<meta name="twitter:card" content="summary">
 
 
-  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4/github-markdown.min.css" />
-  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hint.css@2/hint.min.css" />
+<link rel="canonical" href="https://zhaoquaner.github.io/2022/05/11/Java/%E5%A4%9A%E7%BA%BF%E7%A8%8B/%E7%BA%BF%E7%A8%8B%E9%80%9A%E4%BF%A1/">
 
-  
-    
-    
-      
-      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10/styles/github-gist.min.css" />
-    
-  
 
-  
-    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.css" />
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://zhaoquaner.github.io/2022/05/11/Java/%E5%A4%9A%E7%BA%BF%E7%A8%8B/%E7%BA%BF%E7%A8%8B%E9%80%9A%E4%BF%A1/","path":"2022/05/11/Java/多线程/线程通信/","title":"线程通信"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>线程通信 | 赵圈儿的博客</title>
   
 
 
-<!-- 主题依赖的图标库，不要自行修改 -->
-
-<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
 
 
 
-<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
-
-
-<link  rel="stylesheet" href="/css/main.css" />
-
-<!-- 自定义样式保持在最底部 -->
-
-
-  <script id="fluid-configs">
-    var Fluid = window.Fluid || {};
-    var CONFIG = {"hostname":"zhaoquaner.github.io","root":"/","version":"1.8.14","typing":{"enable":true,"typeSpeed":60,"cursorChar":" ","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":false,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":2},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":"BzK0JfEpsm40LlV9EPIyl4mp-gzGzoHsz","app_key":"MpxSk6ED55Utq83yNrKAMI5c","server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
-  </script>
-  <script  src="/js/utils.js" ></script>
-  <script  src="/js/color-schema.js" ></script>
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
 </head>
 
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion"><!-- hexo injector body_begin start --><style>code {font-weight:400;}.post-content {font-weight:600;} #board {border-radius: 1.5rem;} #board-ctn {width:110%;margin-left:-5%;}</style><!-- hexo injector body_begin end -->
+  <div class="headband"></div>
 
-<body><!-- hexo injector body_begin start --><style>code {font-weight:400;}.post-content {font-weight:600;} #board {border-radius: 1.5rem;} #board-ctn {width:110%;margin-left:-5%;}</style><!-- hexo injector body_begin end -->
-  <header style="height: 70vh;">
-    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
-  <div class="container">
-    <a class="navbar-brand" href="/">
-      <strong>Personal Blog</strong>
-    </a>
-
-    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
-            data-target="#navbarSupportedContent"
-            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <div class="animated-icon"><span></span><span></span><span></span></div>
-    </button>
-
-    <!-- Collapsible content -->
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav ml-auto text-center">
-        
-          
-          
-          
-          
-            <li class="nav-item">
-              <a class="nav-link" href="/">
-                <i class="iconfont icon-home-fill"></i>
-                首页
-              </a>
-            </li>
-          
-        
-          
-          
-          
-          
-            <li class="nav-item">
-              <a class="nav-link" href="/archives/">
-                <i class="iconfont icon-archive-fill"></i>
-                归档
-              </a>
-            </li>
-          
-        
-          
-          
-          
-          
-            <li class="nav-item">
-              <a class="nav-link" href="/categories/">
-                <i class="iconfont icon-category-fill"></i>
-                分类
-              </a>
-            </li>
-          
-        
-          
-          
-          
-          
-            <li class="nav-item">
-              <a class="nav-link" href="/tags/">
-                <i class="iconfont icon-tags-fill"></i>
-                标签
-              </a>
-            </li>
-          
-        
-          
-          
-          
-          
-            <li class="nav-item">
-              <a class="nav-link" href="/about/">
-                <i class="iconfont icon-user-fill"></i>
-                关于
-              </a>
-            </li>
-          
-        
-          
-          
-          
-          
-            <li class="nav-item">
-              <a class="nav-link" href="javascript:;">
-                <i class="iconfont icon-music"></i>
-                播放
-              </a>
-            </li>
-          
-        
-        
-          <li class="nav-item" id="search-btn">
-            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
-              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
-            </a>
-          </li>
-        
-        
-          <li class="nav-item" id="color-toggle-btn">
-            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
-                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
-          </li>
-        
-      </ul>
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
     </div>
   </div>
-</nav>
 
-    <div class="banner" id="banner" parallax=true
-         style="background: url('/img/article.png') no-repeat center center;
-           background-size: cover;">
-      <div class="full-bg-img">
-        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
-          <div class="page-header text-center fade-in-up">
-            <span class="h2" id="subtitle" title="线程通信">
-              
-            </span>
+  <div class="site-meta">
 
-            
-              <div class="mt-3">
-  
-  
-    <span class="post-meta">
-      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-      <time datetime="2022-05-11 10:58" pubdate>
-        2022/5/11 10时58分
-      </time>
-    </span>
-  
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">赵圈儿的博客</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
 </div>
 
-<div class="mt-1">
-  
-    <span class="post-meta mr-2">
-      <i class="iconfont icon-chart"></i>
-      4.4k 字
-    </span>
-  
 
-  
 
+
+
+
+
+</div>
+        
   
-  
-    
-      <!-- LeanCloud 统计文章PV -->
-      <span id="leancloud-page-views-container" class="post-meta" style="display: none">
-        <i class="iconfont icon-eye" aria-hidden="true"></i>
-        <span id="leancloud-page-views"></span> 次
-      </span>
-    
-  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8Condition%E6%8E%A7%E5%88%B6%E7%BA%BF%E7%A8%8B%E9%80%9A%E4%BF%A1"><span class="nav-number">1.</span> <span class="nav-text">使用Condition控制线程通信</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8%E9%98%BB%E5%A1%9E%E9%98%9F%E5%88%97BlockingQueue%E6%8E%A7%E5%88%B6%E7%BA%BF%E7%A8%8B%E9%80%9A%E4%BF%A1"><span class="nav-number">2.</span> <span class="nav-text">使用阻塞队列BlockingQueue控制线程通信</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">ZhaoXin</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">169</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">18</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">23</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
 </div>
 
-            
-          </div>
 
-          
+
         </div>
       </div>
     </div>
-  </header>
+  </aside>
+  <div class="sidebar-dimmer"></div>
 
-  <main>
+
+    </header>
+
     
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://zhaoquaner.github.io/2022/05/11/Java/%E5%A4%9A%E7%BA%BF%E7%A8%8B/%E7%BA%BF%E7%A8%8B%E9%80%9A%E4%BF%A1/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="ZhaoXin">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="赵圈儿的博客">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="线程通信 | 赵圈儿的博客">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          线程通信
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
       
 
-<div class="container-fluid nopadding-x">
-  <div class="row nomargin-x">
-    <div class="d-none d-lg-block col-lg-2"></div>
-    <div class="col-lg-8 nopadding-x-md">
-      <div class="container nopadding-x-md" id="board-ctn">
-        <div class="py-5" id="board">
-          <article class="post-content mx-auto">
-            <!-- SEO header -->
-            <h1 style="display: none">线程通信</h1>
-            
-            <div class="markdown-body">
-              <p>如果使用synchronized关键词，实现线程同步，可以使用Object类提供的三个方法，这三个方法必须使用同步监视器来调用，对于同步方法，可以直接使用，因为该类默认实例this就是同步监视器，对于同步代码块，必须使用同步监视器对象来调用这三个方法。</p>
+      <time title="创建时间：2022-05-11 10:58:39 / 修改时间：16:53:05" itemprop="dateCreated datePublished" datetime="2022-05-11T10:58:39+08:00">2022-05-11</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/programming/" itemprop="url" rel="index"><span itemprop="name">编程学习</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/programming/java/" itemprop="url" rel="index"><span itemprop="name">Java基础</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <p>如果使用synchronized关键词，实现线程同步，可以使用Object类提供的三个方法，这三个方法必须使用同步监视器来调用，对于同步方法，可以直接使用，因为该类默认实例this就是同步监视器，对于同步代码块，必须使用同步监视器对象来调用这三个方法。</p>
 <ul>
 <li>wait()：导致当前线程等待，直到其他线程调用该同步监视器notify()方法或者notifyAll()方法来唤醒该线程。该方法有三种形式：无参，带毫秒参数，带毫秒和毫微妙参数。调用wait方法的当前线程会释放对同步监视器的锁定</li>
 <li>notify()：唤醒在此同步监视器等待的单个线程，如果很多线程都在此同步监视器上等待，就唤醒其中一个。选择是任意的，只有当前线程放弃对该同步监视器锁定后，才可以执行被唤醒的线程</li>
@@ -260,34 +237,26 @@
 </ul>
 <p>类似操作系统中的PV操作，阻塞线程和唤醒线程。</p>
 <p>例子：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><div class="code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br></pre></div></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">package</span> work;<br><br><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">Main</span> &#123;<br><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">main</span><span class="hljs-params">(String[] args)</span> <span class="hljs-keyword">throws</span> InterruptedException &#123;<br><br>        <span class="hljs-type">Accout</span> <span class="hljs-variable">acc</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Accout</span>(<span class="hljs-string">&quot;123456w&quot;</span>, <span class="hljs-number">0</span>);<br><br>        <span class="hljs-type">Thread</span> <span class="hljs-variable">thread1</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">TakeMoney</span>(<span class="hljs-string">&quot;取钱人&quot;</span>, acc, <span class="hljs-number">100</span>);<br>        <span class="hljs-type">Thread</span> <span class="hljs-variable">thread2</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">SaveMoney</span>(<span class="hljs-string">&quot;存钱人&quot;</span>, acc, <span class="hljs-number">100</span>);<br>        <span class="hljs-type">Thread</span> <span class="hljs-variable">thread3</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">SaveMoney</span>(<span class="hljs-string">&quot;存钱人&quot;</span>, acc, <span class="hljs-number">100</span>);<br>        <span class="hljs-type">Thread</span> <span class="hljs-variable">thread4</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">SaveMoney</span>(<span class="hljs-string">&quot;存钱人&quot;</span>, acc, <span class="hljs-number">100</span>);<br><br><br>        thread1.start();<br>        thread2.start();<br>        thread3.start();<br>        thread4.start();<br><br><br>    &#125;<br><br>&#125;<br><br><span class="hljs-keyword">class</span> <span class="hljs-title class_">TakeMoney</span> <span class="hljs-keyword">extends</span> <span class="hljs-title class_">Thread</span> &#123;<br><br>    <span class="hljs-keyword">private</span> Accout accout;<br>    <span class="hljs-keyword">private</span> <span class="hljs-type">double</span> money;<br><br>    <span class="hljs-keyword">public</span> <span class="hljs-title function_">TakeMoney</span><span class="hljs-params">(String name, Accout accout, <span class="hljs-type">double</span> money)</span> &#123;<br>        <span class="hljs-built_in">super</span>(name);<br>        <span class="hljs-built_in">this</span>.accout = accout;<br>        <span class="hljs-built_in">this</span>.money = money;<br>    &#125;<br><br>    <span class="hljs-meta">@Override</span><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">run</span><span class="hljs-params">()</span> &#123;<br><br>        <span class="hljs-keyword">for</span>(; <span class="hljs-literal">true</span> ;)&#123;<br>            accout.take(<span class="hljs-built_in">this</span>, accout, money);<br>        &#125;<br>    &#125;<br>&#125;<br><br><span class="hljs-keyword">class</span> <span class="hljs-title class_">SaveMoney</span> <span class="hljs-keyword">extends</span> <span class="hljs-title class_">Thread</span> &#123;<br><br>    <span class="hljs-keyword">private</span> Accout accout;<br>    <span class="hljs-keyword">private</span> <span class="hljs-type">double</span> money;<br><br>    <span class="hljs-keyword">public</span> <span class="hljs-title function_">SaveMoney</span><span class="hljs-params">(String name, Accout accout, <span class="hljs-type">double</span> money)</span> &#123;<br>        <span class="hljs-built_in">super</span>(name);<br>        <span class="hljs-built_in">this</span>.accout = accout;<br>        <span class="hljs-built_in">this</span>.money = money;<br>    &#125;<br><br>    <span class="hljs-keyword">public</span> Accout <span class="hljs-title function_">getAccout</span><span class="hljs-params">()</span> &#123;<br>        <span class="hljs-keyword">return</span> accout;<br>    &#125;<br><br>    <span class="hljs-keyword">public</span> <span class="hljs-type">double</span> <span class="hljs-title function_">getMoney</span><span class="hljs-params">()</span> &#123;<br>        <span class="hljs-keyword">return</span> money;<br>    &#125;<br><br>    <span class="hljs-meta">@Override</span><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">run</span><span class="hljs-params">()</span> &#123;<br><br>        <span class="hljs-keyword">for</span>(;<span class="hljs-literal">true</span>;)&#123;<br>            accout.save(<span class="hljs-built_in">this</span>, accout, money);<br>        &#125;<br>    &#125;<br>&#125;<br><br><br><span class="hljs-keyword">class</span> <span class="hljs-title class_">Accout</span> &#123;<br>    <br>        <span class="hljs-keyword">public</span> <span class="hljs-keyword">synchronized</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">take</span><span class="hljs-params">(Thread thread, Accout accout, <span class="hljs-type">double</span> money)</span> &#123;<br><br>        <span class="hljs-keyword">if</span>(flag == <span class="hljs-literal">false</span>) &#123;<br><br>            <span class="hljs-keyword">try</span> &#123;<br>                wait();<br>            &#125; <span class="hljs-keyword">catch</span> (InterruptedException e) &#123;<br>                e.printStackTrace();<br>            &#125;<br>        &#125;<br><br>        <span class="hljs-keyword">else</span> &#123;<br>            <span class="hljs-keyword">if</span>(accout.getBalance() &gt;= money) &#123;<br>                System.out.println(thread.getName() + <span class="hljs-string">&quot;取钱成功,取出&quot;</span> + money);<br>                balance = balance - money;<br>                System.out.println(<span class="hljs-string">&quot;当前余额为：&quot;</span> + accout.getBalance());<br><br>                flag = <span class="hljs-literal">false</span>;<br>                notifyAll();<br><br>            &#125;<br>        &#125;<br><br>    &#125;<br><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">synchronized</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">save</span><span class="hljs-params">(Thread thread, Accout accout, <span class="hljs-type">double</span> money)</span> &#123;<br><br>        <span class="hljs-keyword">if</span>(flag == <span class="hljs-literal">true</span>) &#123;<br>            <span class="hljs-keyword">try</span> &#123;<br>                wait();<br>            &#125; <span class="hljs-keyword">catch</span> (InterruptedException e) &#123;<br>                e.printStackTrace();<br>            &#125;<br>        &#125; <span class="hljs-keyword">else</span> &#123;<br><br>            System.out.println(thread.getName() + <span class="hljs-string">&quot;存钱成功，存进&quot;</span> + money);<br>            balance = balance + money;<br>            System.out.println(<span class="hljs-string">&quot;当前余额为：&quot;</span> + accout.getBalance());<br><br>            flag = <span class="hljs-literal">true</span>;<br>            notifyAll();<br>        &#125;<br>    &#125;<br>&#125;<br><br><br><br><br></code></pre></td></tr></table></figure>
-<h2 id="使用condition控制线程通信">使用Condition控制线程通信</h2>
-<p>如果程序不使用synchronized关键词保证同步，而是直接使用Lock对象,那么就没有隐式同步监视器，就不能使用wait、notify、notifyAll方法进行线程通信。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> work;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Main</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> InterruptedException &#123;</span><br><span class="line"></span><br><span class="line">        <span class="type">Accout</span> <span class="variable">acc</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Accout</span>(<span class="string">&quot;123456w&quot;</span>, <span class="number">0</span>);</span><br><span class="line"></span><br><span class="line">        <span class="type">Thread</span> <span class="variable">thread1</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">TakeMoney</span>(<span class="string">&quot;取钱人&quot;</span>, acc, <span class="number">100</span>);</span><br><span class="line">        <span class="type">Thread</span> <span class="variable">thread2</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">SaveMoney</span>(<span class="string">&quot;存钱人&quot;</span>, acc, <span class="number">100</span>);</span><br><span class="line">        <span class="type">Thread</span> <span class="variable">thread3</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">SaveMoney</span>(<span class="string">&quot;存钱人&quot;</span>, acc, <span class="number">100</span>);</span><br><span class="line">        <span class="type">Thread</span> <span class="variable">thread4</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">SaveMoney</span>(<span class="string">&quot;存钱人&quot;</span>, acc, <span class="number">100</span>);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">        thread1.start();</span><br><span class="line">        thread2.start();</span><br><span class="line">        thread3.start();</span><br><span class="line">        thread4.start();</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">TakeMoney</span> <span class="keyword">extends</span> <span class="title class_">Thread</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> Accout accout;</span><br><span class="line">    <span class="keyword">private</span> <span class="type">double</span> money;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="title function_">TakeMoney</span><span class="params">(String name, Accout accout, <span class="type">double</span> money)</span> &#123;</span><br><span class="line">        <span class="built_in">super</span>(name);</span><br><span class="line">        <span class="built_in">this</span>.accout = accout;</span><br><span class="line">        <span class="built_in">this</span>.money = money;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">run</span><span class="params">()</span> &#123;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span>(; <span class="literal">true</span> ;)&#123;</span><br><span class="line">            accout.take(<span class="built_in">this</span>, accout, money);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">SaveMoney</span> <span class="keyword">extends</span> <span class="title class_">Thread</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> Accout accout;</span><br><span class="line">    <span class="keyword">private</span> <span class="type">double</span> money;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="title function_">SaveMoney</span><span class="params">(String name, Accout accout, <span class="type">double</span> money)</span> &#123;</span><br><span class="line">        <span class="built_in">super</span>(name);</span><br><span class="line">        <span class="built_in">this</span>.accout = accout;</span><br><span class="line">        <span class="built_in">this</span>.money = money;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> Accout <span class="title function_">getAccout</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> accout;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="type">double</span> <span class="title function_">getMoney</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> money;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">run</span><span class="params">()</span> &#123;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span>(;<span class="literal">true</span>;)&#123;</span><br><span class="line">            accout.save(<span class="built_in">this</span>, accout, money);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Accout</span> &#123;</span><br><span class="line">    </span><br><span class="line">        <span class="keyword">public</span> <span class="keyword">synchronized</span> <span class="keyword">void</span> <span class="title function_">take</span><span class="params">(Thread thread, Accout accout, <span class="type">double</span> money)</span> &#123;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span>(flag == <span class="literal">false</span>) &#123;</span><br><span class="line"></span><br><span class="line">            <span class="keyword">try</span> &#123;</span><br><span class="line">                wait();</span><br><span class="line">            &#125; <span class="keyword">catch</span> (InterruptedException e) &#123;</span><br><span class="line">                e.printStackTrace();</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="keyword">if</span>(accout.getBalance() &gt;= money) &#123;</span><br><span class="line">                System.out.println(thread.getName() + <span class="string">&quot;取钱成功,取出&quot;</span> + money);</span><br><span class="line">                balance = balance - money;</span><br><span class="line">                System.out.println(<span class="string">&quot;当前余额为：&quot;</span> + accout.getBalance());</span><br><span class="line"></span><br><span class="line">                flag = <span class="literal">false</span>;</span><br><span class="line">                notifyAll();</span><br><span class="line"></span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">synchronized</span> <span class="keyword">void</span> <span class="title function_">save</span><span class="params">(Thread thread, Accout accout, <span class="type">double</span> money)</span> &#123;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span>(flag == <span class="literal">true</span>) &#123;</span><br><span class="line">            <span class="keyword">try</span> &#123;</span><br><span class="line">                wait();</span><br><span class="line">            &#125; <span class="keyword">catch</span> (InterruptedException e) &#123;</span><br><span class="line">                e.printStackTrace();</span><br><span class="line">            &#125;</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line"></span><br><span class="line">            System.out.println(thread.getName() + <span class="string">&quot;存钱成功，存进&quot;</span> + money);</span><br><span class="line">            balance = balance + money;</span><br><span class="line">            System.out.println(<span class="string">&quot;当前余额为：&quot;</span> + accout.getBalance());</span><br><span class="line"></span><br><span class="line">            flag = <span class="literal">true</span>;</span><br><span class="line">            notifyAll();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h2 id="使用Condition控制线程通信"><a href="#使用Condition控制线程通信" class="headerlink" title="使用Condition控制线程通信"></a>使用Condition控制线程通信</h2><p>如果程序不使用synchronized关键词保证同步，而是直接使用Lock对象,那么就没有隐式同步监视器，就不能使用wait、notify、notifyAll方法进行线程通信。</p>
 <p>当使用Lock对象来保证同步时，Java提供了一个Condition类来保持协调，使用Condition可以让那些已经得到Lock对象却无法继续执行的线程释放Lock对象，Condition对象也可以唤醒其他处于等待的线程。</p>
 <p>Condition实例被绑定在一个Lock对象上，要获得Lock实例的Condition实例，可以调用Lock对象的newCondition方法，Condition类提供了三个方法：</p>
-<ol type="1">
-<li>await()：类似隐式同步监视器的wait方法，可以导致当前线程等待，直到其他线程调用该Condition的signal方法或signalAll方法来唤醒该线程，该await方法有多个变体，如long
-awaitNanos(long nanosTimeout)、void
-awaitUninterruptibly()、awaitUntil(Date
-deadline)可以完成更丰富的操作</li>
+<ol>
+<li>await()：类似隐式同步监视器的wait方法，可以导致当前线程等待，直到其他线程调用该Condition的signal方法或signalAll方法来唤醒该线程，该await方法有多个变体，如long awaitNanos(long nanosTimeout)、void awaitUninterruptibly()、awaitUntil(Date deadline)可以完成更丰富的操作</li>
 <li>signal()：唤醒在此Lock对象上等待的单个线程，如果有多个线程在等待，那么选择任意一个线程来唤醒。只有当前线程放弃对Lock对象的锁定后(使用await方法),才可以执行被唤醒的线程</li>
 <li>signalALL()：唤醒在此Lock对象上等待的所有线程，只有当前线程放弃对Lock对象的锁定后(使用await方法),才可以执行被唤醒的线程</li>
 </ol>
 <p><strong>注意！！！！！：无论是使用wait方法还是await方法使线程阻塞后，再次唤醒线程后，会从上次阻塞的位置继续开始执行，而不是重新进入同步代码块.</strong></p>
-<h2
-id="使用阻塞队列blockingqueue控制线程通信">使用阻塞队列BlockingQueue控制线程通信</h2>
-<p>Java提供了一个BlockingQueue接口，它虽然是Queue的子接口，但它的主要作用并不是作为容器，而是作为线程同步的工具，BlockingQueue具有一个特征：当生产者线程试图向BlockingQueue中放入元素时，如果该队列已满，则该线程被阻塞；当消费者线程试图从BlockingQueue中取出元素时，如果该队列已空，则该线程被阻塞。</p>
+<h2 id="使用阻塞队列BlockingQueue控制线程通信"><a href="#使用阻塞队列BlockingQueue控制线程通信" class="headerlink" title="使用阻塞队列BlockingQueue控制线程通信"></a>使用阻塞队列BlockingQueue控制线程通信</h2><p>Java提供了一个BlockingQueue接口，它虽然是Queue的子接口，但它的主要作用并不是作为容器，而是作为线程同步的工具，BlockingQueue具有一个特征：当生产者线程试图向BlockingQueue中放入元素时，如果该队列已满，则该线程被阻塞；当消费者线程试图从BlockingQueue中取出元素时，如果该队列已空，则该线程被阻塞。</p>
 <p>程序的两个线程通过交替向BlockingQueue中放入、取出元素，可以很好的控制线程通信。</p>
 <p>BlockingQueue提供了两个支持阻塞的方法：</p>
 <ul>
-<li>put(E
-e)：尝试把E元素放入BlockingQueue中，如果该队列元素已满，则阻塞该线程</li>
+<li>put(E e)：尝试把E元素放入BlockingQueue中，如果该队列元素已满，则阻塞该线程</li>
 <li>take()：尝试从BlockingQueue的头部取出元素，如果该队列的元素已空，则阻塞该线程</li>
 </ul>
 <p>BlockingQueue继承自Queue，当然也可以使用Queue的方法，这些方法归纳起来可分为三组</p>
 <ul>
-<li>在队列尾部插入元素，包括add(E e)、offer(E e)、put(E
-e)方法，当该队列已满时，这三个方法分别为抛出异常、返回false、阻塞队列</li>
+<li>在队列尾部插入元素，包括add(E e)、offer(E e)、put(E e)方法，当该队列已满时，这三个方法分别为抛出异常、返回false、阻塞队列</li>
 <li>在队列头部删除元素并返回删除的元素，包括remove()、poll()、take()方法，当队列为空，这三个方法分别会抛出异常，返回false、阻塞队列</li>
 <li>在队列头部取出但不删除元素，包括element()、peek()方法，当队列已空时，这两个方法分别抛出异常、返回false</li>
 </ul>
@@ -297,211 +266,68 @@ e)方法，当该队列已满时，这三个方法分别为抛出异常、返回
 <li>LinkedBlockingQueue：基于链表实现的BlockingQueue队列</li>
 <li>PriorityBlockingQueue：它不是标准的阻塞队列，该队列调用remove、poll、take方法取出元素时，并不是取出队列中存在时间最长的，而是取出队列中最小的元素，PriorityBlockingQueue判断元素的大小可以根据元素本身大小来自然排序(实现Comparable接口)，也可以使用Conparator接口进行定制排序</li>
 <li>SynchronizedQueue：同步队列，对该队列的存、取操作必须交替进行</li>
-<li>DelayQueue：是一个特殊的阻塞队列，底层基于PriorityBlockingQueue实现，不过Delay要求集合元素都实现Delay接口(该接口只有一个long
-getDelay()方法)，DelayQueue根据集合元素的getDelay的返回值进行排序</li>
+<li>DelayQueue：是一个特殊的阻塞队列，底层基于PriorityBlockingQueue实现，不过Delay要求集合元素都实现Delay接口(该接口只有一个long getDelay()方法)，DelayQueue根据集合元素的getDelay的返回值进行排序</li>
 </ul>
 
-            </div>
-            <hr>
-            <div>
-              <div class="post-metas mb-3">
-                
-                  <div class="post-meta mr-3">
-                    <i class="iconfont icon-category"></i>
-                    
-                      <a class="hover-with-bg" href="/categories/programming/">编程学习</a>
-                    
-                      <a class="hover-with-bg" href="/categories/programming/java/">Java基础</a>
-                    
-                  </div>
-                
-                
-                  <div class="post-meta">
-                    <i class="iconfont icon-tags"></i>
-                    
-                      <a class="hover-with-bg" href="/tags/java/">Java基础</a>
-                    
-                      <a class="hover-with-bg" href="/tags/thread/">线程</a>
-                    
-                  </div>
-                
-              </div>
-              
-              
-            </div>
-
-            
-          </article>
-        </div>
-      </div>
     </div>
+
     
-  </div>
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/java/" rel="tag"># Java基础</a>
+              <a href="/tags/thread/" rel="tag"># 线程</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2022/05/11/Java/%E5%A4%9A%E7%BA%BF%E7%A8%8B/%E7%BA%BF%E7%A8%8B%E7%9A%84%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F/" rel="prev" title="线程的生命周期">
+                  <i class="fa fa-chevron-left"></i> 线程的生命周期
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2022/05/11/Java/%E5%A4%9A%E7%BA%BF%E7%A8%8B/%E7%BA%BF%E7%A8%8B%E5%90%8C%E6%AD%A5/" rel="next" title="线程同步">
+                  线程同步 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
 </div>
 
-<!-- Custom -->
 
 
-    
 
-    
-      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
-        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
-      </a>
-    
 
-    
-      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
-     aria-hidden="true">
-  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
-    <div class="modal-content">
-      <div class="modal-header text-center">
-        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
-        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body mx-3">
-        <div class="md-form mb-5">
-          <input type="text" id="local-search-input" class="form-control validate">
-          <label data-error="x" data-success="v"
-                 for="local-search-input">关键词</label>
-        </div>
-        <div class="list-group" id="local-search-result"></div>
-      </div>
-    </div>
-  </div>
+
 </div>
-    
-
-    
-      <div class="col-lg-7 mx-auto nopadding-x-md">
-        <div class="container custom mx-auto">
-          <link rel="stylesheet" href="/js/aplayer/APlayer.min.css"> <div id="aplayer" style="display:none"></div> <script src="/js/aplayer/APlayer.min.js"></script>
-        </div>
-      </div>
-    
   </main>
 
-  <footer class="text-center mt-5 py-3">
-  <div class="footer-content">
-     <i class="iconfont icon-copyright"></i> <span>ZhaoXin, Built by </span> <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> 
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">ZhaoXin</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/muse/" rel="noopener" target="_blank">NexT.Muse</a> 强力驱动
   </div>
-  
+
+    </div>
+  </footer>
 
   
-
-  
-</footer>
-
-  <!-- SCRIPTS -->
-  
-  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.js" ></script>
-  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.css" />
-
-  <script>
-    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
-    NProgress.start()
-    window.addEventListener('load', function() {
-      NProgress.done();
-    })
-  </script>
-
-
-<script  src="https://cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js" ></script>
-<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/js/bootstrap.min.js" ></script>
-<script  src="/js/events.js" ></script>
-<script  src="/js/plugins.js" ></script>
-
-<!-- Plugins -->
-
-
-  <script  src="/js/local-search.js" ></script>
-
-
-
-  
-    <script  src="/js/img-lazyload.js" ></script>
-  
-
-
-
-  
-
-
-
-  
-  
-    <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.js" ></script>
-  
-  
-    <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4/anchor.min.js" ></script>
-  
-  
-    <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js" ></script>
-  
-
-
-
-
-  <script defer src="/js/leancloud.js" ></script>
-
-
-
-  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2/lib/typed.min.js" ></script>
-  <script>
-    (function (window, document) {
-      var typing = Fluid.plugins.typing;
-      var title = document.getElementById('subtitle').title;
-      
-        typing(title);
-      
-    })(window, document);
-  </script>
-
-
-
-
-
-  
-
-  
-    <!-- MathJax -->
-    <script>
-      MathJax = {
-        tex: {
-          inlineMath: [['$', '$'], ['\\(', '\\)']]
-        },
-        loader: {
-          load: ['ui/lazy']
-        },
-        options: {
-          renderActions: {
-            findScript: [10, doc => {
-              document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
-                const display = !!node.type.match(/; *mode=display/);
-                const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
-                const text = document.createTextNode('');
-                node.parentNode.replaceChild(text, node);
-                math.start = { node: text, delim: '', n: 0 };
-                math.end = { node: text, delim: '', n: 0 };
-                doc.math.push(math);
-              });
-            }, '', false],
-            insertedScript: [200, () => {
-              document.querySelectorAll('mjx-container').forEach(node => {
-                let target = node.parentNode;
-                if (target.nodeName.toLowerCase() === 'li') {
-                  target.parentNode.classList.add('has-jax');
-                }
-              });
-            }, '', false]
-          }
-        }
-      };
-    </script>
-
-    <script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js" ></script>
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/schemes/muse.js"></script><script src="/js/next-boot.js"></script>
 
   
 
@@ -509,31 +335,10 @@ getDelay()方法)，DelayQueue根据集合元素的getDelay的返回值进行排
 
 
 
-
-
-
-  
-
-  
-
-  
-
-  
-
-  
-
   
 
 
 
-
-  
-<script src="/js/music.js"></script>
-
-
-
-<!-- 主题的启动项 保持在最底部 -->
-<script  src="/js/boot.js" ></script>
 
 
 </body>

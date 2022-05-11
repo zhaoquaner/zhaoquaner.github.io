@@ -1,516 +1,344 @@
-
-
 <!DOCTYPE html>
-<html lang="zh-CN" data-default-color-scheme=auto>
-
-
-
+<html lang="zh-CN">
 <head>
   <meta charset="UTF-8">
-  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
-  <link rel="icon" href="/img/favicon.png">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
-  <meta http-equiv="x-ua-compatible" content="ie=edge">
-  
-  <meta name="theme-color" content="#2f4154">
-  <meta name="author" content="ZhaoXin">
-  <meta name="keywords" content="博客">
-  
-    <meta name="description" content="Ajax是用来做局部刷新的，即在不重新加载刷新整个页面的同时，只更新页面的一部分数据。局部刷新使用的核心对象是异步对象：XMLHttpRequest，这个异步对象是存在在浏览器的内存中的。使用JS语法来创建该对象。 AJAX异步实现步骤  创建对象方式 var xmlHttp &#x3D; new XMLHttpRequest(); 给异步对象绑定事件：onreadystatechange 当异">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css" integrity="sha256-DfWjNxDkM94fVBWx1H5BMMp0Zq7luBlV8QRcSES7s+0=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"zhaoquaner.github.io","root":"/","images":"/images","scheme":"Muse","darkmode":false,"version":"8.11.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="Ajax是用来做局部刷新的，即在不重新加载刷新整个页面的同时，只更新页面的一部分数据。局部刷新使用的核心对象是异步对象：XMLHttpRequest，这个异步对象是存在在浏览器的内存中的。使用JS语法来创建该对象。 AJAX异步实现步骤 创建对象方式  var xmlHttp &#x3D; new XMLHttpRequest();  给异步对象绑定事件：onreadystatechange  当异步对象发">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Ajax">
 <meta property="og:url" content="https://zhaoquaner.github.io/2022/05/11/JavaWeb/AJAX/1-Ajax%E4%BB%8B%E7%BB%8D/index.html">
 <meta property="og:site_name" content="赵圈儿的博客">
-<meta property="og:description" content="Ajax是用来做局部刷新的，即在不重新加载刷新整个页面的同时，只更新页面的一部分数据。局部刷新使用的核心对象是异步对象：XMLHttpRequest，这个异步对象是存在在浏览器的内存中的。使用JS语法来创建该对象。 AJAX异步实现步骤  创建对象方式 var xmlHttp &#x3D; new XMLHttpRequest(); 给异步对象绑定事件：onreadystatechange 当异">
+<meta property="og:description" content="Ajax是用来做局部刷新的，即在不重新加载刷新整个页面的同时，只更新页面的一部分数据。局部刷新使用的核心对象是异步对象：XMLHttpRequest，这个异步对象是存在在浏览器的内存中的。使用JS语法来创建该对象。 AJAX异步实现步骤 创建对象方式  var xmlHttp &#x3D; new XMLHttpRequest();  给异步对象绑定事件：onreadystatechange  当异步对象发">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2022-05-11T05:52:39.000Z">
 <meta property="article:modified_time" content="2022-05-11T08:54:52.947Z">
 <meta property="article:author" content="ZhaoXin">
 <meta property="article:tag" content="JavaWeb">
 <meta property="article:tag" content="AJAX">
-<meta name="twitter:card" content="summary_large_image">
-  
-  
-  <title>Ajax - 赵圈儿的博客</title>
-
-  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/css/bootstrap.min.css" />
+<meta name="twitter:card" content="summary">
 
 
-  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4/github-markdown.min.css" />
-  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hint.css@2/hint.min.css" />
+<link rel="canonical" href="https://zhaoquaner.github.io/2022/05/11/JavaWeb/AJAX/1-Ajax%E4%BB%8B%E7%BB%8D/">
 
-  
-    
-    
-      
-      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10/styles/github-gist.min.css" />
-    
-  
 
-  
-    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.css" />
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://zhaoquaner.github.io/2022/05/11/JavaWeb/AJAX/1-Ajax%E4%BB%8B%E7%BB%8D/","path":"2022/05/11/JavaWeb/AJAX/1-Ajax介绍/","title":"Ajax"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>Ajax | 赵圈儿的博客</title>
   
 
 
-<!-- 主题依赖的图标库，不要自行修改 -->
-
-<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
 
 
 
-<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
-
-
-<link  rel="stylesheet" href="/css/main.css" />
-
-<!-- 自定义样式保持在最底部 -->
-
-
-  <script id="fluid-configs">
-    var Fluid = window.Fluid || {};
-    var CONFIG = {"hostname":"zhaoquaner.github.io","root":"/","version":"1.8.14","typing":{"enable":true,"typeSpeed":60,"cursorChar":" ","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":false,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":2},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":"BzK0JfEpsm40LlV9EPIyl4mp-gzGzoHsz","app_key":"MpxSk6ED55Utq83yNrKAMI5c","server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
-  </script>
-  <script  src="/js/utils.js" ></script>
-  <script  src="/js/color-schema.js" ></script>
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
 </head>
 
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion"><!-- hexo injector body_begin start --><style>code {font-weight:400;}.post-content {font-weight:600;} #board {border-radius: 1.5rem;} #board-ctn {width:110%;margin-left:-5%;}</style><!-- hexo injector body_begin end -->
+  <div class="headband"></div>
 
-<body><!-- hexo injector body_begin start --><style>code {font-weight:400;}.post-content {font-weight:600;} #board {border-radius: 1.5rem;} #board-ctn {width:110%;margin-left:-5%;}</style><!-- hexo injector body_begin end -->
-  <header style="height: 70vh;">
-    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
-  <div class="container">
-    <a class="navbar-brand" href="/">
-      <strong>Personal Blog</strong>
-    </a>
-
-    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
-            data-target="#navbarSupportedContent"
-            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <div class="animated-icon"><span></span><span></span><span></span></div>
-    </button>
-
-    <!-- Collapsible content -->
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav ml-auto text-center">
-        
-          
-          
-          
-          
-            <li class="nav-item">
-              <a class="nav-link" href="/">
-                <i class="iconfont icon-home-fill"></i>
-                首页
-              </a>
-            </li>
-          
-        
-          
-          
-          
-          
-            <li class="nav-item">
-              <a class="nav-link" href="/archives/">
-                <i class="iconfont icon-archive-fill"></i>
-                归档
-              </a>
-            </li>
-          
-        
-          
-          
-          
-          
-            <li class="nav-item">
-              <a class="nav-link" href="/categories/">
-                <i class="iconfont icon-category-fill"></i>
-                分类
-              </a>
-            </li>
-          
-        
-          
-          
-          
-          
-            <li class="nav-item">
-              <a class="nav-link" href="/tags/">
-                <i class="iconfont icon-tags-fill"></i>
-                标签
-              </a>
-            </li>
-          
-        
-          
-          
-          
-          
-            <li class="nav-item">
-              <a class="nav-link" href="/about/">
-                <i class="iconfont icon-user-fill"></i>
-                关于
-              </a>
-            </li>
-          
-        
-          
-          
-          
-          
-            <li class="nav-item">
-              <a class="nav-link" href="javascript:;">
-                <i class="iconfont icon-music"></i>
-                播放
-              </a>
-            </li>
-          
-        
-        
-          <li class="nav-item" id="search-btn">
-            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
-              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
-            </a>
-          </li>
-        
-        
-          <li class="nav-item" id="color-toggle-btn">
-            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
-                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
-          </li>
-        
-      </ul>
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
     </div>
   </div>
-</nav>
 
-    <div class="banner" id="banner" parallax=true
-         style="background: url('/img/article.png') no-repeat center center;
-           background-size: cover;">
-      <div class="full-bg-img">
-        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
-          <div class="page-header text-center fade-in-up">
-            <span class="h2" id="subtitle" title="Ajax">
-              
-            </span>
+  <div class="site-meta">
 
-            
-              <div class="mt-3">
-  
-  
-    <span class="post-meta">
-      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-      <time datetime="2022-05-11 13:52" pubdate>
-        2022/5/11 13时52分
-      </time>
-    </span>
-  
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">赵圈儿的博客</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
 </div>
 
-<div class="mt-1">
-  
-    <span class="post-meta mr-2">
-      <i class="iconfont icon-chart"></i>
-      1.6k 字
-    </span>
-  
 
-  
 
+
+
+
+
+</div>
+        
   
-  
-    
-      <!-- LeanCloud 统计文章PV -->
-      <span id="leancloud-page-views-container" class="post-meta" style="display: none">
-        <i class="iconfont icon-eye" aria-hidden="true"></i>
-        <span id="leancloud-page-views"></span> 次
-      </span>
-    
-  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#AJAX%E5%BC%82%E6%AD%A5%E5%AE%9E%E7%8E%B0%E6%AD%A5%E9%AA%A4"><span class="nav-number">1.</span> <span class="nav-text">AJAX异步实现步骤</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8JSON%E6%A0%BC%E5%BC%8F%E4%BC%A0%E9%80%92%E6%95%B0%E6%8D%AE"><span class="nav-number">2.</span> <span class="nav-text">使用JSON格式传递数据</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B0%86Java%E5%AF%B9%E8%B1%A1%E8%BD%AC%E6%8D%A2%E4%B8%BAJson%E6%A0%BC%E5%BC%8F%E7%9A%84%E5%AD%97%E7%AC%A6%E4%B8%B2"><span class="nav-number">2.1.</span> <span class="nav-text">将Java对象转换为Json格式的字符串</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9C%A8js%E4%B8%AD%E8%A7%A3%E6%9E%90%E8%AF%A5%E5%AD%97%E7%AC%A6%E4%B8%B2"><span class="nav-number">2.2.</span> <span class="nav-text">在js中解析该字符串</span></a></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">ZhaoXin</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">169</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">18</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">23</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
 </div>
 
-            
-          </div>
 
-          
+
         </div>
       </div>
     </div>
-  </header>
+  </aside>
+  <div class="sidebar-dimmer"></div>
 
-  <main>
+
+    </header>
+
     
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://zhaoquaner.github.io/2022/05/11/JavaWeb/AJAX/1-Ajax%E4%BB%8B%E7%BB%8D/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="ZhaoXin">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="赵圈儿的博客">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="Ajax | 赵圈儿的博客">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Ajax
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
       
 
-<div class="container-fluid nopadding-x">
-  <div class="row nomargin-x">
-    <div class="d-none d-lg-block col-lg-2"></div>
-    <div class="col-lg-8 nopadding-x-md">
-      <div class="container nopadding-x-md" id="board-ctn">
-        <div class="py-5" id="board">
-          <article class="post-content mx-auto">
-            <!-- SEO header -->
-            <h1 style="display: none">Ajax</h1>
-            
-            <div class="markdown-body">
-              <p>Ajax是用来做局部刷新的，即在不重新加载刷新整个页面的同时，只更新页面的一部分数据。局部刷新使用的核心对象是异步对象：XMLHttpRequest，这个异步对象是存在在浏览器的内存中的。使用JS语法来创建该对象。</p>
-<h2 id="ajax异步实现步骤">AJAX异步实现步骤</h2>
-<ol type="1">
+      <time title="创建时间：2022-05-11 13:52:39 / 修改时间：16:54:52" itemprop="dateCreated datePublished" datetime="2022-05-11T13:52:39+08:00">2022-05-11</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/programming/" itemprop="url" rel="index"><span itemprop="name">编程学习</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/programming/javaweb/" itemprop="url" rel="index"><span itemprop="name">JavaWeb</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <p>Ajax是用来做局部刷新的，即在不重新加载刷新整个页面的同时，只更新页面的一部分数据。局部刷新使用的核心对象是异步对象：XMLHttpRequest，这个异步对象是存在在浏览器的内存中的。使用JS语法来创建该对象。</p>
+<h2 id="AJAX异步实现步骤"><a href="#AJAX异步实现步骤" class="headerlink" title="AJAX异步实现步骤"></a>AJAX异步实现步骤</h2><ol>
 <li><p>创建对象方式</p>
-<p><code>var xmlHttp = new XMLHttpRequest();</code></p></li>
+<p> <code>var xmlHttp = new XMLHttpRequest();</code></p>
+</li>
 <li><p>给异步对象绑定事件：onreadystatechange</p>
-<p>当异步对象发起了请求，获取了数据都会触发这个事件，这个事件指定一个函数，处理状态的变化。</p>
-<p><code>xmlHttp.onreadystatechange=function()&#123;&#125;</code></p></li>
+<p> 当异步对象发起了请求，获取了数据都会触发这个事件，这个事件指定一个函数，处理状态的变化。</p>
+<p> <code>xmlHttp.onreadystatechange=function()&#123;&#125;</code></p>
+</li>
 <li><p>初始化异步请求对象</p>
-<p>异步对象有一个open方法，<code>xmlHttp.open(请求方式 get |post,
-访问地址，同步|异步请求(默认为true，即异步))</code></p>
-<p>例如<code>xmlHttp.open("get", "loginServlet?name=zxpwd=123",
-true);</code></p></li>
+<p> 异步对象有一个open方法，<code>xmlHttp.open(请求方式 get |post, 访问地址，同步|异步请求(默认为true，即异步))</code></p>
+<p> 例如<code>xmlHttp.open(&quot;get&quot;, &quot;loginServlet?name=zxpwd=123&quot;, true);</code></p>
+</li>
 <li><p>使用异步对象发送请求</p>
-<p>xmlHttp.send(str)：当用POST方式发请求会使用str参数</p></li>
-<li><p>获取服务端返回的数据，使用异步对象的属性：responseText</p></li>
+<p> xmlHttp.send(str)：当用POST方式发请求会使用str参数</p>
+</li>
+<li><p>获取服务端返回的数据，使用异步对象的属性：responseText</p>
+</li>
 </ol>
 <p>XMLHttpRequest有三个重要属性：</p>
-<ol type="1">
+<ol>
 <li>onreadystatechange属性：一个函数，每当readyState属性改变时，会调用该函数</li>
-<li>readyState属性：表示XMLHttpRequest请求的状态，从0到4发生变化
-<ul>
+<li>readyState属性：表示XMLHttpRequest请求的状态，从0到4发生变化<ul>
 <li>0：请求未初始化，创建异步请求对象</li>
 <li>1：初始化异步请求对象，xmlHttp.open(请求方式，请求地址，true)</li>
 <li>2：异步对象发送请求，xmlHttp.send()</li>
 <li>3：异步对象介绍应答数据，从服务器端返回数据，XMLHttpRequest内部处理</li>
 <li>4：异步对象已经将数据解析完毕，此时才可读取数据</li>
-</ul></li>
-<li>status属性：
-<ul>
+</ul>
+</li>
+<li>status属性：<ul>
 <li>200：‘OK’</li>
 <li>404：未找到页面</li>
-</ul></li>
+</ul>
+</li>
 </ol>
 <p><strong>注意：open函数的URL请求的地址是不加/的servlet名称，例如Servlet1的url-pattern为/one，则参数填one即可</strong></p>
-<p><strong>注意：如果使用POST请求向服务端传参数，那么必须设置RequestHeader，为httpRequest.setRequestHeader("Content-type",
-"application/x-www-form-urlencoded");，如果没有，那么后台就无法获取参数，并且设置请求头要在open函数执行完后</strong></p>
+<p><strong>注意：如果使用POST请求向服务端传参数，那么必须设置RequestHeader，为httpRequest.setRequestHeader(“Content-type”, “application/x-www-form-urlencoded”);，如果没有，那么后台就无法获取参数，并且设置请求头要在open函数执行完后</strong></p>
 <p><strong>注意：open方法的最后一个参数，true代表异步请求：即使用异步对象发起请求后，不需要等待数据的返回，即可进行其他操作</strong></p>
-<h2 id="使用json格式传递数据">使用JSON格式传递数据</h2>
-<p>有四种处理JSON的工具库，分别为Gson(Google的)，fastjson(阿里巴巴的)，Jackson，还有一个忘了。</p>
+<h2 id="使用JSON格式传递数据"><a href="#使用JSON格式传递数据" class="headerlink" title="使用JSON格式传递数据"></a>使用JSON格式传递数据</h2><p>有四种处理JSON的工具库，分别为Gson(Google的)，fastjson(阿里巴巴的)，Jackson，还有一个忘了。</p>
 <p>我用的是jackson。</p>
 <p>首先将jackson的jar导入项目依赖。</p>
-<h3
-id="将java对象转换为json格式的字符串">将Java对象转换为Json格式的字符串</h3>
-<ol type="1">
-<li>创建ObjectMapper对象：<code>ObjectMapper om = new
-ObjectMapper()</code></li>
-<li>使用该对象的 String writeValueAsString(Object
-value)方法将Java对象转换为json格式的字符串，Java对象的对应变量名称为json中的key，实际值就为json格式的value</li>
+<h3 id="将Java对象转换为Json格式的字符串"><a href="#将Java对象转换为Json格式的字符串" class="headerlink" title="将Java对象转换为Json格式的字符串"></a>将Java对象转换为Json格式的字符串</h3><ol>
+<li>创建ObjectMapper对象：<code>ObjectMapper om = new ObjectMapper()</code></li>
+<li>使用该对象的  String writeValueAsString(Object value)方法将Java对象转换为json格式的字符串，Java对象的对应变量名称为json中的key，实际值就为json格式的value</li>
 <li>设置响应头的Content-type为“application/json;charset=utf-8”</li>
 <li>然后使用响应头的PrintWriter将该字符串写入</li>
 </ol>
-<h3 id="在js中解析该字符串">在js中解析该字符串</h3>
-<p>使用js中JSON的prase解析该字符串，返回一个json对象，使用 . 运算符
-后面跟json的name即可访问对应value</p>
-<p>或使用js的eval函数，前后分别加"("和")"，例如 var jsonObj = eval("()"
-+ json + ")");，返回一个json对象</p>
+<h3 id="在js中解析该字符串"><a href="#在js中解析该字符串" class="headerlink" title="在js中解析该字符串"></a>在js中解析该字符串</h3><p>使用js中JSON的prase解析该字符串，返回一个json对象，使用 . 运算符 后面跟json的name即可访问对应value</p>
+<p>或使用js的eval函数，前后分别加”(“和”)”，例如 var jsonObj = eval(“()” + json + “)”);，返回一个json对象</p>
 
-            </div>
-            <hr>
-            <div>
-              <div class="post-metas mb-3">
-                
-                  <div class="post-meta mr-3">
-                    <i class="iconfont icon-category"></i>
-                    
-                      <a class="hover-with-bg" href="/categories/programming/">编程学习</a>
-                    
-                      <a class="hover-with-bg" href="/categories/programming/javaweb/">JavaWeb</a>
-                    
-                  </div>
-                
-                
-                  <div class="post-meta">
-                    <i class="iconfont icon-tags"></i>
-                    
-                      <a class="hover-with-bg" href="/tags/javaweb/">JavaWeb</a>
-                    
-                      <a class="hover-with-bg" href="/tags/ajax/">AJAX</a>
-                    
-                  </div>
-                
-              </div>
-              
-              
-            </div>
-
-            
-          </article>
-        </div>
-      </div>
     </div>
+
     
-  </div>
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/javaweb/" rel="tag"># JavaWeb</a>
+              <a href="/tags/ajax/" rel="tag"># AJAX</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2022/05/11/JavaWeb/JQuery/5-JQuery%E4%BD%BF%E7%94%A8Ajax/" rel="prev" title="5-JQuery使用Ajax">
+                  <i class="fa fa-chevron-left"></i> 5-JQuery使用Ajax
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2022/05/11/JavaWeb/JSP/JSP%E5%85%A5%E9%97%A8/" rel="next" title="JSP入门">
+                  JSP入门 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
 </div>
 
-<!-- Custom -->
 
 
-    
 
-    
-      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
-        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
-      </a>
-    
 
-    
-      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
-     aria-hidden="true">
-  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
-    <div class="modal-content">
-      <div class="modal-header text-center">
-        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
-        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body mx-3">
-        <div class="md-form mb-5">
-          <input type="text" id="local-search-input" class="form-control validate">
-          <label data-error="x" data-success="v"
-                 for="local-search-input">关键词</label>
-        </div>
-        <div class="list-group" id="local-search-result"></div>
-      </div>
-    </div>
-  </div>
+
 </div>
-    
-
-    
-      <div class="col-lg-7 mx-auto nopadding-x-md">
-        <div class="container custom mx-auto">
-          <link rel="stylesheet" href="/js/aplayer/APlayer.min.css"> <div id="aplayer" style="display:none"></div> <script src="/js/aplayer/APlayer.min.js"></script>
-        </div>
-      </div>
-    
   </main>
 
-  <footer class="text-center mt-5 py-3">
-  <div class="footer-content">
-     <i class="iconfont icon-copyright"></i> <span>ZhaoXin, Built by </span> <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> 
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">ZhaoXin</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/muse/" rel="noopener" target="_blank">NexT.Muse</a> 强力驱动
   </div>
-  
+
+    </div>
+  </footer>
 
   
-
-  
-</footer>
-
-  <!-- SCRIPTS -->
-  
-  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.js" ></script>
-  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.css" />
-
-  <script>
-    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
-    NProgress.start()
-    window.addEventListener('load', function() {
-      NProgress.done();
-    })
-  </script>
-
-
-<script  src="https://cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js" ></script>
-<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/js/bootstrap.min.js" ></script>
-<script  src="/js/events.js" ></script>
-<script  src="/js/plugins.js" ></script>
-
-<!-- Plugins -->
-
-
-  <script  src="/js/local-search.js" ></script>
-
-
-
-  
-    <script  src="/js/img-lazyload.js" ></script>
-  
-
-
-
-  
-
-
-
-  
-  
-    <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.js" ></script>
-  
-  
-    <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4/anchor.min.js" ></script>
-  
-  
-    <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js" ></script>
-  
-
-
-
-
-  <script defer src="/js/leancloud.js" ></script>
-
-
-
-  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2/lib/typed.min.js" ></script>
-  <script>
-    (function (window, document) {
-      var typing = Fluid.plugins.typing;
-      var title = document.getElementById('subtitle').title;
-      
-        typing(title);
-      
-    })(window, document);
-  </script>
-
-
-
-
-
-  
-
-  
-    <!-- MathJax -->
-    <script>
-      MathJax = {
-        tex: {
-          inlineMath: [['$', '$'], ['\\(', '\\)']]
-        },
-        loader: {
-          load: ['ui/lazy']
-        },
-        options: {
-          renderActions: {
-            findScript: [10, doc => {
-              document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
-                const display = !!node.type.match(/; *mode=display/);
-                const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
-                const text = document.createTextNode('');
-                node.parentNode.replaceChild(text, node);
-                math.start = { node: text, delim: '', n: 0 };
-                math.end = { node: text, delim: '', n: 0 };
-                doc.math.push(math);
-              });
-            }, '', false],
-            insertedScript: [200, () => {
-              document.querySelectorAll('mjx-container').forEach(node => {
-                let target = node.parentNode;
-                if (target.nodeName.toLowerCase() === 'li') {
-                  target.parentNode.classList.add('has-jax');
-                }
-              });
-            }, '', false]
-          }
-        }
-      };
-    </script>
-
-    <script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js" ></script>
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/schemes/muse.js"></script><script src="/js/next-boot.js"></script>
 
   
 
@@ -518,31 +346,10 @@ value)方法将Java对象转换为json格式的字符串，Java对象的对应�
 
 
 
-
-
-
-  
-
-  
-
-  
-
-  
-
-  
-
   
 
 
 
-
-  
-<script src="/js/music.js"></script>
-
-
-
-<!-- 主题的启动项 保持在最底部 -->
-<script  src="/js/boot.js" ></script>
 
 
 </body>

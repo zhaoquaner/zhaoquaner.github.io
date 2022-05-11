@@ -1,27 +1,31 @@
-
-
 <!DOCTYPE html>
-<html lang="zh-CN" data-default-color-scheme=auto>
-
-
-
+<html lang="zh-CN">
 <head>
   <meta charset="UTF-8">
-  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
-  <link rel="icon" href="/img/favicon.png">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
-  <meta http-equiv="x-ua-compatible" content="ie=edge">
-  
-  <meta name="theme-color" content="#2f4154">
-  <meta name="author" content="ZhaoXin">
-  <meta name="keywords" content="博客">
-  
-    <meta name="description" content="概念 动态SQL，是指sql的内容是变化的，可以根据不同的条件来获取不同sql语句，主要是where部分发生变化。 使用MyBatis提供的各种标签堆条件做出判断来实现动态拼接Sql语句。常见的动态SQL标签有、、、等。 主要解决的是查询条件不确定的情况，在程序运行期间，根据用户提交的查询条件进行查询。提交的查询条件不同，那么执行的SQL语句也不同，如果将每种情况都列出，会产生大量SQL语句">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css" integrity="sha256-DfWjNxDkM94fVBWx1H5BMMp0Zq7luBlV8QRcSES7s+0=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"zhaoquaner.github.io","root":"/","images":"/images","scheme":"Muse","darkmode":false,"version":"8.11.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="概念动态SQL，是指sql的内容是变化的，可以根据不同的条件来获取不同sql语句，主要是where部分发生变化。 使用MyBatis提供的各种标签堆条件做出判断来实现动态拼接Sql语句。常见的动态SQL标签有、、、等。 主要解决的是查询条件不确定的情况，在程序运行期间，根据用户提交的查询条件进行查询。提交的查询条件不同，那么执行的SQL语句也不同，如果将每种情况都列出，会产生大量SQL语句，因此，">
 <meta property="og:type" content="article">
 <meta property="og:title" content="7-动态SQL">
 <meta property="og:url" content="https://zhaoquaner.github.io/2022/05/11/MyBatis/7-%E5%8A%A8%E6%80%81SQL/index.html">
 <meta property="og:site_name" content="赵圈儿的博客">
-<meta property="og:description" content="概念 动态SQL，是指sql的内容是变化的，可以根据不同的条件来获取不同sql语句，主要是where部分发生变化。 使用MyBatis提供的各种标签堆条件做出判断来实现动态拼接Sql语句。常见的动态SQL标签有、、、等。 主要解决的是查询条件不确定的情况，在程序运行期间，根据用户提交的查询条件进行查询。提交的查询条件不同，那么执行的SQL语句也不同，如果将每种情况都列出，会产生大量SQL语句">
+<meta property="og:description" content="概念动态SQL，是指sql的内容是变化的，可以根据不同的条件来获取不同sql语句，主要是where部分发生变化。 使用MyBatis提供的各种标签堆条件做出判断来实现动态拼接Sql语句。常见的动态SQL标签有、、、等。 主要解决的是查询条件不确定的情况，在程序运行期间，根据用户提交的查询条件进行查询。提交的查询条件不同，那么执行的SQL语句也不同，如果将每种情况都列出，会产生大量SQL语句，因此，">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://crayon-1302863897.cos.ap-beijing.myqcloud.com/image/image-20201204104546520.png">
 <meta property="og:image" content="https://crayon-1302863897.cos.ap-beijing.myqcloud.com/image/image-20201204104945216.png">
@@ -31,306 +35,270 @@
 <meta property="article:tag" content="JavaWeb">
 <meta property="article:tag" content="MyBatis">
 <meta property="article:tag" content="后端">
-<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://crayon-1302863897.cos.ap-beijing.myqcloud.com/image/image-20201204104546520.png">
-  
-  
-  <title>7-动态SQL - 赵圈儿的博客</title>
-
-  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/css/bootstrap.min.css" />
 
 
-  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4/github-markdown.min.css" />
-  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hint.css@2/hint.min.css" />
+<link rel="canonical" href="https://zhaoquaner.github.io/2022/05/11/MyBatis/7-%E5%8A%A8%E6%80%81SQL/">
 
-  
-    
-    
-      
-      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10/styles/github-gist.min.css" />
-    
-  
 
-  
-    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.css" />
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://zhaoquaner.github.io/2022/05/11/MyBatis/7-%E5%8A%A8%E6%80%81SQL/","path":"2022/05/11/MyBatis/7-动态SQL/","title":"7-动态SQL"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>7-动态SQL | 赵圈儿的博客</title>
   
 
 
-<!-- 主题依赖的图标库，不要自行修改 -->
-
-<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
 
 
 
-<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
-
-
-<link  rel="stylesheet" href="/css/main.css" />
-
-<!-- 自定义样式保持在最底部 -->
-
-
-  <script id="fluid-configs">
-    var Fluid = window.Fluid || {};
-    var CONFIG = {"hostname":"zhaoquaner.github.io","root":"/","version":"1.8.14","typing":{"enable":true,"typeSpeed":60,"cursorChar":" ","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":false,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":2},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":"BzK0JfEpsm40LlV9EPIyl4mp-gzGzoHsz","app_key":"MpxSk6ED55Utq83yNrKAMI5c","server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
-  </script>
-  <script  src="/js/utils.js" ></script>
-  <script  src="/js/color-schema.js" ></script>
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
 </head>
 
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion"><!-- hexo injector body_begin start --><style>code {font-weight:400;}.post-content {font-weight:600;} #board {border-radius: 1.5rem;} #board-ctn {width:110%;margin-left:-5%;}</style><!-- hexo injector body_begin end -->
+  <div class="headband"></div>
 
-<body><!-- hexo injector body_begin start --><style>code {font-weight:400;}.post-content {font-weight:600;} #board {border-radius: 1.5rem;} #board-ctn {width:110%;margin-left:-5%;}</style><!-- hexo injector body_begin end -->
-  <header style="height: 70vh;">
-    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
-  <div class="container">
-    <a class="navbar-brand" href="/">
-      <strong>Personal Blog</strong>
-    </a>
-
-    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
-            data-target="#navbarSupportedContent"
-            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <div class="animated-icon"><span></span><span></span><span></span></div>
-    </button>
-
-    <!-- Collapsible content -->
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav ml-auto text-center">
-        
-          
-          
-          
-          
-            <li class="nav-item">
-              <a class="nav-link" href="/">
-                <i class="iconfont icon-home-fill"></i>
-                首页
-              </a>
-            </li>
-          
-        
-          
-          
-          
-          
-            <li class="nav-item">
-              <a class="nav-link" href="/archives/">
-                <i class="iconfont icon-archive-fill"></i>
-                归档
-              </a>
-            </li>
-          
-        
-          
-          
-          
-          
-            <li class="nav-item">
-              <a class="nav-link" href="/categories/">
-                <i class="iconfont icon-category-fill"></i>
-                分类
-              </a>
-            </li>
-          
-        
-          
-          
-          
-          
-            <li class="nav-item">
-              <a class="nav-link" href="/tags/">
-                <i class="iconfont icon-tags-fill"></i>
-                标签
-              </a>
-            </li>
-          
-        
-          
-          
-          
-          
-            <li class="nav-item">
-              <a class="nav-link" href="/about/">
-                <i class="iconfont icon-user-fill"></i>
-                关于
-              </a>
-            </li>
-          
-        
-          
-          
-          
-          
-            <li class="nav-item">
-              <a class="nav-link" href="javascript:;">
-                <i class="iconfont icon-music"></i>
-                播放
-              </a>
-            </li>
-          
-        
-        
-          <li class="nav-item" id="search-btn">
-            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
-              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
-            </a>
-          </li>
-        
-        
-          <li class="nav-item" id="color-toggle-btn">
-            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
-                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
-          </li>
-        
-      </ul>
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
     </div>
   </div>
-</nav>
 
-    <div class="banner" id="banner" parallax=true
-         style="background: url('/img/article.png') no-repeat center center;
-           background-size: cover;">
-      <div class="full-bg-img">
-        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
-          <div class="page-header text-center fade-in-up">
-            <span class="h2" id="subtitle" title="7-动态SQL">
-              
-            </span>
+  <div class="site-meta">
 
-            
-              <div class="mt-3">
-  
-  
-    <span class="post-meta">
-      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-      <time datetime="2022-05-11 13:58" pubdate>
-        2022/5/11 13时58分
-      </time>
-    </span>
-  
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">赵圈儿的博客</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
 </div>
 
-<div class="mt-1">
-  
-    <span class="post-meta mr-2">
-      <i class="iconfont icon-chart"></i>
-      5k 字
-    </span>
-  
 
-  
 
+
+
+
+
+</div>
+        
   
-  
-    
-      <!-- LeanCloud 统计文章PV -->
-      <span id="leancloud-page-views-container" class="post-meta" style="display: none">
-        <i class="iconfont icon-eye" aria-hidden="true"></i>
-        <span id="leancloud-page-views"></span> 次
-      </span>
-    
-  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%A6%82%E5%BF%B5"><span class="nav-number">1.</span> <span class="nav-text">概念</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%9E%E4%BD%93%E7%AC%A6%E5%8F%B7"><span class="nav-number">2.</span> <span class="nav-text">实体符号</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#if%E6%A0%87%E7%AD%BE"><span class="nav-number">3.</span> <span class="nav-text">if标签</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#where%E6%A0%87%E7%AD%BE"><span class="nav-number">4.</span> <span class="nav-text">where标签</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#foreach%E6%A0%87%E7%AD%BE"><span class="nav-number">5.</span> <span class="nav-text">foreach标签</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%81%8D%E5%8E%86%E7%AE%80%E5%8D%95%E7%B1%BB%E5%9E%8B"><span class="nav-number">5.1.</span> <span class="nav-text">遍历简单类型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%81%8D%E5%8E%86%E5%BC%95%E7%94%A8%E7%B1%BB%E5%9E%8B"><span class="nav-number">5.2.</span> <span class="nav-text">遍历引用类型</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#sql%E6%A0%87%E7%AD%BE"><span class="nav-number">6.</span> <span class="nav-text">sql标签</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">ZhaoXin</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">169</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">18</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">23</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
 </div>
 
-            
-          </div>
 
-          
+
         </div>
       </div>
     </div>
-  </header>
+  </aside>
+  <div class="sidebar-dimmer"></div>
 
-  <main>
+
+    </header>
+
     
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://zhaoquaner.github.io/2022/05/11/MyBatis/7-%E5%8A%A8%E6%80%81SQL/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="ZhaoXin">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="赵圈儿的博客">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="7-动态SQL | 赵圈儿的博客">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          7-动态SQL
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
       
 
-<div class="container-fluid nopadding-x">
-  <div class="row nomargin-x">
-    <div class="d-none d-lg-block col-lg-2"></div>
-    <div class="col-lg-8 nopadding-x-md">
-      <div class="container nopadding-x-md" id="board-ctn">
-        <div class="py-5" id="board">
-          <article class="post-content mx-auto">
-            <!-- SEO header -->
-            <h1 style="display: none">7-动态SQL</h1>
-            
-            <div class="markdown-body">
-              <h2 id="概念">概念</h2>
-<p>动态SQL，是指sql的内容是变化的，可以根据不同的条件来获取不同sql语句，主要是where部分发生变化。</p>
+      <time title="创建时间：2022-05-11 13:58:06 / 修改时间：17:00:16" itemprop="dateCreated datePublished" datetime="2022-05-11T13:58:06+08:00">2022-05-11</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/programming/" itemprop="url" rel="index"><span itemprop="name">编程学习</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/programming/mybatis/" itemprop="url" rel="index"><span itemprop="name">MyBatis</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <h2 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h2><p>动态SQL，是指sql的内容是变化的，可以根据不同的条件来获取不同sql语句，主要是where部分发生变化。</p>
 <p>使用MyBatis提供的各种标签堆条件做出判断来实现动态拼接Sql语句。常见的动态SQL标签有<if>、<where>、<choose>、<foreach>等。</p>
 <p>主要解决的是查询条件不确定的情况，在程序运行期间，根据用户提交的查询条件进行查询。提交的查询条件不同，那么执行的SQL语句也不同，如果将每种情况都列出，会产生大量SQL语句，因此，可使用动态SQL解决这样的问题。</p>
-<h2 id="实体符号">实体符号</h2>
-<p>在映射文件中的动态SQL中若出现，大于号(&gt;)，小于号(&lt;)，大于等于号(&gt;=)，小于等于号(&lt;=)等符号，应该转换为实体符号，否则XML文件可能解析错误。尤其是小于号(&lt;)。</p>
+<h2 id="实体符号"><a href="#实体符号" class="headerlink" title="实体符号"></a>实体符号</h2><p>在映射文件中的动态SQL中若出现，大于号(&gt;)，小于号(&lt;)，大于等于号(&gt;=)，小于等于号(&lt;=)等符号，应该转换为实体符号，否则XML文件可能解析错误。尤其是小于号(&lt;)。</p>
 <p>实体符号表</p>
+<div class="table-container">
 <table>
 <thead>
-<tr class="header">
+<tr>
 <th>符号</th>
 <th>含义</th>
 <th>实体符号</th>
 </tr>
 </thead>
 <tbody>
-<tr class="odd">
+<tr>
 <td><code>&lt;</code></td>
 <td>小于</td>
 <td><code>&amp;lt;</code>(less than)</td>
 </tr>
-<tr class="even">
+<tr>
 <td><code>&gt;</code></td>
 <td>大于</td>
 <td><code>&amp;gt;</code>(greater than)</td>
 </tr>
-<tr class="odd">
+<tr>
 <td><code>&gt;=</code></td>
 <td>大于等于</td>
 <td><code>&amp;gt;=</code></td>
 </tr>
-<tr class="even">
+<tr>
 <td><code>&lt;=</code></td>
 <td>小于等于</td>
 <td><code>&amp;lt;=</code></td>
 </tr>
 </tbody>
 </table>
-<h2 id="if标签">if标签</h2>
-<p>if标签的语法格式为：</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><div class="code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></div></td><td class="code"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">if</span> <span class="hljs-attr">test</span>=<span class="hljs-string">&quot;使用参数Java对象的属性值作为判断条件，语法：属性=xxx值&quot;</span>&gt;</span><br>	sql语句<br><span class="hljs-tag">&lt;/<span class="hljs-name">if</span>&gt;</span><br></code></pre></td></tr></table></figure>
+</div>
+<h2 id="if标签"><a href="#if标签" class="headerlink" title="if标签"></a>if标签</h2><p>if标签的语法格式为：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">if</span> <span class="attr">test</span>=<span class="string">&quot;使用参数Java对象的属性值作为判断条件，语法：属性=xxx值&quot;</span>&gt;</span></span><br><span class="line">	sql语句</span><br><span class="line"><span class="tag">&lt;/<span class="name">if</span>&gt;</span></span><br></pre></td></tr></table></figure>
 <p>当if标签中条件成立时，才会拼接if中的sql语句。</p>
-<p>简单例子： DAO接口的方法：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs java">List&lt;Student&gt; <span class="hljs-title function_">selectStudentIf</span><span class="hljs-params">(Student student)</span>;<br></code></pre></td></tr></table></figure>
+<p>简单例子：<br>DAO接口的方法：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">List&lt;Student&gt; <span class="title function_">selectStudentIf</span><span class="params">(Student student)</span>;</span><br></pre></td></tr></table></figure>
 <p>映射文件：</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">select</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;selectStudentIf&quot;</span> <span class="hljs-attr">resultType</span>=<span class="hljs-string">&quot;org.example.domain.Student&quot;</span> &gt;</span><br>    select * from student<br>    where<br>    <span class="hljs-comment">&lt;!--只有当Java对象传来的参数name不为空，且不为空字符串时，才会加入该语句--&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">if</span> <span class="hljs-attr">test</span>=<span class="hljs-string">&quot;name != null and name != &#x27;&#x27; &quot;</span> &gt;</span><br>        name = #&#123;name&#125;<br>    <span class="hljs-tag">&lt;/<span class="hljs-name">if</span>&gt;</span><br>    &lt;！--当age大于零时，拼接下面的sql语句--&gt;<br>    <span class="hljs-tag">&lt;<span class="hljs-name">if</span> <span class="hljs-attr">test</span>=<span class="hljs-string">&quot;age &gt; 0&quot;</span> &gt;</span><br>        and age <span class="hljs-symbol">&amp;gt;</span> #&#123;age&#125;<br>    <span class="hljs-tag">&lt;/<span class="hljs-name">if</span>&gt;</span><br><br><span class="hljs-tag">&lt;/<span class="hljs-name">select</span>&gt;</span><br></code></pre></td></tr></table></figure>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">select</span> <span class="attr">id</span>=<span class="string">&quot;selectStudentIf&quot;</span> <span class="attr">resultType</span>=<span class="string">&quot;org.example.domain.Student&quot;</span> &gt;</span></span><br><span class="line">    select * from student</span><br><span class="line">    where</span><br><span class="line">    <span class="comment">&lt;!--只有当Java对象传来的参数name不为空，且不为空字符串时，才会加入该语句--&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">if</span> <span class="attr">test</span>=<span class="string">&quot;name != null and name != &#x27;&#x27; &quot;</span> &gt;</span></span><br><span class="line">        name = #&#123;name&#125;</span><br><span class="line">    <span class="tag">&lt;/<span class="name">if</span>&gt;</span></span><br><span class="line">    &lt;！--当age大于零时，拼接下面的sql语句--&gt;</span><br><span class="line">    <span class="tag">&lt;<span class="name">if</span> <span class="attr">test</span>=<span class="string">&quot;age &gt; 0&quot;</span> &gt;</span></span><br><span class="line">        and age <span class="symbol">&amp;gt;</span> #&#123;age&#125;</span><br><span class="line">    <span class="tag">&lt;/<span class="name">if</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;/<span class="name">select</span>&gt;</span></span><br></pre></td></tr></table></figure>
 <p>测试代码：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@Test</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">testSelectStudentIf</span><span class="hljs-params">()</span> &#123;<br>    <span class="hljs-type">SqlSession</span> <span class="hljs-variable">sqlSession</span> <span class="hljs-operator">=</span> MyBatisUtils.getSqlSession();<br>    <span class="hljs-type">StudentDao</span> <span class="hljs-variable">dao</span> <span class="hljs-operator">=</span> sqlSession.getMapper(StudentDao.class);<br>    <span class="hljs-type">Student</span> <span class="hljs-variable">student</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Student</span>();<br>    student.setName(<span class="hljs-string">&quot;赵四&quot;</span>);<br>    student.setAge(<span class="hljs-number">20</span>);<br>    List&lt;Student&gt; list = dao.selectStudentIf(student);<br>    <span class="hljs-keyword">for</span>(Student stu : list) &#123;<br>        System.out.println(stu);<br>    &#125;<br>    <br>&#125;<br></code></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Test</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">testSelectStudentIf</span><span class="params">()</span> &#123;</span><br><span class="line">    <span class="type">SqlSession</span> <span class="variable">sqlSession</span> <span class="operator">=</span> MyBatisUtils.getSqlSession();</span><br><span class="line">    <span class="type">StudentDao</span> <span class="variable">dao</span> <span class="operator">=</span> sqlSession.getMapper(StudentDao.class);</span><br><span class="line">    <span class="type">Student</span> <span class="variable">student</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Student</span>();</span><br><span class="line">    student.setName(<span class="string">&quot;赵四&quot;</span>);</span><br><span class="line">    student.setAge(<span class="number">20</span>);</span><br><span class="line">    List&lt;Student&gt; list = dao.selectStudentIf(student);</span><br><span class="line">    <span class="keyword">for</span>(Student stu : list) &#123;</span><br><span class="line">        System.out.println(stu);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>可以运行成功。</p>
-<p>但是有一个问题，当name为空，而年龄不为空时，where语句变成 <code>where
-and age &gt; #&#123;age&#125;</code>，这个语句语法是错误的。会报错。</p>
-<p>所以为了避免这种情况，需要在where语句中加入一个不影响查询结果和后面if语句的恒为真条件。例如<code>1
-= 1</code></p>
+<p>但是有一个问题，当name为空，而年龄不为空时，where语句变成 <code>where and age &gt; #&#123;age&#125;</code>，这个语句语法是错误的。会报错。</p>
+<p>所以为了避免这种情况，需要在where语句中加入一个不影响查询结果和后面if语句的恒为真条件。例如<code>1 = 1</code></p>
 <p>那么映射文件中select标签需要改写为：</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">select</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;selectStudentIf&quot;</span> <span class="hljs-attr">resultType</span>=<span class="hljs-string">&quot;org.example.domain.Student&quot;</span> &gt;</span><br>    select * from student<br>    where 1 = 1<br>    <span class="hljs-tag">&lt;<span class="hljs-name">if</span> <span class="hljs-attr">test</span>=<span class="hljs-string">&quot;name != null and name != &#x27;&#x27; &quot;</span> &gt;</span><br>        and name = #&#123;name&#125;<br>    <span class="hljs-tag">&lt;/<span class="hljs-name">if</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">if</span> <span class="hljs-attr">test</span>=<span class="hljs-string">&quot;age &gt; 0&quot;</span> &gt;</span><br>        and age <span class="hljs-symbol">&amp;gt;</span> #&#123;age&#125;<br>    <span class="hljs-tag">&lt;/<span class="hljs-name">if</span>&gt;</span><br><br><span class="hljs-tag">&lt;/<span class="hljs-name">select</span>&gt;</span><br></code></pre></td></tr></table></figure>
-<p>这样，无论在什么条件，sql语句都能够正常执行。<strong>并且注意，加上恒成立条件<code>1
-= 1</code>后，第一个if标签中要加上and</strong></p>
-<h2 id="where标签">where标签</h2>
-<p>if标签比较麻烦的地方就是需要在where后面手动加上<code>1=
-1</code>的子句。</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">select</span> <span class="attr">id</span>=<span class="string">&quot;selectStudentIf&quot;</span> <span class="attr">resultType</span>=<span class="string">&quot;org.example.domain.Student&quot;</span> &gt;</span></span><br><span class="line">    select * from student</span><br><span class="line">    where 1 = 1</span><br><span class="line">    <span class="tag">&lt;<span class="name">if</span> <span class="attr">test</span>=<span class="string">&quot;name != null and name != &#x27;&#x27; &quot;</span> &gt;</span></span><br><span class="line">        and name = #&#123;name&#125;</span><br><span class="line">    <span class="tag">&lt;/<span class="name">if</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">if</span> <span class="attr">test</span>=<span class="string">&quot;age &gt; 0&quot;</span> &gt;</span></span><br><span class="line">        and age <span class="symbol">&amp;gt;</span> #&#123;age&#125;</span><br><span class="line">    <span class="tag">&lt;/<span class="name">if</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;/<span class="name">select</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>这样，无论在什么条件，sql语句都能够正常执行。<strong>并且注意，加上恒成立条件<code>1 = 1</code>后，第一个if标签中要加上and</strong></p>
+<h2 id="where标签"><a href="#where标签" class="headerlink" title="where标签"></a>where标签</h2><p>if标签比较麻烦的地方就是需要在where后面手动加上<code>1= 1</code>的子句。</p>
 <p>而where标签可以实现，在有查询条件时，自动加上where子句；没有查询条件时，不会添加where子句。</p>
 <p>语法格式：</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">where</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">if</span> <span class="hljs-attr">test</span>=<span class="hljs-string">&quot;&quot;</span> &gt;</span><br>        and ...<br>    <span class="hljs-tag">&lt;/<span class="hljs-name">if</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">if</span> <span class="hljs-attr">test</span>=<span class="hljs-string">&quot;&quot;</span> &gt;</span><br>        and ...<br>    <span class="hljs-tag">&lt;/<span class="hljs-name">if</span>&gt;</span><br>    ..<br><span class="hljs-tag">&lt;/<span class="hljs-name">where</span>&gt;</span><br></code></pre></td></tr></table></figure>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">where</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">if</span> <span class="attr">test</span>=<span class="string">&quot;&quot;</span> &gt;</span></span><br><span class="line">        and ...</span><br><span class="line">    <span class="tag">&lt;/<span class="name">if</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">if</span> <span class="attr">test</span>=<span class="string">&quot;&quot;</span> &gt;</span></span><br><span class="line">        and ...</span><br><span class="line">    <span class="tag">&lt;/<span class="name">if</span>&gt;</span></span><br><span class="line">    ..</span><br><span class="line"><span class="tag">&lt;/<span class="name">where</span>&gt;</span></span><br></pre></td></tr></table></figure>
 <p>其实就是where标签中嵌套if标签。</p>
 <p>需要注意的是：第一个if标签中，可以没有and，也可以写上and，系统会自动把多余and去掉。</p>
-<h2 id="foreach标签">foreach标签</h2>
-<p><foreach>标签用于实现对数组和集合的遍历。常用在in语句中，in的语法格式为<code>where
-列名 in (成员1，成员2，成员3,...)</code></p>
+<h2 id="foreach标签"><a href="#foreach标签" class="headerlink" title="foreach标签"></a>foreach标签</h2><p><foreach>标签用于实现对数组和集合的遍历。常用在in语句中，in的语法格式为<code>where 列名 in (成员1，成员2，成员3,...)</code></p>
 <p>语法格式为：</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">foreach</span> <span class="hljs-attr">collection</span>=<span class="hljs-string">&quot;&quot;</span> <span class="hljs-attr">item</span>=<span class="hljs-string">&quot;&quot;</span> <span class="hljs-attr">open</span>=<span class="hljs-string">&quot;&quot;</span> <span class="hljs-attr">close</span>=<span class="hljs-string">&quot;&quot;</span> <span class="hljs-attr">separator</span>=<span class="hljs-string">&quot;&quot;</span> &gt;</span><br>    #&#123;item的值&#125;<br><span class="hljs-tag">&lt;/<span class="hljs-name">foreach</span>&gt;</span><br></code></pre></td></tr></table></figure>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">foreach</span> <span class="attr">collection</span>=<span class="string">&quot;&quot;</span> <span class="attr">item</span>=<span class="string">&quot;&quot;</span> <span class="attr">open</span>=<span class="string">&quot;&quot;</span> <span class="attr">close</span>=<span class="string">&quot;&quot;</span> <span class="attr">separator</span>=<span class="string">&quot;&quot;</span> &gt;</span></span><br><span class="line">    #&#123;item的值&#125;</span><br><span class="line"><span class="tag">&lt;/<span class="name">foreach</span>&gt;</span></span><br></pre></td></tr></table></figure>
 <p>foreach标签有五个属性：</p>
 <ul>
 <li>collection：表示要遍历的集合类型，如果是数组，值就是array；如果是List集合，值就是list</li>
-<li>item：自定义的变量，代表要遍历的集合变量，相当于<code>for(Student
-stu:list)</code>中的stu</li>
+<li>item：自定义的变量，代表要遍历的集合变量，相当于<code>for(Student stu:list)</code>中的stu</li>
 <li>open：开始的字符，一般是<code>(</code></li>
 <li>close：结束的字符，一般是<code>)</code></li>
 <li>separator：集合成员之间的分隔符，一般是<code>,</code></li>
@@ -338,239 +306,93 @@ stu:list)</code>中的stu</li>
 <p>有两种常用方式，一种是遍历简单类型，一种是遍历引用类型。</p>
 <p>区别就是占位符#{item的值}有所不同。<strong>简单类型<code>#&#123;&#125;</code>里面直接是item定义的值，而引用类型里需要再使用<code>.</code>符号使用引用类型的成员变量。如<code>#&#123;student.id&#125;。</code></strong></p>
 <p>使用两种方式的例子：</p>
-<h3 id="遍历简单类型">遍历简单类型</h3>
-<p>简单类型就是Java的基本数据类型加上String。</p>
-<p>例子： DAO接口方法：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs java">List&lt;Student&gt; <span class="hljs-title function_">selectStudentsByIds</span><span class="hljs-params">(List&lt;Integer&gt; list)</span>;<br></code></pre></td></tr></table></figure>
+<h3 id="遍历简单类型"><a href="#遍历简单类型" class="headerlink" title="遍历简单类型"></a>遍历简单类型</h3><p>简单类型就是Java的基本数据类型加上String。</p>
+<p>例子：<br>DAO接口方法：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">List&lt;Student&gt; <span class="title function_">selectStudentsByIds</span><span class="params">(List&lt;Integer&gt; list)</span>;</span><br></pre></td></tr></table></figure>
 <p>映射文件：</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">select</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;selectStudentsByIds&quot;</span> <span class="hljs-attr">resultType</span>=<span class="hljs-string">&quot;org.example.domain.Student&quot;</span>&gt;</span><br>    select * from student where id in<br>    <span class="hljs-tag">&lt;<span class="hljs-name">foreach</span> <span class="hljs-attr">collection</span>=<span class="hljs-string">&quot;list&quot;</span> <span class="hljs-attr">item</span>=<span class="hljs-string">&quot;id&quot;</span> <span class="hljs-attr">open</span>=<span class="hljs-string">&quot;(&quot;</span> <span class="hljs-attr">close</span>=<span class="hljs-string">&quot;)&quot;</span> <span class="hljs-attr">separator</span>=<span class="hljs-string">&quot;,&quot;</span> &gt;</span><br>        #&#123;id&#125;<br>    <span class="hljs-tag">&lt;/<span class="hljs-name">foreach</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">select</span>&gt;</span><br></code></pre></td></tr></table></figure>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">select</span> <span class="attr">id</span>=<span class="string">&quot;selectStudentsByIds&quot;</span> <span class="attr">resultType</span>=<span class="string">&quot;org.example.domain.Student&quot;</span>&gt;</span></span><br><span class="line">    select * from student where id in</span><br><span class="line">    <span class="tag">&lt;<span class="name">foreach</span> <span class="attr">collection</span>=<span class="string">&quot;list&quot;</span> <span class="attr">item</span>=<span class="string">&quot;id&quot;</span> <span class="attr">open</span>=<span class="string">&quot;(&quot;</span> <span class="attr">close</span>=<span class="string">&quot;)&quot;</span> <span class="attr">separator</span>=<span class="string">&quot;,&quot;</span> &gt;</span></span><br><span class="line">        #&#123;id&#125;</span><br><span class="line">    <span class="tag">&lt;/<span class="name">foreach</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">select</span>&gt;</span></span><br></pre></td></tr></table></figure>
 <p>测试代码：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@Test</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">testSelectStudentsByIds</span><span class="hljs-params">()</span> &#123;<br>    <span class="hljs-type">SqlSession</span> <span class="hljs-variable">sqlSession</span> <span class="hljs-operator">=</span> MyBatisUtils.getSqlSession();<br>    <span class="hljs-type">StudentDao</span> <span class="hljs-variable">dao</span> <span class="hljs-operator">=</span> sqlSession.getMapper(StudentDao.class);<br>    List&lt;Integer&gt; list = <span class="hljs-keyword">new</span> <span class="hljs-title class_">ArrayList</span>&lt;&gt;();<br>    list.add(<span class="hljs-number">1001</span>);<br>    list.add(<span class="hljs-number">1002</span>);<br>    list.add(<span class="hljs-number">1003</span>);<br>    List&lt;Student&gt; students = dao.selectStudentsByIds(list);<br>    <span class="hljs-keyword">for</span>(Student stu:students) &#123;<br>        System.out.println(stu);<br>    &#125;<br><br>&#125;<br></code></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Test</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">testSelectStudentsByIds</span><span class="params">()</span> &#123;</span><br><span class="line">    <span class="type">SqlSession</span> <span class="variable">sqlSession</span> <span class="operator">=</span> MyBatisUtils.getSqlSession();</span><br><span class="line">    <span class="type">StudentDao</span> <span class="variable">dao</span> <span class="operator">=</span> sqlSession.getMapper(StudentDao.class);</span><br><span class="line">    List&lt;Integer&gt; list = <span class="keyword">new</span> <span class="title class_">ArrayList</span>&lt;&gt;();</span><br><span class="line">    list.add(<span class="number">1001</span>);</span><br><span class="line">    list.add(<span class="number">1002</span>);</span><br><span class="line">    list.add(<span class="number">1003</span>);</span><br><span class="line">    List&lt;Student&gt; students = dao.selectStudentsByIds(list);</span><br><span class="line">    <span class="keyword">for</span>(Student stu:students) &#123;</span><br><span class="line">        System.out.println(stu);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>运行结果：</p>
-<p><img src="https://crayon-1302863897.cos.ap-beijing.myqcloud.com/image/image-20201204104546520.png" srcset="/img/loading.gif" lazyload alt="image-20201204104546520" style="zoom:50%;" /></p>
-<h3 id="遍历引用类型">遍历引用类型</h3>
-<p>DAO接口的方法：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs java">List&lt;Student&gt; <span class="hljs-title function_">selectStudentsByIds</span><span class="hljs-params">(List&lt;Student&gt; list)</span>;<br></code></pre></td></tr></table></figure>
+<p><img src="https://crayon-1302863897.cos.ap-beijing.myqcloud.com/image/image-20201204104546520.png" alt="image-20201204104546520" style="zoom:50%;" /></p>
+<h3 id="遍历引用类型"><a href="#遍历引用类型" class="headerlink" title="遍历引用类型"></a>遍历引用类型</h3><p>DAO接口的方法：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">List&lt;Student&gt; <span class="title function_">selectStudentsByIds</span><span class="params">(List&lt;Student&gt; list)</span>;</span><br></pre></td></tr></table></figure>
 <p>映射文件：</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">select</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;selectStudentsByIds&quot;</span> <span class="hljs-attr">resultType</span>=<span class="hljs-string">&quot;org.example.domain.Student&quot;</span>&gt;</span><br>    select * from student where id in<br>    <span class="hljs-tag">&lt;<span class="hljs-name">foreach</span> <span class="hljs-attr">collection</span>=<span class="hljs-string">&quot;list&quot;</span> <span class="hljs-attr">item</span>=<span class="hljs-string">&quot;student&quot;</span> <span class="hljs-attr">open</span>=<span class="hljs-string">&quot;(&quot;</span> <span class="hljs-attr">close</span>=<span class="hljs-string">&quot;)&quot;</span> <span class="hljs-attr">separator</span>=<span class="hljs-string">&quot;,&quot;</span> &gt;</span><br>        #&#123;student.id&#125;<br>    <span class="hljs-tag">&lt;/<span class="hljs-name">foreach</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">select</span>&gt;</span><br></code></pre></td></tr></table></figure>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">select</span> <span class="attr">id</span>=<span class="string">&quot;selectStudentsByIds&quot;</span> <span class="attr">resultType</span>=<span class="string">&quot;org.example.domain.Student&quot;</span>&gt;</span></span><br><span class="line">    select * from student where id in</span><br><span class="line">    <span class="tag">&lt;<span class="name">foreach</span> <span class="attr">collection</span>=<span class="string">&quot;list&quot;</span> <span class="attr">item</span>=<span class="string">&quot;student&quot;</span> <span class="attr">open</span>=<span class="string">&quot;(&quot;</span> <span class="attr">close</span>=<span class="string">&quot;)&quot;</span> <span class="attr">separator</span>=<span class="string">&quot;,&quot;</span> &gt;</span></span><br><span class="line">        #&#123;student.id&#125;</span><br><span class="line">    <span class="tag">&lt;/<span class="name">foreach</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">select</span>&gt;</span></span><br></pre></td></tr></table></figure>
 <p>测试代码：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@Test</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">testSelectStudentsByIds</span><span class="hljs-params">()</span> &#123;<br>    <span class="hljs-type">SqlSession</span> <span class="hljs-variable">sqlSession</span> <span class="hljs-operator">=</span> MyBatisUtils.getSqlSession();<br>    <span class="hljs-type">StudentDao</span> <span class="hljs-variable">dao</span> <span class="hljs-operator">=</span> sqlSession.getMapper(StudentDao.class);<br>    List&lt;Student&gt; list = <span class="hljs-keyword">new</span> <span class="hljs-title class_">ArrayList</span>&lt;&gt;();<br>    <span class="hljs-type">Student</span> <span class="hljs-variable">student1</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Student</span>();<br>    student1.setId(<span class="hljs-number">1001</span>);<br>    list.add(student1);<br>    <span class="hljs-type">Student</span> <span class="hljs-variable">student2</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Student</span>();<br>    student2.setId(<span class="hljs-number">1002</span>);<br>    list.add(student2);<br>    List&lt;Student&gt; students = dao.selectStudentsByIds(list);<br>    <span class="hljs-keyword">for</span>(Student stu:students) &#123;<br>        System.out.println(stu);<br>    &#125;<br><br>&#125;<br></code></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Test</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">testSelectStudentsByIds</span><span class="params">()</span> &#123;</span><br><span class="line">    <span class="type">SqlSession</span> <span class="variable">sqlSession</span> <span class="operator">=</span> MyBatisUtils.getSqlSession();</span><br><span class="line">    <span class="type">StudentDao</span> <span class="variable">dao</span> <span class="operator">=</span> sqlSession.getMapper(StudentDao.class);</span><br><span class="line">    List&lt;Student&gt; list = <span class="keyword">new</span> <span class="title class_">ArrayList</span>&lt;&gt;();</span><br><span class="line">    <span class="type">Student</span> <span class="variable">student1</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Student</span>();</span><br><span class="line">    student1.setId(<span class="number">1001</span>);</span><br><span class="line">    list.add(student1);</span><br><span class="line">    <span class="type">Student</span> <span class="variable">student2</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Student</span>();</span><br><span class="line">    student2.setId(<span class="number">1002</span>);</span><br><span class="line">    list.add(student2);</span><br><span class="line">    List&lt;Student&gt; students = dao.selectStudentsByIds(list);</span><br><span class="line">    <span class="keyword">for</span>(Student stu:students) &#123;</span><br><span class="line">        System.out.println(stu);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>运行结果：</p>
-<p><img src="https://crayon-1302863897.cos.ap-beijing.myqcloud.com/image/image-20201204104945216.png" srcset="/img/loading.gif" lazyload alt="image-20201204104945216" style="zoom:50%;" /></p>
-<h2 id="sql标签">sql标签</h2>
-<p><sql>标签用于定义SQL片段，让其他SQL标签复用。</p>
+<p><img src="https://crayon-1302863897.cos.ap-beijing.myqcloud.com/image/image-20201204104945216.png" alt="image-20201204104945216" style="zoom:50%;" /></p>
+<h2 id="sql标签"><a href="#sql标签" class="headerlink" title="sql标签"></a>sql标签</h2><p><sql>标签用于定义SQL片段，让其他SQL标签复用。</p>
 <p>语法格式：</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">sql</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;&quot;</span> &gt;</span><br>	sql语句<br><span class="hljs-tag">&lt;/<span class="hljs-name">sql</span>&gt;</span><br></code></pre></td></tr></table></figure>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">sql</span> <span class="attr">id</span>=<span class="string">&quot;&quot;</span> &gt;</span></span><br><span class="line">	sql语句</span><br><span class="line"><span class="tag">&lt;/<span class="name">sql</span>&gt;</span></span><br></pre></td></tr></table></figure>
 <p>属性id用来标识该sql语句，是一个唯一值。</p>
 <p>使用<include>标签来使用该语句。语法格式为：</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">include</span> <span class="hljs-attr">refid</span>=<span class="hljs-string">&quot;&quot;</span> /&gt;</span><br></code></pre></td></tr></table></figure>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">include</span> <span class="attr">refid</span>=<span class="string">&quot;&quot;</span> /&gt;</span></span><br></pre></td></tr></table></figure>
 <p>属性refid就是需要使用的sql语句的id</p>
 <p>例子：</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">sql</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;select&quot;</span> &gt;</span><br>    select * from student<br><span class="hljs-tag">&lt;/<span class="hljs-name">sql</span>&gt;</span><br><br><span class="hljs-tag">&lt;<span class="hljs-name">select</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;selectStudentsByIds&quot;</span> <span class="hljs-attr">resultType</span>=<span class="hljs-string">&quot;org.example.domain.Student&quot;</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">include</span> <span class="hljs-attr">refid</span>=<span class="hljs-string">&quot;select&quot;</span> /&gt;</span><br>    where id in<br>    <span class="hljs-tag">&lt;<span class="hljs-name">foreach</span> <span class="hljs-attr">collection</span>=<span class="hljs-string">&quot;list&quot;</span> <span class="hljs-attr">item</span>=<span class="hljs-string">&quot;student&quot;</span> <span class="hljs-attr">open</span>=<span class="hljs-string">&quot;(&quot;</span> <span class="hljs-attr">close</span>=<span class="hljs-string">&quot;)&quot;</span> <span class="hljs-attr">separator</span>=<span class="hljs-string">&quot;,&quot;</span> &gt;</span><br>        #&#123;student.id&#125;<br>    <span class="hljs-tag">&lt;/<span class="hljs-name">foreach</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">select</span>&gt;</span><br></code></pre></td></tr></table></figure>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">sql</span> <span class="attr">id</span>=<span class="string">&quot;select&quot;</span> &gt;</span></span><br><span class="line">    select * from student</span><br><span class="line"><span class="tag">&lt;/<span class="name">sql</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">select</span> <span class="attr">id</span>=<span class="string">&quot;selectStudentsByIds&quot;</span> <span class="attr">resultType</span>=<span class="string">&quot;org.example.domain.Student&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">include</span> <span class="attr">refid</span>=<span class="string">&quot;select&quot;</span> /&gt;</span></span><br><span class="line">    where id in</span><br><span class="line">    <span class="tag">&lt;<span class="name">foreach</span> <span class="attr">collection</span>=<span class="string">&quot;list&quot;</span> <span class="attr">item</span>=<span class="string">&quot;student&quot;</span> <span class="attr">open</span>=<span class="string">&quot;(&quot;</span> <span class="attr">close</span>=<span class="string">&quot;)&quot;</span> <span class="attr">separator</span>=<span class="string">&quot;,&quot;</span> &gt;</span></span><br><span class="line">        #&#123;student.id&#125;</span><br><span class="line">    <span class="tag">&lt;/<span class="name">foreach</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">select</span>&gt;</span></span><br></pre></td></tr></table></figure>
 
-            </div>
-            <hr>
-            <div>
-              <div class="post-metas mb-3">
-                
-                  <div class="post-meta mr-3">
-                    <i class="iconfont icon-category"></i>
-                    
-                      <a class="hover-with-bg" href="/categories/programming/">编程学习</a>
-                    
-                      <a class="hover-with-bg" href="/categories/programming/mybatis/">MyBatis</a>
-                    
-                  </div>
-                
-                
-                  <div class="post-meta">
-                    <i class="iconfont icon-tags"></i>
-                    
-                      <a class="hover-with-bg" href="/tags/javaweb/">JavaWeb</a>
-                    
-                      <a class="hover-with-bg" href="/tags/mybatis/">MyBatis</a>
-                    
-                      <a class="hover-with-bg" href="/tags/backend/">后端</a>
-                    
-                  </div>
-                
-              </div>
-              
-              
-            </div>
-
-            
-          </article>
-        </div>
-      </div>
     </div>
+
     
-  </div>
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/javaweb/" rel="tag"># JavaWeb</a>
+              <a href="/tags/mybatis/" rel="tag"># MyBatis</a>
+              <a href="/tags/backend/" rel="tag"># 后端</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2022/05/11/MyBatis/6-%E5%88%AB%E5%90%8D/" rel="prev" title="6-别名">
+                  <i class="fa fa-chevron-left"></i> 6-别名
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2022/05/11/MyBatis/8-PageHelper/" rel="next" title="8-PageHelper">
+                  8-PageHelper <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
 </div>
 
-<!-- Custom -->
 
 
-    
 
-    
-      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
-        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
-      </a>
-    
 
-    
-      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
-     aria-hidden="true">
-  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
-    <div class="modal-content">
-      <div class="modal-header text-center">
-        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
-        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body mx-3">
-        <div class="md-form mb-5">
-          <input type="text" id="local-search-input" class="form-control validate">
-          <label data-error="x" data-success="v"
-                 for="local-search-input">关键词</label>
-        </div>
-        <div class="list-group" id="local-search-result"></div>
-      </div>
-    </div>
-  </div>
+
 </div>
-    
-
-    
-      <div class="col-lg-7 mx-auto nopadding-x-md">
-        <div class="container custom mx-auto">
-          <link rel="stylesheet" href="/js/aplayer/APlayer.min.css"> <div id="aplayer" style="display:none"></div> <script src="/js/aplayer/APlayer.min.js"></script>
-        </div>
-      </div>
-    
   </main>
 
-  <footer class="text-center mt-5 py-3">
-  <div class="footer-content">
-     <i class="iconfont icon-copyright"></i> <span>ZhaoXin, Built by </span> <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> 
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">ZhaoXin</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/muse/" rel="noopener" target="_blank">NexT.Muse</a> 强力驱动
   </div>
-  
+
+    </div>
+  </footer>
 
   
-
-  
-</footer>
-
-  <!-- SCRIPTS -->
-  
-  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.js" ></script>
-  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.css" />
-
-  <script>
-    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
-    NProgress.start()
-    window.addEventListener('load', function() {
-      NProgress.done();
-    })
-  </script>
-
-
-<script  src="https://cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js" ></script>
-<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/js/bootstrap.min.js" ></script>
-<script  src="/js/events.js" ></script>
-<script  src="/js/plugins.js" ></script>
-
-<!-- Plugins -->
-
-
-  <script  src="/js/local-search.js" ></script>
-
-
-
-  
-    <script  src="/js/img-lazyload.js" ></script>
-  
-
-
-
-  
-
-
-
-  
-  
-    <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.js" ></script>
-  
-  
-    <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4/anchor.min.js" ></script>
-  
-  
-    <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js" ></script>
-  
-
-
-
-
-  <script defer src="/js/leancloud.js" ></script>
-
-
-
-  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2/lib/typed.min.js" ></script>
-  <script>
-    (function (window, document) {
-      var typing = Fluid.plugins.typing;
-      var title = document.getElementById('subtitle').title;
-      
-        typing(title);
-      
-    })(window, document);
-  </script>
-
-
-
-
-
-  
-
-  
-    <!-- MathJax -->
-    <script>
-      MathJax = {
-        tex: {
-          inlineMath: [['$', '$'], ['\\(', '\\)']]
-        },
-        loader: {
-          load: ['ui/lazy']
-        },
-        options: {
-          renderActions: {
-            findScript: [10, doc => {
-              document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
-                const display = !!node.type.match(/; *mode=display/);
-                const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
-                const text = document.createTextNode('');
-                node.parentNode.replaceChild(text, node);
-                math.start = { node: text, delim: '', n: 0 };
-                math.end = { node: text, delim: '', n: 0 };
-                doc.math.push(math);
-              });
-            }, '', false],
-            insertedScript: [200, () => {
-              document.querySelectorAll('mjx-container').forEach(node => {
-                let target = node.parentNode;
-                if (target.nodeName.toLowerCase() === 'li') {
-                  target.parentNode.classList.add('has-jax');
-                }
-              });
-            }, '', false]
-          }
-        }
-      };
-    </script>
-
-    <script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js" ></script>
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/schemes/muse.js"></script><script src="/js/next-boot.js"></script>
 
   
 
@@ -578,31 +400,10 @@ stu:list)</code>中的stu</li>
 
 
 
-
-
-
-  
-
-  
-
-  
-
-  
-
-  
-
   
 
 
 
-
-  
-<script src="/js/music.js"></script>
-
-
-
-<!-- 主题的启动项 保持在最底部 -->
-<script  src="/js/boot.js" ></script>
 
 
 </body>
