@@ -16,12 +16,12 @@
   <meta name="author" content="ZhaoXin">
   <meta name="keywords" content="博客">
   
-    <meta name="description" content="请求、响应对象的生命周期当服务器收到Http请求协议包后，会创建请求对象和响应对象，当调用doGet或者doPost方法时，将生成的两个对象传入。 当doGet或者doPost方法执行完毕后，Http服务器准备将Http响应协议包推送给浏览器之前，负责将本次请求关联的请求对象和响应对象销毁。 所有请求对象和响应对象的生命周期贯穿一次请求的整个处理过程中，请求开始，两个对象会创建，请求结束，对象被销">
+    <meta name="description" content="请求、响应对象的生命周期 当服务器收到Http请求协议包后，会创建请求对象和响应对象，当调用doGet或者doPost方法时，将生成的两个对象传入。 当doGet或者doPost方法执行完毕后，Http服务器准备将Http响应协议包推送给浏览器之前，负责将本次请求关联的请求对象和响应对象销毁。 所有请求对象和响应对象的生命周期贯穿一次请求的整个处理过程中，请求开始，两个对象会创建，请求结束，">
 <meta property="og:type" content="article">
 <meta property="og:title" content="4-请求、响应对象的生命周期和状态码">
 <meta property="og:url" content="https://zhaoquaner.github.io/2022/05/11/JavaWeb/Servlet/4-%E8%AF%B7%E6%B1%82%E5%AF%B9%E8%B1%A1%E5%92%8C%E5%93%8D%E5%BA%94%E5%AF%B9%E8%B1%A1%E7%9A%84%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F/index.html">
 <meta property="og:site_name" content="赵圈儿的博客">
-<meta property="og:description" content="请求、响应对象的生命周期当服务器收到Http请求协议包后，会创建请求对象和响应对象，当调用doGet或者doPost方法时，将生成的两个对象传入。 当doGet或者doPost方法执行完毕后，Http服务器准备将Http响应协议包推送给浏览器之前，负责将本次请求关联的请求对象和响应对象销毁。 所有请求对象和响应对象的生命周期贯穿一次请求的整个处理过程中，请求开始，两个对象会创建，请求结束，对象被销">
+<meta property="og:description" content="请求、响应对象的生命周期 当服务器收到Http请求协议包后，会创建请求对象和响应对象，当调用doGet或者doPost方法时，将生成的两个对象传入。 当doGet或者doPost方法执行完毕后，Http服务器准备将Http响应协议包推送给浏览器之前，负责将本次请求关联的请求对象和响应对象销毁。 所有请求对象和响应对象的生命周期贯穿一次请求的整个处理过程中，请求开始，两个对象会创建，请求结束，">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2022-05-11T05:38:39.000Z">
 <meta property="article:modified_time" content="2022-05-11T08:55:28.341Z">
@@ -210,7 +210,7 @@
   
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      857 字
+      847 字
     </span>
   
 
@@ -252,30 +252,37 @@
             <h1 style="display: none">4-请求、响应对象的生命周期和状态码</h1>
             
             <div class="markdown-body">
-              <h1 id="请求、响应对象的生命周期"><a href="#请求、响应对象的生命周期" class="headerlink" title="请求、响应对象的生命周期"></a>请求、响应对象的生命周期</h1><p>当服务器收到Http请求协议包后，会创建请求对象和响应对象，当调用doGet或者doPost方法时，将生成的两个对象传入。</p>
+              <h1 id="请求响应对象的生命周期">请求、响应对象的生命周期</h1>
+<p>当服务器收到Http请求协议包后，会创建请求对象和响应对象，当调用doGet或者doPost方法时，将生成的两个对象传入。</p>
 <p>当doGet或者doPost方法执行完毕后，Http服务器准备将Http响应协议包推送给浏览器之前，负责将本次请求关联的请求对象和响应对象销毁。</p>
 <p>所有请求对象和响应对象的生命周期贯穿一次请求的整个处理过程中，请求开始，两个对象会创建，请求结束，对象被销毁。</p>
-<h1 id="Http状态码"><a href="#Http状态码" class="headerlink" title="Http状态码"></a>Http状态码</h1><h2 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h2><p>Http状态码是由三位数字组成的符号，Http服务器会在推送响应包之前，根据本次请求处理的情况，将Http状态码写入到响应包中的状态行上。</p>
-<p>如果 Http服务器针对本次请求，返回了对应的资源文件，通过Http服务器通知浏览器应该如何处理这个结果；</p>
-<p>如果 Http服务器针对本次请求，无法返回对应的资源文件，通过Http服务器向浏览器解释不能提供服务的原因。</p>
-<h2 id="分类"><a href="#分类" class="headerlink" title="分类"></a>分类</h2><p>Http状态码的范围为100-599，分为5个大类。</p>
+<h1 id="http状态码">Http状态码</h1>
+<h2 id="介绍">介绍</h2>
+<p>Http状态码是由三位数字组成的符号，Http服务器会在推送响应包之前，根据本次请求处理的情况，将Http状态码写入到响应包中的状态行上。</p>
+<p>如果
+Http服务器针对本次请求，返回了对应的资源文件，通过Http服务器通知浏览器应该如何处理这个结果；</p>
+<p>如果
+Http服务器针对本次请求，无法返回对应的资源文件，通过Http服务器向浏览器解释不能提供服务的原因。</p>
+<h2 id="分类">分类</h2>
+<p>Http状态码的范围为100-599，分为5个大类。</p>
 <ul>
 <li><p>1XX：</p>
-<p>  ​        最有特征是100：通知浏览器本次返回的资源文件不是一个独立的资源文件，需要浏览器接受响应包后，继续向Http服务器索要依赖的其他资源文件</p>
-</li>
+<p>​
+最有特征是100：通知浏览器本次返回的资源文件不是一个独立的资源文件，需要浏览器接受响应包后，继续向Http服务器索要依赖的其他资源文件</p></li>
 <li><p>2XX：</p>
-<p>  ​        最有特征200：通知浏览器本次返回的资源文件是一个完整独立资源文件，浏览器接收后，不需要请求其他关联文件</p>
-</li>
+<p>​
+最有特征200：通知浏览器本次返回的资源文件是一个完整独立资源文件，浏览器接收后，不需要请求其他关联文件</p></li>
 <li><p>3XX：</p>
-<p>  ​        最有特征302：通知浏览器本次返回的不是一个资源文件内容，而是一个资源文件地址，需要浏览器根据地址自动发  起请求来索要这个资源文件，例如<code>response.sendRedirect(&quot;地址&quot;)</code>写入到响应头location中</p>
-</li>
+<p>​
+最有特征302：通知浏览器本次返回的不是一个资源文件内容，而是一个资源文件地址，需要浏览器根据地址自动发
+起请求来索要这个资源文件，例如<code>response.sendRedirect("地址")</code>写入到响应头location中</p></li>
 <li><p>4XX:</p>
-<p>  ​        404：由于在服务端没有定位到被访问的资源文件，因此不能提供</p>
-<p>  ​        405：在服务器定位到了被访问的资源文件(Servlet)，但是这个Servlet对于浏览器采用的请求方式不能处理</p>
-</li>
+<p>​ 404：由于在服务端没有定位到被访问的资源文件，因此不能提供</p>
+<p>​
+405：在服务器定位到了被访问的资源文件(Servlet)，但是这个Servlet对于浏览器采用的请求方式不能处理</p></li>
 <li><p>5XX：</p>
-<p>  ​        500：通知浏览器，在服务端已经定位到了被访问的资源文件(Servlet),这个Servlet也可以接收浏览器采用的请求方式，但是Servlet在处理请求期间，由于Java异常导致处理失败</p>
-</li>
+<p>​
+500：通知浏览器，在服务端已经定位到了被访问的资源文件(Servlet),这个Servlet也可以接收浏览器采用的请求方式，但是Servlet在处理请求期间，由于Java异常导致处理失败</p></li>
 </ul>
 
             </div>
@@ -354,7 +361,7 @@
     
       <div class="col-lg-7 mx-auto nopadding-x-md">
         <div class="container custom mx-auto">
-          <link rel="stylesheet" href="/js/aplayer/APlayer.min.css"> <div id="aplayer" style="display:none"></div> <script src="/js/aplayer/APlayer.min.js"></script> <script src="https://cdn.bootcss.com/jquery.pjax/2.0.1/jquery.pjax.min.js"></script> <script> // 对所有链接跳转事件绑定pjax容器container $(document).pjax("a[target!=_blank]", "#container", {fragment:"#container", timeout:8000}) </script>
+          <link rel="stylesheet" href="/js/aplayer/APlayer.min.css"> <div id="aplayer" style="display:none"></div> <script src="/js/aplayer/APlayer.min.js"></script> <script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script> <script src="https://cdn.bootcss.com/jquery.pjax/2.0.1/jquery.pjax.min.js"></script> <script> // 对所有链接跳转事件绑定pjax容器container $(document).pjax("a[target!=_blank]", "#container", {fragment:"#container", timeout:8000}) </script>
         </div>
       </div>
     

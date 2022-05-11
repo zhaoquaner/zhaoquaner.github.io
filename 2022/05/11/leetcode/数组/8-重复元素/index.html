@@ -16,12 +16,12 @@
   <meta name="author" content="ZhaoXin">
   <meta name="keywords" content="博客">
   
-    <meta name="description" content="自己的做法算法思想使用哈希表，遍历数组，先查看哈希表是否有相同元素，如果有，则停止遍历，返回true；直到遍历结束，返回false。 算法实现12345678910111213141516class Solution &amp;#123;public:    bool containsDuplicate(vector&lt;int&gt;&amp; nums) &amp;#123;        set&lt;">
+    <meta name="description" content="自己的做法 算法思想 使用哈希表，遍历数组，先查看哈希表是否有相同元素，如果有，则停止遍历，返回true；直到遍历结束，返回false。 算法实现 12345678910111213141516class Solution &amp;#123;public:    bool containsDuplicate(vector&lt;int&gt;&amp; nums) &amp;#123;">
 <meta property="og:type" content="article">
 <meta property="og:title" content="8-重复元素">
 <meta property="og:url" content="https://zhaoquaner.github.io/2022/05/11/leetcode/%E6%95%B0%E7%BB%84/8-%E9%87%8D%E5%A4%8D%E5%85%83%E7%B4%A0/index.html">
 <meta property="og:site_name" content="赵圈儿的博客">
-<meta property="og:description" content="自己的做法算法思想使用哈希表，遍历数组，先查看哈希表是否有相同元素，如果有，则停止遍历，返回true；直到遍历结束，返回false。 算法实现12345678910111213141516class Solution &amp;#123;public:    bool containsDuplicate(vector&lt;int&gt;&amp; nums) &amp;#123;        set&lt;">
+<meta property="og:description" content="自己的做法 算法思想 使用哈希表，遍历数组，先查看哈希表是否有相同元素，如果有，则停止遍历，返回true；直到遍历结束，返回false。 算法实现 12345678910111213141516class Solution &amp;#123;public:    bool containsDuplicate(vector&lt;int&gt;&amp; nums) &amp;#123;">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://crayon-1302863897.cos.ap-beijing.myqcloud.com/image/image-20210421201032222.png">
 <meta property="article:published_time" content="2022-05-11T07:08:39.000Z">
@@ -211,7 +211,7 @@
   
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      751 字
+      761 字
     </span>
   
 
@@ -254,14 +254,26 @@
             
             <div class="markdown-body">
               <p><img src="https://crayon-1302863897.cos.ap-beijing.myqcloud.com/image/image-20210421201032222.png" srcset="/img/loading.gif" lazyload alt="image-20210421201032222" style="zoom:50%;" /></p>
-<h2 id="自己的做法"><a href="#自己的做法" class="headerlink" title="自己的做法"></a>自己的做法</h2><h3 id="算法思想"><a href="#算法思想" class="headerlink" title="算法思想"></a>算法思想</h3><p>使用哈希表，遍历数组，先查看哈希表是否有相同元素，如果有，则停止遍历，返回true；直到遍历结束，返回false。</p>
-<h3 id="算法实现"><a href="#算法实现" class="headerlink" title="算法实现"></a>算法实现</h3><figure class="highlight c++"><table><tr><td class="gutter"><div class="code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></div></td><td class="code"><pre><code class="hljs c++"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Solution</span> &#123;<br><span class="hljs-keyword">public</span>:<br>    <span class="hljs-function"><span class="hljs-type">bool</span> <span class="hljs-title">containsDuplicate</span><span class="hljs-params">(vector&lt;<span class="hljs-type">int</span>&gt;&amp; nums)</span> </span>&#123;<br><br>        set&lt;<span class="hljs-type">int</span>&gt; numbers;<br>        <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>; i &lt; nums.<span class="hljs-built_in">size</span>(); i++) &#123;<br>            <span class="hljs-keyword">if</span>(numbers.<span class="hljs-built_in">count</span>(nums[i]) == <span class="hljs-number">0</span>) &#123;<br>                numbers.<span class="hljs-built_in">insert</span>(nums[i]);<br>            &#125; <span class="hljs-keyword">else</span> &#123;<br>				<span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;<br>            &#125;<br>        &#125;<br>        <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;<br><br>    &#125;<br>&#125;;<br></code></pre></td></tr></table></figure>
-<h3 id="性能分析"><a href="#性能分析" class="headerlink" title="性能分析"></a>性能分析</h3><p>时间复杂度：遍历数组，$O(n)$。</p>
-<p>空间复杂度：使用了哈希表，$O(n)$。</p>
-<h2 id="官方做法"><a href="#官方做法" class="headerlink" title="官方做法"></a>官方做法</h2><h3 id="算法思想-1"><a href="#算法思想-1" class="headerlink" title="算法思想"></a>算法思想</h3><p>把数组排序，然后依次比较相邻元素。</p>
-<h3 id="算法实现-1"><a href="#算法实现-1" class="headerlink" title="算法实现"></a>算法实现</h3><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Solution</span> &#123;<br><span class="hljs-keyword">public</span>:<br>    <span class="hljs-function"><span class="hljs-type">bool</span> <span class="hljs-title">containsDuplicate</span><span class="hljs-params">(vector&lt;<span class="hljs-type">int</span>&gt;&amp; nums)</span> </span>&#123;<br><br>        <span class="hljs-built_in">sort</span>(nums.<span class="hljs-built_in">begin</span>(), nums.<span class="hljs-built_in">end</span>());<br>        <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>; i &lt; nums.<span class="hljs-built_in">size</span>() - <span class="hljs-number">1</span>; i++) &#123;<br>            <span class="hljs-keyword">if</span>(nums[i] == nums[i + <span class="hljs-number">1</span>]) &#123;<br>                <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;<br>            &#125;<br>        &#125;<br>        <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;<br><br>    &#125;<br>&#125;;<br></code></pre></td></tr></table></figure>
-<h3 id="性能分析-1"><a href="#性能分析-1" class="headerlink" title="性能分析"></a>性能分析</h3><p>时间复杂度：就是排序时间复杂度：$O(n*logn)$。</p>
-<p>空间复杂度：自己实现排序算法，空间复杂度为$O(1)$，使用默认排序算法，为$O(n)$。</p>
+<h2 id="自己的做法">自己的做法</h2>
+<h3 id="算法思想">算法思想</h3>
+<p>使用哈希表，遍历数组，先查看哈希表是否有相同元素，如果有，则停止遍历，返回true；直到遍历结束，返回false。</p>
+<h3 id="算法实现">算法实现</h3>
+<figure class="highlight c++"><table><tr><td class="gutter"><div class="code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></div></td><td class="code"><pre><code class="hljs c++"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Solution</span> &#123;<br><span class="hljs-keyword">public</span>:<br>    <span class="hljs-function"><span class="hljs-type">bool</span> <span class="hljs-title">containsDuplicate</span><span class="hljs-params">(vector&lt;<span class="hljs-type">int</span>&gt;&amp; nums)</span> </span>&#123;<br><br>        set&lt;<span class="hljs-type">int</span>&gt; numbers;<br>        <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>; i &lt; nums.<span class="hljs-built_in">size</span>(); i++) &#123;<br>            <span class="hljs-keyword">if</span>(numbers.<span class="hljs-built_in">count</span>(nums[i]) == <span class="hljs-number">0</span>) &#123;<br>                numbers.<span class="hljs-built_in">insert</span>(nums[i]);<br>            &#125; <span class="hljs-keyword">else</span> &#123;<br>				<span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;<br>            &#125;<br>        &#125;<br>        <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;<br><br>    &#125;<br>&#125;;<br></code></pre></td></tr></table></figure>
+<h3 id="性能分析">性能分析</h3>
+<p>时间复杂度：遍历数组，<span class="math inline">\(O(n)\)</span>。</p>
+<p>空间复杂度：使用了哈希表，<span
+class="math inline">\(O(n)\)</span>。</p>
+<h2 id="官方做法">官方做法</h2>
+<h3 id="算法思想-1">算法思想</h3>
+<p>把数组排序，然后依次比较相邻元素。</p>
+<h3 id="算法实现-1">算法实现</h3>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Solution</span> &#123;<br><span class="hljs-keyword">public</span>:<br>    <span class="hljs-function"><span class="hljs-type">bool</span> <span class="hljs-title">containsDuplicate</span><span class="hljs-params">(vector&lt;<span class="hljs-type">int</span>&gt;&amp; nums)</span> </span>&#123;<br><br>        <span class="hljs-built_in">sort</span>(nums.<span class="hljs-built_in">begin</span>(), nums.<span class="hljs-built_in">end</span>());<br>        <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>; i &lt; nums.<span class="hljs-built_in">size</span>() - <span class="hljs-number">1</span>; i++) &#123;<br>            <span class="hljs-keyword">if</span>(nums[i] == nums[i + <span class="hljs-number">1</span>]) &#123;<br>                <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;<br>            &#125;<br>        &#125;<br>        <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;<br><br>    &#125;<br>&#125;;<br></code></pre></td></tr></table></figure>
+<h3 id="性能分析-1">性能分析</h3>
+<p>时间复杂度：就是排序时间复杂度：<span
+class="math inline">\(O(n*logn)\)</span>。</p>
+<p>空间复杂度：自己实现排序算法，空间复杂度为<span
+class="math inline">\(O(1)\)</span>，使用默认排序算法，为<span
+class="math inline">\(O(n)\)</span>。</p>
 
             </div>
             <hr>
@@ -337,7 +349,7 @@
     
       <div class="col-lg-7 mx-auto nopadding-x-md">
         <div class="container custom mx-auto">
-          <link rel="stylesheet" href="/js/aplayer/APlayer.min.css"> <div id="aplayer" style="display:none"></div> <script src="/js/aplayer/APlayer.min.js"></script> <script src="https://cdn.bootcss.com/jquery.pjax/2.0.1/jquery.pjax.min.js"></script> <script> // 对所有链接跳转事件绑定pjax容器container $(document).pjax("a[target!=_blank]", "#container", {fragment:"#container", timeout:8000}) </script>
+          <link rel="stylesheet" href="/js/aplayer/APlayer.min.css"> <div id="aplayer" style="display:none"></div> <script src="/js/aplayer/APlayer.min.js"></script> <script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script> <script src="https://cdn.bootcss.com/jquery.pjax/2.0.1/jquery.pjax.min.js"></script> <script> // 对所有链接跳转事件绑定pjax容器container $(document).pjax("a[target!=_blank]", "#container", {fragment:"#container", timeout:8000}) </script>
         </div>
       </div>
     

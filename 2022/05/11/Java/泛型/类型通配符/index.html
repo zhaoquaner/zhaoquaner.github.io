@@ -16,12 +16,12 @@
   <meta name="author" content="ZhaoXin">
   <meta name="keywords" content="博客">
   
-    <meta name="description" content="我们知道，String类是Object类的子类，但是List不是List的子类，所以如果在方法中定义形参List，我们是不能把List赋给这个形参的。 但是如果Foo是Bar的一个子类，那么Foo[]可以直接赋给Bar[]，但是G不是G的子类型。Foo[]自动向上转型为Bar[]的方式称为型变，也就是说Java的数组支持型变，但是Java集合不支持。 使用类型通配符为了表达各种泛型List的父类，">
+    <meta name="description" content="我们知道，String类是Object类的子类，但是List不是List的子类，所以如果在方法中定义形参List，我们是不能把List赋给这个形参的。 但是如果Foo是Bar的一个子类，那么Foo[]可以直接赋给Bar[]，但是G不是G的子类型。Foo[]自动向上转型为Bar[]的方式称为型变，也就是说Java的数组支持型变，但是Java集合不支持。 使用类型通配符 为了表达各种泛型List">
 <meta property="og:type" content="article">
 <meta property="og:title" content="类型通配符">
 <meta property="og:url" content="https://zhaoquaner.github.io/2022/05/11/Java/%E6%B3%9B%E5%9E%8B/%E7%B1%BB%E5%9E%8B%E9%80%9A%E9%85%8D%E7%AC%A6/index.html">
 <meta property="og:site_name" content="赵圈儿的博客">
-<meta property="og:description" content="我们知道，String类是Object类的子类，但是List不是List的子类，所以如果在方法中定义形参List，我们是不能把List赋给这个形参的。 但是如果Foo是Bar的一个子类，那么Foo[]可以直接赋给Bar[]，但是G不是G的子类型。Foo[]自动向上转型为Bar[]的方式称为型变，也就是说Java的数组支持型变，但是Java集合不支持。 使用类型通配符为了表达各种泛型List的父类，">
+<meta property="og:description" content="我们知道，String类是Object类的子类，但是List不是List的子类，所以如果在方法中定义形参List，我们是不能把List赋给这个形参的。 但是如果Foo是Bar的一个子类，那么Foo[]可以直接赋给Bar[]，但是G不是G的子类型。Foo[]自动向上转型为Bar[]的方式称为型变，也就是说Java的数组支持型变，但是Java集合不支持。 使用类型通配符 为了表达各种泛型List">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2022-05-11T01:20:39.000Z">
 <meta property="article:modified_time" content="2022-05-11T08:53:21.236Z">
@@ -254,24 +254,37 @@
             <div class="markdown-body">
               <p>我们知道，String类是Object类的子类，但是List<String>不是List<Object>的子类，所以如果在方法中定义形参List<Object>，我们是不能把List<String>赋给这个形参的。</p>
 <p>但是如果Foo是Bar的一个子类，那么Foo[]可以直接赋给Bar[]，但是G<Foo>不是G<Bar>的子类型。Foo[]自动向上转型为Bar[]的方式称为型变，也就是说Java的数组支持型变，但是Java集合不支持。</p>
-<h2 id="使用类型通配符"><a href="#使用类型通配符" class="headerlink" title="使用类型通配符"></a>使用类型通配符</h2><p>为了表达各种泛型List的父类，可以使用类型通配符，类型通配符是一个问号 ? ，将一个问号作为类型实参传给List集合，写作：List&lt;?&gt;，意思是元素类型未知的List，这个问号称为通配符，它的元素类型可以匹配任何类型。</p>
+<h2 id="使用类型通配符">使用类型通配符</h2>
+<p>为了表达各种泛型List的父类，可以使用类型通配符，类型通配符是一个问号
+?
+，将一个问号作为类型实参传给List集合，写作：List&lt;?&gt;，意思是元素类型未知的List，这个问号称为通配符，它的元素类型可以匹配任何类型。</p>
 <p>但这种带通配符的List仅仅表示它是各种泛型List的父类，不能把元素加入其中。</p>
-<h2 id="设定类型通配符的上限"><a href="#设定类型通配符的上限" class="headerlink" title="设定类型通配符的上限"></a>设定类型通配符的上限</h2><p>有一种特殊情形，程序不希望这个List&lt;?&gt;是任何泛型List的父类，只希望它代表某一类泛型List的父类。</p>
+<h2 id="设定类型通配符的上限">设定类型通配符的上限</h2>
+<p>有一种特殊情形，程序不希望这个List&lt;?&gt;是任何泛型List的父类，只希望它代表某一类泛型List的父类。</p>
 <p>例如定义三个形状类</p>
 <figure class="highlight java"><table><tr><td class="gutter"><div class="code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></div></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">abstract</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">Shape</span> &#123;<br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">abstract</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">draw</span><span class="hljs-params">(Canvas c)</span>;<br>&#125;<br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">Circle</span> <span class="hljs-keyword">extends</span> <span class="hljs-title class_">Shape</span> &#123;<br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">draw</span><span class="hljs-params">(Canvas c)</span>&#123;<br>        System.out.println(<span class="hljs-string">&quot;在画布&quot;</span> + c + <span class="hljs-string">&quot;上画一个圆&quot;</span>);<br>    &#125;<br>&#125;<br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">Rectangle</span> &#123;<br>    System.out.println(<span class="hljs-string">&quot;把一个矩形画在画布&quot;</span> + c + <span class="hljs-string">&quot;上&quot;</span>);<br>&#125;<br><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">Canvas</span> &#123;<br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">drawAll</span><span class="hljs-params">(List&lt;Shape&gt; shapes)</span> &#123;<br>        <span class="hljs-keyword">for</span>(<span class="hljs-keyword">var</span> s :shapes)&#123;<br>            s.draw(<span class="hljs-built_in">this</span>);<br>        &#125;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
-<p>上面drawAll方法的形参是List<Shape>，所以不能把List<Circle>和List<Rectangle>传入，为了表示List<Circle>的父类，可以使用List&lt;? extends Shape&gt;，并且把Canvas改为</p>
+<p>上面drawAll方法的形参是List<Shape>，所以不能把List<Circle>和List<Rectangle>传入，为了表示List<Circle>的父类，可以使用List&lt;?
+extends Shape&gt;，并且把Canvas改为</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">Canvas</span> &#123;<br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">drawAll</span><span class="hljs-params">(List&lt;? extends Shape&gt; shapes)</span> &#123;<br>        <span class="hljs-keyword">for</span>(Shape s :shapes)&#123;<br>            s.draw(<span class="hljs-built_in">this</span>);<br>        &#125;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
-<p>这样就可以把List<Circle>对象当成List&lt;? extends Shape&gt;使用。Shape就称为这个通配符的上限。</p>
+<p>这样就可以把List<Circle>对象当成List&lt;? extends
+Shape&gt;使用。Shape就称为这个通配符的上限。</p>
 <p>此处问号代表一个未知的类型，但是这个类型一定是Shape的子类型，由于程序无法确定这个受限制的通配符的具体类型，所以不能把Shape对象或者子类的对象加入到这个泛型集合。</p>
 <p>因为程序无法确定这个类型是什么，所以没法加入。</p>
 <p>简而言之，这种指定通配符上限的集合，<strong>只能取元素(取出的元素总是上限的类型或者其子类)，不能向集合中添加元素。</strong></p>
-<p>对于更广泛的泛型类，指定通配符上限就是为了支持类型型变，比如Foo是Bar的子类，这样A<Foo>就相当于A&lt;? extends Bar&gt;的子类，可以将A<Foo>直接赋值给A&lt;? extends Bar&gt;类型的变量，<strong>这种型变方式称为协变。</strong></p>
+<p>对于更广泛的泛型类，指定通配符上限就是为了支持类型型变，比如Foo是Bar的子类，这样A<Foo>就相当于A&lt;?
+extends Bar&gt;的子类，可以将A<Foo>直接赋值给A&lt;? extends
+Bar&gt;类型的变量，<strong>这种型变方式称为协变。</strong></p>
 <p>对于协变的泛型而言，他只能调用泛型类型作为返回值类型的方法(编译器会将该方法返回值当成通配符上限的类型)，而不能调用泛型类型作为参数的方法，口诀是<strong>只出不进。</strong></p>
-<h2 id="设定类型通配符下限"><a href="#设定类型通配符下限" class="headerlink" title="设定类型通配符下限"></a>设定类型通配符下限</h2><p>Java的通配符下限使用&lt;? super 类型&gt;的方式来制定，下限的作用于上限的作用刚好相反。</p>
-<p>制定通配符的下限是为了支持类型型变，比如Foo是Bar的子类，当程序需要一个A&lt;? super Foo&gt;的变量时，可以把A<Bar>、A<Object>赋值给它，这种型变方式称为逆变。</p>
+<h2 id="设定类型通配符下限">设定类型通配符下限</h2>
+<p>Java的通配符下限使用&lt;? super
+类型&gt;的方式来制定，下限的作用于上限的作用刚好相反。</p>
+<p>制定通配符的下限是为了支持类型型变，比如Foo是Bar的子类，当程序需要一个A&lt;?
+super
+Foo&gt;的变量时，可以把A<Bar>、A<Object>赋值给它，这种型变方式称为逆变。</p>
 <p>对于逆变的泛型集合来说，编译器只知道集合元素是下限的父类型或者该下限，但是具体哪种不知道，所以这种逆变的泛型集合只能向其中添加元素(因为实际赋值的集合元素总是逆变声明的父类，可以向上造型)，但从集合取元素时，只能被当成Object类型处理。</p>
 <p>对于逆变的泛型来说，口诀是<strong>只进不出</strong>。要出只能被当成Object类型处理，需要强制类型转换。</p>
-<h2 id="设定泛型形参的上限"><a href="#设定泛型形参的上限" class="headerlink" title="设定泛型形参的上限"></a>设定泛型形参的上限</h2><p>Java泛型不仅允许在使用通配符时设定上限，而且可以在定义泛型形参的时候设定上限，用于表示传给该泛型形参的实际类型要么是该上限类型要么是该上限类型的子类。</p>
+<h2 id="设定泛型形参的上限">设定泛型形参的上限</h2>
+<p>Java泛型不仅允许在使用通配符时设定上限，而且可以在定义泛型形参的时候设定上限，用于表示传给该泛型形参的实际类型要么是该上限类型要么是该上限类型的子类。</p>
 <p>对于更极端的情况，程序需要为泛型接口设定多个上限(至多有一个父类上限，多个接口上限)，那么所有接口上限必须位于类上限的后面。</p>
 <p>例子</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">Apple</span>&lt;T <span class="hljs-keyword">extends</span> <span class="hljs-title class_">Number</span> &amp; java.io.Serializable&gt;&#123;<br>    ...<br>&#125;<br></code></pre></td></tr></table></figure>
@@ -352,7 +365,7 @@
     
       <div class="col-lg-7 mx-auto nopadding-x-md">
         <div class="container custom mx-auto">
-          <link rel="stylesheet" href="/js/aplayer/APlayer.min.css"> <div id="aplayer" style="display:none"></div> <script src="/js/aplayer/APlayer.min.js"></script> <script src="https://cdn.bootcss.com/jquery.pjax/2.0.1/jquery.pjax.min.js"></script> <script> // 对所有链接跳转事件绑定pjax容器container $(document).pjax("a[target!=_blank]", "#container", {fragment:"#container", timeout:8000}) </script>
+          <link rel="stylesheet" href="/js/aplayer/APlayer.min.css"> <div id="aplayer" style="display:none"></div> <script src="/js/aplayer/APlayer.min.js"></script> <script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script> <script src="https://cdn.bootcss.com/jquery.pjax/2.0.1/jquery.pjax.min.js"></script> <script> // 对所有链接跳转事件绑定pjax容器container $(document).pjax("a[target!=_blank]", "#container", {fragment:"#container", timeout:8000}) </script>
         </div>
       </div>
     

@@ -16,12 +16,12 @@
   <meta name="author" content="ZhaoXin">
   <meta name="keywords" content="博客">
   
-    <meta name="description" content="自己的做法算法思想使用三个指针cur、pre和next，遍历链表。cur代表当前指向的结点，pre代表当前cur的前一个结点，next代表cur的后一个结点。 初始时，cur指向head-&gt;next即链表第二个结点，pre指向head，即头结点。next为空指针。 然后依次执行以下步骤：  next结点指向cur的下一个节点  cur结点的next指向pre结点  pre结点指向cur结点">
+    <meta name="description" content="自己的做法 算法思想 使用三个指针cur、pre和next，遍历链表。cur代表当前指向的结点，pre代表当前cur的前一个结点，next代表cur的后一个结点。 初始时，cur指向head-&gt;next即链表第二个结点，pre指向head，即头结点。next为空指针。 然后依次执行以下步骤：  next结点指向cur的下一个节点 cur结点的next指向pre结点 pre">
 <meta property="og:type" content="article">
 <meta property="og:title" content="7-反转链表">
 <meta property="og:url" content="https://zhaoquaner.github.io/2022/05/11/leetcode/%E9%93%BE%E8%A1%A8/7-%E5%8F%8D%E8%BD%AC%E9%93%BE%E8%A1%A8/index.html">
 <meta property="og:site_name" content="赵圈儿的博客">
-<meta property="og:description" content="自己的做法算法思想使用三个指针cur、pre和next，遍历链表。cur代表当前指向的结点，pre代表当前cur的前一个结点，next代表cur的后一个结点。 初始时，cur指向head-&gt;next即链表第二个结点，pre指向head，即头结点。next为空指针。 然后依次执行以下步骤：  next结点指向cur的下一个节点  cur结点的next指向pre结点  pre结点指向cur结点">
+<meta property="og:description" content="自己的做法 算法思想 使用三个指针cur、pre和next，遍历链表。cur代表当前指向的结点，pre代表当前cur的前一个结点，next代表cur的后一个结点。 初始时，cur指向head-&gt;next即链表第二个结点，pre指向head，即头结点。next为空指针。 然后依次执行以下步骤：  next结点指向cur的下一个节点 cur结点的next指向pre结点 pre">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://crayon-1302863897.cos.ap-beijing.myqcloud.com/image/image-20210420195746281.png">
 <meta property="og:image" content="https://crayon-1302863897.cos.ap-beijing.myqcloud.com/image/21年04月20日20时23分50秒.gif">
@@ -256,37 +256,46 @@
             
             <div class="markdown-body">
               <p><img src="https://crayon-1302863897.cos.ap-beijing.myqcloud.com/image/image-20210420195746281.png" srcset="/img/loading.gif" lazyload alt="image-20210420195746281" style="zoom:67%;" /></p>
-<h2 id="自己的做法"><a href="#自己的做法" class="headerlink" title="自己的做法"></a>自己的做法</h2><h3 id="算法思想"><a href="#算法思想" class="headerlink" title="算法思想"></a>算法思想</h3><p>使用三个指针<code>cur</code>、<code>pre</code>和<code>next</code>，遍历链表。<code>cur</code>代表当前指向的结点，<code>pre</code>代表当前<code>cur</code>的前一个结点，<code>next</code>代表<code>cur</code>的后一个结点。</p>
+<h2 id="自己的做法">自己的做法</h2>
+<h3 id="算法思想">算法思想</h3>
+<p>使用三个指针<code>cur</code>、<code>pre</code>和<code>next</code>，遍历链表。<code>cur</code>代表当前指向的结点，<code>pre</code>代表当前<code>cur</code>的前一个结点，<code>next</code>代表<code>cur</code>的后一个结点。</p>
 <p>初始时，<code>cur</code>指向<code>head-&gt;next</code>即链表第二个结点，<code>pre</code>指向<code>head</code>，即头结点。<code>next</code>为空指针。</p>
 <p>然后依次执行以下步骤：</p>
 <ul>
-<li><p><code>next</code>结点指向<code>cur</code>的下一个节点</p>
-</li>
-<li><p><code>cur</code>结点的<code>next</code>指向<code>pre</code>结点</p>
-</li>
-<li><code>pre</code>结点指向<code>cur</code>结点</li>
-<li><code>cur</code>指向<code>next</code>节点</li>
+<li><p><code>next</code>结点指向<code>cur</code>的下一个节点</p></li>
+<li><p><code>cur</code>结点的<code>next</code>指向<code>pre</code>结点</p></li>
+<li><p><code>pre</code>结点指向<code>cur</code>结点</p></li>
+<li><p><code>cur</code>指向<code>next</code>节点</p></li>
 </ul>
 <p><img src="https://crayon-1302863897.cos.ap-beijing.myqcloud.com/image/21年04月20日20时23分50秒.gif" srcset="/img/loading.gif" lazyload alt="21年04月20日20时23分50秒" style="zoom:50%;" /></p>
 <p>这样就将<code>pre</code>和<code>cur</code>指向的结点进行了反转，并指向了下一个要反转的结点。</p>
 <p>直到<code>cur</code>指向了空，此时循环结束，链表反转完成。</p>
 <p><strong>注：</strong></p>
 <ul>
-<li><p><strong>要注意，当反转链表第一个结点和第二个结点时，第一个结点的next应置为空</strong></p>
-</li>
-<li><p><strong>初始时，<code>cur</code>指向了链表第二个结点，说明这种方法只适用于链表结点数大于等于2的情况，所以需要先加一个判断，保证链表结点数大于等于2。</strong></p>
-</li>
+<li><p><strong>要注意，当反转链表第一个结点和第二个结点时，第一个结点的next应置为空</strong></p></li>
+<li><p><strong>初始时，<code>cur</code>指向了链表第二个结点，说明这种方法只适用于链表结点数大于等于2的情况，所以需要先加一个判断，保证链表结点数大于等于2。</strong></p></li>
 </ul>
-<h3 id="算法实现"><a href="#算法实现" class="headerlink" title="算法实现"></a>算法实现</h3><figure class="highlight c++"><table><tr><td class="gutter"><div class="code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></div></td><td class="code"><pre><code class="hljs c++"><span class="hljs-keyword">struct</span> <span class="hljs-title class_">ListNode</span> &#123;<br>    <span class="hljs-type">int</span> val;<br>    ListNode *next;<br>    <span class="hljs-built_in">ListNode</span>() : <span class="hljs-built_in">val</span>(<span class="hljs-number">0</span>), <span class="hljs-built_in">next</span>(<span class="hljs-literal">nullptr</span>) &#123;&#125;<br>    <span class="hljs-built_in">ListNode</span>(<span class="hljs-type">int</span> x) : <span class="hljs-built_in">val</span>(x), <span class="hljs-built_in">next</span>(<span class="hljs-literal">nullptr</span>) &#123;&#125;<br>    <span class="hljs-built_in">ListNode</span>(<span class="hljs-type">int</span> x, ListNode *next) : <span class="hljs-built_in">val</span>(x), <span class="hljs-built_in">next</span>(next) &#123;&#125;<br>&#125;;<br><br><span class="hljs-keyword">class</span> <span class="hljs-title class_">Solution</span> &#123;<br><span class="hljs-keyword">public</span>:<br>    <span class="hljs-function">ListNode* <span class="hljs-title">reverseList</span><span class="hljs-params">(ListNode* head)</span> </span>&#123;<br>        <span class="hljs-keyword">if</span>(head == <span class="hljs-literal">nullptr</span> || head-&gt;next == <span class="hljs-literal">nullptr</span>) &#123;<span class="hljs-keyword">return</span> head;&#125;<br><br>        ListNode * pre = head;<br>        ListNode * cur = head-&gt;next;<br>        ListNode * next = <span class="hljs-literal">nullptr</span>;<br>        <span class="hljs-keyword">while</span> (cur != <span class="hljs-literal">nullptr</span>) &#123;<br>            <span class="hljs-keyword">if</span>(pre == head) &#123;<br>                pre-&gt;next = <span class="hljs-literal">nullptr</span>;<br>            &#125;<br>            next = cur-&gt;next;<br>            cur-&gt;next = pre;<br>            pre = cur;<br>            cur = next;<br>        &#125;<br><br>        <span class="hljs-keyword">return</span> pre;<br><br>    &#125;<br>&#125;;<br></code></pre></td></tr></table></figure>
-<p>还有一种更简单的写法，省去了判断链表结点数是否大于等于2和<code>pre == head</code>的情况。</p>
+<h3 id="算法实现">算法实现</h3>
+<figure class="highlight c++"><table><tr><td class="gutter"><div class="code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></div></td><td class="code"><pre><code class="hljs c++"><span class="hljs-keyword">struct</span> <span class="hljs-title class_">ListNode</span> &#123;<br>    <span class="hljs-type">int</span> val;<br>    ListNode *next;<br>    <span class="hljs-built_in">ListNode</span>() : <span class="hljs-built_in">val</span>(<span class="hljs-number">0</span>), <span class="hljs-built_in">next</span>(<span class="hljs-literal">nullptr</span>) &#123;&#125;<br>    <span class="hljs-built_in">ListNode</span>(<span class="hljs-type">int</span> x) : <span class="hljs-built_in">val</span>(x), <span class="hljs-built_in">next</span>(<span class="hljs-literal">nullptr</span>) &#123;&#125;<br>    <span class="hljs-built_in">ListNode</span>(<span class="hljs-type">int</span> x, ListNode *next) : <span class="hljs-built_in">val</span>(x), <span class="hljs-built_in">next</span>(next) &#123;&#125;<br>&#125;;<br><br><span class="hljs-keyword">class</span> <span class="hljs-title class_">Solution</span> &#123;<br><span class="hljs-keyword">public</span>:<br>    <span class="hljs-function">ListNode* <span class="hljs-title">reverseList</span><span class="hljs-params">(ListNode* head)</span> </span>&#123;<br>        <span class="hljs-keyword">if</span>(head == <span class="hljs-literal">nullptr</span> || head-&gt;next == <span class="hljs-literal">nullptr</span>) &#123;<span class="hljs-keyword">return</span> head;&#125;<br><br>        ListNode * pre = head;<br>        ListNode * cur = head-&gt;next;<br>        ListNode * next = <span class="hljs-literal">nullptr</span>;<br>        <span class="hljs-keyword">while</span> (cur != <span class="hljs-literal">nullptr</span>) &#123;<br>            <span class="hljs-keyword">if</span>(pre == head) &#123;<br>                pre-&gt;next = <span class="hljs-literal">nullptr</span>;<br>            &#125;<br>            next = cur-&gt;next;<br>            cur-&gt;next = pre;<br>            pre = cur;<br>            cur = next;<br>        &#125;<br><br>        <span class="hljs-keyword">return</span> pre;<br><br>    &#125;<br>&#125;;<br></code></pre></td></tr></table></figure>
+<p>还有一种更简单的写法，省去了判断链表结点数是否大于等于2和<code>pre ==
+head</code>的情况。</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Solution</span> &#123;<br><span class="hljs-keyword">public</span>:<br>    <span class="hljs-function">ListNode* <span class="hljs-title">reverseList</span><span class="hljs-params">(ListNode* head)</span> </span>&#123;<br>        ListNode * pre = <span class="hljs-literal">nullptr</span>;<br>        ListNode * cur = head;<br>        ListNode * next = <span class="hljs-literal">nullptr</span>;<br>        <span class="hljs-keyword">while</span> (cur != <span class="hljs-literal">nullptr</span>) &#123;<br>            <span class="hljs-keyword">if</span>(pre == head) &#123;<br>                pre-&gt;next = <span class="hljs-literal">nullptr</span>;<br>            &#125;<br>            next = cur-&gt;next;<br>            cur-&gt;next = pre;<br>            pre = cur;<br>            cur = next;<br>        &#125;<br>        <br>        <span class="hljs-keyword">return</span> pre;<br><br>    &#125;<br>&#125;;<br></code></pre></td></tr></table></figure>
-<h3 id="性能分析"><a href="#性能分析" class="headerlink" title="性能分析"></a>性能分析</h3><p>时间复杂度为$O(n)$。</p>
-<p>空间复杂度：用了三个指针，$O(1)$。</p>
-<h2 id="官方做法"><a href="#官方做法" class="headerlink" title="官方做法"></a>官方做法</h2><h3 id="递归"><a href="#递归" class="headerlink" title="递归"></a>递归</h3><h4 id="算法思想-1"><a href="#算法思想-1" class="headerlink" title="算法思想"></a>算法思想</h4><p>从链表头结点递归到最后一个结点，然后进行回溯，当<code>head</code>指向一个结点时，要让它的下一个结点指向它，则需要执行<code>head-&gt;next-&gt;next = head</code>， 并让<code>head</code>结点的<code>next</code>指向空。</p>
+<h3 id="性能分析">性能分析</h3>
+<p>时间复杂度为<span class="math inline">\(O(n)\)</span>。</p>
+<p>空间复杂度：用了三个指针，<span
+class="math inline">\(O(1)\)</span>。</p>
+<h2 id="官方做法">官方做法</h2>
+<h3 id="递归">递归</h3>
+<h4 id="算法思想-1">算法思想</h4>
+<p>从链表头结点递归到最后一个结点，然后进行回溯，当<code>head</code>指向一个结点时，要让它的下一个结点指向它，则需要执行<code>head-&gt;next-&gt;next
+= head</code>， 并让<code>head</code>结点的<code>next</code>指向空。</p>
 <p><img src="https://crayon-1302863897.cos.ap-beijing.myqcloud.com/image/21年04月20日21时03分26秒.gif" srcset="/img/loading.gif" lazyload alt="21年04月20日21时03分26秒" style="zoom:50%;" /></p>
-<h4 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h4><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Solution</span> &#123;<br><span class="hljs-keyword">public</span>:<br>    <span class="hljs-function">ListNode* <span class="hljs-title">reverseList</span><span class="hljs-params">(ListNode* head)</span> </span>&#123;<br>        <span class="hljs-keyword">if</span>(head == <span class="hljs-literal">nullptr</span> || head-&gt;next == <span class="hljs-literal">nullptr</span>) &#123;<span class="hljs-keyword">return</span> head;&#125;<br><br>        ListNode * newHead = <span class="hljs-built_in">reverseList</span>(head-&gt;next);<br>        head-&gt;next-&gt;next = head;<br>        head-&gt;next = <span class="hljs-literal">nullptr</span>;<br>        <span class="hljs-keyword">return</span> newHead;<br><br>    &#125;<br>&#125;;<br></code></pre></td></tr></table></figure>
-<h4 id="性能分析-1"><a href="#性能分析-1" class="headerlink" title="性能分析"></a>性能分析</h4><p>时间复杂度：$O(n)$。</p>
-<p>空间复杂度：每次递归都需要将当前变量压栈，为$O(n)$。</p>
+<h4 id="代码实现">代码实现</h4>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Solution</span> &#123;<br><span class="hljs-keyword">public</span>:<br>    <span class="hljs-function">ListNode* <span class="hljs-title">reverseList</span><span class="hljs-params">(ListNode* head)</span> </span>&#123;<br>        <span class="hljs-keyword">if</span>(head == <span class="hljs-literal">nullptr</span> || head-&gt;next == <span class="hljs-literal">nullptr</span>) &#123;<span class="hljs-keyword">return</span> head;&#125;<br><br>        ListNode * newHead = <span class="hljs-built_in">reverseList</span>(head-&gt;next);<br>        head-&gt;next-&gt;next = head;<br>        head-&gt;next = <span class="hljs-literal">nullptr</span>;<br>        <span class="hljs-keyword">return</span> newHead;<br><br>    &#125;<br>&#125;;<br></code></pre></td></tr></table></figure>
+<h4 id="性能分析-1">性能分析</h4>
+<p>时间复杂度：<span class="math inline">\(O(n)\)</span>。</p>
+<p>空间复杂度：每次递归都需要将当前变量压栈，为<span
+class="math inline">\(O(n)\)</span>。</p>
 
             </div>
             <hr>
@@ -362,7 +371,7 @@
     
       <div class="col-lg-7 mx-auto nopadding-x-md">
         <div class="container custom mx-auto">
-          <link rel="stylesheet" href="/js/aplayer/APlayer.min.css"> <div id="aplayer" style="display:none"></div> <script src="/js/aplayer/APlayer.min.js"></script> <script src="https://cdn.bootcss.com/jquery.pjax/2.0.1/jquery.pjax.min.js"></script> <script> // 对所有链接跳转事件绑定pjax容器container $(document).pjax("a[target!=_blank]", "#container", {fragment:"#container", timeout:8000}) </script>
+          <link rel="stylesheet" href="/js/aplayer/APlayer.min.css"> <div id="aplayer" style="display:none"></div> <script src="/js/aplayer/APlayer.min.js"></script> <script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script> <script src="https://cdn.bootcss.com/jquery.pjax/2.0.1/jquery.pjax.min.js"></script> <script> // 对所有链接跳转事件绑定pjax容器container $(document).pjax("a[target!=_blank]", "#container", {fragment:"#container", timeout:8000}) </script>
         </div>
       </div>
     

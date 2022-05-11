@@ -16,12 +16,12 @@
   <meta name="author" content="ZhaoXin">
   <meta name="keywords" content="博客">
   
-    <meta name="description" content="Java提供了操作Set、List和Map等集合的工具类Collections,提供了大量的方法对集合元素排序、查询修改等操作，还可以将集合元素设置为不可变，对集合对象实现同步控制。 排序操作常用类方法来排序  void reverse(List list)：反转指定集合元素的顺序 void shuffle(List list)：对集合的元素进行随机排序 void sort(List list)：">
+    <meta name="description" content="Java提供了操作Set、List和Map等集合的工具类Collections,提供了大量的方法对集合元素排序、查询修改等操作，还可以将集合元素设置为不可变，对集合对象实现同步控制。 排序操作 常用类方法来排序  void reverse(List list)：反转指定集合元素的顺序 void shuffle(List list)：对集合的元素进行随机排序 void sort(Li">
 <meta property="og:type" content="article">
 <meta property="og:title" content="操作集合的工具类：Collections">
 <meta property="og:url" content="https://zhaoquaner.github.io/2022/05/11/Java/%E9%9B%86%E5%90%88/%E6%93%8D%E4%BD%9C%E9%9B%86%E5%90%88%E7%9A%84%E5%B7%A5%E5%85%B7%E7%B1%BB%EF%BC%9ACollections/index.html">
 <meta property="og:site_name" content="赵圈儿的博客">
-<meta property="og:description" content="Java提供了操作Set、List和Map等集合的工具类Collections,提供了大量的方法对集合元素排序、查询修改等操作，还可以将集合元素设置为不可变，对集合对象实现同步控制。 排序操作常用类方法来排序  void reverse(List list)：反转指定集合元素的顺序 void shuffle(List list)：对集合的元素进行随机排序 void sort(List list)：">
+<meta property="og:description" content="Java提供了操作Set、List和Map等集合的工具类Collections,提供了大量的方法对集合元素排序、查询修改等操作，还可以将集合元素设置为不可变，对集合对象实现同步控制。 排序操作 常用类方法来排序  void reverse(List list)：反转指定集合元素的顺序 void shuffle(List list)：对集合的元素进行随机排序 void sort(Li">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2022-05-11T01:03:39.000Z">
 <meta property="article:modified_time" content="2022-05-11T08:53:26.006Z">
@@ -253,35 +253,59 @@
             
             <div class="markdown-body">
               <p>Java提供了操作Set、List和Map等集合的工具类Collections,提供了大量的方法对集合元素排序、查询修改等操作，还可以将集合元素设置为不可变，对集合对象实现同步控制。</p>
-<h2 id="排序操作"><a href="#排序操作" class="headerlink" title="排序操作"></a>排序操作</h2><p>常用类方法来排序</p>
+<h2 id="排序操作">排序操作</h2>
+<p>常用类方法来排序</p>
 <ul>
-<li><strong>void reverse(List list)</strong>：反转指定集合元素的顺序</li>
-<li><strong>void shuffle(List list)</strong>：对集合的元素进行随机排序</li>
-<li><strong>void sort(List list)</strong>：根据元素自然顺序对指定list集合的元素按升序排序</li>
-<li><strong>void sort(List list, Comparator c)</strong>：根据指定Comparator产生的顺序对List集合元素进行排序</li>
-<li><strong>void swap(List list, int i, int j)</strong>：将指定List集合中的i处元素按升序进行排序</li>
-<li><strong>void rotate(List list, int distance)</strong>：当distance为正数时，将list集合的后distance个元素整体移到前面；distance为负数时，将list集合的前distance个元素整体移到后面，该方法不会改变集合长度</li>
+<li><strong>void reverse(List
+list)</strong>：反转指定集合元素的顺序</li>
+<li><strong>void shuffle(List
+list)</strong>：对集合的元素进行随机排序</li>
+<li><strong>void sort(List
+list)</strong>：根据元素自然顺序对指定list集合的元素按升序排序</li>
+<li><strong>void sort(List list, Comparator
+c)</strong>：根据指定Comparator产生的顺序对List集合元素进行排序</li>
+<li><strong>void swap(List list, int i, int
+j)</strong>：将指定List集合中的i处元素按升序进行排序</li>
+<li><strong>void rotate(List list, int
+distance)</strong>：当distance为正数时，将list集合的后distance个元素整体移到前面；distance为负数时，将list集合的前distance个元素整体移到后面，该方法不会改变集合长度</li>
 </ul>
-<h2 id="查找替换操作"><a href="#查找替换操作" class="headerlink" title="查找替换操作"></a>查找替换操作</h2><p>Collections提供的类方法用于查询替换集合元素</p>
+<h2 id="查找替换操作">查找替换操作</h2>
+<p>Collections提供的类方法用于查询替换集合元素</p>
 <ul>
-<li><strong>int binarySearch(List list, Object key)</strong>：使用二分搜索法搜索指定的List集合，以获得指定对象在List集合中的索引，如果要使用此方法，则List集合元素必须已经处于有序状态</li>
-<li><strong>Object max(Collection coll)</strong>：根据元素的自然顺序，返回给定集合的最大元素</li>
-<li><strong>Object max(Collection coll, Comparator comp)</strong>：根据Comparator给定的顺序，返回给定集合中最大元素</li>
-<li><strong>Object min(Collection coll)</strong>：根据元素的自然顺序，返回给定集合的最小元素</li>
-<li><strong>Object min(Collection coll, Comparator comp)</strong>：根据Comparator给定的顺序，返回给定集合中最小元素</li>
-<li><strong>void fill(List list, Object obj)</strong>：使用指定元素替换指定集合中所有元素</li>
-<li><strong>int frequency(Collection c, Object o)</strong>：返回指定集合中指定元素出现的次数</li>
-<li><strong>int indexOfSubList(List source, List target)</strong>：返回子List对象target在父List对象source第一次出现的位置索引</li>
-<li><strong>int lastIndexOfSubList(List source, List target)</strong>：返回子List对象target在父List对象source最后一次出现的位置索引</li>
-<li><strong>boolean replaceAll(List list, Object oldVal, Object newVal)</strong>：使用一个新值替换List对象的所有旧值</li>
+<li><strong>int binarySearch(List list, Object
+key)</strong>：使用二分搜索法搜索指定的List集合，以获得指定对象在List集合中的索引，如果要使用此方法，则List集合元素必须已经处于有序状态</li>
+<li><strong>Object max(Collection
+coll)</strong>：根据元素的自然顺序，返回给定集合的最大元素</li>
+<li><strong>Object max(Collection coll, Comparator
+comp)</strong>：根据Comparator给定的顺序，返回给定集合中最大元素</li>
+<li><strong>Object min(Collection
+coll)</strong>：根据元素的自然顺序，返回给定集合的最小元素</li>
+<li><strong>Object min(Collection coll, Comparator
+comp)</strong>：根据Comparator给定的顺序，返回给定集合中最小元素</li>
+<li><strong>void fill(List list, Object
+obj)</strong>：使用指定元素替换指定集合中所有元素</li>
+<li><strong>int frequency(Collection c, Object
+o)</strong>：返回指定集合中指定元素出现的次数</li>
+<li><strong>int indexOfSubList(List source, List
+target)</strong>：返回子List对象target在父List对象source第一次出现的位置索引</li>
+<li><strong>int lastIndexOfSubList(List source, List
+target)</strong>：返回子List对象target在父List对象source最后一次出现的位置索引</li>
+<li><strong>boolean replaceAll(List list, Object oldVal, Object
+newVal)</strong>：使用一个新值替换List对象的所有旧值</li>
 </ul>
-<h2 id="同步控制"><a href="#同步控制" class="headerlink" title="同步控制"></a>同步控制</h2><p>Collections提供了多个synchronizedXxx()方法，可以把指定集合包装成线程同步的集合，从而解决多线程并发访问集合时的线程安全问题。</p>
-<p>Java常用的集合框架的实现类HashSet,TreeSet, ArrayList, ArrayDeque, LinkedList, HashMap和TreeMap都是线程不安全的。</p>
-<p>可以使用<code>ArrayList a = Collections.synchronizedList(new ArrayList());</code>将新创建的集合对象传给Collections的synchronizedXxx方法，获取对应的线程安全版本。</p>
-<h2 id="Java-9新增的不可变集合"><a href="#Java-9新增的不可变集合" class="headerlink" title="Java 9新增的不可变集合"></a>Java 9新增的不可变集合</h2><p>以前假如要创建一个包含6个元素的Set集合，程序需要先创建Set集合，然后调用6次add()方法，Java 9进行简化，程序直接调用Set、List、Map的of()方法即可创建一个包含N个元素的不可变集合。</p>
+<h2 id="同步控制">同步控制</h2>
+<p>Collections提供了多个synchronizedXxx()方法，可以把指定集合包装成线程同步的集合，从而解决多线程并发访问集合时的线程安全问题。</p>
+<p>Java常用的集合框架的实现类HashSet,TreeSet, ArrayList, ArrayDeque,
+LinkedList, HashMap和TreeMap都是线程不安全的。</p>
+<p>可以使用<code>ArrayList a = Collections.synchronizedList(new
+ArrayList());</code>将新创建的集合对象传给Collections的synchronizedXxx方法，获取对应的线程安全版本。</p>
+<h2 id="java-9新增的不可变集合">Java 9新增的不可变集合</h2>
+<p>以前假如要创建一个包含6个元素的Set集合，程序需要先创建Set集合，然后调用6次add()方法，Java
+9进行简化，程序直接调用Set、List、Map的of()方法即可创建一个包含N个元素的不可变集合。</p>
 <p>不可变集合意味着不能向集合中添加元素也不能从集合中删除元素。</p>
 <p>例子：创建一个Set、List的不可变集合</p>
-<p><code>var a = Set.of(&quot;java&quot;, &quot;C&quot;, &quot;C++&quot;);</code>  <code>var b = List.of(&quot;13, 56, 62&quot;);</code></p>
+<p><code>var a = Set.of("java", "C", "C++");</code> <code>var b =
+List.of("13, 56, 62");</code></p>
 <p>上述代码分别创建了三个元素的Set集合和List集合。</p>
 
             </div>
@@ -360,7 +384,7 @@
     
       <div class="col-lg-7 mx-auto nopadding-x-md">
         <div class="container custom mx-auto">
-          <link rel="stylesheet" href="/js/aplayer/APlayer.min.css"> <div id="aplayer" style="display:none"></div> <script src="/js/aplayer/APlayer.min.js"></script> <script src="https://cdn.bootcss.com/jquery.pjax/2.0.1/jquery.pjax.min.js"></script> <script> // 对所有链接跳转事件绑定pjax容器container $(document).pjax("a[target!=_blank]", "#container", {fragment:"#container", timeout:8000}) </script>
+          <link rel="stylesheet" href="/js/aplayer/APlayer.min.css"> <div id="aplayer" style="display:none"></div> <script src="/js/aplayer/APlayer.min.js"></script> <script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script> <script src="https://cdn.bootcss.com/jquery.pjax/2.0.1/jquery.pjax.min.js"></script> <script> // 对所有链接跳转事件绑定pjax容器container $(document).pjax("a[target!=_blank]", "#container", {fragment:"#container", timeout:8000}) </script>
         </div>
       </div>
     

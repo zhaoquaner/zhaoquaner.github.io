@@ -16,12 +16,12 @@
   <meta name="author" content="ZhaoXin">
   <meta name="keywords" content="博客">
   
-    <meta name="description" content="在SpringBoot中使用SpringMVC和直接使用SpringMVC没有任何不同，完全一样。 有几个常用的注解。 常用注解ControllerSpringMVC的注解，处理http请求。 RestControllerSpringMVC4.0的新增注解，是@Controller注解功能的增强，相当于@Controller和@ResponseBody的组合注解。 如果一个Controller添加">
+    <meta name="description" content="在SpringBoot中使用SpringMVC和直接使用SpringMVC没有任何不同，完全一样。 有几个常用的注解。 常用注解 Controller SpringMVC的注解，处理http请求。 RestController SpringMVC4.0的新增注解，是@Controller注解功能的增强，相当于@Controller和@ResponseBody的组合注解。 如果一个Co">
 <meta property="og:type" content="article">
 <meta property="og:title" content="5-RestFul和SpringMVC常用注解">
 <meta property="og:url" content="https://zhaoquaner.github.io/2022/05/11/SpringBoot/5-RestFul%E5%92%8CSpringMVC%E5%B8%B8%E7%94%A8%E6%B3%A8%E8%A7%A3/index.html">
 <meta property="og:site_name" content="赵圈儿的博客">
-<meta property="og:description" content="在SpringBoot中使用SpringMVC和直接使用SpringMVC没有任何不同，完全一样。 有几个常用的注解。 常用注解ControllerSpringMVC的注解，处理http请求。 RestControllerSpringMVC4.0的新增注解，是@Controller注解功能的增强，相当于@Controller和@ResponseBody的组合注解。 如果一个Controller添加">
+<meta property="og:description" content="在SpringBoot中使用SpringMVC和直接使用SpringMVC没有任何不同，完全一样。 有几个常用的注解。 常用注解 Controller SpringMVC的注解，处理http请求。 RestController SpringMVC4.0的新增注解，是@Controller注解功能的增强，相当于@Controller和@ResponseBody的组合注解。 如果一个Co">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2022-05-11T06:10:39.000Z">
 <meta property="article:modified_time" content="2022-05-11T09:01:05.183Z">
@@ -255,48 +255,63 @@
             <div class="markdown-body">
               <p>在SpringBoot中使用SpringMVC和直接使用SpringMVC没有任何不同，完全一样。</p>
 <p>有几个常用的注解。</p>
-<h2 id="常用注解"><a href="#常用注解" class="headerlink" title="常用注解"></a>常用注解</h2><h3 id="Controller"><a href="#Controller" class="headerlink" title="Controller"></a>Controller</h3><p>SpringMVC的注解，处理http请求。</p>
-<h3 id="RestController"><a href="#RestController" class="headerlink" title="RestController"></a>RestController</h3><p>SpringMVC4.0的新增注解，是@Controller注解功能的增强，相当于@Controller和@ResponseBody的组合注解。</p>
+<h2 id="常用注解">常用注解</h2>
+<h3 id="controller">Controller</h3>
+<p>SpringMVC的注解，处理http请求。</p>
+<h3 id="restcontroller">RestController</h3>
+<p>SpringMVC4.0的新增注解，是@Controller注解功能的增强，相当于@Controller和<span
+class="citation"
+data-cites="ResponseBody的组合注解">@ResponseBody的组合注解</span>。</p>
 <p>如果一个Controller添加了@RestController，那么就相当于该Controller的所有方法都添加了@ResponseBody注解。</p>
 <p>主要用于返回字符串或JSON数据。</p>
-<h3 id="RequestMapping"><a href="#RequestMapping" class="headerlink" title="RequestMapping"></a>RequestMapping</h3><p>支持Get和Post请求。</p>
-<h3 id="GetMapping"><a href="#GetMapping" class="headerlink" title="@GetMapping"></a>@GetMapping</h3><p>只支持Get请求，别的请求方式会报错，405。Get请求主要用于查询操作。</p>
-<h3 id="PostMapping"><a href="#PostMapping" class="headerlink" title="@PostMapping"></a>@PostMapping</h3><p>只支持Post请求，别的请求方式会报错，405。Post请求主要用于新增操作。</p>
-<h3 id="PutMapping"><a href="#PutMapping" class="headerlink" title="@PutMapping"></a>@PutMapping</h3><p>只支持Put请求，别的请求方式会报错，405。Put请求主要用于修改数据。</p>
-<h3 id="DeleteMapping"><a href="#DeleteMapping" class="headerlink" title="@DeleteMapping"></a>@DeleteMapping</h3><p>只支持Delete请求，别的请求方式会报错，405。Delete请求主要用于删除数据。</p>
-<h2 id="RESTFul"><a href="#RESTFul" class="headerlink" title="RESTFul"></a>RESTFul</h2><p>REST是一种互联网软件架构设计的风格。但它不是标准的，只是提出了一个客户端和服务器交互时的架构理念和设计原则。基于这种理念和原则设计的接口可以更简洁，尺寸更小。任何技术都可以实现这种理念，如果一个架构符合REST原则，就称其为RESTFul架构。</p>
+<h3 id="requestmapping">RequestMapping</h3>
+<p>支持Get和Post请求。</p>
+<h3 id="getmapping"><span class="citation"
+data-cites="GetMapping">@GetMapping</span></h3>
+<p>只支持Get请求，别的请求方式会报错，405。Get请求主要用于查询操作。</p>
+<h3 id="postmapping"><span class="citation"
+data-cites="PostMapping">@PostMapping</span></h3>
+<p>只支持Post请求，别的请求方式会报错，405。Post请求主要用于新增操作。</p>
+<h3 id="putmapping"><span class="citation"
+data-cites="PutMapping">@PutMapping</span></h3>
+<p>只支持Put请求，别的请求方式会报错，405。Put请求主要用于修改数据。</p>
+<h3 id="deletemapping"><span class="citation"
+data-cites="DeleteMapping">@DeleteMapping</span></h3>
+<p>只支持Delete请求，别的请求方式会报错，405。Delete请求主要用于删除数据。</p>
+<h2 id="restful">RESTFul</h2>
+<p>REST是一种互联网软件架构设计的风格。但它不是标准的，只是提出了一个客户端和服务器交互时的架构理念和设计原则。基于这种理念和原则设计的接口可以更简洁，尺寸更小。任何技术都可以实现这种理念，如果一个架构符合REST原则，就称其为RESTFul架构。</p>
 <p>这种架构简单来说，就是：</p>
 <ul>
 <li><p>接口命名使用名词，不要有动词。</p>
-<p>  例如/student，/users等都属于RESTFul架构。而/addStudent，/deleteUser则不属于。</p>
-</li>
+<p>例如/student，/users等都属于RESTFul架构。而/addStudent，/deleteUser则不属于。</p></li>
 <li><p>使用Http的方法来表示不同操作。</p>
-<p>  因为没有动词在接口名称中，所以使用HTTP方法来表示要对数据进行的操作。一般来说：</p>
-<ol>
+<p>因为没有动词在接口名称中，所以使用HTTP方法来表示要对数据进行的操作。一般来说：</p>
+<ol type="1">
 <li>Get方法表示查询或者请求数据</li>
 <li>Post方法表示新增数据。(也可以表示修改数据)</li>
 <li>Put方法表示修改数据。</li>
 <li>Delete方法表示删除数据</li>
-</ol>
-</li>
-<li><p>使用status状态码来表示请求的结果。</p>
-</li>
+</ol></li>
+<li><p>使用status状态码来表示请求的结果。</p></li>
 </ul>
 <p>例如一个Http接口：<code>http://localhost/boot/order?id=1021&amp;status=1</code>，</p>
 <p>那么采用RESTful风格则http地址应为：<code>http://localhost/boot/order/1021/status=1</code></p>
 <p><strong>将参数转换为请求路径。</strong></p>
-<h3 id="优点"><a href="#优点" class="headerlink" title="优点"></a>优点</h3><ol>
+<h3 id="优点">优点</h3>
+<ol type="1">
 <li>轻量，直接基于Http，而不需要任何别的消息协议。</li>
 <li>面向资源，一目了然。</li>
 <li>数据描述简单，一般以xml，json做数据交换</li>
 <li>简单，低重组。</li>
 </ol>
-<h3 id="RESTFul注意的地方"><a href="#RESTFul注意的地方" class="headerlink" title="RESTFul注意的地方"></a>RESTFul注意的地方</h3><ol>
+<h3 id="restful注意的地方">RESTFul注意的地方</h3>
+<ol type="1">
 <li>请求路径中不要出现动词</li>
 <li>分页，排序等操作，一般使用参数来进行传递</li>
 </ol>
-<p>采用RESTful风格要使用的一个注解是：@PathVariable</p>
-<p>该注解可以将URL中的占位符参数{xxx}绑定到处理器类方法的形参@PathVariable(“xxx”)中。</p>
+<p>采用RESTful风格要使用的一个注解是：<span class="citation"
+data-cites="PathVariable">@PathVariable</span></p>
+<p>该注解可以将URL中的占位符参数{xxx}绑定到处理器类方法的形参@PathVariable("xxx")中。</p>
 <p>例如：</p>
 <p>一个处理器方法是：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><div class="code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></div></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@GetMapping(value = &quot;/student/&#123;id&#125;&quot;)</span><br><span class="hljs-keyword">public</span> Object <span class="hljs-title function_">getStudent</span><span class="hljs-params">(<span class="hljs-meta">@PathVariable(&quot;id&quot;)</span> Integer id)</span> &#123;<br>    <span class="hljs-keyword">return</span> studentService.queryStudentById(id);<br>&#125;<br></code></pre></td></tr></table></figure>
@@ -385,7 +400,7 @@
     
       <div class="col-lg-7 mx-auto nopadding-x-md">
         <div class="container custom mx-auto">
-          <link rel="stylesheet" href="/js/aplayer/APlayer.min.css"> <div id="aplayer" style="display:none"></div> <script src="/js/aplayer/APlayer.min.js"></script> <script src="https://cdn.bootcss.com/jquery.pjax/2.0.1/jquery.pjax.min.js"></script> <script> // 对所有链接跳转事件绑定pjax容器container $(document).pjax("a[target!=_blank]", "#container", {fragment:"#container", timeout:8000}) </script>
+          <link rel="stylesheet" href="/js/aplayer/APlayer.min.css"> <div id="aplayer" style="display:none"></div> <script src="/js/aplayer/APlayer.min.js"></script> <script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script> <script src="https://cdn.bootcss.com/jquery.pjax/2.0.1/jquery.pjax.min.js"></script> <script> // 对所有链接跳转事件绑定pjax容器container $(document).pjax("a[target!=_blank]", "#container", {fragment:"#container", timeout:8000}) </script>
         </div>
       </div>
     
