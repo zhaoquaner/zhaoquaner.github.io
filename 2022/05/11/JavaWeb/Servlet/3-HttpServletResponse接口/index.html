@@ -16,21 +16,19 @@
   <meta name="author" content="ZhaoXin">
   <meta name="keywords" content="博客">
   
-    <meta name="description" content="介绍 HttpServletResponse接口实现类由Http服务器提供 HttpServletResponse接口将doGet&#x2F;doPost方法执行结果写入到 响应体交给浏览器 由HttpServletResponse接口修饰的对象称为响应对象  主要功能 将执行结果以二进制写入到响应体 设置响应头中 [content-type]属性值，从而控制浏览器使用对应的编译器将响应体二进制数据编译为对">
+    <meta name="description" content="介绍  HttpServletResponse接口实现类由Http服务器提供 HttpServletResponse接口将doGet&#x2F;doPost方法执行结果写入到 响应体交给浏览器 由HttpServletResponse接口修饰的对象称为响应对象  主要功能  将执行结果以二进制写入到响应体 设置响应头中 [content-type]属性值，从而控制浏览器使用对应的编译器">
 <meta property="og:type" content="article">
 <meta property="og:title" content="3-HttpServletResponse接口">
 <meta property="og:url" content="https://zhaoquaner.github.io/2022/05/11/JavaWeb/Servlet/3-HttpServletResponse%E6%8E%A5%E5%8F%A3/index.html">
 <meta property="og:site_name" content="赵圈儿的博客">
-<meta property="og:description" content="介绍 HttpServletResponse接口实现类由Http服务器提供 HttpServletResponse接口将doGet&#x2F;doPost方法执行结果写入到 响应体交给浏览器 由HttpServletResponse接口修饰的对象称为响应对象  主要功能 将执行结果以二进制写入到响应体 设置响应头中 [content-type]属性值，从而控制浏览器使用对应的编译器将响应体二进制数据编译为对">
+<meta property="og:description" content="介绍  HttpServletResponse接口实现类由Http服务器提供 HttpServletResponse接口将doGet&#x2F;doPost方法执行结果写入到 响应体交给浏览器 由HttpServletResponse接口修饰的对象称为响应对象  主要功能  将执行结果以二进制写入到响应体 设置响应头中 [content-type]属性值，从而控制浏览器使用对应的编译器">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://crayon-1302863897.cos.ap-beijing.myqcloud.com/image/image-20200803140222729.png">
 <meta property="article:published_time" content="2022-05-11T05:37:39.000Z">
 <meta property="article:modified_time" content="2022-05-11T08:55:25.701Z">
 <meta property="article:author" content="ZhaoXin">
 <meta property="article:tag" content="JavaWeb">
 <meta property="article:tag" content="Servlet">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://crayon-1302863897.cos.ap-beijing.myqcloud.com/image/image-20200803140222729.png">
   
   
   <title>3-HttpServletResponse接口 - 赵圈儿的博客</title>
@@ -77,7 +75,7 @@
 </head>
 
 
-<body><!-- hexo injector body_begin start --><style>code {font-weight:400;}.post-content {font-weight:600;} #board {border-radius: 1.5rem;} #board-ctn {width:110%;margin-left:-5%;}</style><!-- hexo injector body_begin end -->
+<body><!-- hexo injector body_begin start --><style>code {font-weight:400;}.post-content {font-weight:600;} #board {border-radius: 1.5rem;} #board-ctn {width:110%;margin-left:-5%;}</style><script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script><script src="https://cdn.bootcss.com/jquery.pjax/2.0.1/jquery.pjax.min.js"></script><script>$(document).pjax("a[target!=_blank]", "#container", {fragment:"#container", timeout:8000})</script><!-- hexo injector body_begin end -->
   <header style="height: 70vh;">
     <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
   <div class="container">
@@ -212,7 +210,7 @@
   
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      984 字
+      987 字
     </span>
   
 
@@ -254,23 +252,36 @@
             <h1 style="display: none">3-HttpServletResponse接口</h1>
             
             <div class="markdown-body">
-              <h2 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h2><ul>
+              <h2 id="介绍">介绍</h2>
+<ul>
 <li>HttpServletResponse接口实现类由Http服务器提供</li>
-<li>HttpServletResponse接口将doGet/doPost方法执行结果写入到 响应体交给浏览器</li>
+<li>HttpServletResponse接口将doGet/doPost方法执行结果写入到
+响应体交给浏览器</li>
 <li>由HttpServletResponse接口修饰的对象称为响应对象</li>
 </ul>
-<h2 id="主要功能"><a href="#主要功能" class="headerlink" title="主要功能"></a>主要功能</h2><ul>
+<h2 id="主要功能">主要功能</h2>
+<ul>
 <li>将执行结果以二进制写入到响应体</li>
-<li>设置响应头中 [content-type]属性值，从而控制浏览器使用对应的编译器将响应体二进制数据编译为对应文件</li>
+<li>设置响应头中
+[content-type]属性值，从而控制浏览器使用对应的编译器将响应体二进制数据编译为对应文件</li>
 <li>设置响应头中[location]属性，将一个请求对象赋值给location，从而控制浏览器向指定服务器发送请求</li>
 </ul>
-<p>使用响应对象来获得输出流，例如<code>PrintWriter out = resp.getWriter();</code>，然后可以使用out对象的write和print方法来进行输出，但一般都使用print方法，不使用write方法。</p>
-<p>默认情况下，响应体的content-type属性为 “text”,即文本，浏览器会将输出的内容解析成文本，如果想要输出其他内容例如HTML，那么<strong>一定要在得到输出流之前，通过响应对象对响应体中的content-type属性改为想要输出的文本格式</strong>。</p>
-<p>可以使用<code>resp.setContentype(&quot;text/html&quot;)</code>和<code>resp.setCharacterEncoding(&quot;UTF-8&quot;);</code>两个方法对响应体的文件解析格式和编码方式进行设置。</p>
-<h3 id="使用响应对象的sendRedirect-方法进行地址重定向"><a href="#使用响应对象的sendRedirect-方法进行地址重定向" class="headerlink" title="使用响应对象的sendRedirect()方法进行地址重定向"></a>使用响应对象的sendRedirect()方法进行地址重定向</h3><p>响应对象response有一个sendRedirect方法，可以使用该方法指定浏览器对该地址进行访问，当浏览器收到响应体后，发现有location属性，会自动访问location对应的地址。同样可以使用该方法控制访问的参数。</p>
+<p>使用响应对象来获得输出流，例如<code>PrintWriter out =
+resp.getWriter();</code>，然后可以使用out对象的write和print方法来进行输出，但一般都使用print方法，不使用write方法。</p>
+<p>默认情况下，响应体的content-type属性为
+"text",即文本，浏览器会将输出的内容解析成文本，如果想要输出其他内容例如HTML，那么<strong>一定要在得到输出流之前，通过响应对象对响应体中的content-type属性改为想要输出的文本格式</strong>。</p>
+<p>可以使用<code>resp.setContentype("text/html")</code>和<code>resp.setCharacterEncoding("UTF-8");</code>两个方法对响应体的文件解析格式和编码方式进行设置。</p>
+<h3
+id="使用响应对象的sendredirect方法进行地址重定向">使用响应对象的sendRedirect()方法进行地址重定向</h3>
+<p>响应对象response有一个sendRedirect方法，可以使用该方法指定浏览器对该地址进行访问，当浏览器收到响应体后，发现有location属性，会自动访问location对应的地址。同样可以使用该方法控制访问的参数。</p>
 <figure class="highlight java"><table><tr><td class="gutter"><div class="code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></div></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">protected</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">doGet</span><span class="hljs-params">(HttpServletRequest req, HttpServletResponse resp)</span> <span class="hljs-keyword">throws</span> ServletException, IOException &#123;<br><br>    	<span class="hljs-comment">//重定向的地址,也可以加参数例如：http://www.baidu.com?userName=mike</span><br>        <span class="hljs-type">String</span> <span class="hljs-variable">result</span> <span class="hljs-operator">=</span> <span class="hljs-string">&quot;http://www.baidu.com&quot;</span>;<br>        resp.sendRedirect(result);<br>        <br>    &#125;<br></code></pre></td></tr></table></figure>
 <p>运行上述代码结果为：</p>
-<p><img src="https://crayon-1302863897.cos.ap-beijing.myqcloud.com/image/image-20200803140222729.png" srcset="/img/loading.gif" lazyload alt="image-20200803140222729"></p>
+<figure>
+<img
+src="https://crayon-1302863897.cos.ap-beijing.myqcloud.com/image/image-20200803140222729.png" srcset="/img/loading.gif" lazyload
+alt="image-20200803140222729" />
+<figcaption aria-hidden="true">image-20200803140222729</figcaption>
+</figure>
 
             </div>
             <hr>
@@ -348,7 +359,7 @@
     
       <div class="col-lg-7 mx-auto nopadding-x-md">
         <div class="container custom mx-auto">
-          <link rel="stylesheet" href="/js/aplayer/APlayer.min.css"> <div id="aplayer" style="display:none"></div> <script src="/js/aplayer/APlayer.min.js"></script> <script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script> <script src="https://cdn.bootcss.com/jquery.pjax/2.0.1/jquery.pjax.min.js"></script> <script> // 对所有链接跳转事件绑定pjax容器container $(document).pjax("a", "#pjax-container") </script>
+          <link rel="stylesheet" href="/js/aplayer/APlayer.min.css"> <div id="aplayer" style="display:none"></div> <script src="/js/aplayer/APlayer.min.js"></script>
         </div>
       </div>
     

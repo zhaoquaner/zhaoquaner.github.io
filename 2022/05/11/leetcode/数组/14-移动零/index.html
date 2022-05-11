@@ -16,12 +16,12 @@
   <meta name="author" content="ZhaoXin">
   <meta name="keywords" content="博客">
   
-    <meta name="description" content="自己的做法算法思想使用哈希表，首先遍历一遍数组，将所有为0 的索引存入到哈希表中，然后再遍历数组，分为两个循环，前一个从数组开头循环到(数组长度 - 哈希表长度 - 1)位置，依次将不在哈希表中的索引对应的数字，按顺序存到数组中；后一个循环从(数组长度 - 哈希表长度)位置 循环到数组末尾，全部赋值为 0 。 算法实现123456789101112131415161718192021222324">
+    <meta name="description" content="自己的做法 算法思想 使用哈希表，首先遍历一遍数组，将所有为0 的索引存入到哈希表中，然后再遍历数组，分为两个循环，前一个从数组开头循环到(数组长度 - 哈希表长度 - 1)位置，依次将不在哈希表中的索引对应的数字，按顺序存到数组中；后一个循环从(数组长度 - 哈希表长度)位置 循环到数组末尾，全部赋值为 0 。 算法实现 123456789101112131415161718">
 <meta property="og:type" content="article">
 <meta property="og:title" content="14-移动零">
 <meta property="og:url" content="https://zhaoquaner.github.io/2022/05/11/leetcode/%E6%95%B0%E7%BB%84/14-%E7%A7%BB%E5%8A%A8%E9%9B%B6/index.html">
 <meta property="og:site_name" content="赵圈儿的博客">
-<meta property="og:description" content="自己的做法算法思想使用哈希表，首先遍历一遍数组，将所有为0 的索引存入到哈希表中，然后再遍历数组，分为两个循环，前一个从数组开头循环到(数组长度 - 哈希表长度 - 1)位置，依次将不在哈希表中的索引对应的数字，按顺序存到数组中；后一个循环从(数组长度 - 哈希表长度)位置 循环到数组末尾，全部赋值为 0 。 算法实现123456789101112131415161718192021222324">
+<meta property="og:description" content="自己的做法 算法思想 使用哈希表，首先遍历一遍数组，将所有为0 的索引存入到哈希表中，然后再遍历数组，分为两个循环，前一个从数组开头循环到(数组长度 - 哈希表长度 - 1)位置，依次将不在哈希表中的索引对应的数字，按顺序存到数组中；后一个循环从(数组长度 - 哈希表长度)位置 循环到数组末尾，全部赋值为 0 。 算法实现 123456789101112131415161718">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://crayon-1302863897.cos.ap-beijing.myqcloud.com/image/image-20210423205219002.png">
 <meta property="og:image" content="https://crayon-1302863897.cos.ap-beijing.myqcloud.com/image/21年04月23日21时27分20秒.gif">
@@ -77,7 +77,7 @@
 </head>
 
 
-<body><!-- hexo injector body_begin start --><style>code {font-weight:400;}.post-content {font-weight:600;} #board {border-radius: 1.5rem;} #board-ctn {width:110%;margin-left:-5%;}</style><!-- hexo injector body_begin end -->
+<body><!-- hexo injector body_begin start --><style>code {font-weight:400;}.post-content {font-weight:600;} #board {border-radius: 1.5rem;} #board-ctn {width:110%;margin-left:-5%;}</style><script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script><script src="https://cdn.bootcss.com/jquery.pjax/2.0.1/jquery.pjax.min.js"></script><script>$(document).pjax("a[target!=_blank]", "#container", {fragment:"#container", timeout:8000})</script><!-- hexo injector body_begin end -->
   <header style="height: 70vh;">
     <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
   <div class="container">
@@ -255,22 +255,38 @@
             
             <div class="markdown-body">
               <p><img src="https://crayon-1302863897.cos.ap-beijing.myqcloud.com/image/image-20210423205219002.png" srcset="/img/loading.gif" lazyload alt="image-20210423205219002" style="zoom:50%;" /></p>
-<h2 id="自己的做法"><a href="#自己的做法" class="headerlink" title="自己的做法"></a>自己的做法</h2><h3 id="算法思想"><a href="#算法思想" class="headerlink" title="算法思想"></a>算法思想</h3><p>使用哈希表，首先遍历一遍数组，将所有为0 的索引存入到哈希表中，然后再遍历数组，分为两个循环，前一个从数组开头循环到(数组长度 - 哈希表长度 - 1)位置，依次将不在哈希表中的索引对应的数字，按顺序存到数组中；后一个循环从(数组长度 - 哈希表长度)位置 循环到数组末尾，全部赋值为 0 。</p>
-<h3 id="算法实现"><a href="#算法实现" class="headerlink" title="算法实现"></a>算法实现</h3><figure class="highlight c++"><table><tr><td class="gutter"><div class="code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></div></td><td class="code"><pre><code class="hljs c++"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Solution</span> &#123;<br><span class="hljs-keyword">public</span>:<br>    <span class="hljs-function"><span class="hljs-type">static</span> <span class="hljs-type">void</span> <span class="hljs-title">moveZeroes</span><span class="hljs-params">(vector&lt;<span class="hljs-type">int</span>&gt;&amp; nums)</span> </span>&#123;<br>        set&lt;<span class="hljs-type">int</span>&gt; indexs;<br>        <span class="hljs-type">int</span> i = <span class="hljs-number">0</span>;<br>        <span class="hljs-keyword">for</span>(i = <span class="hljs-number">0</span>; i &lt; nums.<span class="hljs-built_in">size</span>(); i++) &#123;<br>            <span class="hljs-keyword">if</span>(nums[i] == <span class="hljs-number">0</span>) &#123;<br>                indexs.<span class="hljs-built_in">insert</span>(i);<br>            &#125;<br>        &#125;<br>        <span class="hljs-type">int</span> count = <span class="hljs-number">0</span>;<br>        i = <span class="hljs-number">0</span>;<br>        <span class="hljs-keyword">while</span> (i &lt; nums.<span class="hljs-built_in">size</span>() - indexs.<span class="hljs-built_in">size</span>())&#123;<br>            <span class="hljs-keyword">if</span>(indexs.<span class="hljs-built_in">count</span>(count) == <span class="hljs-number">0</span>) &#123;<br>                nums[i] = nums[count];<br>                i++;<br>            &#125;<br>            count++;<br>        &#125;<br>        <span class="hljs-keyword">for</span>(i = nums.<span class="hljs-built_in">size</span>() - indexs.<span class="hljs-built_in">size</span>(); i &lt; nums.<span class="hljs-built_in">size</span>(); i++) &#123;<br>            nums[i] = <span class="hljs-number">0</span>;<br>        &#125;<br>    &#125;<br>&#125;;<br></code></pre></td></tr></table></figure>
-<h3 id="性能分析"><a href="#性能分析" class="headerlink" title="性能分析"></a>性能分析</h3><p>时间复杂度：遍历了两遍数组，为$O(n)$。</p>
-<p>空间复杂度：使用了哈希表，为$O(n)$。</p>
-<h2 id="官方做法"><a href="#官方做法" class="headerlink" title="官方做法"></a>官方做法</h2><h3 id="算法思想-1"><a href="#算法思想-1" class="headerlink" title="算法思想"></a>算法思想</h3><p>双指针法。</p>
+<h2 id="自己的做法">自己的做法</h2>
+<h3 id="算法思想">算法思想</h3>
+<p>使用哈希表，首先遍历一遍数组，将所有为0
+的索引存入到哈希表中，然后再遍历数组，分为两个循环，前一个从数组开头循环到(数组长度
+- 哈希表长度 -
+1)位置，依次将不在哈希表中的索引对应的数字，按顺序存到数组中；后一个循环从(数组长度
+- 哈希表长度)位置 循环到数组末尾，全部赋值为 0 。</p>
+<h3 id="算法实现">算法实现</h3>
+<figure class="highlight c++"><table><tr><td class="gutter"><div class="code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></div></td><td class="code"><pre><code class="hljs c++"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Solution</span> &#123;<br><span class="hljs-keyword">public</span>:<br>    <span class="hljs-function"><span class="hljs-type">static</span> <span class="hljs-type">void</span> <span class="hljs-title">moveZeroes</span><span class="hljs-params">(vector&lt;<span class="hljs-type">int</span>&gt;&amp; nums)</span> </span>&#123;<br>        set&lt;<span class="hljs-type">int</span>&gt; indexs;<br>        <span class="hljs-type">int</span> i = <span class="hljs-number">0</span>;<br>        <span class="hljs-keyword">for</span>(i = <span class="hljs-number">0</span>; i &lt; nums.<span class="hljs-built_in">size</span>(); i++) &#123;<br>            <span class="hljs-keyword">if</span>(nums[i] == <span class="hljs-number">0</span>) &#123;<br>                indexs.<span class="hljs-built_in">insert</span>(i);<br>            &#125;<br>        &#125;<br>        <span class="hljs-type">int</span> count = <span class="hljs-number">0</span>;<br>        i = <span class="hljs-number">0</span>;<br>        <span class="hljs-keyword">while</span> (i &lt; nums.<span class="hljs-built_in">size</span>() - indexs.<span class="hljs-built_in">size</span>())&#123;<br>            <span class="hljs-keyword">if</span>(indexs.<span class="hljs-built_in">count</span>(count) == <span class="hljs-number">0</span>) &#123;<br>                nums[i] = nums[count];<br>                i++;<br>            &#125;<br>            count++;<br>        &#125;<br>        <span class="hljs-keyword">for</span>(i = nums.<span class="hljs-built_in">size</span>() - indexs.<span class="hljs-built_in">size</span>(); i &lt; nums.<span class="hljs-built_in">size</span>(); i++) &#123;<br>            nums[i] = <span class="hljs-number">0</span>;<br>        &#125;<br>    &#125;<br>&#125;;<br></code></pre></td></tr></table></figure>
+<h3 id="性能分析">性能分析</h3>
+<p>时间复杂度：遍历了两遍数组，为<span
+class="math inline">\(O(n)\)</span>。</p>
+<p>空间复杂度：使用了哈希表，为<span
+class="math inline">\(O(n)\)</span>。</p>
+<h2 id="官方做法">官方做法</h2>
+<h3 id="算法思想-1">算法思想</h3>
+<p>双指针法。</p>
 <p>左指针指向已处理好的序列的尾部；右指针指向待处理序列的头部。当右指针指向的是非零数时，交换左右指针对应的数字，左右指针分别向后走一步；如果右指针指向的为零，则右指针向后走一步。初始时，左右指针都指向数组第一个元素。</p>
-<p>则：        </p>
-<ol>
+<p>则：</p>
+<ol type="1">
 <li><strong>左指针左边是已经处理好的序列，全部为非零数</strong></li>
 <li><strong>右指针左边和左指针及其右边之间的数全部是零</strong></li>
 </ol>
 <p>也就是说，左指针指向下一个需要交换的元素。右指针一直向右移动直到遇到一个不为零的数。然后交换左右指针对应的数。</p>
 <p><img src="https://crayon-1302863897.cos.ap-beijing.myqcloud.com/image/21年04月23日21时27分20秒.gif" srcset="/img/loading.gif" lazyload alt="21年04月23日21时27分20秒" style="zoom:50%;" /></p>
-<h3 id="算法实现-1"><a href="#算法实现-1" class="headerlink" title="算法实现"></a>算法实现</h3><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Solution</span> &#123;<br><span class="hljs-keyword">public</span>:<br>    <span class="hljs-function"><span class="hljs-type">static</span> <span class="hljs-type">void</span> <span class="hljs-title">moveZeroes</span><span class="hljs-params">(vector&lt;<span class="hljs-type">int</span>&gt;&amp; nums)</span> </span>&#123;<br>        <span class="hljs-type">int</span> length = nums.<span class="hljs-built_in">size</span>(), left = <span class="hljs-number">0</span>, right = <span class="hljs-number">0</span>;<br>        <span class="hljs-keyword">while</span> (right &lt; length) &#123;<br>            <span class="hljs-keyword">if</span>(nums[right] != <span class="hljs-number">0</span>) &#123;<br>                <span class="hljs-built_in">swap</span>(nums[left], nums[right]);<br>                left++;<br>            &#125;<br>            right++;<br>        &#125;<br>    &#125;<br>&#125;;<br></code></pre></td></tr></table></figure>
-<h3 id="性能分析-1"><a href="#性能分析-1" class="headerlink" title="性能分析"></a>性能分析</h3><p>时间复杂度：遍历了一遍数组，为$O(n)$。</p>
-<p>空间复杂度：使用了两个指针，为$O(1)$。</p>
+<h3 id="算法实现-1">算法实现</h3>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Solution</span> &#123;<br><span class="hljs-keyword">public</span>:<br>    <span class="hljs-function"><span class="hljs-type">static</span> <span class="hljs-type">void</span> <span class="hljs-title">moveZeroes</span><span class="hljs-params">(vector&lt;<span class="hljs-type">int</span>&gt;&amp; nums)</span> </span>&#123;<br>        <span class="hljs-type">int</span> length = nums.<span class="hljs-built_in">size</span>(), left = <span class="hljs-number">0</span>, right = <span class="hljs-number">0</span>;<br>        <span class="hljs-keyword">while</span> (right &lt; length) &#123;<br>            <span class="hljs-keyword">if</span>(nums[right] != <span class="hljs-number">0</span>) &#123;<br>                <span class="hljs-built_in">swap</span>(nums[left], nums[right]);<br>                left++;<br>            &#125;<br>            right++;<br>        &#125;<br>    &#125;<br>&#125;;<br></code></pre></td></tr></table></figure>
+<h3 id="性能分析-1">性能分析</h3>
+<p>时间复杂度：遍历了一遍数组，为<span
+class="math inline">\(O(n)\)</span>。</p>
+<p>空间复杂度：使用了两个指针，为<span
+class="math inline">\(O(1)\)</span>。</p>
 
             </div>
             <hr>
@@ -346,7 +362,7 @@
     
       <div class="col-lg-7 mx-auto nopadding-x-md">
         <div class="container custom mx-auto">
-          <link rel="stylesheet" href="/js/aplayer/APlayer.min.css"> <div id="aplayer" style="display:none"></div> <script src="/js/aplayer/APlayer.min.js"></script> <script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script> <script src="https://cdn.bootcss.com/jquery.pjax/2.0.1/jquery.pjax.min.js"></script> <script> // 对所有链接跳转事件绑定pjax容器container $(document).pjax("a", "#pjax-container") </script>
+          <link rel="stylesheet" href="/js/aplayer/APlayer.min.css"> <div id="aplayer" style="display:none"></div> <script src="/js/aplayer/APlayer.min.js"></script>
         </div>
       </div>
     
