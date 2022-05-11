@@ -23,11 +23,11 @@ const ap = new APlayer({
 
 let isPlaying = false;
 
-// 绑定音乐播放完 事件
-ap.on('ended', function () {
-    ap.skipForward();
-    isPlaying = true; 
-});
+// // 绑定音乐播放完 事件
+// ap.on('ended', function () {
+//     ap.skipForward();
+//     isPlaying = true; 
+// });
 
 document.getElementsByClassName("nav-link")[5].onclick = function() {
 	if(!isPlaying) {
