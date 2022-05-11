@@ -16,12 +16,12 @@
   <meta name="author" content="ZhaoXin">
   <meta name="keywords" content="博客">
   
-    <meta name="description" content="SpringBoot有两种核心配置文件格式，一种是.properties，另一种是.yml或.yaml格式。 文件名必须是application。 默认采用.properties格式。 .properties 这种配置文件格式 使用的是键值对组合，即key：value型。 例如： 1234#设置内嵌Tomcat端口号server.port&#x3D;80#配置项目上下文根server.servl">
+    <meta name="description" content="SpringBoot有两种核心配置文件格式，一种是.properties，另一种是.yml或.yaml格式。 文件名必须是application。 默认采用.properties格式。 .properties这种配置文件格式 使用的是键值对组合，即key：value型。 例如： 1234#设置内嵌Tomcat端口号server.port&#x3D;80#配置项目上下文根server.servlet.cont">
 <meta property="og:type" content="article">
 <meta property="og:title" content="2-SpringBoot核心配置文件">
 <meta property="og:url" content="https://zhaoquaner.github.io/2022/05/11/SpringBoot/2-SpringBoot%E6%A0%B8%E5%BF%83%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6/index.html">
 <meta property="og:site_name" content="赵圈儿的博客">
-<meta property="og:description" content="SpringBoot有两种核心配置文件格式，一种是.properties，另一种是.yml或.yaml格式。 文件名必须是application。 默认采用.properties格式。 .properties 这种配置文件格式 使用的是键值对组合，即key：value型。 例如： 1234#设置内嵌Tomcat端口号server.port&#x3D;80#配置项目上下文根server.servl">
+<meta property="og:description" content="SpringBoot有两种核心配置文件格式，一种是.properties，另一种是.yml或.yaml格式。 文件名必须是application。 默认采用.properties格式。 .properties这种配置文件格式 使用的是键值对组合，即key：value型。 例如： 1234#设置内嵌Tomcat端口号server.port&#x3D;80#配置项目上下文根server.servlet.cont">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://crayon-1302863897.cos.ap-beijing.myqcloud.com/image/image-20210121160701430.png">
 <meta property="article:published_time" content="2022-05-11T06:07:39.000Z">
@@ -258,24 +258,21 @@
               <p>SpringBoot有两种核心配置文件格式，一种是<code>.properties</code>，另一种是<code>.yml</code>或<code>.yaml</code>格式。</p>
 <p><strong>文件名必须是application。</strong></p>
 <p>默认采用<code>.properties</code>格式。</p>
-<h2 id="properties">.properties</h2>
-<p>这种配置文件格式 使用的是键值对组合，即key：value型。</p>
+<h2 id="properties"><a href="#properties" class="headerlink" title=".properties"></a>.properties</h2><p>这种配置文件格式 使用的是键值对组合，即key：value型。</p>
 <p>例如：</p>
 <figure class="highlight properties"><table><tr><td class="gutter"><div class="code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></div></td><td class="code"><pre><code class="hljs properties"><span class="hljs-comment">#设置内嵌Tomcat端口号</span><br><span class="hljs-attr">server.port</span>=<span class="hljs-string">80</span><br><span class="hljs-comment">#配置项目上下文根</span><br><span class="hljs-attr">server.servlet.context-path</span>=<span class="hljs-string">/</span><br></code></pre></td></tr></table></figure>
 <p>通过这种方式来配置项目。</p>
-<h2 id="yml">.yml</h2>
-<p>yml是一种yaml格式的配置文件，采用<strong>一定的空格、换行</strong>等格式进行排版进行配置。</p>
+<h2 id="yml"><a href="#yml" class="headerlink" title=".yml"></a>.yml</h2><p>yml是一种yaml格式的配置文件，采用<strong>一定的空格、换行</strong>等格式进行排版进行配置。</p>
 <p>yaml是一种直观能被计算机识别的数据序列化格式，容易阅读，yaml类似xml，但是语法比xml简单。</p>
 <p><strong>值和前面的冒号配置项之间必须有一个空格。</strong></p>
 <p>yml后缀也可以改成yaml后缀。</p>
 <p>例如：</p>
 <figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs yml"><span class="hljs-attr">server:</span><br>  <span class="hljs-attr">port:</span> <span class="hljs-number">80</span> <span class="hljs-comment">#80和前面的冒号中必须有一个空格</span><br>  <span class="hljs-attr">servlet:</span><br>    <span class="hljs-attr">context-path:</span> <span class="hljs-string">/</span><br></code></pre></td></tr></table></figure>
-<p>当两种配置文件格式<code>.properties</code>和<code>.yml</code>同时存在，默认优先使用<code>.properties</code>格式文件。</p>
-<h2 id="多环境配置文件">多环境配置文件</h2>
-<p>在实际开发中项目会经历很多阶段：开发、测试、上线。每个阶段采用的配置也不一样，例如端口、上下文等。</p>
+<p>当两种配置文件格式<code>.properties</code>和<code>.yml</code>同时存在，默认优先使用<code>.properties</code>格式文件。    </p>
+<h2 id="多环境配置文件"><a href="#多环境配置文件" class="headerlink" title="多环境配置文件"></a>多环境配置文件</h2><p>在实际开发中项目会经历很多阶段：开发、测试、上线。每个阶段采用的配置也不一样，例如端口、上下文等。</p>
 <p>为了环境配置切换方便，SpringBoot提供了多环境配置。</p>
 <p>具体实现：</p>
-<ol type="1">
+<ol>
 <li>为每个环境提供一个配置文件，命名格式必须为：application-环境标识.yml/properties</li>
 <li>创建总的SpringBoot配置文件，applcation.yml/properties</li>
 <li>在总的配置文件中指明是使用哪个环境的配置文件</li>
@@ -287,12 +284,9 @@
 <figure class="highlight properties"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs properties"><span class="hljs-comment">#SpringBoot的总配置文件</span><br><span class="hljs-comment"></span><br><span class="hljs-comment">#激活开发环境</span><br><span class="hljs-comment">#spring.profiles.active=dev</span><br><span class="hljs-comment"></span><br><span class="hljs-comment">#激活测试环境</span><br><span class="hljs-comment">#spring.profiles.active=test</span><br><span class="hljs-comment"></span><br><span class="hljs-comment">#激活生产环境</span><br><span class="hljs-attr">spring.profiles.active</span>=<span class="hljs-string">product</span><br></code></pre></td></tr></table></figure>
 <p>等号右边的值和配置文件中环境标识名称一致。可以修改总配置文件的配置，重新运行main方法。</p>
 <p>现在使用的是生产环境的配置文件。</p>
-<h2 id="自定义配置">自定义配置</h2>
-<p>在核心配置文件中，除了内置的配置项外，还可以自定义配置，然后采用如下注解来读取</p>
+<h2 id="自定义配置"><a href="#自定义配置" class="headerlink" title="自定义配置"></a>自定义配置</h2><p>在核心配置文件中，除了内置的配置项外，还可以自定义配置，然后采用如下注解来读取</p>
 <p>对应配置的属性值。</p>
-<h3 id="value"><span class="citation"
-data-cites="Value">@Value</span></h3>
-<p>该注解用于逐个读取配置文件中的配置。</p>
+<h3 id="Value"><a href="#Value" class="headerlink" title="@Value"></a>@Value</h3><p>该注解用于逐个读取配置文件中的配置。</p>
 <p>例如：</p>
 <p>在核心配置文件中加入自定义配置：</p>
 <figure class="highlight properties"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs properties"><span class="hljs-attr">name</span>=<span class="hljs-string">LiMing</span><br><span class="hljs-attr">address</span>=<span class="hljs-string">America</span><br></code></pre></td></tr></table></figure>
@@ -302,14 +296,10 @@ data-cites="Value">@Value</span></h3>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@Controller</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">SpringBootController</span> &#123;<br><br>    <span class="hljs-meta">@Value(&quot;$&#123;name&#125;&quot;)</span><br>    <span class="hljs-keyword">private</span> String name;<br><br>    <span class="hljs-meta">@Value(&quot;$&#123;address&#125;&quot;)</span><br>    <span class="hljs-keyword">private</span> String address;<br><br>    <span class="hljs-meta">@RequestMapping(value = &quot;/springboot/sayHello&quot;)</span><br>    <span class="hljs-meta">@ResponseBody</span><br>    <span class="hljs-keyword">public</span> String <span class="hljs-title function_">sayHello</span><span class="hljs-params">()</span> &#123;<br>        <span class="hljs-keyword">return</span> <span class="hljs-string">&quot;我的名字是:&quot;</span> + name + <span class="hljs-string">&quot;, 地址是:&quot;</span> + address;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
 <p>运行结果：</p>
 <p><img src="https://crayon-1302863897.cos.ap-beijing.myqcloud.com/image/image-20210121160701430.png" srcset="/img/loading.gif" lazyload alt="image-20210121160701430" style="zoom:50%;" /></p>
-<h3 id="configurationproperties"><span class="citation"
-data-cites="ConfigurationProperties">@ConfigurationProperties</span></h3>
-<p>该注解将整个文件映射成一个对象，用于自定义配置项比较多的情况。</p>
-<p>在config包中创建ConfigInfo类，并给该类加上@Component和<span
-class="citation"
-data-cites="ConfigurationProperties注解">@ConfigurationProperties注解</span>。</p>
+<h3 id="ConfigurationProperties"><a href="#ConfigurationProperties" class="headerlink" title="@ConfigurationProperties"></a>@ConfigurationProperties</h3><p>该注解将整个文件映射成一个对象，用于自定义配置项比较多的情况。</p>
+<p>在config包中创建ConfigInfo类，并给该类加上@Component和@ConfigurationProperties注解。</p>
 <p>必须指定prefix属性，表示前缀。prefix用来区分同名配置项。</p>
-<p>例子： 修改application.properties配置文件，加上自定义配置项：</p>
+<p>例子：<br>修改application.properties配置文件，加上自定义配置项：</p>
 <figure class="highlight properties"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs properties"><span class="hljs-attr">student.name</span>=<span class="hljs-string">Lily</span><br><span class="hljs-attr">student.address</span>=<span class="hljs-string">America</span><br></code></pre></td></tr></table></figure>
 <p>有前缀student。</p>
 <p>在config包中创建ConfigInfo类。</p>
@@ -400,7 +390,7 @@ data-cites="ConfigurationProperties注解">@ConfigurationProperties注解</span>
     
       <div class="col-lg-7 mx-auto nopadding-x-md">
         <div class="container custom mx-auto">
-          <link rel="stylesheet" href="/js/aplayer/APlayer.min.css"> <div id="aplayer" style="display:none"></div> <script src="/js/aplayer/APlayer.min.js"></script> <script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script> <script src="https://cdn.bootcss.com/jquery.pjax/2.0.1/jquery.pjax.min.js"></script> <script> // 对所有链接跳转事件绑定pjax容器container $(document).pjax("a[target!=_blank]", "#container", {fragment:"#container", timeout:8000}) </script>
+          <link rel="stylesheet" href="/js/aplayer/APlayer.min.css"> <div id="aplayer" style="display:none"></div> <script src="/js/aplayer/APlayer.min.js"></script> <script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script> <script src="https://cdn.bootcss.com/jquery.pjax/2.0.1/jquery.pjax.min.js"></script> <script> // 对所有链接跳转事件绑定pjax容器container $(document).pjax("a", "#pjax-container") </script>
         </div>
       </div>
     

@@ -16,12 +16,12 @@
   <meta name="author" content="ZhaoXin">
   <meta name="keywords" content="博客">
   
-    <meta name="description" content="我希望在使用Hexo的个人博客中加入背景音乐，最后找到Aplayer工具。这里说下Aplayer的使用。 引入文件并创建Aplayer对象 首先引入Aplayer的Js和Css文件，代码如下。 123&lt;link rel&#x3D;&quot;stylesheet&quot; href&#x3D;&quot;APlayer.min.css&quot;&gt;&lt;div id&#x3D;&quot;aplayer&amp;">
+    <meta name="description" content="我希望在使用Hexo的个人博客中加入背景音乐，最后找到Aplayer工具。这里说下Aplayer的使用。 引入文件并创建Aplayer对象首先引入Aplayer的Js和Css文件，代码如下。 123&lt;link rel&#x3D;&quot;stylesheet&quot; href&#x3D;&quot;APlayer.min.css&quot;&gt;&lt;div id&#x3D;&quot;aplayer&amp;quot">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Aplayer的使用">
 <meta property="og:url" content="https://zhaoquaner.github.io/2022/05/11/Aplayer%E4%BD%BF%E7%94%A8/index.html">
 <meta property="og:site_name" content="赵圈儿的博客">
-<meta property="og:description" content="我希望在使用Hexo的个人博客中加入背景音乐，最后找到Aplayer工具。这里说下Aplayer的使用。 引入文件并创建Aplayer对象 首先引入Aplayer的Js和Css文件，代码如下。 123&lt;link rel&#x3D;&quot;stylesheet&quot; href&#x3D;&quot;APlayer.min.css&quot;&gt;&lt;div id&#x3D;&quot;aplayer&amp;">
+<meta property="og:description" content="我希望在使用Hexo的个人博客中加入背景音乐，最后找到Aplayer工具。这里说下Aplayer的使用。 引入文件并创建Aplayer对象首先引入Aplayer的Js和Css文件，代码如下。 123&lt;link rel&#x3D;&quot;stylesheet&quot; href&#x3D;&quot;APlayer.min.css&quot;&gt;&lt;div id&#x3D;&quot;aplayer&amp;quot">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2022-05-11T03:31:21.000Z">
 <meta property="article:modified_time" content="2022-05-11T03:55:09.343Z">
@@ -252,8 +252,7 @@
             
             <div class="markdown-body">
               <p>我希望在使用Hexo的个人博客中加入背景音乐，最后找到Aplayer工具。这里说下Aplayer的使用。</p>
-<h3 id="引入文件并创建aplayer对象">引入文件并创建Aplayer对象</h3>
-<p>首先引入Aplayer的Js和Css文件，代码如下。</p>
+<h3 id="引入文件并创建Aplayer对象"><a href="#引入文件并创建Aplayer对象" class="headerlink" title="引入文件并创建Aplayer对象"></a>引入文件并创建Aplayer对象</h3><p>首先引入Aplayer的Js和Css文件，代码如下。</p>
 <figure class="highlight html"><table><tr><td class="gutter"><div class="code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></div></td><td class="code"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">link</span> <span class="hljs-attr">rel</span>=<span class="hljs-string">&quot;stylesheet&quot;</span> <span class="hljs-attr">href</span>=<span class="hljs-string">&quot;APlayer.min.css&quot;</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;aplayer&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">src</span>=<span class="hljs-string">&quot;APlayer.min.js&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span><br></code></pre></td></tr></table></figure>
 <p>在想要插入的页面位置对应的代码中插入这段代码。</p>
 <p>因为我不想让音乐播放器界面在博客界面显示，所以我把div对象的css属性<code>display</code>设为<code>none</code>。</p>
@@ -262,17 +261,15 @@
 <p>然后在主题文件夹的source文件夹中，创建music.js文件，创建Aplayer对象，代码如下。</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">const</span> ap = <span class="hljs-keyword">new</span> <span class="hljs-title class_">APlayer</span>(&#123;<br>    <span class="hljs-attr">container</span>: <span class="hljs-variable language_">document</span>.<span class="hljs-title function_">getElementById</span>(<span class="hljs-string">&#x27;aplayer&#x27;</span>),<br>    <span class="hljs-attr">mini</span>: <span class="hljs-literal">true</span>,<br>    <span class="hljs-attr">autoplay</span>:<span class="hljs-literal">false</span>,<br>    <span class="hljs-attr">loop</span>:<span class="hljs-string">&#x27;one&#x27;</span>,<br>   	<span class="hljs-attr">volume</span>:<span class="hljs-number">0.2</span>,<br>    <span class="hljs-attr">audio</span>: [&#123;<br>        <span class="hljs-attr">name</span>: <span class="hljs-string">&#x27;&#x27;</span>,<br>        <span class="hljs-attr">artist</span>: <span class="hljs-string">&#x27;&#x27;</span>,<br>        <span class="hljs-attr">url</span>: <span class="hljs-string">&#x27;&#x27;</span>,<br>        <span class="hljs-attr">cover</span>: <span class="hljs-string">&#x27;&#x27;</span>,<br>    &#125;]<br>&#125;);<br><br><span class="hljs-keyword">let</span> isPlaying = <span class="hljs-literal">false</span>;<br><span class="hljs-variable language_">document</span>.<span class="hljs-title function_">getElementsByClassName</span>(<span class="hljs-string">&quot;nav-link&quot;</span>)[<span class="hljs-number">5</span>].<span class="hljs-property">onclick</span> = <span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) &#123;<br>	<span class="hljs-keyword">if</span>(!isPlaying) &#123;<br>		ap.<span class="hljs-title function_">play</span>();<br>		isPlaying = <span class="hljs-literal">true</span>;<br>		<span class="hljs-variable language_">this</span>.<span class="hljs-property">innerHTML</span> = <span class="hljs-string">&#x27;&lt;i class=&quot;iconfont icon-music&quot;&gt;&lt;/i&gt; 暂停&#x27;</span>;<br>	&#125; <span class="hljs-keyword">else</span> &#123;<br>		ap.<span class="hljs-title function_">pause</span>();<br>		isPlaying = <span class="hljs-literal">false</span>;<br>		<span class="hljs-variable language_">this</span>.<span class="hljs-property">innerHTML</span> = <span class="hljs-string">&#x27;&lt;i class=&quot;iconfont icon-music&quot;&gt;&lt;/i&gt; 播放&#x27;</span>;<br>	&#125;<br>&#125;<br><br></code></pre></td></tr></table></figure>
 <p>其中，上面的创建Aplayer对象是从Aplayer官网复制的，audio属性中的name、artist、url和cover分别代表歌曲名称、歌手、歌曲链接地址和歌曲封面。</p>
-<p>下面的代码是我自己写的，其中的<code>document.getElementsByClassName("nav-link")[5]</code>就是播放按钮对象，这样写其实是比较偷懒的写法，不过我导航栏的结果一般也不会再变动，所以直接写<code>[5]</code>也没啥问题。</p>
+<p>下面的代码是我自己写的，其中的<code>document.getElementsByClassName(&quot;nav-link&quot;)[5]</code>就是播放按钮对象，这样写其实是比较偷懒的写法，不过我导航栏的结果一般也不会再变动，所以直接写<code>[5]</code>也没啥问题。</p>
 <p><code>ap.play()</code>和<code>ap.pause()</code>分别代表歌曲的播放和暂停。</p>
 <p>然后将music.js文件路径添加到fluid主题配置文件中的<code>custom_js</code>下，这样网站加载时就会引入该文件。</p>
-<h3 id="歌曲链接地址">歌曲链接地址</h3>
-<p>在尝试找了众多音乐网站的外链地址后，我放弃了。大多数地址都无法使用，我也不知道怎么搞的。</p>
+<h3 id="歌曲链接地址"><a href="#歌曲链接地址" class="headerlink" title="歌曲链接地址"></a>歌曲链接地址</h3><p>在尝试找了众多音乐网站的外链地址后，我放弃了。大多数地址都无法使用，我也不知道怎么搞的。</p>
 <p>而且很多音乐网站也没有我想要的音乐资源。</p>
 <p>最后使用的方法是，我把想要播放的音乐文件下载到本地，但如果直接引入本地的音乐地址，网站加载会慢很多，因为大多数音乐文件还是比较大的。</p>
 <p>所以我将文件上传到腾讯云的对象存储中，然后在url中填入对象存储生成的文件链接地址。</p>
 <p>因为不显示音乐播放器，所以name、artist和cover不需要填。</p>
-<p>在做完这些后，使用<code>hexo clean &amp;&amp; hexo generate
-&amp;&amp; hexo deploy</code>，重新生成文件并部署到服务器。</p>
+<p>在做完这些后，使用<code>hexo clean &amp;&amp; hexo generate &amp;&amp; hexo deploy</code>，重新生成文件并部署到服务器。</p>
 <p>最后，就可以享受边浏览博客，边听音乐的乐趣啦。</p>
 
             </div>
@@ -347,7 +344,7 @@
     
       <div class="col-lg-7 mx-auto nopadding-x-md">
         <div class="container custom mx-auto">
-          <link rel="stylesheet" href="/js/aplayer/APlayer.min.css"> <div id="aplayer" style="display:none"></div> <script src="/js/aplayer/APlayer.min.js"></script> <script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script> <script src="https://cdn.bootcss.com/jquery.pjax/2.0.1/jquery.pjax.min.js"></script> <script> // 对所有链接跳转事件绑定pjax容器container $(document).pjax("a[target!=_blank]", "#container", {fragment:"#container", timeout:8000}) </script>
+          <link rel="stylesheet" href="/js/aplayer/APlayer.min.css"> <div id="aplayer" style="display:none"></div> <script src="/js/aplayer/APlayer.min.js"></script> <script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script> <script src="https://cdn.bootcss.com/jquery.pjax/2.0.1/jquery.pjax.min.js"></script> <script> // 对所有链接跳转事件绑定pjax容器container $(document).pjax("a", "#pjax-container") </script>
         </div>
       </div>
     

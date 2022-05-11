@@ -16,12 +16,12 @@
   <meta name="author" content="ZhaoXin">
   <meta name="keywords" content="博客">
   
-    <meta name="description" content="自己的做法 算法思想 维护两个虚链表，一个是奇数项组成的链表，一个是偶数项组成的链表。 之所以叫虚链表，是因为并没有创建新的节点，是在原来的链表上虚拟出来的。 使用指针cur遍历链表，但是cur每次走两步，也就是cur只会指向奇数项节点。 然后将该奇数项节点和其后的偶数项节点分别插入到两个虚链表的尾部。 因为奇数项链表一定在偶数项链表之前。 所以对于奇数项链表，只需要维护一个指向">
+    <meta name="description" content="自己的做法算法思想维护两个虚链表，一个是奇数项组成的链表，一个是偶数项组成的链表。 之所以叫虚链表，是因为并没有创建新的节点，是在原来的链表上虚拟出来的。 使用指针cur遍历链表，但是cur每次走两步，也就是cur只会指向奇数项节点。 然后将该奇数项节点和其后的偶数项节点分别插入到两个虚链表的尾部。 因为奇数项链表一定在偶数项链表之前。 所以对于奇数项链表，只需要维护一个指向尾节点的指针odd即">
 <meta property="og:type" content="article">
 <meta property="og:title" content="33-奇偶链表">
 <meta property="og:url" content="https://zhaoquaner.github.io/2022/05/11/leetcode/%E9%93%BE%E8%A1%A8/33-%E5%A5%87%E5%81%B6%E9%93%BE%E8%A1%A8/index.html">
 <meta property="og:site_name" content="赵圈儿的博客">
-<meta property="og:description" content="自己的做法 算法思想 维护两个虚链表，一个是奇数项组成的链表，一个是偶数项组成的链表。 之所以叫虚链表，是因为并没有创建新的节点，是在原来的链表上虚拟出来的。 使用指针cur遍历链表，但是cur每次走两步，也就是cur只会指向奇数项节点。 然后将该奇数项节点和其后的偶数项节点分别插入到两个虚链表的尾部。 因为奇数项链表一定在偶数项链表之前。 所以对于奇数项链表，只需要维护一个指向">
+<meta property="og:description" content="自己的做法算法思想维护两个虚链表，一个是奇数项组成的链表，一个是偶数项组成的链表。 之所以叫虚链表，是因为并没有创建新的节点，是在原来的链表上虚拟出来的。 使用指针cur遍历链表，但是cur每次走两步，也就是cur只会指向奇数项节点。 然后将该奇数项节点和其后的偶数项节点分别插入到两个虚链表的尾部。 因为奇数项链表一定在偶数项链表之前。 所以对于奇数项链表，只需要维护一个指向尾节点的指针odd即">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://crayon-1302863897.cos.ap-beijing.myqcloud.com/image/image-20210511152514002.png">
 <meta property="article:published_time" content="2022-05-11T07:33:39.000Z">
@@ -211,7 +211,7 @@
   
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      2k 字
+      1.9k 字
     </span>
   
 
@@ -254,9 +254,7 @@
             
             <div class="markdown-body">
               <p><img src="https://crayon-1302863897.cos.ap-beijing.myqcloud.com/image/image-20210511152514002.png" srcset="/img/loading.gif" lazyload alt="image-20210511152514002" style="zoom:50%;" /></p>
-<h2 id="自己的做法">自己的做法</h2>
-<h3 id="算法思想">算法思想</h3>
-<p>维护两个虚链表，一个是奇数项组成的链表，一个是偶数项组成的链表。</p>
+<h2 id="自己的做法"><a href="#自己的做法" class="headerlink" title="自己的做法"></a>自己的做法</h2><h3 id="算法思想"><a href="#算法思想" class="headerlink" title="算法思想"></a>算法思想</h3><p>维护两个虚链表，一个是奇数项组成的链表，一个是偶数项组成的链表。</p>
 <p>之所以叫虚链表，是因为并没有创建新的节点，是在原来的链表上虚拟出来的。</p>
 <p>使用指针cur遍历链表，但是cur每次走两步，也就是cur只会指向奇数项节点。</p>
 <p>然后将该奇数项节点和其后的偶数项节点分别插入到两个虚链表的尾部。</p>
@@ -264,37 +262,27 @@
 <p>所以对于奇数项链表，只需要维护一个指向尾节点的指针odd即可；</p>
 <p>对于偶数项链表，因为每次插入一个奇数项节点，都需要连接到后面的偶数项节点的头部，所以需要维护两个指针：</p>
 <p>even_head和even_tail，即链表头部和尾部。</p>
-<h3 id="算法实现">算法实现</h3>
-<figure class="highlight c++"><table><tr><td class="gutter"><div class="code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></div></td><td class="code"><pre><code class="hljs c++"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Solution</span> &#123;<br><span class="hljs-keyword">public</span>:<br>    <span class="hljs-function">ListNode* <span class="hljs-title">oddEvenList</span><span class="hljs-params">(ListNode* head)</span> </span>&#123;<br>        <span class="hljs-keyword">if</span>(head == <span class="hljs-literal">nullptr</span> || head-&gt;next == <span class="hljs-literal">nullptr</span>) &#123;<br>            <span class="hljs-keyword">return</span> head;<br>        &#125;<br>        ListNode * odd = head;              <span class="hljs-comment">//奇数链表尾部</span><br>        ListNode * even_head = head-&gt;next;  <span class="hljs-comment">//偶数链表头部</span><br>        ListNode * even_tail = head-&gt;next;  <span class="hljs-comment">//偶数链表尾部</span><br><br>        ListNode * cur = head-&gt;next-&gt;next;<br>        <span class="hljs-keyword">while</span> (cur) &#123;<br>            ListNode * temp = cur-&gt;next &amp;&amp; cur-&gt;next-&gt;next ? cur-&gt;next-&gt;next : <span class="hljs-literal">nullptr</span>;<br>            even_tail-&gt;next = cur-&gt;next;<br>            cur-&gt;next =even_head;<br>            odd-&gt;next = cur;<br><br>            odd = odd-&gt;next;<br>            even_tail = even_tail-&gt;next;<br>            cur = temp;<br>        &#125;<br>        <span class="hljs-keyword">return</span> head;<br>    &#125;<br>&#125;;<br></code></pre></td></tr></table></figure>
+<h3 id="算法实现"><a href="#算法实现" class="headerlink" title="算法实现"></a>算法实现</h3><figure class="highlight c++"><table><tr><td class="gutter"><div class="code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></div></td><td class="code"><pre><code class="hljs c++"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Solution</span> &#123;<br><span class="hljs-keyword">public</span>:<br>    <span class="hljs-function">ListNode* <span class="hljs-title">oddEvenList</span><span class="hljs-params">(ListNode* head)</span> </span>&#123;<br>        <span class="hljs-keyword">if</span>(head == <span class="hljs-literal">nullptr</span> || head-&gt;next == <span class="hljs-literal">nullptr</span>) &#123;<br>            <span class="hljs-keyword">return</span> head;<br>        &#125;<br>        ListNode * odd = head;              <span class="hljs-comment">//奇数链表尾部</span><br>        ListNode * even_head = head-&gt;next;  <span class="hljs-comment">//偶数链表头部</span><br>        ListNode * even_tail = head-&gt;next;  <span class="hljs-comment">//偶数链表尾部</span><br><br>        ListNode * cur = head-&gt;next-&gt;next;<br>        <span class="hljs-keyword">while</span> (cur) &#123;<br>            ListNode * temp = cur-&gt;next &amp;&amp; cur-&gt;next-&gt;next ? cur-&gt;next-&gt;next : <span class="hljs-literal">nullptr</span>;<br>            even_tail-&gt;next = cur-&gt;next;<br>            cur-&gt;next =even_head;<br>            odd-&gt;next = cur;<br><br>            odd = odd-&gt;next;<br>            even_tail = even_tail-&gt;next;<br>            cur = temp;<br>        &#125;<br>        <span class="hljs-keyword">return</span> head;<br>    &#125;<br>&#125;;<br></code></pre></td></tr></table></figure>
 <p>注：第13行temp赋值，也可以去掉对<code>cur-&gt;next-&gt;next</code>的判空。</p>
-<h3 id="性能分析">性能分析</h3>
-<p>时间复杂度：遍历链表，<span class="math inline">\(O(n)\)</span>。</p>
-<p>空间复杂度：<span class="math inline">\(O(1)\)</span>。</p>
-<h2 id="参考做法">参考做法</h2>
-<h3 id="算法思想-1">算法思想</h3>
-<p>物理分成两个链表，一个奇数链表，一个偶数链表，然后再将两个链表连接起来。</p>
+<h3 id="性能分析"><a href="#性能分析" class="headerlink" title="性能分析"></a>性能分析</h3><p>时间复杂度：遍历链表，$O(n)$。</p>
+<p>空间复杂度：$O(1)$。</p>
+<h2 id="参考做法"><a href="#参考做法" class="headerlink" title="参考做法"></a>参考做法</h2><h3 id="算法思想-1"><a href="#算法思想-1" class="headerlink" title="算法思想"></a>算法思想</h3><p>物理分成两个链表，一个奇数链表，一个偶数链表，然后再将两个链表连接起来。</p>
 <p>整个链表头节点就是奇数链表头节点，oddHead指针指向该节点；</p>
 <p>链表头节点的下一个节点就是偶数链表头节点，evenHead指针指向该节点。</p>
 <p>然后使用odd和even两个指针分别进行迭代，初始，odd指向oddHead，even指向evenHead。</p>
 <p>然后：</p>
-<ol type="1">
-<li>首先连接奇数节点，even的下一个节点就是奇数链表的下一个要连接的节点，即<code>odd-&gt;next
-= even-&gt;next</code>，然后<code>odd = odd-&gt;next</code></li>
-<li>然后链接偶数节点，此时odd的下一个节点就是偶数链表要连接的下一个节点，即<code>even-&gt;next
-= odd-&gt;next</code>，然后<code>even-&gt;next</code></li>
+<ol>
+<li>首先连接奇数节点，even的下一个节点就是奇数链表的下一个要连接的节点，即<code>odd-&gt;next = even-&gt;next</code>，然后<code>odd = odd-&gt;next</code></li>
+<li>然后链接偶数节点，此时odd的下一个节点就是偶数链表要连接的下一个节点，即<code>even-&gt;next = odd-&gt;next</code>，然后<code>even-&gt;next</code></li>
 </ol>
-<p>迭代结束的条件是：<code>even == null || even-&gt;next ==
-null</code>。</p>
+<p>迭代结束的条件是：<code>even == null || even-&gt;next == null</code>。</p>
 <p>因为：</p>
 <p>如果总节点数为2n，则奇偶节点各n个，且偶节点是尾节点，所以当even指向尾节点时，迭代结束，此时odd指向最后一个奇数节点；</p>
-<p>总节点为2n + 1时，偶节点有n个，奇数节点有n +
-1个，且奇数节点是尾节点，所以当even为空时，迭代结束，此时odd同样指向最后一个奇数节点。</p>
+<p>总节点为2n + 1时，偶节点有n个，奇数节点有n + 1个，且奇数节点是尾节点，所以当even为空时，迭代结束，此时odd同样指向最后一个奇数节点。</p>
 <p>最后将两个链表连接起来即可。</p>
-<h3 id="算法实现-1">算法实现</h3>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Solution</span> &#123;<br><span class="hljs-keyword">public</span>:<br>    <span class="hljs-function">ListNode* <span class="hljs-title">oddEvenList</span><span class="hljs-params">(ListNode* head)</span> </span>&#123;<br>        <span class="hljs-keyword">if</span>(head == <span class="hljs-literal">nullptr</span> || head-&gt;next == <span class="hljs-literal">nullptr</span>) &#123;<br>            <span class="hljs-keyword">return</span> head;<br>        &#125;<br>        ListNode * oddHead = head;              <span class="hljs-comment">//奇数链表</span><br>        ListNode * evenHead = head-&gt;next;  <span class="hljs-comment">//偶数链表</span><br>        ListNode * odd = oddHead;<br>        ListNode * even = evenHead;<br><br>        <span class="hljs-keyword">while</span> (even &amp;&amp; even-&gt;next) &#123;<br>            odd-&gt;next = even-&gt;next;<br>            odd = odd-&gt;next;<br><br>            even-&gt;next = odd-&gt;next;<br>            even = even-&gt;next;<br>        &#125;<br>        odd-&gt;next = evenHead;<br>        <span class="hljs-keyword">return</span> head;<br>    &#125;<br>&#125;;<br></code></pre></td></tr></table></figure>
-<h3 id="性能分析-1">性能分析</h3>
-<p>时间复杂度：<span class="math inline">\(O(n)\)</span>。</p>
-<p>空间复杂度：<span class="math inline">\(O(1)\)</span>。</p>
+<h3 id="算法实现-1"><a href="#算法实现-1" class="headerlink" title="算法实现"></a>算法实现</h3><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Solution</span> &#123;<br><span class="hljs-keyword">public</span>:<br>    <span class="hljs-function">ListNode* <span class="hljs-title">oddEvenList</span><span class="hljs-params">(ListNode* head)</span> </span>&#123;<br>        <span class="hljs-keyword">if</span>(head == <span class="hljs-literal">nullptr</span> || head-&gt;next == <span class="hljs-literal">nullptr</span>) &#123;<br>            <span class="hljs-keyword">return</span> head;<br>        &#125;<br>        ListNode * oddHead = head;              <span class="hljs-comment">//奇数链表</span><br>        ListNode * evenHead = head-&gt;next;  <span class="hljs-comment">//偶数链表</span><br>        ListNode * odd = oddHead;<br>        ListNode * even = evenHead;<br><br>        <span class="hljs-keyword">while</span> (even &amp;&amp; even-&gt;next) &#123;<br>            odd-&gt;next = even-&gt;next;<br>            odd = odd-&gt;next;<br><br>            even-&gt;next = odd-&gt;next;<br>            even = even-&gt;next;<br>        &#125;<br>        odd-&gt;next = evenHead;<br>        <span class="hljs-keyword">return</span> head;<br>    &#125;<br>&#125;;<br></code></pre></td></tr></table></figure>
+<h3 id="性能分析-1"><a href="#性能分析-1" class="headerlink" title="性能分析"></a>性能分析</h3><p>时间复杂度：$O(n)$。</p>
+<p>空间复杂度：$O(1)$。</p>
 
             </div>
             <hr>
@@ -370,7 +358,7 @@ null</code>。</p>
     
       <div class="col-lg-7 mx-auto nopadding-x-md">
         <div class="container custom mx-auto">
-          <link rel="stylesheet" href="/js/aplayer/APlayer.min.css"> <div id="aplayer" style="display:none"></div> <script src="/js/aplayer/APlayer.min.js"></script> <script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script> <script src="https://cdn.bootcss.com/jquery.pjax/2.0.1/jquery.pjax.min.js"></script> <script> // 对所有链接跳转事件绑定pjax容器container $(document).pjax("a[target!=_blank]", "#container", {fragment:"#container", timeout:8000}) </script>
+          <link rel="stylesheet" href="/js/aplayer/APlayer.min.css"> <div id="aplayer" style="display:none"></div> <script src="/js/aplayer/APlayer.min.js"></script> <script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script> <script src="https://cdn.bootcss.com/jquery.pjax/2.0.1/jquery.pjax.min.js"></script> <script> // 对所有链接跳转事件绑定pjax容器container $(document).pjax("a", "#pjax-container") </script>
         </div>
       </div>
     

@@ -16,12 +16,12 @@
   <meta name="author" content="ZhaoXin">
   <meta name="keywords" content="博客">
   
-    <meta name="description" content="Redis是key-value型数据库。所以有操作key的一类命令，同样也有操作value的一类命令。 keys 语法：keys pattern 作用：查找所有符合模式pattern的key，pattern可以使用通配符。 通配符：         1. *：表示0-多个字符，keys *代表查询所有key         2. ?：表示单个字符，例如keys hel?o，可匹配hel">
+    <meta name="description" content="Redis是key-value型数据库。所以有操作key的一类命令，同样也有操作value的一类命令。 keys语法：keys pattern 作用：查找所有符合模式pattern的key，pattern可以使用通配符。 通配符：         1. *：表示0-多个字符，keys *代表查询所有key         2. ?：表示单个字符，例如keys hel?o，可匹配hello，helq">
 <meta property="og:type" content="article">
 <meta property="og:title" content="3-关于key的命令">
 <meta property="og:url" content="https://zhaoquaner.github.io/2022/05/11/Redis/3-%E5%85%B3%E4%BA%8Ekey%E7%9A%84%E5%91%BD%E4%BB%A4/index.html">
 <meta property="og:site_name" content="赵圈儿的博客">
-<meta property="og:description" content="Redis是key-value型数据库。所以有操作key的一类命令，同样也有操作value的一类命令。 keys 语法：keys pattern 作用：查找所有符合模式pattern的key，pattern可以使用通配符。 通配符：         1. *：表示0-多个字符，keys *代表查询所有key         2. ?：表示单个字符，例如keys hel?o，可匹配hel">
+<meta property="og:description" content="Redis是key-value型数据库。所以有操作key的一类命令，同样也有操作value的一类命令。 keys语法：keys pattern 作用：查找所有符合模式pattern的key，pattern可以使用通配符。 通配符：         1. *：表示0-多个字符，keys *代表查询所有key         2. ?：表示单个字符，例如keys hel?o，可匹配hello，helq">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://crayon-1302863897.cos.ap-beijing.myqcloud.com/image/image-20210101131747885.png">
 <meta property="og:image" content="https://crayon-1302863897.cos.ap-beijing.myqcloud.com/image/image-20210101132026879.png">
@@ -262,36 +262,31 @@
             
             <div class="markdown-body">
               <p>Redis是key-value型数据库。所以有操作key的一类命令，同样也有操作value的一类命令。</p>
-<h2 id="keys">keys</h2>
-<p>语法：keys pattern</p>
+<h2 id="keys"><a href="#keys" class="headerlink" title="keys"></a>keys</h2><p>语法：keys pattern</p>
 <p>作用：查找所有符合模式pattern的key，pattern可以使用通配符。</p>
 <p>通配符：</p>
 <div class="code-wrapper"><pre><code class="hljs">        1. *：表示0-多个字符，keys *代表查询所有key
-        2. ?：表示单个字符，例如keys hel?o，可匹配hello，helqo等</code></pre></div>
-<p><img src="https://crayon-1302863897.cos.ap-beijing.myqcloud.com/image/image-20210101131747885.png" srcset="/img/loading.gif" lazyload alt="image-20210101131747885" style="zoom:80%;" /></p>
-<h2 id="exists">exists</h2>
-<p>语法：exists key [key..]</p>
+        2. ?：表示单个字符，例如keys hel?o，可匹配hello，helqo等
+</code></pre></div><p><img src="https://crayon-1302863897.cos.ap-beijing.myqcloud.com/image/image-20210101131747885.png" srcset="/img/loading.gif" lazyload alt="image-20210101131747885" style="zoom:80%;" /></p>
+<h2 id="exists"><a href="#exists" class="headerlink" title="exists"></a>exists</h2><p>语法：exists key [key..]</p>
 <p>作用：判断指定的key或多个key是否存在。</p>
 <p>返回值：返回存在key的数量，不管是查找一个key还是多个key</p>
 <p><img src="https://crayon-1302863897.cos.ap-beijing.myqcloud.com/image/image-20210101132026879.png" srcset="/img/loading.gif" lazyload alt="image-20210101132026879" style="zoom:67%;" /></p>
-<h2 id="expire">expire</h2>
-<p>语法：expire key seconds</p>
+<h2 id="expire"><a href="#expire" class="headerlink" title="expire"></a>expire</h2><p>语法：expire key seconds</p>
 <p>作用：设置key的生存时间，超过时间，key会自动删除，单位是秒</p>
 <p>返回值：设置成功返回1，不成功是0</p>
 <p>如果不设置，那么key会永久保存。</p>
 <p><img src="https://crayon-1302863897.cos.ap-beijing.myqcloud.com/image/image-20210101132515408.png" srcset="/img/loading.gif" lazyload alt="image-20210101132515408" style="zoom:67%;" /></p>
-<h2 id="ttl">ttl</h2>
-<p>语法 ：ttl key</p>
+<h2 id="ttl"><a href="#ttl" class="headerlink" title="ttl"></a>ttl</h2><p>语法 ：ttl key</p>
 <p>作用：返回key的剩余时间(time to live)，以秒为单位</p>
 <p>返回值：</p>
 <ul>
-<li>返回 -1：代表没有设置key的生存时间，永不过期</li>
-<li>返回 -2 ：代表不存在该key</li>
+<li>返回   -1：代表没有设置key的生存时间，永不过期</li>
+<li>返回   -2 ：代表不存在该key</li>
 <li>数字：key的剩余时间，秒为单位</li>
 </ul>
 <p><img src="https://crayon-1302863897.cos.ap-beijing.myqcloud.com/image/image-20210101132827883.png" srcset="/img/loading.gif" lazyload alt="image-20210101132827883" style="zoom:67%;" /></p>
-<h2 id="type">type</h2>
-<p>语法：type key</p>
+<h2 id="type"><a href="#type" class="headerlink" title="type"></a>type</h2><p>语法：type key</p>
 <p>作用：查看key存储的value值得数据类型</p>
 <p>返回值：使用字符串表示的数据类型</p>
 <ul>
@@ -303,47 +298,50 @@
 <li>hash：哈希表</li>
 </ul>
 <p><img src="https://crayon-1302863897.cos.ap-beijing.myqcloud.com/image/image-20210101133050493.png" srcset="/img/loading.gif" lazyload alt="image-20210101133050493" style="zoom:67%;" /></p>
-<h2 id="del">del</h2>
-<p>语法：del key [key..]</p>
+<h2 id="del"><a href="#del" class="headerlink" title="del"></a>del</h2><p>语法：del key [key..]</p>
 <p>作用：删除存在的key，不存在的key忽略</p>
 <p>返回值：数字，删除的key的数量</p>
 <p><img src="https://crayon-1302863897.cos.ap-beijing.myqcloud.com/image/image-20210101133229831.png" srcset="/img/loading.gif" lazyload alt="image-20210101133229831" style="zoom:67%;" /></p>
-<h2 id="persist">persist</h2>
-<p>语法：persist key</p>
+<h2 id="persist"><a href="#persist" class="headerlink" title="persist"></a>persist</h2><p>语法：persist key </p>
 <p>作用：移除key的过期时间，key将持久保持</p>
 <p>返回值：成功返回1，失败返回0</p>
-<h2 id="其他命令">其他命令</h2>
-<ol type="1">
+<h2 id="其他命令"><a href="#其他命令" class="headerlink" title="其他命令"></a>其他命令</h2><ol>
 <li><p>randomkey</p>
-<p>语法：randomkey</p>
-<p>作用：从当前库随机返回一个key</p>
-<p>返回值：返回一个key</p></li>
-<li><p>move</p>
-<p>语法：move key db</p>
-<p>作用：将当前数据库中的指定key移动到数据库db中</p>
-<p>返回值：成功返回1，失败返回0</p></li>
+<p> 语法：randomkey</p>
+<p> 作用：从当前库随机返回一个key</p>
+<p> 返回值：返回一个key</p>
+</li>
+<li><p>move </p>
+<p> 语法：move key db</p>
+<p> 作用：将当前数据库中的指定key移动到数据库db中</p>
+<p> 返回值：成功返回1，失败返回0</p>
+</li>
 <li><p>pttl</p>
-<p>语法：pttl key</p>
-<p>作用：以毫秒为单位，返回key的剩余过期时间</p>
-<p>返回值：</p>
+<p> 语法：pttl key</p>
+<p> 作用：以毫秒为单位，返回key的剩余过期时间</p>
+<p> 返回值：</p>
 <ul>
 <li>-1：没有设置key的过期时间，永久保存</li>
 <li>-2：不存在该key</li>
 <li>数字：以毫秒为单位，key的剩余过期时间</li>
-</ul></li>
+</ul>
+</li>
 <li><p>rename</p>
-<p>语法：rename key newkey</p>
-<p>作用：重命名key为newkey</p>
-<p>返回OK代表成功</p>
-<p>当库中已存在newkey时，那么newkey对应的值将被覆盖，也就是newkey对应的value将是key对应的value</p>
-<p><img src="https://crayon-1302863897.cos.ap-beijing.myqcloud.com/image/image-20210101134657570.png" srcset="/img/loading.gif" lazyload alt="image-20210101134657570" style="zoom:67%;" /></p></li>
+<p> 语法：rename key newkey</p>
+<p> 作用：重命名key为newkey</p>
+<p> 返回OK代表成功</p>
+<p> 当库中已存在newkey时，那么newkey对应的值将被覆盖，也就是newkey对应的value将是key对应的value</p>
+<p> <img src="https://crayon-1302863897.cos.ap-beijing.myqcloud.com/image/image-20210101134657570.png" srcset="/img/loading.gif" lazyload alt="image-20210101134657570" style="zoom:67%;" /></p>
+</li>
 <li><p>renamenx</p>
-<p>语法：rename key newkey</p>
-<p>作用：当newkey不存在时，将key改名为newkey。也就是避免覆盖已存在的key对应的value</p></li>
+<p> 语法：rename key newkey</p>
+<p> 作用：当newkey不存在时，将key改名为newkey。也就是避免覆盖已存在的key对应的value</p>
+</li>
 <li><p>dump</p>
-<p>语法：dump key</p>
-<p>作用：序列为给定key</p>
-<p>返回值：若序列化成功，则返回被序列化的值。</p></li>
+<p> 语法：dump key</p>
+<p> 作用：序列为给定key</p>
+<p> 返回值：若序列化成功，则返回被序列化的值。</p>
+</li>
 </ol>
 
             </div>
@@ -426,7 +424,7 @@
     
       <div class="col-lg-7 mx-auto nopadding-x-md">
         <div class="container custom mx-auto">
-          <link rel="stylesheet" href="/js/aplayer/APlayer.min.css"> <div id="aplayer" style="display:none"></div> <script src="/js/aplayer/APlayer.min.js"></script> <script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script> <script src="https://cdn.bootcss.com/jquery.pjax/2.0.1/jquery.pjax.min.js"></script> <script> // 对所有链接跳转事件绑定pjax容器container $(document).pjax("a[target!=_blank]", "#container", {fragment:"#container", timeout:8000}) </script>
+          <link rel="stylesheet" href="/js/aplayer/APlayer.min.css"> <div id="aplayer" style="display:none"></div> <script src="/js/aplayer/APlayer.min.js"></script> <script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script> <script src="https://cdn.bootcss.com/jquery.pjax/2.0.1/jquery.pjax.min.js"></script> <script> // 对所有链接跳转事件绑定pjax容器container $(document).pjax("a", "#pjax-container") </script>
         </div>
       </div>
     

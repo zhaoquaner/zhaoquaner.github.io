@@ -16,12 +16,12 @@
   <meta name="author" content="ZhaoXin">
   <meta name="keywords" content="博客">
   
-    <meta name="description" content="##　包装类 基本数据类型的数据不具备“对象”的特性，例如所有引用变量类型都继承了Object类，但基本数据类型却没有。 因此为了解决基本数据类型的变量不能当做Object类型变量使用的问题，Java提供了包装类 byte---&gt;Byte, short---&gt;Short, int---&gt;Integer, long---&gt;Long, char---&gt;Charac">
+    <meta name="description" content="包装类基本数据类型的数据不具备“对象”的特性，例如所有引用变量类型都继承了Object类，但基本数据类型却没有。 因此为了解决基本数据类型的变量不能当做Object类型变量使用的问题，Java提供了包装类 byte—-&gt;Byte, short—-&gt;Short, int—-&gt;Integer, long—-&gt;Long, char—-&gt;Character, float—-">
 <meta property="og:type" content="article">
 <meta property="og:title" content="面向对象(下)">
 <meta property="og:url" content="https://zhaoquaner.github.io/2022/05/11/Java/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1(%E4%B8%8B)/index.html">
 <meta property="og:site_name" content="赵圈儿的博客">
-<meta property="og:description" content="##　包装类 基本数据类型的数据不具备“对象”的特性，例如所有引用变量类型都继承了Object类，但基本数据类型却没有。 因此为了解决基本数据类型的变量不能当做Object类型变量使用的问题，Java提供了包装类 byte---&gt;Byte, short---&gt;Short, int---&gt;Integer, long---&gt;Long, char---&gt;Charac">
+<meta property="og:description" content="包装类基本数据类型的数据不具备“对象”的特性，例如所有引用变量类型都继承了Object类，但基本数据类型却没有。 因此为了解决基本数据类型的变量不能当做Object类型变量使用的问题，Java提供了包装类 byte—-&gt;Byte, short—-&gt;Short, int—-&gt;Integer, long—-&gt;Long, char—-&gt;Character, float—-">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2022-05-11T01:01:39.000Z">
 <meta property="article:modified_time" content="2022-05-11T08:53:52.109Z">
@@ -210,7 +210,7 @@
   
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      12k 字
+      9.8k 字
     </span>
   
 
@@ -252,13 +252,10 @@
             <h1 style="display: none">面向对象(下)</h1>
             
             <div class="markdown-body">
-              <p>##　包装类</p>
-<p>基本数据类型的数据不具备“对象”的特性，例如所有引用变量类型都继承了Object类，但基本数据类型却没有。</p>
+              <h2 id="包装类"><a href="#包装类" class="headerlink" title="　包装类"></a>　包装类</h2><p>基本数据类型的数据不具备“对象”的特性，例如所有引用变量类型都继承了Object类，但基本数据类型却没有。</p>
 <p>因此为了解决基本数据类型的变量不能当做Object类型变量使用的问题，Java提供了包装类</p>
-<p>byte---&gt;Byte, short---&gt;Short, int---&gt;Integer,
-long---&gt;Long, char---&gt;Character, float---&gt;Float,
-double---&gt;Double,</p>
-<p>boolean---&gt;Boolean</p>
+<p>byte—-&gt;Byte, short—-&gt;Short, int—-&gt;Integer, long—-&gt;Long, char—-&gt;Character, float—-&gt;Float, double—-&gt;Double, </p>
+<p>boolean—-&gt;Boolean</p>
 <p>Java还提供了自动装箱和自动拆箱，自动装箱是把基本类型变量直接赋给对应包装类变量，不需要强制转换。</p>
 <p>拆箱就是反过来。</p>
 <p>除此之外，包装类提供了基本类型变量和字符串之间的转换，把字符串值转换成基本类型的值有两种方式</p>
@@ -267,13 +264,12 @@ double---&gt;Double,</p>
 <li>利用包装类提供的<strong>valueOf(String s)</strong>静态方法</li>
 </ul>
 <p>String类也提供了多个重载valueOf()方法，把基本类型变量转换成字符串。</p>
-<p><strong>提示：如果把基本类型变量转换成字符串，有一种更简单方法，就是将基本类型变量与""相连接</strong></p>
+<p><strong>提示：如果把基本类型变量转换成字符串，有一种更简单方法，就是将基本类型变量与””相连接</strong></p>
 <p><strong>注意：包装类的实现，例如Integer包装类，系统会创建一个cache的数组，把-128~127的整数放在数组中，缓存起来，当把一个在这个范围内的数自动装箱成一个实例时，实际指向的是数组对应的元素。</strong></p>
-<h2 id="处理对象">处理对象</h2>
-<p>Java对象都是Object类的实例，都可以直接调用该类的方法。</p>
+<h2 id="处理对象"><a href="#处理对象" class="headerlink" title="处理对象"></a>处理对象</h2><p>Java对象都是Object类的实例，都可以直接调用该类的方法。</p>
 <p>toString()是Object类的一个实例方法，它总是返回”类名@hashcode“值，当使用System.out.println(p)打印p对象时，打印的实际上是p对象toString的返回值。</p>
 <p>这个返回值不能满足输出对象内容的功能，因此用户需要自定义类能实现这个功能，就要重写这个方法。</p>
-<hr />
+<hr>
 <p>Java测试变量相等有两种方法，一个是用==运算符，一个是用equals方法。</p>
 <p>当时用==来判断两个变量是否相等时，如果都是基本类型变量且都是数值类型，则只要两个变量值相等，返回true</p>
 <p>但是如果是两个引用类型变量，则只有他们指向同一个对象时，即他们存放的地址值相等时，才会返回true。</p>
@@ -287,32 +283,24 @@ double---&gt;Double,</p>
 <li>一致性：对任意x和y，如果对象中判断相等的信息没有改变，则无论调用多少次equals方法，返回的结果应该保持一致</li>
 <li>对任意不是null的x，x.equals(null)一定返回false</li>
 </ul>
-<h3 id="关于常量池">关于常量池</h3>
-<p>JVM有一个常量池来管理在编译时被确定并被保存在已编译的.class文件中，它包括了类、方法、接口中的常量和字符串常量。</p>
+<h3 id="关于常量池"><a href="#关于常量池" class="headerlink" title="关于常量池"></a>关于常量池</h3><p>JVM有一个常量池来管理在编译时被确定并被保存在已编译的.class文件中，它包括了类、方法、接口中的常量和字符串常量。</p>
 <p>常量池分为两种：静态常量池和运行时常量池</p>
 <p>静态常量池就是上述所说的，被保存在了class文件，当运行时，class文件被加载到内存中，就是运行时常量池。</p>
-<p>当时用<code>String p1 = "hello"</code>和使用<code>String p2 = new
-String("hello")</code>时，前者会将字符串"hello"放在常量池中，让p1去引用，后者会先使用常量池管理"hello"直接量，然后调用String构造器创建一个新的String对象，它被保存在堆内存中。</p>
-<p>需要注意的是，如果在上面两句代码后再加<code>String p3 = "he" +
-"llo"</code>，则<code>p3 ==
-p1</code>返回true,因为系统在编译期间执行了+号，将字符串拼接起来，并自动进行优化，所以还是引用常量池的字符串。</p>
+<p>当时用<code>String p1 = &quot;hello&quot;</code>和使用<code>String p2 = new String(&quot;hello&quot;)</code>时，前者会将字符串”hello”放在常量池中，让p1去引用，后者会先使用常量池管理”hello”直接量，然后调用String构造器创建一个新的String对象，它被保存在堆内存中。</p>
+<p>需要注意的是，如果在上面两句代码后再加<code>String p3 = &quot;he&quot; + &quot;llo&quot;</code>，则<code>p3 == p1</code>返回true,因为系统在编译期间执行了+号，将字符串拼接起来，并自动进行优化，所以还是引用常量池的字符串。</p>
 <p>上面所说的包装类的实现也是一种常量池应用</p>
-<hr />
-<h2 id="类成员">类成员</h2>
-<p>用static修饰的成员就是类成员，类变量属于整个类，当系统第一次准备使用该类时，系统会为该类变量分配内存，类变量生效，直到该类被卸载。</p>
+<hr>
+<h2 id="类成员"><a href="#类成员" class="headerlink" title="类成员"></a>类成员</h2><p>用static修饰的成员就是类成员，类变量属于整个类，当系统第一次准备使用该类时，系统会为该类变量分配内存，类变量生效，直到该类被卸载。</p>
 <p>类变量可以通过类来访问，也可以通过类的对象来访问。但是当类的对象访问类变量时，<strong>其实系统会在底层转换成该类来访问类变量。当创建类的对象时，系统也不会再为类变量分配内存。</strong>即对象根本不拥有对应类的类变量。</p>
-<p>当一个类的对象为null时，如<code>Person
-p;</code>创建了一个Person类对应的对象，但是p还没有指向任何内存，即p =
-null，<strong>p依然可以直接访问类的类成员。</strong></p>
-<h2 id="final修饰符">final修饰符</h2>
-<p>final用于修饰类、变量和方法。表明是不可变的。</p>
+<p>当一个类的对象为null时，如<code>Person p;</code>创建了一个Person类对应的对象，但是p还没有指向任何内存，即p = null，<strong>p依然可以直接访问类的类成员。</strong></p>
+<h2 id="final修饰符"><a href="#final修饰符" class="headerlink" title="final修饰符"></a>final修饰符</h2><p>final用于修饰类、变量和方法。表明是不可变的。</p>
 <p>final修饰变量时，表示该变量一旦获得初始值就不能再改变了，final可以修饰成员变量，也可以修饰局部变量和形参。</p>
 <ul>
 <li>当final修饰成员变量时，虽然系统会默认初始化，但必须由程序员另外显式指定初始值</li>
 <li>final修饰局部变量时，系统不会默认初始化，也必须要显式指定初始值</li>
 </ul>
 <p><strong>final修饰引用类型变量时，引用类型变量本身不能改变，即它必须一直引用这个对象，但它所引用的对象是可以改变的。</strong></p>
-<hr />
+<hr>
 <p>对一个final变量来说，不管是类变量、成员变量还是局部变量，只要满足三个条件，这个final变量就不是一个变量，而是一个直接量或者常量。</p>
 <ul>
 <li>使用final修饰</li>
@@ -323,13 +311,13 @@ null，<strong>p依然可以直接访问类的类成员。</strong></p>
 <figure class="highlight java"><table><tr><td class="gutter"><div class="code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></div></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">Main</span>&#123;<br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">main</span><span class="hljs-params">(String args[])</span>&#123;<br>        <span class="hljs-keyword">final</span> <span class="hljs-type">int</span> <span class="hljs-variable">a</span> <span class="hljs-operator">=</span> <span class="hljs-number">5</span>;<br>        System.put.println(a);<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
 <p>对于这个程序来说，a变量不存在，当执行System.put.println(a)时，实际转换为执行System.put.println(5)。</p>
 <p>即变成了一个宏变量。编译器会把所有用到该变量的地方都替换成对应的值。</p>
-<hr />
+<hr>
 <p><strong>final方法</strong></p>
 <p>final修饰的方法不可以被重写，但可以被重载。</p>
-<hr />
+<hr>
 <p><strong>final类</strong></p>
 <p>final修饰的类不能有子类，</p>
-<hr />
+<hr>
 <p><strong>不可变类</strong></p>
 <p>不可变类是指创建该类的实例后，该实例的实例变量是不可改变的。</p>
 <p>如果要创建自定义的不可变类，要遵守几条规则</p>
@@ -340,9 +328,8 @@ null，<strong>p依然可以直接访问类的类成员。</strong></p>
 <li>如果有必要，重写equals和hashcode方法</li>
 </ul>
 <p><strong>注意：如果定义一个不可变类，但这个不可变类有引用类型变量，final修饰引用类型变量，则变量引用的对象不能改变，但对象本身可以改变，因此一定要采用必要措施来保护引用类型对象不会被改变，这样才能创建真正的不可变类。</strong></p>
-<hr />
-<h2 id="抽象类">抽象类</h2>
-<p>抽象方法和抽象类使用abstract修饰符来修饰，有抽象方法的类只能被定义成抽象类，抽象类里可以没有抽象方法。</p>
+<hr>
+<h2 id="抽象类"><a href="#抽象类" class="headerlink" title="抽象类"></a>抽象类</h2><p>抽象方法和抽象类使用abstract修饰符来修饰，有抽象方法的类只能被定义成抽象类，抽象类里可以没有抽象方法。</p>
 <p>抽象类只能用public修饰符或者省略修饰符来修饰</p>
 <p>几条规则</p>
 <ul>
@@ -354,22 +341,16 @@ null，<strong>p依然可以直接访问类的类成员。</strong></p>
 <p>抽象类不能用于创建实例，只能当做父类被子类继承。</p>
 <p><strong>注意：如果抽象类里有抽象方法和普通方法，则它的子类必须实现抽象方法，普通方法可实现可不实现。</strong></p>
 <p><strong>注意：abstract和static不能同时使用，但不是绝对的，它俩可以同时用来修饰内部类；abstract和final也不能同时使用；private和abstract也不能同时使用，因为abstract修饰的方法必须被子类重写才有意义。</strong></p>
-<hr />
-<h2 id="接口">接口</h2>
-<p>将抽象类进行的更彻底，可以提炼出一种更加特殊的“抽象类”——接口，接口可以定义默认方法、类方法和私有方法，都可以提供方法实现。</p>
+<hr>
+<h2 id="接口"><a href="#接口" class="headerlink" title="接口"></a>接口</h2><p>将抽象类进行的更彻底，可以提炼出一种更加特殊的“抽象类”——接口，接口可以定义默认方法、类方法和私有方法，都可以提供方法实现。</p>
 <p>接口可以继承多个接口，但是不能继承类。</p>
 <p>接口只能用public或者省略访问控制符来修饰。</p>
 <p>接口不能包含构造器和初始化块定义，可以包含成员变量(<strong>只能是静态变量</strong>)、方法(<strong>只能是抽象实例方法、默认方法、类方法和私有方法</strong>)、内部类(内部接口、枚举)。</p>
-<hr />
+<hr>
+<div class="table-container">
 <table>
-<colgroup>
-<col style="width: 36%" />
-<col style="width: 14%" />
-<col style="width: 28%" />
-<col style="width: 21%" />
-</colgroup>
 <thead>
-<tr class="header">
+<tr>
 <th></th>
 <th>有无方法体</th>
 <th>是否需要被实现类重写</th>
@@ -377,25 +358,25 @@ null，<strong>p依然可以直接访问类的类成员。</strong></p>
 </tr>
 </thead>
 <tbody>
-<tr class="odd">
+<tr>
 <td>普通方法(抽象实例方法)</td>
 <td>无</td>
 <td>必须被实现类重写</td>
 <td>public abstract</td>
 </tr>
-<tr class="even">
+<tr>
 <td>默认方法(带方法体实例方法)</td>
 <td>有</td>
 <td>可以被实现类重写</td>
 <td>public default</td>
 </tr>
-<tr class="odd">
+<tr>
 <td>类方法</td>
 <td>有</td>
 <td>不可以</td>
 <td>public static</td>
 </tr>
-<tr class="even">
+<tr>
 <td>私有方法</td>
 <td>有</td>
 <td>不可以</td>
@@ -403,24 +384,21 @@ null，<strong>p依然可以直接访问类的类成员。</strong></p>
 </tr>
 </tbody>
 </table>
+</div>
 <p><strong>注意</strong></p>
 <ul>
 <li>系统会自自动为普通方法加上abstract修饰符</li>
 <li>默认方法必须使用的default修饰，不能使用static修饰</li>
 <li>私有方法主要作为工具方法，不能使用default修饰，可以是类方法或者实例方法</li>
 </ul>
-<hr />
-<p>接口中定义的静态变量，不管是否使用public static
-final修饰符，系统都会为变量自动加上。
-<strong>且可以在接口修饰的访问范围内，使用静态变量，直接用“接口名.变量名”来进行调用。</strong></p>
-<p>接口中定义的内部类。内部接口和内部枚举都会自动采用public static
-修饰符。</p>
-<hr />
+<hr>
+<p>接口中定义的静态变量，不管是否使用public static final修饰符，系统都会为变量自动加上。<br>        <strong>且可以在接口修饰的访问范围内，使用静态变量，直接用“接口名.变量名”来进行调用。</strong></p>
+<p>接口中定义的内部类。内部接口和内部枚举都会自动采用public static 修饰符。</p>
+<hr>
 <p>一个接口如果继承了另一个接口，将会获得该接口的所有抽象方法和静态变量。</p>
 <p>一个类如果实现了一个接口，必须实现该接口所有抽象方法，可以实现该接口默认方法，同时获得该接口的静态变量。</p>
-<hr />
-<h3 id="使用接口">使用接口</h3>
-<p>接口不能用于创建实例，但可以声明引用类型变量，并且变量所引用的对象对应的类实现了该接口。</p>
+<hr>
+<h3 id="使用接口"><a href="#使用接口" class="headerlink" title="使用接口"></a>使用接口</h3><p>接口不能用于创建实例，但可以声明引用类型变量，并且变量所引用的对象对应的类实现了该接口。</p>
 <p>接口主要的用途就是被实现类实现。归纳来说，接口的用途有：</p>
 <ul>
 <li>定义变量，也可以用于强制类型转换</li>
@@ -429,40 +407,53 @@ final修饰符，系统都会为变量自动加上。
 </ul>
 <p>一个类可以实现多个接口，使用implements关键字，一旦实现接口，可以获得该接口的静态变量，普通方法和默认方法。</p>
 <p>而且因为子类重写父类方法时，访问权限只能更大或者相等，<strong>所以实现类实现接口的方法只能使用public修饰。</strong></p>
-<hr />
-<h2 id="接口和抽象类">接口和抽象类</h2>
-<p>接口和抽象类的相同点</p>
+<hr>
+<h2 id="接口和抽象类"><a href="#接口和抽象类" class="headerlink" title="接口和抽象类"></a>接口和抽象类</h2><p>接口和抽象类的相同点</p>
 <ul>
 <li>都不可以被实例化</li>
 <li>都位于继承树顶端，用于被其他类实现或继承</li>
 <li>都可以包含抽象方法，实现接口或继承抽象类的类都必须实现这些抽象方法</li>
 </ul>
 <p>接口和抽象类的不同点</p>
-<ol type="1">
+<ol>
 <li><ul>
-<li>接口体现的是一种规范，对于接口实现者来说，接口规定了实现者必须向外提供什么服务，对于接口调用者来说接口规定调用者可以使用哪些服务，某种程度上来说，接口类似整个系统的“总纲”，接口不应该经常被改变</li>
+<li>接口体现的是一种规范，对于接口实现者来说，接口规定了实现者必须向外提供什么服务，对于接口调用者来说接口规定调用者可以使用哪些服务，某种程度上来说，接口类似整个系统的“总纲”，接口不应该经常被改变<ul>
 <li>抽象类则体现了一种模块化设计，抽象类作为多个子类的抽象父类，可以当成系统实现的中间产品，这个中间产品已经实现了部分功能，但不能被当成最终产品，必须有进一步完善</li>
-</ul></li>
+</ul>
+</li>
+</ul>
+</li>
 <li><ul>
-<li>接口只能包含抽象方法、类方法、默认方法和私有方法，不能为普通的方法提供实现</li>
+<li>接口只能包含抽象方法、类方法、默认方法和私有方法，不能为普通的方法提供实现<ul>
 <li>抽象类可以包含普通方法</li>
-</ul></li>
+</ul>
+</li>
+</ul>
+</li>
 <li><ul>
-<li>接口只能定义静态常量，不能定义普通成员变量</li>
+<li>接口只能定义静态常量，不能定义普通成员变量<ul>
 <li>抽象类既可以定义普通成员变量，也可以定义静态常量</li>
-</ul></li>
+</ul>
+</li>
+</ul>
+</li>
 <li><ul>
-<li>接口中不包含初始化块和构造器</li>
+<li>接口中不包含初始化块和构造器<ul>
 <li>抽象类可以包含初始化块和构造器，构造器不是为了创建对象，而是让子类调用</li>
-</ul></li>
+</ul>
+</li>
+</ul>
+</li>
 <li><ul>
-<li>一个类可以实现多个接口</li>
+<li>一个类可以实现多个接口<ul>
 <li>一个类最多只有一个直接父类，包括抽象类</li>
-</ul></li>
+</ul>
+</li>
+</ul>
+</li>
 </ol>
-<hr />
-<h2 id="内部类">内部类</h2>
-<p>定义在其他类内部的类就是内部类，包含内部类的类是外部类。</p>
+<hr>
+<h2 id="内部类"><a href="#内部类" class="headerlink" title="内部类"></a>内部类</h2><p>定义在其他类内部的类就是内部类，包含内部类的类是外部类。</p>
 <p>内部类有几个作用</p>
 <ul>
 <li>内部类提供更好的封装，把内部类隐藏在外部类之内，同一个包的其他类无法访问</li>
@@ -477,9 +468,8 @@ final修饰符，系统都会为变量自动加上。
 <li>局部内部类：定义在一个方法或者一个作用域里面的类</li>
 <li>匿名内部类：通过已有的接口或者类来创建，没有名字</li>
 </ul>
-<hr />
-<h3 id="成员内部类">成员内部类</h3>
-<p>成员内部类是最普通的内部类，被定义在外部类的内部</p>
+<hr>
+<h3 id="成员内部类"><a href="#成员内部类" class="headerlink" title="成员内部类"></a>成员内部类</h3><p>成员内部类是最普通的内部类，被定义在外部类的内部</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Circle</span> &#123;<br>    <span class="hljs-type">double</span> <span class="hljs-variable">radius</span> <span class="hljs-operator">=</span> <span class="hljs-number">0</span>;<br>     <br>    <span class="hljs-keyword">public</span> <span class="hljs-title function_">Circle</span><span class="hljs-params">(<span class="hljs-type">double</span> radius)</span> &#123;<br>        <span class="hljs-built_in">this</span>.radius = radius;<br>    &#125;<br>     <br>    <span class="hljs-keyword">class</span> <span class="hljs-title class_">Draw</span> &#123;     <span class="hljs-comment">//内部类</span><br>        <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">drawSahpe</span><span class="hljs-params">()</span> &#123;<br>            System.out.println(<span class="hljs-string">&quot;drawshape&quot;</span>);<br>        &#125;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
 <p>例如Draw就是一个成员内部类</p>
 <p>特点：</p>
@@ -493,9 +483,8 @@ final修饰符，系统都会为变量自动加上。
 <li><strong>外部类不能直接访问成员内部类的成员变量和方法，必须要创建一个内部类对象，通过这个对象才能进行访问。</strong></li>
 <li><strong>如果成员内部类里定义了和外部类重名的变量，会发生隐藏现象，即默认访问的是成员内部类定义的变量，如果要访问外部类的同名成员，需要用“外部类名.this.成员变量/方法”来使用</strong></li>
 </ul>
-<hr />
-<h3 id="静态内部类">静态内部类</h3>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Circle</span> &#123;<br>    <span class="hljs-type">double</span> <span class="hljs-variable">radius</span> <span class="hljs-operator">=</span> <span class="hljs-number">0</span>;<br>     <br>    <span class="hljs-keyword">public</span> <span class="hljs-title function_">Circle</span><span class="hljs-params">(<span class="hljs-type">double</span> radius)</span> &#123;<br>        <span class="hljs-built_in">this</span>.radius = radius;<br>    &#125;<br>     <br>    <span class="hljs-keyword">static</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">Draw</span> &#123;     <span class="hljs-comment">//静态内部类</span><br>        <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">drawSahpe</span><span class="hljs-params">()</span> &#123;<br>            System.out.println(<span class="hljs-string">&quot;drawshape&quot;</span>);<br>        &#125;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+<hr>
+<h3 id="静态内部类"><a href="#静态内部类" class="headerlink" title="静态内部类"></a>静态内部类</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Circle</span> &#123;<br>    <span class="hljs-type">double</span> <span class="hljs-variable">radius</span> <span class="hljs-operator">=</span> <span class="hljs-number">0</span>;<br>     <br>    <span class="hljs-keyword">public</span> <span class="hljs-title function_">Circle</span><span class="hljs-params">(<span class="hljs-type">double</span> radius)</span> &#123;<br>        <span class="hljs-built_in">this</span>.radius = radius;<br>    &#125;<br>     <br>    <span class="hljs-keyword">static</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">Draw</span> &#123;     <span class="hljs-comment">//静态内部类</span><br>        <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">drawSahpe</span><span class="hljs-params">()</span> &#123;<br>            System.out.println(<span class="hljs-string">&quot;drawshape&quot;</span>);<br>        &#125;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
 <p>使用static修饰的成员内部类就是静态内部类，可以把外部类当成静态内部类的包</p>
 <p>特点</p>
 <ul>
@@ -503,26 +492,20 @@ final修饰符，系统都会为变量自动加上。
 <li><strong>静态内部类可以包含静态成员和非静态成员</strong></li>
 <li><strong>静态内部类只能访问外部类的静态成员，不能访问非静态成员</strong></li>
 </ul>
-<p>除此之外，接口里也可以定义内部类，默认使用public
-static修饰符，也就是说，接口内部类只能是静态内部类</p>
-<hr />
-<h2
-id="关于成员内部类和静态内部类访问问题">关于成员内部类和静态内部类访问问题</h2>
-<p>成员内部类可以访问外部类的静态成员和非静态成员，也可以访问它的外部类定义的其他静态内部类里的静态成员</p>
+<p>除此之外，接口里也可以定义内部类，默认使用public static修饰符，也就是说，接口内部类只能是静态内部类</p>
+<hr>
+<h2 id="关于成员内部类和静态内部类访问问题"><a href="#关于成员内部类和静态内部类访问问题" class="headerlink" title="关于成员内部类和静态内部类访问问题"></a>关于成员内部类和静态内部类访问问题</h2><p>成员内部类可以访问外部类的静态成员和非静态成员，也可以访问它的外部类定义的其他静态内部类里的静态成员</p>
 <p>外部类不能直接访问成员内部类的成员，只能通过创建成员内部类的对象来访问。</p>
 <p>静态内部类只能访问外部类的静态成员，不能访问外部类的非静态成员</p>
 <p>外部类可以访问静态内部类的静态成员，不能访问静态内部类的非静态成员</p>
 <p><strong>简单的来说，非静态的“东西”可以访问静态的和非静态的，但是静态的“东西”只能访问静态的</strong></p>
-<hr />
-<h2 id="局部内部类">局部内部类</h2>
-<p>局部内部类非常简单，把一个类放在方法中或者一个作用域中定义，它就是局部内部类，在这个方法或者作用域之外，这个类不存在，也不能被访问，因此局部内部类不能使用访问控制符或者static修饰符修饰</p>
+<hr>
+<h2 id="局部内部类"><a href="#局部内部类" class="headerlink" title="局部内部类"></a>局部内部类</h2><p>局部内部类非常简单，把一个类放在方法中或者一个作用域中定义，它就是局部内部类，在这个方法或者作用域之外，这个类不存在，也不能被访问，因此局部内部类不能使用访问控制符或者static修饰符修饰</p>
 <p>实际开发很少使用局部内部类，因为它的作用域太小</p>
-<hr />
-<p>##　匿名内部类</p>
-<p>匿名内部类适合只需要使用一次的类，创建匿名内部类时会立即创建一个该类的实例，匿名内部类不能重复使用</p>
+<hr>
+<h2 id="匿名内部类"><a href="#匿名内部类" class="headerlink" title="　匿名内部类"></a>　匿名内部类</h2><p>匿名内部类适合只需要使用一次的类，创建匿名内部类时会立即创建一个该类的实例，匿名内部类不能重复使用</p>
 <p>定义匿名内部类的格式为</p>
-<p><code>new 实现接口() | 父类构造器(实参列表)
-&#123;匿名内部类的类体部分&#125;</code></p>
+<p><code>new 实现接口() | 父类构造器(实参列表) &#123;匿名内部类的类体部分&#125;</code></p>
 <p>可以看出，匿名内部类必须继承一个父类或实现一个接口，但最多只能继承一个父类，或实现一个接口</p>
 <p>还有两条规则</p>
 <ul>
@@ -534,9 +517,8 @@ id="关于成员内部类和静态内部类访问问题">关于成员内部类�
 <p>即在Main里定义了test方法，需要Product参数，但Product无法直接创建实例，需要考虑传入Product接口实现类的对象，则可创建一个匿名内部类。</p>
 <p>匿名内部类必须实现它的抽象父类或者接口包含的所有抽象方法。</p>
 <p>被匿名内部类访问的局部变量必须使用final修饰。</p>
-<hr />
-<h2 id="lambda表达式">Lambda表达式</h2>
-<p>Lambda表达式就是用来创建只有一个抽象方法的接口的实例。</p>
+<hr>
+<h2 id="Lambda表达式"><a href="#Lambda表达式" class="headerlink" title="Lambda表达式"></a>Lambda表达式</h2><p>Lambda表达式就是用来创建只有一个抽象方法的接口的实例。</p>
 <p>只有一个抽象方法的接口叫做函数式接口，但可以包含多个默认方法和类方法。</p>
 <p>Lambda表达式的主要作用就是就是代替匿名内部类的繁琐语法，它由三部分组成</p>
 <ul>
@@ -552,17 +534,11 @@ id="关于成员内部类和静态内部类访问问题">关于成员内部类�
 <li>Lambda表达式的目标类型只能是明确的的函数式接口</li>
 <li>Lambda表达式只能为函数式接口创建对象，Lambda表达式只能实现一个方法</li>
 </ul>
-<h3 id="方法引用和构造器引用">方法引用和构造器引用</h3>
-<p>如果Lambda表达式的代码块只有一条代码，程序可以省略Lambda表达式的花括号，不仅如此，如果Lambda表达代码块只有一条代码，还可以在代码块中使用方法引用和构造器引用</p>
+<h3 id="方法引用和构造器引用"><a href="#方法引用和构造器引用" class="headerlink" title="方法引用和构造器引用"></a>方法引用和构造器引用</h3><p>如果Lambda表达式的代码块只有一条代码，程序可以省略Lambda表达式的花括号，不仅如此，如果Lambda表达代码块只有一条代码，还可以在代码块中使用方法引用和构造器引用</p>
+<div class="table-container">
 <table>
-<colgroup>
-<col style="width: 16%" />
-<col style="width: 14%" />
-<col style="width: 41%" />
-<col style="width: 28%" />
-</colgroup>
 <thead>
-<tr class="header">
+<tr>
 <th>种类</th>
 <th>示例</th>
 <th>说明</th>
@@ -570,67 +546,67 @@ id="关于成员内部类和静态内部类访问问题">关于成员内部类�
 </tr>
 </thead>
 <tbody>
-<tr class="odd">
+<tr>
 <td>引用类方法</td>
 <td>类名::类方法</td>
 <td>函数式接口被实现方法<br />全部参数传给该类方法</td>
-<td>(a, b..)-&gt;类名::类方法(a, b, ...)</td>
+<td>(a, b..)-&gt;类名::类方法(a, b, …)</td>
 </tr>
-<tr class="even">
+<tr>
 <td>引用特定对象实例方法</td>
 <td>特定对象::实例方法</td>
 <td>函数式接口被实现方法<br />全部参数传给该方法</td>
 <td>(a, b..)-&gt;特定对象.实例方法(a, b..)</td>
 </tr>
-<tr class="odd">
+<tr>
 <td>引用某类对象实例方法</td>
 <td>类名::实例方法</td>
 <td>接口第一个参数作为调用者<br />后面参数全部传给该方法</td>
-<td>(a. b...)-&gt;a.实例方法(a,b...)</td>
+<td>(a. b…)-&gt;a.实例方法(a,b…)</td>
 </tr>
-<tr class="even">
+<tr>
 <td>引用构造器</td>
 <td>类名::new</td>
 <td>接口全部参数传给该构造器</td>
-<td>(a, b...)-&gt;new 类名(a, b...)</td>
+<td>(a, b…)-&gt;new 类名(a, b…)</td>
 </tr>
 </tbody>
 </table>
-<hr />
+</div>
+<hr>
 <p>定义一个函数式接口</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@FunctionalInterface</span><br><span class="hljs-keyword">interface</span> <span class="hljs-title class_">Converter</span>&#123;<br>    Integer <span class="hljs-title function_">convert</span><span class="hljs-params">(String from)</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
-<ol type="1">
+<ol>
 <li><p>引用类方法</p>
-<p><code>Converter converter1 = from-&gt;
-Integer.valueOf(from);</code></p>
-<p>可以写成：</p>
-<p><code>Converter converter1 = Integer::valueOf;</code></p></li>
+<p> <code>Converter converter1 = from-&gt; Integer.valueOf(from);</code></p>
+<p> 可以写成：</p>
+<p> <code>Converter converter1 = Integer::valueOf;</code></p>
+</li>
 <li><p>引用特定对象实例方法</p>
-<p><code>Converter converter2 = from
--&gt;"kit.org".indexOf(from);</code></p>
-<p>可以写成：</p>
-<p><code>Converter converter2 = "fkit.org::indexOf;"</code></p></li>
+<p> <code>Converter converter2 = from -&gt;&quot;kit.org&quot;.indexOf(from);</code></p>
+<p> 可以写成：</p>
+<p> <code>Converter converter2 = &quot;fkit.org::indexOf;&quot;</code></p>
+</li>
 <li><p>引用某类对象的实例方法</p>
-<p>定义如下函数式接口</p>
-<p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@FunctionalInterface</span><br><span class="hljs-keyword">interface</span> <span class="hljs-title class_">Mytest</span>&#123;<br>    String <span class="hljs-title function_">test</span><span class="hljs-params">(String a, <span class="hljs-type">int</span> b, <span class="hljs-type">int</span> c)</span>;<br>&#125;<br></code></pre></td></tr></table></figure></p>
-<p>使用Lambda表达式创建对象</p>
-<p><code>Mytest mt = (a, b, c)-&gt; a.substring(a, b);</code></p>
-<p>可以写成：</p>
-<p><code>Mytest mt = String::substring;</code></p></li>
+<p> 定义如下函数式接口</p>
+ <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@FunctionalInterface</span><br><span class="hljs-keyword">interface</span> <span class="hljs-title class_">Mytest</span>&#123;<br>    String <span class="hljs-title function_">test</span><span class="hljs-params">(String a, <span class="hljs-type">int</span> b, <span class="hljs-type">int</span> c)</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+<p> 使用Lambda表达式创建对象</p>
+<p> <code>Mytest mt = (a, b, c)-&gt; a.substring(a, b);</code></p>
+<p> 可以写成：</p>
+<p> <code>Mytest mt = String::substring;</code></p>
+</li>
 <li><p>引用构造器</p>
-<p>定义如下函数式接口</p>
-<p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@FunctionalInterface</span><br><span class="hljs-keyword">interface</span> <span class="hljs-title class_">Mytest</span>&#123;<br>    JFrame <span class="hljs-title function_">win</span><span class="hljs-params">(String title)</span>;<br>&#125;<br></code></pre></td></tr></table></figure></p>
-<p>使用Lambda表达式创建一个对象</p>
-<p><code>Mytest mt = a -&gt; new JFrame(a);</code></p>
-<p>可以写成：</p>
-<p><code>Mytest mt = JFrame::new;</code></p></li>
+<p> 定义如下函数式接口</p>
+ <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@FunctionalInterface</span><br><span class="hljs-keyword">interface</span> <span class="hljs-title class_">Mytest</span>&#123;<br>    JFrame <span class="hljs-title function_">win</span><span class="hljs-params">(String title)</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+<p> 使用Lambda表达式创建一个对象</p>
+<p> <code>Mytest mt = a -&gt; new JFrame(a);</code></p>
+<p> 可以写成：</p>
+<p> <code>Mytest mt = JFrame::new;</code></p>
+</li>
 </ol>
-<h3
-id="匿名内部类和lambda表达式的区别和联系">匿名内部类和Lambda表达式的区别和联系</h3>
-<p>相似点：</p>
+<h3 id="匿名内部类和Lambda表达式的区别和联系"><a href="#匿名内部类和Lambda表达式的区别和联系" class="headerlink" title="匿名内部类和Lambda表达式的区别和联系"></a>匿名内部类和Lambda表达式的区别和联系</h3><p>相似点：</p>
 <ul>
-<li>都可以直接访问“effectively
-final”的局部变量，以及外部类的成员变量</li>
+<li>都可以直接访问“effectively final”的局部变量，以及外部类的成员变量</li>
 <li>它们创建的对象都可以直接调用从接口继承的默认方法</li>
 </ul>
 <p>不同点：</p>
@@ -639,17 +615,15 @@ final”的局部变量，以及外部类的成员变量</li>
 <li>匿名内部类可以为抽象类甚至普通类创建实例，但Lambda表达式不是</li>
 <li>匿名内部类实现的抽象方法的方法体允许调用接口定义的默认方法，但Lambda表达式不允许</li>
 </ul>
-<hr />
-<h2 id="枚举类">枚举类</h2>
-<p>实例有限且固定的类称为枚举类</p>
+<hr>
+<h2 id="枚举类"><a href="#枚举类" class="headerlink" title="枚举类"></a>枚举类</h2><p>实例有限且固定的类称为枚举类</p>
 <p>使用enum定义枚举类，他也可以有自己的成员变量、构造器和方法，可以实现接口</p>
 <p>但枚举类和普通类有区别</p>
 <ul>
 <li>枚举类可以实现接口，使用enum定义的枚举类默认继承了java.lang.Enum类，<strong>不是默认继承Object类，因此枚举类不能显式继承其他的父类</strong></li>
 <li>使用enum定义的非抽象的枚举类<strong>默认使用final修饰</strong></li>
 <li><strong>枚举类构造器只能使用private修饰，如果省略了访问控制符，系统会默认加上</strong></li>
-<li><strong>枚举类所有实例必须在枚举类第一行显式列出</strong>，否则这个枚举类永远不能产生实例，这些实例系统会自动添加<strong>public
-static final修饰</strong>，无需显式添加</li>
+<li><strong>枚举类所有实例必须在枚举类第一行显式列出</strong>，否则这个枚举类永远不能产生实例，这些实例系统会自动添加<strong>public static final修饰</strong>，无需显式添加</li>
 </ul>
 <p>枚举类提供一个values方法，可以遍历所有枚举值</p>
 <p>例子</p>
@@ -658,20 +632,13 @@ static final修饰</strong>，无需显式添加</li>
 <p>switch括号的表达式可以是任何枚举类型，且后面case无需添加枚举类作为限定。</p>
 <p>枚举类提供几种常用方法</p>
 <ul>
-<li><strong>int compareTo(E
-o)</strong>:用于与指定枚举对象比较顺序，如果该枚举对象在指定枚举对象之后，返回正整数，之前负整数，否则返回0</li>
+<li><strong>int compareTo(E o)</strong>:用于与指定枚举对象比较顺序，如果该枚举对象在指定枚举对象之后，返回正整数，之前负整数，否则返回0</li>
 <li><strong>String name()</strong>：返回此枚举实例的名称</li>
-<li><strong>String
-toString()</strong>:也是返回枚举实例名称，优先使用这个</li>
-<li><strong>int
-ordinal()</strong>:返回枚举值在类中的索引值，就是声明索引中的位置，从零开始</li>
-<li><strong>public static &lt;T extends Enum<T>&gt; T valueOf(Class<T>,
-String
-name)</strong>:静态方法，返回指定枚举类中制定名称的枚举值，名称必须与在该枚举类中声明时一致</li>
+<li><strong>String toString()</strong>:也是返回枚举实例名称，优先使用这个</li>
+<li><strong>int ordinal()</strong>:返回枚举值在类中的索引值，就是声明索引中的位置，从零开始</li>
+<li><strong>public static <T extends Enum<T>&gt; T valueOf(Class<T>, String name)</strong>:静态方法，返回指定枚举类中制定名称的枚举值，名称必须与在该枚举类中声明时一致</li>
 </ul>
-<h3 id="枚举类成员变量方法和构造器.">枚举类成员变量、方法和构造器.</h3>
-<p>Java应该把所有类设计成良好封装的类，所以不应该允许直接访问枚举类的成员变量，应该把成员变量全部设为private
-final修饰。</p>
+<h3 id="枚举类成员变量、方法和构造器"><a href="#枚举类成员变量、方法和构造器" class="headerlink" title="枚举类成员变量、方法和构造器."></a>枚举类成员变量、方法和构造器.</h3><p>Java应该把所有类设计成良好封装的类，所以不应该允许直接访问枚举类的成员变量，应该把成员变量全部设为private final修饰。</p>
 <p>例如一个枚举类</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">enum</span> <span class="hljs-title class_">Gender</span>&#123;<br>    MALE, FEMALE;<br>    <span class="hljs-keyword">public</span> String name;<br>&#125;<br></code></pre></td></tr></table></figure>
 <p>不应该允许直接访问Gender的name成员变量，如果出现</p>
@@ -680,8 +647,7 @@ final修饰。</p>
 <p>如果每个成员用final修饰，就应该在构造器为成员变量指定初始值，例子如下</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">enum</span> <span class="hljs-title class_">Gender</span>&#123;<br>    MALE(<span class="hljs-string">&quot;男&quot;</span>), FEMALE(<span class="hljs-string">&quot;女&quot;</span>);<br>    <span class="hljs-keyword">private</span> <span class="hljs-keyword">final</span> String name;<br> 	<span class="hljs-keyword">private</span> <span class="hljs-title function_">Gender</span><span class="hljs-params">(String name)</span>&#123;<br>        <span class="hljs-built_in">this</span>.name = name;<br>    &#125;<br>    <span class="hljs-keyword">public</span> String <span class="hljs-title function_">getName</span><span class="hljs-params">()</span>&#123;<br>        <span class="hljs-keyword">return</span> <span class="hljs-built_in">this</span>.name;<br>    &#125;<br>   <br>&#125;<br></code></pre></td></tr></table></figure>
 <p>在列出枚举值时直接调用构造器创建枚举类对象，这里无需使用new关键字</p>
-<p>###　实现接口的枚举类</p>
-<p>枚举类可以实现一个或多个接口</p>
+<h3 id="实现接口的枚举类"><a href="#实现接口的枚举类" class="headerlink" title="　实现接口的枚举类"></a>　实现接口的枚举类</h3><p>枚举类可以实现一个或多个接口</p>
 <p>例如定义一个接口</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">interface</span> <span class="hljs-title class_">GenderDesc</span><br>&#123;<br>	<span class="hljs-keyword">void</span> <span class="hljs-title function_">info</span><span class="hljs-params">()</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
 <p>然后可以使枚举类实现这个接口，但是如果直接实现info()方法时，<strong>那么每个枚举值在调用这个方法时都有相同行为方法，如果要让每个枚举值在调用这个方法时呈现不同的行为，可以让每个枚举值实现该方法。</strong></p>
@@ -769,7 +735,7 @@ final修饰。</p>
     
       <div class="col-lg-7 mx-auto nopadding-x-md">
         <div class="container custom mx-auto">
-          <link rel="stylesheet" href="/js/aplayer/APlayer.min.css"> <div id="aplayer" style="display:none"></div> <script src="/js/aplayer/APlayer.min.js"></script> <script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script> <script src="https://cdn.bootcss.com/jquery.pjax/2.0.1/jquery.pjax.min.js"></script> <script> // 对所有链接跳转事件绑定pjax容器container $(document).pjax("a[target!=_blank]", "#container", {fragment:"#container", timeout:8000}) </script>
+          <link rel="stylesheet" href="/js/aplayer/APlayer.min.css"> <div id="aplayer" style="display:none"></div> <script src="/js/aplayer/APlayer.min.js"></script> <script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script> <script src="https://cdn.bootcss.com/jquery.pjax/2.0.1/jquery.pjax.min.js"></script> <script> // 对所有链接跳转事件绑定pjax容器container $(document).pjax("a", "#pjax-container") </script>
         </div>
       </div>
     

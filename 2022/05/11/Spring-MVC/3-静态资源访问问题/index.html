@@ -16,12 +16,12 @@
   <meta name="author" content="ZhaoXin">
   <meta name="keywords" content="博客">
   
-    <meta name="description" content="**在之前配置DispatherServlet时，标签设置的是*.do。当时也写了，可以使用&#x2F;。** 那么所有请求都默认会给DispatherServlet来进行处理。 如果访问静态资源，DispatherServlet调用处理器映射器来查找相应处理器。当然是找不到的。因为DispatherServlet只能找到哪些使用@RequestMapper注解指定的处理器方法，所以这种情况下，所有的静">
+    <meta name="description" content="在之前配置DispatherServlet时，标签设置的是*.do。当时也写了，可以使用&#x2F;。 那么所有请求都默认会给DispatherServlet来进行处理。 如果访问静态资源，DispatherServlet调用处理器映射器来查找相应处理器。当然是找不到的。因为DispatherServlet只能找到哪些使用@RequestMapper注解指定的处理器方法，所以这种情况下，所有的静态资源获取请">
 <meta property="og:type" content="article">
 <meta property="og:title" content="3-静态资源访问问题">
 <meta property="og:url" content="https://zhaoquaner.github.io/2022/05/11/Spring-MVC/3-%E9%9D%99%E6%80%81%E8%B5%84%E6%BA%90%E8%AE%BF%E9%97%AE%E9%97%AE%E9%A2%98/index.html">
 <meta property="og:site_name" content="赵圈儿的博客">
-<meta property="og:description" content="**在之前配置DispatherServlet时，标签设置的是*.do。当时也写了，可以使用&#x2F;。** 那么所有请求都默认会给DispatherServlet来进行处理。 如果访问静态资源，DispatherServlet调用处理器映射器来查找相应处理器。当然是找不到的。因为DispatherServlet只能找到哪些使用@RequestMapper注解指定的处理器方法，所以这种情况下，所有的静">
+<meta property="og:description" content="在之前配置DispatherServlet时，标签设置的是*.do。当时也写了，可以使用&#x2F;。 那么所有请求都默认会给DispatherServlet来进行处理。 如果访问静态资源，DispatherServlet调用处理器映射器来查找相应处理器。当然是找不到的。因为DispatherServlet只能找到哪些使用@RequestMapper注解指定的处理器方法，所以这种情况下，所有的静态资源获取请">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://crayon-1302863897.cos.ap-beijing.myqcloud.com/image/image-20201217150523209.png">
 <meta property="og:image" content="https://crayon-1302863897.cos.ap-beijing.myqcloud.com/image/yBRFVxREPx.gif">
@@ -215,7 +215,7 @@
   
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      2.9k 字
+      2.8k 字
     </span>
   
 
@@ -257,46 +257,40 @@
             <h1 style="display: none">3-静态资源访问问题</h1>
             
             <div class="markdown-body">
-              <p>**在之前配置DispatherServlet时，标签<url-pattern>设置的是*.do。当时也写了，可以使用<code>/</code>。**</p>
+              <p><strong>在之前配置DispatherServlet时，标签<url-pattern>设置的是*.do。当时也写了，可以使用<code>/</code>。</strong></p>
 <p><strong>那么所有请求都默认会给DispatherServlet来进行处理。</strong></p>
 <p><strong>如果访问静态资源，DispatherServlet调用处理器映射器来查找相应处理器。当然是找不到的。因为DispatherServlet只能找到哪些使用@RequestMapper注解指定的处理器方法，所以这种情况下，所有的静态资源获取请求都会显示找不到，404错误。</strong></p>
 <p>在Tomcat中，有一个专门处理静态资源访问请求的Servlet，叫DefaultServlet。这个Servlet注册在Tomcat的web.xml中，可以在/conf/web.xml文件中找到。</p>
 <p>所以当在项目的web.xml文件中使用了<code>/</code>，就会替代tomcat的default。导致所有静态资源都给DispatherServlet处理。默认情况DispatherServlet是没有处理静态资源的能力的。</p>
-<h2 id="解决方案">解决方案</h2>
-<h3 id="使用">使用<mvn:defalut-servlet-handler /></h3>
-<p>在SpringMvc配置文件中声明<mvn:defalut-servlet-handler />标签后，springmvc框架会在容器中创建DefaultServletHttpRequestHandler处理器对象。它会对进入DisPatherServlet的URL进行检查，如果发现是静态资源的请求，就会把该请求转入Web应用服务器默认的Servlet处理。</p>
-<h3 id="使用-1">使用<mvn:resources /></h3>
-<p>在Spring3.0版本后，Spring定义了专门用于处理静态资源访问请求的处理器ResourceHttpRequestHandler。并且添加了<mvn:resources />标签，来解决静态资源无法访问的情况。</p>
+<h2 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h2><h3 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用<mvn:defalut-servlet-handler /></h3><p>在SpringMvc配置文件中声明<mvn:defalut-servlet-handler />标签后，springmvc框架会在容器中创建DefaultServletHttpRequestHandler处理器对象。它会对进入DisPatherServlet的URL进行检查，如果发现是静态资源的请求，就会把该请求转入Web应用服务器默认的Servlet处理。</p>
+<h3 id="使用-1"><a href="#使用-1" class="headerlink" title="使用"></a>使用<mvn:resources /></h3><p>在Spring3.0版本后，Spring定义了专门用于处理静态资源访问请求的处理器ResourceHttpRequestHandler。并且添加了<mvn:resources />标签，来解决静态资源无法访问的情况。</p>
 <p>在springmvc配置文件中加上该标签，就会创建ResourceHttpRequestHandler对象。</p>
 <p>格式为：</p>
-<p><mvc:resources location="" mapping = "" /></p>
+<mvc:resources location="" mapping = "" />
+
 <p>其中：</p>
 <ul>
-<li>location：表示静态资源所在目录，不要使用/WEB-INF目录及其子目录。例如"/images/"，<strong>两个斜杠不能缺，第一个代表根目录，第二个代表images目录下</strong>。</li>
-<li>mapper：表示对该资源的请求，一般使用通配符<code>**</code>。例如"/images/**
-<strong>"，代表images目录下的所有文件，包括子目录下的。</strong>斜杠同样不能少。**</li>
+<li>location：表示静态资源所在目录，不要使用/WEB-INF目录及其子目录。例如”/images/“，<strong>两个斜杠不能缺，第一个代表根目录，第二个代表images目录下</strong>。</li>
+<li>mapper：表示对该资源的请求，一般使用通配符<code>**</code>。例如”/images/<strong> </strong>“，代表images目录下的所有文件，包括子目录下的。<strong>斜杠同样不能少。</strong></li>
 </ul>
 <p>例如：</p>
 <p><img src="https://crayon-1302863897.cos.ap-beijing.myqcloud.com/image/image-20201217150523209.png" srcset="/img/loading.gif" lazyload alt="image-20201217150523209" style="zoom:67%;" /></p>
 <p><strong>注意：如果加上该标签，但是没有注解驱动标签<mvc:annotation-driven/>，那么动态资源和静态资源会发生冲突，导致动态资源无法访问。所以一定要加上注解驱动标签。</strong></p>
 <p><strong>为了更方便一些，不用每类资源写一个标签，可以把所有静态资源放在同一个目录(例如static)中，然后只用一个标签就可以配置所有静态资源。</strong></p>
-<h2 id="路径问题">路径问题</h2>
-<p><strong>区分一下相对路径前加斜杠<code>/</code>和不加的区别。</strong></p>
+<h2 id="路径问题"><a href="#路径问题" class="headerlink" title="路径问题"></a>路径问题</h2><p><strong>区分一下相对路径前加斜杠<code>/</code>和不加的区别。</strong></p>
 <p>在JSP、html、Js文件中使用的地址，都是在前端页面中的地址，是相对地址。</p>
 <p>地址有两种：</p>
 <ul>
 <li>相对地址：没有协议开头的，例如user.some.do，/user/some.do</li>
-<li>绝对地址：带有协议开头的，例如http://localhost</li>
+<li>绝对地址：带有协议开头的，例如<a target="_blank" rel="noopener" href="http://localhost">http://localhost</a></li>
 </ul>
-<p>相对地址不能独立使用，必须要有参考地址，参考地址 + 相对地址
-组成完整地址。</p>
+<p>相对地址不能独立使用，必须要有参考地址，参考地址 + 相对地址  组成完整地址。</p>
 <p>举一个例子：</p>
 <p>不加斜杠<code>/</code>：</p>
 <p>访问资源<code>http://localhost:80/myweb/request.html</code></p>
 <p>路径：<code>http://localhost:80/myweb/</code></p>
 <p>资源：<code>request.html</code></p>
-<p>那么当在request.html中发起user/some.do请求时(就是前端代码
-链接是user/some.do)，访问地址会变成<code>http://localhost:80/myweb/user/some.do</code>。所以当在前端点击链接时，访问地址是当前页面的路径加上链接地址。</p>
+<p>那么当在request.html中发起user/some.do请求时(就是前端代码 链接是user/some.do)，访问地址会变成<code>http://localhost:80/myweb/user/some.do</code>。所以当在前端点击链接时，访问地址是当前页面的路径加上链接地址。</p>
 <p>加上斜杠<code>/</code>：</p>
 <p>访问资源<code>http://localhost:80/myweb/request.html</code></p>
 <p>路径：<code>http://localhost:80/myweb/</code></p>
@@ -309,23 +303,14 @@
 <figure class="highlight java"><table><tr><td class="gutter"><div class="code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></div></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@RequestMapping(value = &quot;/user/some.do&quot;)</span><br><span class="hljs-keyword">public</span> String <span class="hljs-title function_">doStringData</span><span class="hljs-params">()</span> &#123;<br>  <span class="hljs-keyword">return</span> <span class="hljs-string">&quot;/request.html&quot;</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
 <p>html代码：</p>
 <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs html"><span class="hljs-meta">&lt;!DOCTYPE <span class="hljs-keyword">html</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">html</span> <span class="hljs-attr">lang</span>=<span class="hljs-string">&quot;en&quot;</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">head</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">meta</span> <span class="hljs-attr">charset</span>=<span class="hljs-string">&quot;UTF-8&quot;</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">title</span>&gt;</span>请求页面<span class="hljs-tag">&lt;/<span class="hljs-name">title</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">head</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">body</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">center</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">href</span>=<span class="hljs-string">&quot;user/some.do&quot;</span> &gt;</span>链接<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">center</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">html</span>&gt;</span><br></code></pre></td></tr></table></figure>
-<p>那么运行结果：
-<img src="https://crayon-1302863897.cos.ap-beijing.myqcloud.com/image/yBRFVxREPx.gif" srcset="/img/loading.gif" lazyload alt="yBRFVxREPx" style="zoom:67%;" /></p>
-所以为了解决这种情况，可以在html页面中
-<head>
-标签中，加入<base href="">，页面中所有不带<code>/</code>的地址，都会加上base标签指定的路径。支持<a>、<img>、
-<form>
-<p>等标签中的URL。</p>
+<p>那么运行结果：<br><img src="https://crayon-1302863897.cos.ap-beijing.myqcloud.com/image/yBRFVxREPx.gif" srcset="/img/loading.gif" lazyload alt="yBRFVxREPx" style="zoom:67%;" /></p>
+<p>所以为了解决这种情况，可以在html页面中<head>标签中，加入<base href="">，页面中所有不带<code>/</code>的地址，都会加上base标签指定的路径。支持<a>、<img>、<form>等标签中的URL。</p>
 <p>例如刚才的例子加上base标签：</p>
 <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs html"><span class="hljs-meta">&lt;!DOCTYPE <span class="hljs-keyword">html</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">html</span> <span class="hljs-attr">lang</span>=<span class="hljs-string">&quot;en&quot;</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">head</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">meta</span> <span class="hljs-attr">charset</span>=<span class="hljs-string">&quot;UTF-8&quot;</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">title</span>&gt;</span>请求页面<span class="hljs-tag">&lt;/<span class="hljs-name">title</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">base</span> <span class="hljs-attr">href</span>=<span class="hljs-string">&quot;http://localhost/myweb/&quot;</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">head</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">body</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">center</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">href</span>=<span class="hljs-string">&quot;user/some.do&quot;</span> &gt;</span>链接<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">center</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">html</span>&gt;</span><br></code></pre></td></tr></table></figure>
-<p>运行结果：
-<img src="https://crayon-1302863897.cos.ap-beijing.myqcloud.com/image/ID2LcSj9vw.gif" srcset="/img/loading.gif" lazyload alt="ID2LcSj9vw" style="zoom:67%;" /></p>
-<h3 id="路径使用方法">路径使用方法</h3>
-<p>所以总的来说：
-前端代码，使用base标签来指定所有不带<code>/</code>的路径，然后链接不带<code>/</code></p>
+<p>运行结果：<br><img src="https://crayon-1302863897.cos.ap-beijing.myqcloud.com/image/ID2LcSj9vw.gif" srcset="/img/loading.gif" lazyload alt="ID2LcSj9vw" style="zoom:67%;" /></p>
+<h3 id="路径使用方法"><a href="#路径使用方法" class="headerlink" title="路径使用方法"></a>路径使用方法</h3><p>所以总的来说：<br>    前端代码，使用base标签来指定所有不带<code>/</code>的路径，然后链接不带<code>/</code></p>
 <p>后端代码，处理器方法注解@RequestMapper中value的值不加斜杠。</p>
-<p>如果要返回静态资源，那么就加上/，例如返回一个html文件。<code>return
-“/index.html</code>。</p>
+<p>如果要返回静态资源，那么就加上/，例如返回一个html文件。<code>return “/index.html</code>。</p>
 
             </div>
             <hr>
@@ -405,7 +390,7 @@
     
       <div class="col-lg-7 mx-auto nopadding-x-md">
         <div class="container custom mx-auto">
-          <link rel="stylesheet" href="/js/aplayer/APlayer.min.css"> <div id="aplayer" style="display:none"></div> <script src="/js/aplayer/APlayer.min.js"></script> <script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script> <script src="https://cdn.bootcss.com/jquery.pjax/2.0.1/jquery.pjax.min.js"></script> <script> // 对所有链接跳转事件绑定pjax容器container $(document).pjax("a[target!=_blank]", "#container", {fragment:"#container", timeout:8000}) </script>
+          <link rel="stylesheet" href="/js/aplayer/APlayer.min.css"> <div id="aplayer" style="display:none"></div> <script src="/js/aplayer/APlayer.min.js"></script> <script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script> <script src="https://cdn.bootcss.com/jquery.pjax/2.0.1/jquery.pjax.min.js"></script> <script> // 对所有链接跳转事件绑定pjax容器container $(document).pjax("a", "#pjax-container") </script>
         </div>
       </div>
     

@@ -16,19 +16,25 @@
   <meta name="author" content="ZhaoXin">
   <meta name="keywords" content="博客">
   
-    <meta name="description" content="JQuery提供了一系列与DOM相关的方法，可以访问和操作HTML元素和属性。 获取内容和属性 三个实用的用于获取内容的JQuery方法(设置时，有参数；返回时，无参数)：  text()：设置或返回所选元素的文本内容 html()：设置或返回所选元素的内容(包括HTML标记) val()：设置或返回表单字段的值，即value属性的值  获取属性的方法：  attr(属性名称)">
+    <meta name="description" content="JQuery提供了一系列与DOM相关的方法，可以访问和操作HTML元素和属性。 获取内容和属性三个实用的用于获取内容的JQuery方法(设置时，有参数；返回时，无参数)：  text()：设置或返回所选元素的文本内容 html()：设置或返回所选元素的内容(包括HTML标记) val()：设置或返回表单字段的值，即value属性的值  获取属性的方法：  attr(属性名称)：返回对应属性的值">
 <meta property="og:type" content="article">
 <meta property="og:title" content="3-JQuery DOM操作">
 <meta property="og:url" content="https://zhaoquaner.github.io/2022/05/11/JavaWeb/JQuery/3-JQuery%20DOM%E6%93%8D%E4%BD%9C/index.html">
 <meta property="og:site_name" content="赵圈儿的博客">
-<meta property="og:description" content="JQuery提供了一系列与DOM相关的方法，可以访问和操作HTML元素和属性。 获取内容和属性 三个实用的用于获取内容的JQuery方法(设置时，有参数；返回时，无参数)：  text()：设置或返回所选元素的文本内容 html()：设置或返回所选元素的内容(包括HTML标记) val()：设置或返回表单字段的值，即value属性的值  获取属性的方法：  attr(属性名称)">
+<meta property="og:description" content="JQuery提供了一系列与DOM相关的方法，可以访问和操作HTML元素和属性。 获取内容和属性三个实用的用于获取内容的JQuery方法(设置时，有参数；返回时，无参数)：  text()：设置或返回所选元素的文本内容 html()：设置或返回所选元素的内容(包括HTML标记) val()：设置或返回表单字段的值，即value属性的值  获取属性的方法：  attr(属性名称)：返回对应属性的值">
 <meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://crayon-1302863897.cos.ap-beijing.myqcloud.com/20200922181854.png">
+<meta property="og:image" content="https://crayon-1302863897.cos.ap-beijing.myqcloud.com/20200926094734.gif">
+<meta property="og:image" content="https://crayon-1302863897.cos.ap-beijing.myqcloud.com/20200926100652.gif">
+<meta property="og:image" content="https://crayon-1302863897.cos.ap-beijing.myqcloud.com/20200926102152.gif">
+<meta property="og:image" content="https://crayon-1302863897.cos.ap-beijing.myqcloud.com/20200926103743.gif">
 <meta property="article:published_time" content="2022-05-11T05:49:39.000Z">
 <meta property="article:modified_time" content="2022-05-11T08:55:03.799Z">
 <meta property="article:author" content="ZhaoXin">
 <meta property="article:tag" content="JavaWeb">
 <meta property="article:tag" content="Jquery">
 <meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://crayon-1302863897.cos.ap-beijing.myqcloud.com/20200922181854.png">
   
   
   <title>3-JQuery DOM操作 - 赵圈儿的博客</title>
@@ -210,7 +216,7 @@
   
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      4.7k 字
+      4.9k 字
     </span>
   
 
@@ -253,8 +259,7 @@
             
             <div class="markdown-body">
               <p>JQuery提供了一系列与DOM相关的方法，可以访问和操作HTML元素和属性。</p>
-<h2 id="获取内容和属性">获取内容和属性</h2>
-<p>三个实用的用于获取内容的JQuery方法(<strong>设置时，有参数；返回时，无参数</strong>)：</p>
+<h2 id="获取内容和属性"><a href="#获取内容和属性" class="headerlink" title="获取内容和属性"></a>获取内容和属性</h2><p>三个实用的用于获取内容的JQuery方法(<strong>设置时，有参数；返回时，无参数</strong>)：</p>
 <ul>
 <li>text()：设置或返回所选元素的文本内容</li>
 <li>html()：设置或返回所选元素的内容(包括HTML标记)</li>
@@ -263,55 +268,45 @@
 <p>获取属性的方法：</p>
 <ul>
 <li><p>attr(属性名称)：返回对应属性的值</p>
-<p>例如获取超链接中href的值：$("#a").attr("href")，就是获取id为a的超链接元素的href属性对应的值</p></li>
+<p>  例如获取超链接中href的值：$(“#a”).attr(“href”)，就是获取id为a的超链接元素的href属性对应的值</p>
+</li>
 </ul>
-<h2 id="设置元素内容">设置元素内容</h2>
-<p>同样适用上面三个获取内容的方法：text()，html()，val()。</p>
+<h2 id="设置元素内容"><a href="#设置元素内容" class="headerlink" title="设置元素内容"></a>设置元素内容</h2><p>同样适用上面三个获取内容的方法：text()，html()，val()。</p>
 <ul>
-<li><p>可以直接将希望设置的值传入该方法的参数，进行设置。</p></li>
+<li><p>可以直接将希望设置的值传入该方法的参数，进行设置。</p>
+</li>
 <li><p>它们拥有回调函数，回调函数有两个参数：<strong>被选元素列表中当前元素的下标(因为每个JQuery对象都是数组，索引从0开始)，以及原始值</strong>(旧值)，然后使用return返回您希望使用的字符串，即函数新值。</p>
-<p>例子：</p>
-<p><figure class="highlight javascript"><table><tr><td class="gutter"><div class="code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></div></td><td class="code"><pre><code class="hljs javascript">$(<span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) &#123;<br><br>    $(<span class="hljs-string">&quot;#change&quot;</span>).<span class="hljs-title function_">click</span>(<span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) &#123;<br>        $(<span class="hljs-string">&quot;p&quot;</span>).<span class="hljs-title function_">text</span>(<span class="hljs-keyword">function</span> (<span class="hljs-params">i, oldText</span>) &#123;<br>            <span class="hljs-keyword">return</span> <span class="hljs-string">&quot;索引值为:&quot;</span> + i + <span class="hljs-string">&quot;，旧文本为:&quot;</span> + oldText;<br>        &#125;)<br>    &#125;)<br>&#125;)<br></code></pre></td></tr></table></figure></p>
-<p>将原来的段落内容改为打印对应索引并再次输出旧文本，结果为：</p>
-<figure>
-<img
-src="https://crayon-1302863897.cos.ap-beijing.myqcloud.com/20200922181854.png" srcset="/img/loading.gif" lazyload
-alt="image-20200922181846914" />
-<figcaption aria-hidden="true">image-20200922181846914</figcaption>
-</figure></li>
+<p>  例子：</p>
+  <figure class="highlight javascript"><table><tr><td class="gutter"><div class="code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></div></td><td class="code"><pre><code class="hljs javascript">$(<span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) &#123;<br><br>    $(<span class="hljs-string">&quot;#change&quot;</span>).<span class="hljs-title function_">click</span>(<span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) &#123;<br>        $(<span class="hljs-string">&quot;p&quot;</span>).<span class="hljs-title function_">text</span>(<span class="hljs-keyword">function</span> (<span class="hljs-params">i, oldText</span>) &#123;<br>            <span class="hljs-keyword">return</span> <span class="hljs-string">&quot;索引值为:&quot;</span> + i + <span class="hljs-string">&quot;，旧文本为:&quot;</span> + oldText;<br>        &#125;)<br>    &#125;)<br>&#125;)<br></code></pre></td></tr></table></figure>
+<p>  将原来的段落内容改为打印对应索引并再次输出旧文本，结果为：</p>
+<p>  <img src="https://crayon-1302863897.cos.ap-beijing.myqcloud.com/20200922181854.png" srcset="/img/loading.gif" lazyload alt="image-20200922181846914"></p>
+</li>
 </ul>
-<h2 id="设置属性内容">设置属性内容</h2>
-<p>上述的attr方法同样可以设置/改变属性值</p>
+<h2 id="设置属性内容"><a href="#设置属性内容" class="headerlink" title="设置属性内容"></a>设置属性内容</h2><p>上述的attr方法同样可以设置/改变属性值</p>
 <ul>
-<li><p>可以直接向attr方法传入指定值，例如：<code>$("button").click(function()&#123;
-$("#baidu").attr("href",
-"http://www.baidu.com")&#125;    )</code>，设置了id为baidu的超链接元素的href属性的值为百度的网站</p></li>
+<li><p>可以直接向attr方法传入指定值，例如：<code>$(&quot;button&quot;).click(function()&#123; $(&quot;#baidu&quot;).attr(&quot;href&quot;, &quot;http://www.baidu.com&quot;)&#125;    )</code>，设置了id为baidu的超链接元素的href属性的值为百度的网站</p>
+</li>
 <li><p>attr方法也允许设置多个属性：</p>
-<p><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs javascript">$(<span class="hljs-string">&quot;button&quot;</span>).<span class="hljs-title function_">click</span>(<span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)&#123;<br>    $(<span class="hljs-string">&quot;#baidu&quot;</span>).<span class="hljs-title function_">attr</span>(&#123;<br>        <span class="hljs-string">&quot;href&quot;</span> : <span class="hljs-string">&quot;http://www.baidu.com&quot;</span>,<br>        <span class="hljs-string">&quot;title&quot;</span> : <span class="hljs-string">&quot;百度网址&quot;</span><br>    &#125;);<br>&#125;);<br></code></pre></td></tr></table></figure></p></li>
+  <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs javascript">$(<span class="hljs-string">&quot;button&quot;</span>).<span class="hljs-title function_">click</span>(<span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)&#123;<br>    $(<span class="hljs-string">&quot;#baidu&quot;</span>).<span class="hljs-title function_">attr</span>(&#123;<br>        <span class="hljs-string">&quot;href&quot;</span> : <span class="hljs-string">&quot;http://www.baidu.com&quot;</span>,<br>        <span class="hljs-string">&quot;title&quot;</span> : <span class="hljs-string">&quot;百度网址&quot;</span><br>    &#125;);<br>&#125;);<br></code></pre></td></tr></table></figure>
+</li>
 </ul>
 <p>attr()也提供回调函数，回调函数有两个参数：<strong>被选元素列表当前元素的下标，以及原始(旧)的值</strong>，新值用return返回</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs javascript">$(<span class="hljs-string">&quot;button&quot;</span>).<span class="hljs-title function_">click</span>(<span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)&#123;<br>  $(<span class="hljs-string">&quot;#runoob&quot;</span>).<span class="hljs-title function_">attr</span>(<span class="hljs-string">&quot;href&quot;</span>, <span class="hljs-keyword">function</span>(<span class="hljs-params">i,origValue</span>)&#123;<br>    <span class="hljs-keyword">return</span> origValue + <span class="hljs-string">&quot;/jquery&quot;</span>; <br>  &#125;);<br>&#125;);<br></code></pre></td></tr></table></figure>
-<h2 id="添加元素">添加元素</h2>
-<p>有四种添加新元素的JQuery方法</p>
+<h2 id="添加元素"><a href="#添加元素" class="headerlink" title="添加元素"></a>添加元素</h2><p>有四种添加新元素的JQuery方法</p>
 <ul>
 <li>append()：在被选元素结尾插入内容</li>
 <li>prepend()：在被选元素开头插入内容</li>
 <li>after()：在被选元素之后插入内容</li>
 <li>before()：在被选元素之前插入内容</li>
 </ul>
-<h3 id="append方法">append()方法</h3>
-<p>该方法在被选元素的结尾插入内容(仍然在该元素的内部)。</p>
-<h3 id="prepend方法">prepend()方法</h3>
-<p>该方法在被选元素的开头插入内容。</p>
+<h3 id="append-方法"><a href="#append-方法" class="headerlink" title="append()方法"></a>append()方法</h3><p>该方法在被选元素的结尾插入内容(仍然在该元素的内部)。</p>
+<h3 id="prepend-方法"><a href="#prepend-方法" class="headerlink" title="prepend()方法"></a>prepend()方法</h3><p>该方法在被选元素的开头插入内容。</p>
 <p>可以通过前两个方法添加若干个新元素，append和perpend方法可以通过参数接收无限数量的新元素。</p>
 <p>例子：</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">function</span> <span class="hljs-title function_">appendText</span>(<span class="hljs-params"></span>)&#123;<br>    <span class="hljs-keyword">var</span> txt1=<span class="hljs-string">&quot;&lt;p&gt;文本-1。&lt;/p&gt;&quot;</span>;              <span class="hljs-comment">// 使用 HTML 标签创建文本</span><br>    <span class="hljs-keyword">var</span> txt2=$(<span class="hljs-string">&quot;&lt;p&gt;&lt;/p&gt;&quot;</span>).<span class="hljs-title function_">text</span>(<span class="hljs-string">&quot;文本-2。&quot;</span>);  <span class="hljs-comment">// 使用 jQuery 创建文本</span><br>    <span class="hljs-keyword">var</span> txt3=<span class="hljs-variable language_">document</span>.<span class="hljs-title function_">createElement</span>(<span class="hljs-string">&quot;p&quot;</span>);<br>    txt3.<span class="hljs-property">innerHTML</span>=<span class="hljs-string">&quot;文本-3。&quot;</span>;               <span class="hljs-comment">// 使用 DOM 创建文本 text with DOM</span><br>    $(<span class="hljs-string">&quot;body&quot;</span>).<span class="hljs-title function_">append</span>(txt1,txt2,txt3);        <span class="hljs-comment">// 追加新元素</span><br>&#125;<br></code></pre></td></tr></table></figure>
-<h3 id="after方法和before方法">after()方法和before()方法</h3>
-<p>after方法在被选元素之后插入内容。</p>
+<h3 id="after-方法和before-方法"><a href="#after-方法和before-方法" class="headerlink" title="after()方法和before()方法"></a>after()方法和before()方法</h3><p>after方法在被选元素之后插入内容。</p>
 <p>before方法在被选元素之前插入新元素</p>
-<h3
-id="appendprepend和afterbefore的区别">append/prepend和after/before的区别</h3>
-<p>用append:</p>
+<h3 id="append-prepend和after-before的区别"><a href="#append-prepend和after-before的区别" class="headerlink" title="append/prepend和after/before的区别"></a>append/prepend和after/before的区别</h3><p>用append:</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs javascript">&lt;p&gt;<br>  <span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">span</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;s1&quot;</span>&gt;</span>s1<span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span></span><br>&lt;/p&gt;<br><span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">script</span>&gt;</span><span class="language-javascript"></span></span><br><span class="language-javascript"><span class="language-xml">$(<span class="hljs-string">&quot;p&quot;</span>).<span class="hljs-title function_">append</span>(<span class="hljs-string">&#x27;&lt;span class=&quot;s2&quot;&gt;s2&lt;/span&gt;&#x27;</span>);</span></span><br><span class="language-javascript"><span class="language-xml"></span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span></span><br><br><span class="hljs-comment">//结果是：</span><br><span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span></span><br><span class="language-xml">  <span class="hljs-tag">&lt;<span class="hljs-name">span</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;s1&quot;</span>&gt;</span>s1<span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span></span><br><span class="language-xml">  <span class="hljs-tag">&lt;<span class="hljs-name">span</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;s2&quot;</span>&gt;</span>s2<span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span></span><br><span class="language-xml"><span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span></span><br></code></pre></td></tr></table></figure>
 <p>用after:</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs javascript">&lt;p&gt;<br>  <span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">span</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;s1&quot;</span>&gt;</span>s1<span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span></span><br>&lt;/p&gt;<br><span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">script</span>&gt;</span><span class="language-javascript"></span></span><br><span class="language-javascript"><span class="language-xml">$(<span class="hljs-string">&quot;p&quot;</span>).<span class="hljs-title function_">after</span>(<span class="hljs-string">&#x27;&lt;span class=&quot;s2&quot;&gt;s2&lt;/span&gt;&#x27;</span>);</span></span><br><span class="language-javascript"><span class="language-xml"></span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span></span><br><br><span class="hljs-comment">//结果是这样的:</span><br><br><span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span></span><br><span class="language-xml">  <span class="hljs-tag">&lt;<span class="hljs-name">span</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;s1&quot;</span>&gt;</span>s1<span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span></span><br><span class="language-xml"><span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span></span><br><span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">span</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;s2&quot;</span>&gt;</span>s2<span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span></span><br></code></pre></td></tr></table></figure>
@@ -320,17 +315,15 @@ id="appendprepend和afterbefore的区别">append/prepend和after/before的区别
 <li>append/prepend是在被选择的元素内部嵌入</li>
 <li>after/before是在元素外面追加</li>
 </ul>
-<h2 id="删除元素">删除元素</h2>
-<p>可以使用以下两个JQuery方法来删除元素：</p>
+<h2 id="删除元素"><a href="#删除元素" class="headerlink" title="删除元素"></a>删除元素</h2><p>可以使用以下两个JQuery方法来删除元素：</p>
 <ul>
 <li>remove：删除被选元素和子元素</li>
 <li>empty：删除被选元素的子元素，也就是清空被选元素。</li>
 </ul>
 <p>remove方法也可以接受一个参数，允许对被删除的元素进行过滤，该参数可以是任何JQuery选择器的语法。</p>
-<p>例如：删除class='inalic'的p元素</p>
-<p>$("p").remove(".inalic")；</p>
-<h2 id="获取并设置css类">获取并设置CSS类</h2>
-<p>JQuery有很多对CSS操作的方法：</p>
+<p>例如：删除class=’inalic’的p元素</p>
+<p>$(“p”).remove(“.inalic”)；</p>
+<h2 id="获取并设置CSS类"><a href="#获取并设置CSS类" class="headerlink" title="获取并设置CSS类"></a>获取并设置CSS类</h2><p>JQuery有很多对CSS操作的方法：</p>
 <ul>
 <li>addClass()：向被选元素添加一个或多个类</li>
 <li>removeClass()：从被选元素删除一个或多个类</li>
@@ -340,53 +333,28 @@ id="appendprepend和afterbefore的区别">append/prepend和after/before的区别
 <p>先在css文件中定义两个类：</p>
 <figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs css"><span class="hljs-selector-class">.important</span> &#123;<br>	<span class="hljs-attribute">color</span>:brown;<br>	<span class="hljs-attribute">font-size</span>:<span class="hljs-number">30px</span><br>&#125; <br><span class="hljs-selector-class">.unimportant</span> &#123;<br>	<span class="hljs-attribute">color</span>:red;<br>	<span class="hljs-attribute">font-size</span>:<span class="hljs-number">15px</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
 <p>现在就有important和unimportant两个类了。</p>
-<h3 id="addclass方法">addClass()方法</h3>
-<p>该方法可以给多个元素添加多个css类，可以接受多个css类参数</p>
+<h3 id="addClass-方法"><a href="#addClass-方法" class="headerlink" title="addClass()方法"></a>addClass()方法</h3><p>该方法可以给多个元素添加多个css类，可以接受多个css类参数</p>
 <p>例子：给h1和h2添加important类</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs javascript">$(<span class="hljs-string">&quot;#button&quot;</span>).<span class="hljs-title function_">click</span>(<span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) &#123;<br>    $(<span class="hljs-string">&quot;h1,h2&quot;</span>).<span class="hljs-title function_">addClass</span>(<span class="hljs-string">&quot;important&quot;</span>);<br>&#125;);<br></code></pre></td></tr></table></figure>
-<figure>
-<img
-src="https://crayon-1302863897.cos.ap-beijing.myqcloud.com/20200926094734.gif" srcset="/img/loading.gif" lazyload
-alt="1" />
-<figcaption aria-hidden="true">1</figcaption>
-</figure>
-<h3 id="removeclass方法">removeClass()方法</h3>
-<p>删除指定的class属性。</p>
+<p><img src="https://crayon-1302863897.cos.ap-beijing.myqcloud.com/20200926094734.gif" srcset="/img/loading.gif" lazyload alt="1"></p>
+<h3 id="removeClass-方法"><a href="#removeClass-方法" class="headerlink" title="removeClass()方法"></a>removeClass()方法</h3><p>删除指定的class属性。</p>
 <p>例子：删除上述元素的important类属性</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs javascript">$(<span class="hljs-string">&quot;#remove&quot;</span>).<span class="hljs-title function_">click</span>(<span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) &#123;<br>    $(<span class="hljs-string">&quot;h1, h2&quot;</span>).<span class="hljs-title function_">removeClass</span>(<span class="hljs-string">&quot;important&quot;</span>);<br>&#125;)<br></code></pre></td></tr></table></figure>
 <p>结果：</p>
-<figure>
-<img
-src="https://crayon-1302863897.cos.ap-beijing.myqcloud.com/20200926100652.gif" srcset="/img/loading.gif" lazyload
-alt="2" />
-<figcaption aria-hidden="true">2</figcaption>
-</figure>
-<h3 id="toggleclass方法">toggleClass()方法</h3>
-<p>该方法对被选元素进行添加/删除类的切换操作：</p>
+<p><img src="https://crayon-1302863897.cos.ap-beijing.myqcloud.com/20200926100652.gif" srcset="/img/loading.gif" lazyload alt="2"></p>
+<h3 id="toggleClass-方法"><a href="#toggleClass-方法" class="headerlink" title="toggleClass()方法"></a>toggleClass()方法</h3><p>该方法对被选元素进行添加/删除类的切换操作：</p>
 <p>例子：</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs javascript">$(<span class="hljs-string">&quot;#button&quot;</span>).<span class="hljs-title function_">click</span>(<span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) &#123;<br>    $(<span class="hljs-string">&quot;h1,h2&quot;</span>).<span class="hljs-title function_">toggleClass</span>(<span class="hljs-string">&quot;important&quot;</span>);<br>&#125;);<br></code></pre></td></tr></table></figure>
 <p>结果：</p>
-<figure>
-<img
-src="https://crayon-1302863897.cos.ap-beijing.myqcloud.com/20200926102152.gif" srcset="/img/loading.gif" lazyload
-alt="3" />
-<figcaption aria-hidden="true">3</figcaption>
-</figure>
-<h3 id="css方法">css()方法</h3>
-<p>css方法设置或者返回被选元素的一个或多个样式属性。</p>
-<h4 id="返回css属性">返回CSS属性</h4>
-<p>语法为： <code>css("propertyname");</code></p>
-<p>例子：<code>$("p").css("background-color");</code></p>
-<h4 id="设置css属性">设置CSS属性</h4>
-<p>语法：<code>css("propertyname", "value");</code></p>
-<p>例子：<code>$("p").css("background-color", "yellow");</code></p>
-<h4 id="设置多个css属性">设置多个CSS属性</h4>
-<p>语法：<code>css(&#123;"propertyname":"value",
-"propertyname":"value",...&#125;);</code></p>
-<p>例子：<code>$("p").css(&#123;"background-color":"yellow",
-"font-size":"200%"&#125;)</code></p>
-<h2 id="jquery尺寸方法">JQuery尺寸方法</h2>
-<p>JQuery提供了很多处理尺寸的方法</p>
+<p><img src="https://crayon-1302863897.cos.ap-beijing.myqcloud.com/20200926102152.gif" srcset="/img/loading.gif" lazyload alt="3"></p>
+<h3 id="css-方法"><a href="#css-方法" class="headerlink" title="css()方法"></a>css()方法</h3><p>css方法设置或者返回被选元素的一个或多个样式属性。</p>
+<h4 id="返回CSS属性"><a href="#返回CSS属性" class="headerlink" title="返回CSS属性"></a>返回CSS属性</h4><p>语法为： <code>css(&quot;propertyname&quot;);</code></p>
+<p>例子：<code>$(&quot;p&quot;).css(&quot;background-color&quot;);</code></p>
+<h4 id="设置CSS属性"><a href="#设置CSS属性" class="headerlink" title="设置CSS属性"></a>设置CSS属性</h4><p>语法：<code>css(&quot;propertyname&quot;, &quot;value&quot;);</code></p>
+<p>例子：<code>$(&quot;p&quot;).css(&quot;background-color&quot;, &quot;yellow&quot;);</code></p>
+<h4 id="设置多个CSS属性"><a href="#设置多个CSS属性" class="headerlink" title="设置多个CSS属性"></a>设置多个CSS属性</h4><p>语法：<code>css(&#123;&quot;propertyname&quot;:&quot;value&quot;, &quot;propertyname&quot;:&quot;value&quot;,...&#125;);</code></p>
+<p>例子：<code>$(&quot;p&quot;).css(&#123;&quot;background-color&quot;:&quot;yellow&quot;, &quot;font-size&quot;:&quot;200%&quot;&#125;)</code></p>
+<h2 id="JQuery尺寸方法"><a href="#JQuery尺寸方法" class="headerlink" title="JQuery尺寸方法"></a>JQuery尺寸方法</h2><p>JQuery提供了很多处理尺寸的方法</p>
 <ul>
 <li>width()</li>
 <li>height()</li>
@@ -395,24 +363,16 @@ alt="3" />
 <li>outerWidth()</li>
 <li>outerHeight()</li>
 </ul>
-<h3 id="width和height方法">width和height方法</h3>
-<p>width方法用来设置或者返回元素的宽度(不包括内边距，边框或外边距)</p>
+<h3 id="width和height方法"><a href="#width和height方法" class="headerlink" title="width和height方法"></a>width和height方法</h3><p>width方法用来设置或者返回元素的宽度(不包括内边距，边框或外边距)</p>
 <p>height方法用来设置或返回元素的高度(不包括内边距，边框或外边距)</p>
 <p>例子：</p>
 <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">html</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">body</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">style</span>=<span class="hljs-string">&quot;width: 200px;height: 200px; padding: 10px; border: 5px;background-color:burlywood&quot;</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;div&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;button&quot;</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;button&quot;</span> <span class="hljs-attr">value</span>=<span class="hljs-string">&quot;显示尺寸&quot;</span> /&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">html</span>&gt;</span><br></code></pre></td></tr></table></figure>
 <p>js代码：</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs javascript">$(<span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) &#123;<br>    $(<span class="hljs-string">&quot;#button&quot;</span>).<span class="hljs-title function_">click</span>(<span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) &#123;<br>       <span class="hljs-keyword">let</span> width = $(<span class="hljs-string">&quot;#div&quot;</span>).<span class="hljs-title function_">width</span>();<br>       <span class="hljs-keyword">let</span> height = $(<span class="hljs-string">&quot;#div&quot;</span>).<span class="hljs-title function_">height</span>();<br>       <span class="hljs-keyword">let</span> text = <span class="hljs-string">&quot;&lt;p&gt;该div元素的宽度为：&quot;</span> + width  + <span class="hljs-string">&quot;&lt;br&gt;该div元素的高度为：&quot;</span> + height + <span class="hljs-string">&quot;&lt;/p&gt;&quot;</span>;<br>       $(<span class="hljs-string">&quot;#div&quot;</span>).<span class="hljs-title function_">html</span>(text);<br>    &#125;);<br><br>&#125;)<br></code></pre></td></tr></table></figure>
 <p>结果：</p>
-<figure>
-<img
-src="https://crayon-1302863897.cos.ap-beijing.myqcloud.com/20200926103743.gif" srcset="/img/loading.gif" lazyload
-alt="4" />
-<figcaption aria-hidden="true">4</figcaption>
-</figure>
-<h3 id="innerwidth和innerheight方法">innerWidth和innerHeight方法</h3>
-<p>分别返回元素的高度和宽度(包括内边距)</p>
-<h3 id="outerwidth和outerheight方法">outerWidth和outerHeight方法</h3>
-<p>分别返回元素的宽度和高度(包括内边距和边框)</p>
+<p><img src="https://crayon-1302863897.cos.ap-beijing.myqcloud.com/20200926103743.gif" srcset="/img/loading.gif" lazyload alt="4"></p>
+<h3 id="innerWidth和innerHeight方法"><a href="#innerWidth和innerHeight方法" class="headerlink" title="innerWidth和innerHeight方法"></a>innerWidth和innerHeight方法</h3><p>分别返回元素的高度和宽度(包括内边距)</p>
+<h3 id="outerWidth和outerHeight方法"><a href="#outerWidth和outerHeight方法" class="headerlink" title="outerWidth和outerHeight方法"></a>outerWidth和outerHeight方法</h3><p>分别返回元素的宽度和高度(包括内边距和边框)</p>
 
             </div>
             <hr>
@@ -490,7 +450,7 @@ alt="4" />
     
       <div class="col-lg-7 mx-auto nopadding-x-md">
         <div class="container custom mx-auto">
-          <link rel="stylesheet" href="/js/aplayer/APlayer.min.css"> <div id="aplayer" style="display:none"></div> <script src="/js/aplayer/APlayer.min.js"></script> <script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script> <script src="https://cdn.bootcss.com/jquery.pjax/2.0.1/jquery.pjax.min.js"></script> <script> // 对所有链接跳转事件绑定pjax容器container $(document).pjax("a[target!=_blank]", "#container", {fragment:"#container", timeout:8000}) </script>
+          <link rel="stylesheet" href="/js/aplayer/APlayer.min.css"> <div id="aplayer" style="display:none"></div> <script src="/js/aplayer/APlayer.min.js"></script> <script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script> <script src="https://cdn.bootcss.com/jquery.pjax/2.0.1/jquery.pjax.min.js"></script> <script> // 对所有链接跳转事件绑定pjax容器container $(document).pjax("a", "#pjax-container") </script>
         </div>
       </div>
     

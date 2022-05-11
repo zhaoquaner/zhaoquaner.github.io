@@ -16,12 +16,12 @@
   <meta name="author" content="ZhaoXin">
   <meta name="keywords" content="博客">
   
-    <meta name="description" content="介绍 request对象也是一个域对象，即在一个范围内，可以进行共享。 在一次请求中，利用请求转发进行多个Servlet调用时，使用的是同一个request对象，这时候，就可以利用该对象进行数据共享。 HttpServletRequest相关API 有两个最主要方法进行数据共享  void setAttribute(String s, Object o)：指定名字和任意数据类型的数据">
+    <meta name="description" content="介绍request对象也是一个域对象，即在一个范围内，可以进行共享。 在一次请求中，利用请求转发进行多个Servlet调用时，使用的是同一个request对象，这时候，就可以利用该对象进行数据共享。 HttpServletRequest相关API有两个最主要方法进行数据共享  void setAttribute(String s, Object o)：指定名字和任意数据类型的数据存入到reques">
 <meta property="og:type" content="article">
 <meta property="og:title" content="6-HttpServletRequest进行数据共享">
 <meta property="og:url" content="https://zhaoquaner.github.io/2022/05/11/JavaWeb/Servlet/7-%E4%BD%BF%E7%94%A8HttpServletRequest%E8%BF%9B%E8%A1%8C%E6%95%B0%E6%8D%AE%E5%85%B1%E4%BA%AB/index.html">
 <meta property="og:site_name" content="赵圈儿的博客">
-<meta property="og:description" content="介绍 request对象也是一个域对象，即在一个范围内，可以进行共享。 在一次请求中，利用请求转发进行多个Servlet调用时，使用的是同一个request对象，这时候，就可以利用该对象进行数据共享。 HttpServletRequest相关API 有两个最主要方法进行数据共享  void setAttribute(String s, Object o)：指定名字和任意数据类型的数据">
+<meta property="og:description" content="介绍request对象也是一个域对象，即在一个范围内，可以进行共享。 在一次请求中，利用请求转发进行多个Servlet调用时，使用的是同一个request对象，这时候，就可以利用该对象进行数据共享。 HttpServletRequest相关API有两个最主要方法进行数据共享  void setAttribute(String s, Object o)：指定名字和任意数据类型的数据存入到reques">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2022-05-11T05:40:39.000Z">
 <meta property="article:modified_time" content="2022-05-11T08:55:33.069Z">
@@ -252,14 +252,11 @@
             <h1 style="display: none">6-HttpServletRequest进行数据共享</h1>
             
             <div class="markdown-body">
-              <h2 id="介绍">介绍</h2>
-<p>request对象也是一个域对象，即在一个范围内，可以进行共享。</p>
+              <h2 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h2><p>request对象也是一个域对象，即在一个范围内，可以进行共享。</p>
 <p>在一次请求中，利用请求转发进行多个Servlet调用时，使用的是同一个request对象，这时候，就可以利用该对象进行数据共享。</p>
-<h2 id="httpservletrequest相关api">HttpServletRequest相关API</h2>
-<p>有两个最主要方法进行数据共享</p>
+<h2 id="HttpServletRequest相关API"><a href="#HttpServletRequest相关API" class="headerlink" title="HttpServletRequest相关API"></a>HttpServletRequest相关API</h2><p>有两个最主要方法进行数据共享</p>
 <ul>
-<li>void setAttribute(String s, Object
-o)：指定名字和任意数据类型的数据存入到request中</li>
+<li>void setAttribute(String s, Object o)：指定名字和任意数据类型的数据存入到request中</li>
 <li>Object getAttribute(String s)：获取名为s的数据</li>
 </ul>
 <p>在request内部维护着一个Map集合，可以存放数据。</p>
@@ -341,7 +338,7 @@ o)：指定名字和任意数据类型的数据存入到request中</li>
     
       <div class="col-lg-7 mx-auto nopadding-x-md">
         <div class="container custom mx-auto">
-          <link rel="stylesheet" href="/js/aplayer/APlayer.min.css"> <div id="aplayer" style="display:none"></div> <script src="/js/aplayer/APlayer.min.js"></script> <script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script> <script src="https://cdn.bootcss.com/jquery.pjax/2.0.1/jquery.pjax.min.js"></script> <script> // 对所有链接跳转事件绑定pjax容器container $(document).pjax("a[target!=_blank]", "#container", {fragment:"#container", timeout:8000}) </script>
+          <link rel="stylesheet" href="/js/aplayer/APlayer.min.css"> <div id="aplayer" style="display:none"></div> <script src="/js/aplayer/APlayer.min.js"></script> <script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script> <script src="https://cdn.bootcss.com/jquery.pjax/2.0.1/jquery.pjax.min.js"></script> <script> // 对所有链接跳转事件绑定pjax容器container $(document).pjax("a", "#pjax-container") </script>
         </div>
       </div>
     
