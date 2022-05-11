@@ -6,10 +6,10 @@
 title: 赵圈儿的博客
 subtitle: ''
 description: ''
-keywords:
+keywords: '博客'
 author: ZhaoXin
-language: zh-Hans
-timezone: ''
+language: zh-CN
+timezone: Asia/Shanghai
 
 # URL
 ## Set your site url here. For example, if you use GitHub Page, set url as 'https://username.github.io/project'
@@ -40,7 +40,7 @@ external_link:
   exclude: ''
 filename_case: 0
 render_drafts: false
-post_asset_folder: true
+post_asset_folder: false
 relative_link: false
 future: true
 highlight:
@@ -66,13 +66,81 @@ index_generator:
   order_by: -date
 
 # Category & Tag
-default_category: uncategorized
+default_category: 默认
 category_map:
+    默认: default
+
+    编程学习: programming
+    Java基础: java
+    SpringBoot: springboot
+    SpringMVC: springmvc
+    Spring: spring
+    MyBatis: mybatis
+    JavaWeb: javaweb
+    Redis: redis
+
+    开发: developing
+    数据库: database
+    算法: algorithm
+    计算机基础: basic
+
+    LeetCode: leetcode
+    栈: stack
+    队列: queue
+    数组: array
+    树: tree
+    链表: linkedlist
+    哈希表: hashset
+    图: graph
+
+    教程: tutorial
+    工具使用: tool
+    学校: school
+    生活: life
+    读书: reading
+    随笔: note
+
 tag_map:
+    SpringBoot: springboot
+    Spring: spring
+    MyBatis: mybatis
+
+    Redis: redis
+    缓存数据库: cachedb
+
+    算法: algorithms
+    算法题: algo_prblem
+    SpringMVC: springmvc
+    前端: frontend
+    后端: backend
+    C++: cpp
+
+    Java基础: java
+    泛型: generics
+    面向对象: object
+    输入输出: io
+    线程: thread
+    集合: collection
+    JDBC: jdbc
+    类加载: classloader
+    反射: reflect
+
+    JavaWeb: javaweb
+    Servlet: servlet
+    Jquery: jquery
+    AJAX: ajax
+    JSP: jsp
+
+    Python: python
+    Vue: vue
+    工具: tools
+    教程: tutorials
+    读书: reading
+
 
 # Metadata elements
 ## https://developer.mozilla.org/en-US/docs/Web/HTML/Element/meta
-meta_generator: true
+meta_generator: false
 
 # Date / Time format
 ## Hexo uses Moment.js to parse and display date
