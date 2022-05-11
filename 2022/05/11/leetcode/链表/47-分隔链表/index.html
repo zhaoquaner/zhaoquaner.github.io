@@ -25,7 +25,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://crayon-1302863897.cos.ap-beijing.myqcloud.com/image/image-20210530194451074.png">
 <meta property="article:published_time" content="2022-05-11T07:47:39.000Z">
-<meta property="article:modified_time" content="2022-05-11T07:17:59.140Z">
+<meta property="article:modified_time" content="2022-05-11T07:57:37.519Z">
 <meta property="article:author" content="ZhaoXin">
 <meta property="article:tag" content="算法题">
 <meta name="twitter:card" content="summary_large_image">
@@ -268,10 +268,10 @@ remain。即最后剩余的节点数为remain。remain一定小于n。因为要�
 <h3 id="算法实现">算法实现</h3>
 <figure class="highlight c++"><table><tr><td class="gutter"><div class="code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></div></td><td class="code"><pre><code class="hljs c++"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Solution</span> &#123;<br><span class="hljs-keyword">public</span>:<br>    <span class="hljs-function">vector&lt;ListNode*&gt; <span class="hljs-title">splitListToParts</span><span class="hljs-params">(ListNode* root, <span class="hljs-type">int</span> k)</span> </span>&#123;<br>        vector&lt;ListNode *&gt; res;<br>        <span class="hljs-type">int</span> size = <span class="hljs-number">0</span>;<br>        ListNode * node = root;<br>        <span class="hljs-keyword">while</span> (node) &#123;<br>            size++;<br>            node = node-&gt;next;<br>        &#125;<br>        <span class="hljs-type">int</span> n = size / k;<br>        <span class="hljs-type">int</span> remain = size - n * k;<br>        ListNode * pre = <span class="hljs-keyword">new</span> <span class="hljs-built_in">ListNode</span>();<br>        pre-&gt;next = root;<br>        node = pre;<br>        <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>; i &lt; k; i++) &#123;<br>            <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> j = <span class="hljs-number">0</span>; j &lt; n; j++) &#123;<br>                node = node-&gt;next;<br>            &#125;<br>            <span class="hljs-keyword">if</span>(remain != <span class="hljs-number">0</span>) &#123;<br>                node = node-&gt;next;<br>                remain--;<br>            &#125;<br>            res.<span class="hljs-built_in">push_back</span>(pre-&gt;next);<br>            pre-&gt;next = node-&gt;next;<br>            node-&gt;next = <span class="hljs-literal">nullptr</span>;<br>            node = pre;<br>        &#125;<br>        <span class="hljs-keyword">return</span> res;<br>    &#125;<br>&#125;;<br></code></pre></td></tr></table></figure>
 <h3 id="性能分析">性能分析</h3>
-<p>时间复杂度：<span class="math display">\[O(n)\]</span>。</p>
+<p>时间复杂度：<span class="math inline">\(O(n)\)</span>。</p>
 <p>空间复杂度：不算答案数组。只用了常数级空间。<span
-class="math display">\[O(1)\]</span>。算上的话，那就是<span
-class="math display">\[O(max(n + k))\]</span>。n为链表节点数。</p>
+class="math inline">\(O(1)\)</span>。算上的话，那就是<span
+class="math inline">\(O(max(n + k))\)</span>。n为链表节点数。</p>
 <p>参考答案类似。</p>
 
             </div>

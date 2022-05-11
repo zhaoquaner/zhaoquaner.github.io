@@ -25,7 +25,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://crayon-1302863897.cos.ap-beijing.myqcloud.com/image/image-20210528191843266.png">
 <meta property="article:published_time" content="2022-05-11T07:45:39.000Z">
-<meta property="article:modified_time" content="2022-05-11T07:17:53.917Z">
+<meta property="article:modified_time" content="2022-05-11T07:57:10.192Z">
 <meta property="article:author" content="ZhaoXin">
 <meta property="article:tag" content="算法题">
 <meta name="twitter:card" content="summary_large_image">
@@ -264,13 +264,12 @@
 <h3 id="性能分析">性能分析</h3>
 <p>设有k个链表，每个链表最长长度为n。</p>
 <p>时间复杂度：第一轮合并<span
-class="math display">\[\frac{k}{2}\]</span>组链表，每一组时间代价是<span
-class="math display">\[O(2n)\]</span>；第二轮合并<span
-class="math display">\[\frac{k}{4}\]</span>，时间代价为<span
-class="math display">\[O(4n)\]</span>...</p>
-<p>​ 总时间复杂度为<span class="math display">\[O(kn ×
-logk)\]</span>。</p>
-<p>空间复杂度：<span class="math display">\[O(k)\]</span>。</p>
+class="math inline">\(\frac{k}{2}\)</span>组链表，每一组时间代价是<span
+class="math inline">\(O(2n)\)</span>；第二轮合并<span
+class="math inline">\(\frac{k}{4}\)</span>，时间代价为<span
+class="math inline">\(O(4n)\)</span></p>
+<p>总时间复杂度为<span class="math inline">\(O(kn × logk)\)</span>。</p>
+<p>空间复杂度：<span class="math inline">\(O(k)\)</span>。</p>
 <h3 id="另一种做法">另一种做法</h3>
 <h4 id="算法思想-1">算法思想</h4>
 <p>每次都从所有链表的当前节点中找出一个最小节点，然后链接该节点。然后该链表遍历指针指向下一个节点。一直到所有链表遍历指针都为空，即所有结点都被连接到有序链表上。循环结束。</p>
@@ -279,8 +278,8 @@ logk)\]</span>。</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Solution</span> &#123;<br><br><span class="hljs-keyword">public</span>:<br>    <span class="hljs-function">ListNode* <span class="hljs-title">mergeKLists</span><span class="hljs-params">(vector&lt;ListNode*&gt;&amp; lists)</span> </span>&#123;<br>        <span class="hljs-keyword">if</span>(lists.<span class="hljs-built_in">size</span>() == <span class="hljs-number">0</span>) &#123;<br>            <span class="hljs-keyword">return</span> <span class="hljs-literal">nullptr</span>;<br>        &#125; <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span>(lists.<span class="hljs-built_in">size</span>() == <span class="hljs-number">1</span>) &#123;<br>            <span class="hljs-keyword">return</span> lists[<span class="hljs-number">0</span>];<br>        &#125;<br>        ListNode * dummy = <span class="hljs-keyword">new</span> <span class="hljs-built_in">ListNode</span>(<span class="hljs-number">0</span>);<br>        ListNode * pre = dummy;<br>        <span class="hljs-type">int</span> size = lists.<span class="hljs-built_in">size</span>();<br>        <span class="hljs-keyword">while</span> (pre != <span class="hljs-literal">nullptr</span>) &#123;<br>            <span class="hljs-type">int</span> minNumber = INT_MAX;<br>            <span class="hljs-type">int</span> index = <span class="hljs-number">-1</span>;<br>            <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>; i &lt; size; i++) &#123;<br>                <span class="hljs-keyword">if</span>(lists[i] != <span class="hljs-literal">nullptr</span> &amp;&amp; lists[i]-&gt;val &lt; minNumber) &#123;<br>                    minNumber = lists[i]-&gt;val;<br>                    index = i;<br>                &#125;<br>            &#125;<br>            <span class="hljs-comment">//如果初始 链表数组所有指针都为空，那么就不会给index赋值</span><br>            <span class="hljs-keyword">if</span>(index != <span class="hljs-number">-1</span>) &#123;<br>                pre-&gt;next = lists[index];<br>                pre = pre-&gt;next;<br>                lists[index] = lists[index]-&gt;next;<br>            &#125; <span class="hljs-keyword">else</span> &#123;<br>                <span class="hljs-comment">//也可以直接写成break，结束循环</span><br>                pre-&gt;next = <span class="hljs-literal">nullptr</span>;<br>                pre = <span class="hljs-literal">nullptr</span>;<br>            &#125;<br><br>        &#125;<br>        <span class="hljs-keyword">return</span> dummy-&gt;next;<br>    &#125;<br><br>&#125;;<br><br></code></pre></td></tr></table></figure>
 <h4 id="性能分析-1">性能分析</h4>
 <p>时间复杂度：<span
-class="math display">\[O(mn)\]</span>，m为总的节点个数，n为链表个数。</p>
-<p>空间复杂度：<span class="math display">\[O(1)\]</span>。</p>
+class="math inline">\(O(mn)\)</span>，m为总的节点个数，n为链表个数。</p>
+<p>空间复杂度：<span class="math inline">\(O(1)\)</span>。</p>
 <h2 id="参考做法">参考做法</h2>
 <h3 id="算法思想-2">算法思想</h3>
 <p>使用优先队列。</p>
@@ -296,9 +295,9 @@ class="math display">\[O(mn)\]</span>，m为总的节点个数，n为链表个�
 <h3 id="性能分析-2">性能分析</h3>
 <p>设有k个链表，每个链表最长长度为n。</p>
 <p>时间复杂度：优先队列中元素不超过k个，插入和删除的时间代价为<span
-class="math display">\[O(logk)\]</span>。最多有kn个点，每个节点都被插入删除依次，所有时间复杂度为<span
-class="math display">\[O(kn × logk)\]</span>。</p>
-<p>空间复杂度：<span class="math display">\[O(k)\]</span>。</p>
+class="math inline">\(O(logk)\)</span>。最多有kn个点，每个节点都被插入删除依次，所有时间复杂度为<span
+class="math inline">\(O(kn × logk)\)</span>。</p>
+<p>空间复杂度：<span class="math inline">\(O(k)\)</span>。</p>
 
             </div>
             <hr>

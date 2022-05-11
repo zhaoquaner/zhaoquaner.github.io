@@ -26,7 +26,7 @@
 <meta property="og:image" content="https://crayon-1302863897.cos.ap-beijing.myqcloud.com/image/image-20210423205219002.png">
 <meta property="og:image" content="https://crayon-1302863897.cos.ap-beijing.myqcloud.com/image/21年04月23日21时27分20秒.gif">
 <meta property="article:published_time" content="2022-05-11T07:14:39.000Z">
-<meta property="article:modified_time" content="2022-05-11T07:18:28.531Z">
+<meta property="article:modified_time" content="2022-05-11T08:01:54.289Z">
 <meta property="article:author" content="ZhaoXin">
 <meta property="article:tag" content="算法题">
 <meta name="twitter:card" content="summary_large_image">
@@ -266,9 +266,9 @@
 <figure class="highlight c++"><table><tr><td class="gutter"><div class="code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></div></td><td class="code"><pre><code class="hljs c++"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Solution</span> &#123;<br><span class="hljs-keyword">public</span>:<br>    <span class="hljs-function"><span class="hljs-type">static</span> <span class="hljs-type">void</span> <span class="hljs-title">moveZeroes</span><span class="hljs-params">(vector&lt;<span class="hljs-type">int</span>&gt;&amp; nums)</span> </span>&#123;<br>        set&lt;<span class="hljs-type">int</span>&gt; indexs;<br>        <span class="hljs-type">int</span> i = <span class="hljs-number">0</span>;<br>        <span class="hljs-keyword">for</span>(i = <span class="hljs-number">0</span>; i &lt; nums.<span class="hljs-built_in">size</span>(); i++) &#123;<br>            <span class="hljs-keyword">if</span>(nums[i] == <span class="hljs-number">0</span>) &#123;<br>                indexs.<span class="hljs-built_in">insert</span>(i);<br>            &#125;<br>        &#125;<br>        <span class="hljs-type">int</span> count = <span class="hljs-number">0</span>;<br>        i = <span class="hljs-number">0</span>;<br>        <span class="hljs-keyword">while</span> (i &lt; nums.<span class="hljs-built_in">size</span>() - indexs.<span class="hljs-built_in">size</span>())&#123;<br>            <span class="hljs-keyword">if</span>(indexs.<span class="hljs-built_in">count</span>(count) == <span class="hljs-number">0</span>) &#123;<br>                nums[i] = nums[count];<br>                i++;<br>            &#125;<br>            count++;<br>        &#125;<br>        <span class="hljs-keyword">for</span>(i = nums.<span class="hljs-built_in">size</span>() - indexs.<span class="hljs-built_in">size</span>(); i &lt; nums.<span class="hljs-built_in">size</span>(); i++) &#123;<br>            nums[i] = <span class="hljs-number">0</span>;<br>        &#125;<br>    &#125;<br>&#125;;<br></code></pre></td></tr></table></figure>
 <h3 id="性能分析">性能分析</h3>
 <p>时间复杂度：遍历了两遍数组，为<span
-class="math display">\[O(n)\]</span>。</p>
+class="math inline">\(O(n)\)</span>。</p>
 <p>空间复杂度：使用了哈希表，为<span
-class="math display">\[O(n)\]</span>。</p>
+class="math inline">\(O(n)\)</span>。</p>
 <h2 id="官方做法">官方做法</h2>
 <h3 id="算法思想-1">算法思想</h3>
 <p>双指针法。</p>
@@ -284,9 +284,9 @@ class="math display">\[O(n)\]</span>。</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Solution</span> &#123;<br><span class="hljs-keyword">public</span>:<br>    <span class="hljs-function"><span class="hljs-type">static</span> <span class="hljs-type">void</span> <span class="hljs-title">moveZeroes</span><span class="hljs-params">(vector&lt;<span class="hljs-type">int</span>&gt;&amp; nums)</span> </span>&#123;<br>        <span class="hljs-type">int</span> length = nums.<span class="hljs-built_in">size</span>(), left = <span class="hljs-number">0</span>, right = <span class="hljs-number">0</span>;<br>        <span class="hljs-keyword">while</span> (right &lt; length) &#123;<br>            <span class="hljs-keyword">if</span>(nums[right] != <span class="hljs-number">0</span>) &#123;<br>                <span class="hljs-built_in">swap</span>(nums[left], nums[right]);<br>                left++;<br>            &#125;<br>            right++;<br>        &#125;<br>    &#125;<br>&#125;;<br></code></pre></td></tr></table></figure>
 <h3 id="性能分析-1">性能分析</h3>
 <p>时间复杂度：遍历了一遍数组，为<span
-class="math display">\[O(n)\]</span>。</p>
+class="math inline">\(O(n)\)</span>。</p>
 <p>空间复杂度：使用了两个指针，为<span
-class="math display">\[O(1)\]</span>。</p>
+class="math inline">\(O(1)\)</span>。</p>
 
             </div>
             <hr>

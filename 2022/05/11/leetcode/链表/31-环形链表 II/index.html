@@ -26,7 +26,7 @@
 <meta property="og:image" content="https://crayon-1302863897.cos.ap-beijing.myqcloud.com/image/image-20210509194713023.png">
 <meta property="og:image" content="https://crayon-1302863897.cos.ap-beijing.myqcloud.com/image/image-20210509200935026.png">
 <meta property="article:published_time" content="2022-05-11T07:31:39.000Z">
-<meta property="article:modified_time" content="2022-05-11T07:17:25.959Z">
+<meta property="article:modified_time" content="2022-05-11T07:53:58.793Z">
 <meta property="article:author" content="ZhaoXin">
 <meta property="article:tag" content="算法题">
 <meta name="twitter:card" content="summary_large_image">
@@ -265,10 +265,9 @@
 <h3 id="算法实现">算法实现</h3>
 <figure class="highlight c++"><table><tr><td class="gutter"><div class="code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></div></td><td class="code"><pre><code class="hljs c++"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Solution</span> &#123;<br><span class="hljs-keyword">public</span>:<br>    <span class="hljs-function">ListNode *<span class="hljs-title">detectCycle</span><span class="hljs-params">(ListNode *head)</span> </span>&#123;<br>        <span class="hljs-keyword">if</span>(head == <span class="hljs-literal">nullptr</span> || head-&gt;next == <span class="hljs-literal">nullptr</span>) &#123;<br>            <span class="hljs-keyword">return</span> <span class="hljs-literal">nullptr</span>;<br>        &#125;<br>        unordered_set&lt;ListNode *&gt; nodes;<br>        nodes.<span class="hljs-built_in">insert</span>(head);<br>        ListNode * cur = head;<br>        <span class="hljs-keyword">while</span> (cur-&gt;next &amp;&amp; !nodes.<span class="hljs-built_in">count</span>(cur-&gt;next)) &#123;<br>            nodes.<span class="hljs-built_in">insert</span>(cur-&gt;next);<br>            cur = cur-&gt;next;<br>        &#125;<br>        <span class="hljs-keyword">return</span> cur-&gt;next;<br><br>    &#125;<br>&#125;;<br></code></pre></td></tr></table></figure>
 <h3 id="性能分析">性能分析</h3>
-<p>时间复杂度：遍历链表，<span
-class="math display">\[O(n)\]</span>。</p>
+<p>时间复杂度：遍历链表，<span class="math inline">\(O(n)\)</span>。</p>
 <p>空间复杂度：使用set集合，<span
-class="math display">\[O(n)\]</span>。</p>
+class="math inline">\(O(n)\)</span>。</p>
 <h2 id="参考做法">参考做法</h2>
 <h3 id="算法思想-1">算法思想</h3>
 <p>快慢指针法。</p>
@@ -287,8 +286,8 @@ c)\]</span>。即，从相遇点走到入环第一个节点，再走n -
 <h3 id="算法实现-1">算法实现</h3>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Solution</span> &#123;<br><span class="hljs-keyword">public</span>:<br>    <span class="hljs-function">ListNode *<span class="hljs-title">detectCycle</span><span class="hljs-params">(ListNode *head)</span> </span>&#123;<br>        ListNode * fast = head;<br>        ListNode * slow = head;<br>        <span class="hljs-keyword">while</span> (fast) &#123;<br>            <span class="hljs-keyword">if</span>(fast-&gt;next == <span class="hljs-literal">nullptr</span> || fast-&gt;next-&gt;next == <span class="hljs-literal">nullptr</span>) &#123;<br>                <span class="hljs-keyword">return</span> <span class="hljs-literal">nullptr</span>;<br>            &#125;<br>            fast = fast-&gt;next-&gt;next;<br>            slow = slow-&gt;next;<br><br>            <span class="hljs-keyword">if</span>(slow == fast) &#123;<br>                ListNode * node = head;<br>                <span class="hljs-keyword">while</span> (slow != node) &#123;<br>                    slow = slow-&gt;next;<br>                    node = node-&gt;next;<br>                &#125;<br>                <span class="hljs-keyword">return</span> node;<br>            &#125;<br>        &#125;<br>        <span class="hljs-keyword">return</span> <span class="hljs-literal">nullptr</span>;<br><br>    &#125;<br>&#125;;<br></code></pre></td></tr></table></figure>
 <h3 id="性能分析-1">性能分析</h3>
-<p>时间复杂度：<span class="math display">\[O(n)\]</span>。</p>
-<p>空间复杂度：<span class="math display">\[O(1)\]</span>。</p>
+<p>时间复杂度：<span class="math inline">\(O(n)\)</span>。</p>
+<p>空间复杂度：<span class="math inline">\(O(1)\)</span>。</p>
 
             </div>
             <hr>

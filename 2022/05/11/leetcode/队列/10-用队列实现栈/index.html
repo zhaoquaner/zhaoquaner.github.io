@@ -26,7 +26,7 @@
 <meta property="og:image" content="https://crayon-1302863897.cos.ap-beijing.myqcloud.com/image/image-20210422200135721.png">
 <meta property="og:image" content="https://crayon-1302863897.cos.ap-beijing.myqcloud.com/image/21年04月22日20时41分47秒.gif">
 <meta property="article:published_time" content="2022-05-11T07:10:39.000Z">
-<meta property="article:modified_time" content="2022-05-11T07:16:43.820Z">
+<meta property="article:modified_time" content="2022-05-11T07:48:51.696Z">
 <meta property="article:author" content="ZhaoXin">
 <meta property="article:tag" content="算法题">
 <meta name="twitter:card" content="summary_large_image">
@@ -263,12 +263,12 @@
 <h3 id="性能分析">性能分析</h3>
 <ul>
 <li><code>push</code>：直接插入到队列尾部，<span
-class="math display">\[O(1)\]</span>。</li>
+class="math inline">\(O(1)\)</span>。</li>
 <li><code>pop</code>：需要把数据挪到另一个队列中，为<span
-class="math display">\[O(n)\]</span>。</li>
+class="math inline">\(O(n)\)</span>。</li>
 <li><code>top</code>：和<code>pop</code>一样，同样要移动数据，也为<span
-class="math display">\[O(n)\]</span>。</li>
-<li><code>empty</code>：<code>O(1)</code>。</li>
+class="math inline">\(O(n)\)</span>。</li>
+<li><code>empty</code>：<span class="math inline">\(O(1)\)</span>。</li>
 </ul>
 <h2 id="官方做法">官方做法</h2>
 <h3 id="算法思想-2">算法思想</h3>
@@ -286,8 +286,8 @@ class="math display">\[O(n)\]</span>。</li>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-keyword">class</span> <span class="hljs-title class_">MyStack</span> &#123;<br><span class="hljs-keyword">private</span>:<br>    queue&lt;<span class="hljs-type">int</span>&gt; main_queue;<br>    queue&lt;<span class="hljs-type">int</span>&gt; queue;<br><br><br><span class="hljs-keyword">public</span>:<br><br>    <span class="hljs-comment">/** Initialize your data structure here. */</span><br>    <span class="hljs-built_in">MyStack</span>() &#123;<br><br>    &#125;<br><br>    <span class="hljs-comment">/** Push element x onto stack. */</span><br>    <span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">push</span><span class="hljs-params">(<span class="hljs-type">int</span> x)</span> </span>&#123;<br>        queue.<span class="hljs-built_in">push</span>(x);<br>        <span class="hljs-keyword">while</span> (!main_queue.<span class="hljs-built_in">empty</span>()) &#123;<br>            queue.<span class="hljs-built_in">push</span>(main_queue.<span class="hljs-built_in">front</span>());<br>            main_queue.<span class="hljs-built_in">pop</span>();<br>        &#125;<br>        <span class="hljs-built_in">swap</span>(main_queue, queue);<br>    &#125;<br><br>    <span class="hljs-comment">/** Removes the element on top of the stack and returns that element. */</span><br>    <span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">pop</span><span class="hljs-params">()</span> </span>&#123;<br>        <span class="hljs-type">int</span> top = main_queue.<span class="hljs-built_in">front</span>();<br>        main_queue.<span class="hljs-built_in">pop</span>();<br>        <span class="hljs-keyword">return</span> top;<br>    &#125;<br><br>    <span class="hljs-comment">/** Get the top element. */</span><br>    <span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">top</span><span class="hljs-params">()</span> </span>&#123;<br>        <span class="hljs-keyword">return</span> main_queue.<span class="hljs-built_in">front</span>();<br>    &#125;<br><br>    <span class="hljs-comment">/** Returns whether the stack is empty. */</span><br>    <span class="hljs-function"><span class="hljs-type">bool</span> <span class="hljs-title">empty</span><span class="hljs-params">()</span> </span>&#123;<br>        <span class="hljs-keyword">return</span> main_queue.<span class="hljs-built_in">empty</span>();<br>    &#125;<br>&#125;;<br></code></pre></td></tr></table></figure>
 <h3 id="性能分析-1">性能分析</h3>
 <p><code>push</code>：需要将主队列数据依次插入辅助队列，再重新插入主队列。为<span
-class="math display">\[O(n)\]</span>。</p>
-<p>其他操作都为<span class="math display">\[O(1)\]</span>。</p>
+class="math inline">\(O(n)\)</span>。</p>
+<p>其他操作都为<span class="math inline">\(O(1)\)</span>。</p>
 
             </div>
             <hr>

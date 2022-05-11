@@ -16,16 +16,16 @@
   <meta name="author" content="ZhaoXin">
   <meta name="keywords" content="博客">
   
-    <meta name="description" content="自己的做法 算法思想 可以遍历链表，把元素依次放入数组，然后使用两个指针一前一后来进行判断。但是该算法的时间复杂度是\[O(n)\]，空间复杂度也是\[O(n)\]。不够好。 可以将后半段链表反转，然后和前半段链表比较。然后再恢复为原来的链表(可以不恢复，但~ 恢复回来是个好的习惯)。  找到前半段链表的最后一个节点。通过快慢指针方法。 反转后半段链表 进行比较 将链表恢复">
+    <meta name="description" content="自己的做法 算法思想 可以遍历链表，把元素依次放入数组，然后使用两个指针一前一后来进行判断。但是该算法的时间复杂度是\(O(n)\)，空间复杂度也是\(O(n)\)。不够好。 可以将后半段链表反转，然后和前半段链表比较。然后再恢复为原来的链表(可以不恢复，但~ 恢复回来是个好的习惯)。  找到前半段链表的最后一个节点。通过快慢指针方法。 反转后半段链表 进行比较 将链表恢复">
 <meta property="og:type" content="article">
 <meta property="og:title" content="20-回文链表">
 <meta property="og:url" content="https://zhaoquaner.github.io/2022/05/11/leetcode/%E9%93%BE%E8%A1%A8/20-%E5%9B%9E%E6%96%87%E9%93%BE%E8%A1%A8/index.html">
 <meta property="og:site_name" content="赵圈儿的博客">
-<meta property="og:description" content="自己的做法 算法思想 可以遍历链表，把元素依次放入数组，然后使用两个指针一前一后来进行判断。但是该算法的时间复杂度是\[O(n)\]，空间复杂度也是\[O(n)\]。不够好。 可以将后半段链表反转，然后和前半段链表比较。然后再恢复为原来的链表(可以不恢复，但~ 恢复回来是个好的习惯)。  找到前半段链表的最后一个节点。通过快慢指针方法。 反转后半段链表 进行比较 将链表恢复">
+<meta property="og:description" content="自己的做法 算法思想 可以遍历链表，把元素依次放入数组，然后使用两个指针一前一后来进行判断。但是该算法的时间复杂度是\(O(n)\)，空间复杂度也是\(O(n)\)。不够好。 可以将后半段链表反转，然后和前半段链表比较。然后再恢复为原来的链表(可以不恢复，但~ 恢复回来是个好的习惯)。  找到前半段链表的最后一个节点。通过快慢指针方法。 反转后半段链表 进行比较 将链表恢复">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://crayon-1302863897.cos.ap-beijing.myqcloud.com/image/image-20210429195330695.png">
 <meta property="article:published_time" content="2022-05-11T07:20:39.000Z">
-<meta property="article:modified_time" content="2022-05-11T07:17:02.787Z">
+<meta property="article:modified_time" content="2022-05-11T07:50:45.463Z">
 <meta property="article:author" content="ZhaoXin">
 <meta property="article:tag" content="算法题">
 <meta name="twitter:card" content="summary_large_image">
@@ -257,8 +257,8 @@
 <h2 id="自己的做法">自己的做法</h2>
 <h3 id="算法思想">算法思想</h3>
 <p>可以遍历链表，把元素依次放入数组，然后使用两个指针一前一后来进行判断。但是该算法的时间复杂度是<span
-class="math display">\[O(n)\]</span>，空间复杂度也是<span
-class="math display">\[O(n)\]</span>。不够好。</p>
+class="math inline">\(O(n)\)</span>，空间复杂度也是<span
+class="math inline">\(O(n)\)</span>。不够好。</p>
 <p>可以将后半段链表反转，然后和前半段链表比较。然后再恢复为原来的链表(可以不恢复，但~
 恢复回来是个好的习惯)。</p>
 <ol type="1">
@@ -289,10 +289,10 @@ class="math display">\[O(n)\]</span>。不够好。</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><div class="code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br></pre></div></td><td class="code"><pre><code class="hljs c++"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Solution</span> &#123;<br><span class="hljs-keyword">public</span>:<br><br>    <span class="hljs-function"><span class="hljs-type">static</span> ListNode * <span class="hljs-title">reverse</span><span class="hljs-params">(ListNode * head)</span> </span>&#123;<br>        <span class="hljs-keyword">if</span>(head == <span class="hljs-literal">nullptr</span> || head-&gt;next == <span class="hljs-literal">nullptr</span>) &#123;<span class="hljs-keyword">return</span> head;&#125;<br>        ListNode * cur = head;<br>        ListNode * pre = <span class="hljs-literal">nullptr</span>;<br>        <span class="hljs-keyword">while</span> (cur != <span class="hljs-literal">nullptr</span>) &#123;<br>            ListNode * temp = cur-&gt;next;<br>            cur-&gt;next = pre;<br>            pre = cur;<br>            cur = temp;<br>        &#125;<br>        <span class="hljs-keyword">return</span> pre;<br><br>    &#125;<br><br>    <span class="hljs-function"><span class="hljs-type">static</span> ListNode * <span class="hljs-title">endOfFirstList</span><span class="hljs-params">(ListNode * head)</span> </span>&#123;<br>        <span class="hljs-keyword">if</span>(head == <span class="hljs-literal">nullptr</span> || head-&gt;next == <span class="hljs-literal">nullptr</span>) &#123;<span class="hljs-keyword">return</span> head;&#125;<br>        ListNode * slow = head;<br>        ListNode * fast = head;<br>        <span class="hljs-keyword">while</span> (fast-&gt;next != <span class="hljs-literal">nullptr</span> &amp;&amp; fast-&gt;next-&gt;next != <span class="hljs-literal">nullptr</span>) &#123;<br>            slow = slow-&gt;next;<br>            fast = fast-&gt;next-&gt;next;<br>        &#125;<br>        <span class="hljs-keyword">return</span> slow;<br><br>    &#125;<br><br>    <span class="hljs-function"><span class="hljs-type">static</span> <span class="hljs-type">bool</span> <span class="hljs-title">isPalindrome</span><span class="hljs-params">(ListNode* head)</span> </span>&#123;<br>        <span class="hljs-keyword">if</span>(head == <span class="hljs-literal">nullptr</span> || head-&gt;next == <span class="hljs-literal">nullptr</span>) &#123;<span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;&#125;<br><br>        ListNode * endOfFirst = <span class="hljs-built_in">endOfFirstList</span>(head);<br>        ListNode * startOfSecond = endOfFirst-&gt;next;<br>        endOfFirst-&gt;next = <span class="hljs-literal">nullptr</span>;<br>        startOfSecond = <span class="hljs-built_in">reverse</span>(startOfSecond);<br><br>        ListNode * first = head, * second = startOfSecond;<br>        <span class="hljs-type">bool</span> result = <span class="hljs-literal">true</span>;<br>        <span class="hljs-keyword">while</span> (result &amp;&amp; second != <span class="hljs-literal">nullptr</span>) &#123;<br>            <span class="hljs-keyword">if</span>(first-&gt;val != second-&gt;val) &#123;<br>                result = <span class="hljs-literal">false</span>;<br>            &#125;<br>            first = first-&gt;next;<br>            second = second-&gt;next;<br>        &#125;<br>        startOfSecond = <span class="hljs-built_in">reverse</span>(startOfSecond);<br>        endOfFirst-&gt;next = startOfSecond;<br>        <span class="hljs-keyword">return</span> result;<br><br>    &#125;<br><br><br>&#125;;<br></code></pre></td></tr></table></figure>
 <h3 id="性能分析">性能分析</h3>
 <p>时间复杂度：找到前半部分链表的尾结点和反转链表的时间复杂度都是<span
-class="math display">\[O(n)\]</span>，依次比较时间复杂度也是<span
-class="math display">\[O(n)\]</span>。所以总的时间 复杂度是<span
-class="math display">\[O(n)\]</span>。</p>
-<p>空间复杂度：<span class="math display">\[O(1)\]</span>。</p>
+class="math inline">\(O(n)\)</span>，依次比较时间复杂度也是<span
+class="math inline">\(O(n)\)</span>。所以总的时间复杂度是<span
+class="math inline">\(O(n)\)</span>。</p>
+<p>空间复杂度：<span class="math inline">\(O(1)\)</span>。</p>
 <h2 id="官方做法">官方做法</h2>
 <p>官方有三个做法，第一个就是我说的数组法。第三个和我的做法相同，反转链表法。</p>
 <p>第二个是递归法。</p>
@@ -302,9 +302,9 @@ class="math display">\[O(n)\]</span>。</p>
 <h3 id="算法实现-1">算法实现</h3>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Solution</span> &#123;<br><span class="hljs-keyword">public</span>:<br>    ListNode * front;<br><br>    <span class="hljs-function"><span class="hljs-type">bool</span> <span class="hljs-title">recursion</span><span class="hljs-params">(ListNode * head)</span> </span>&#123;<br>        <span class="hljs-keyword">if</span>(head != <span class="hljs-literal">nullptr</span>) &#123;<br>            <span class="hljs-keyword">if</span>(!<span class="hljs-built_in">recursion</span>(head-&gt;next)) &#123;<br>                <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;<br>            &#125;<br>            <span class="hljs-keyword">if</span>(head-&gt;val != front-&gt;val) &#123;<br>                <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;<br>            &#125;<br>            front = front-&gt;next;<br>        &#125;<br>        <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;<br><br>    &#125;<br><br>    <span class="hljs-function"><span class="hljs-type">bool</span> <span class="hljs-title">isPalindrome</span><span class="hljs-params">(ListNode* head)</span> </span>&#123;<br>        front = head;<br>        <span class="hljs-keyword">return</span> <span class="hljs-built_in">recursion</span>(head);<br>    &#125;<br>&#125;;<br></code></pre></td></tr></table></figure>
 <h3 id="性能分析-1">性能分析</h3>
-<p>时间复杂度：<span class="math display">\[O(n)\]</span>。</p>
+<p>时间复杂度：<span class="math inline">\(O(n)\)</span>。</p>
 <p>空间复杂度：在递归调用时，计算机会使用堆栈来存放调用前的数据。因此也是<span
-class="math display">\[O(n)\]</span>。</p>
+class="math inline">\(O(n)\)</span>。</p>
 
             </div>
             <hr>

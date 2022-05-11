@@ -25,7 +25,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://crayon-1302863897.cos.ap-beijing.myqcloud.com/image/image-20210421201032222.png">
 <meta property="article:published_time" content="2022-05-11T07:08:39.000Z">
-<meta property="article:modified_time" content="2022-05-11T07:19:26.271Z">
+<meta property="article:modified_time" content="2022-05-11T08:00:53.132Z">
 <meta property="article:author" content="ZhaoXin">
 <meta property="article:tag" content="算法题">
 <meta name="twitter:card" content="summary_large_image">
@@ -260,10 +260,9 @@
 <h3 id="算法实现">算法实现</h3>
 <figure class="highlight c++"><table><tr><td class="gutter"><div class="code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></div></td><td class="code"><pre><code class="hljs c++"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Solution</span> &#123;<br><span class="hljs-keyword">public</span>:<br>    <span class="hljs-function"><span class="hljs-type">bool</span> <span class="hljs-title">containsDuplicate</span><span class="hljs-params">(vector&lt;<span class="hljs-type">int</span>&gt;&amp; nums)</span> </span>&#123;<br><br>        set&lt;<span class="hljs-type">int</span>&gt; numbers;<br>        <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>; i &lt; nums.<span class="hljs-built_in">size</span>(); i++) &#123;<br>            <span class="hljs-keyword">if</span>(numbers.<span class="hljs-built_in">count</span>(nums[i]) == <span class="hljs-number">0</span>) &#123;<br>                numbers.<span class="hljs-built_in">insert</span>(nums[i]);<br>            &#125; <span class="hljs-keyword">else</span> &#123;<br>				<span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;<br>            &#125;<br>        &#125;<br>        <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;<br><br>    &#125;<br>&#125;;<br></code></pre></td></tr></table></figure>
 <h3 id="性能分析">性能分析</h3>
-<p>时间复杂度：遍历数组，<span
-class="math display">\[O(n)\]</span>。</p>
+<p>时间复杂度：遍历数组，<span class="math inline">\(O(n)\)</span>。</p>
 <p>空间复杂度：使用了哈希表，<span
-class="math display">\[O(n)\]</span>。</p>
+class="math inline">\(O(n)\)</span>。</p>
 <h2 id="官方做法">官方做法</h2>
 <h3 id="算法思想-1">算法思想</h3>
 <p>把数组排序，然后依次比较相邻元素。</p>
@@ -271,10 +270,10 @@ class="math display">\[O(n)\]</span>。</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Solution</span> &#123;<br><span class="hljs-keyword">public</span>:<br>    <span class="hljs-function"><span class="hljs-type">bool</span> <span class="hljs-title">containsDuplicate</span><span class="hljs-params">(vector&lt;<span class="hljs-type">int</span>&gt;&amp; nums)</span> </span>&#123;<br><br>        <span class="hljs-built_in">sort</span>(nums.<span class="hljs-built_in">begin</span>(), nums.<span class="hljs-built_in">end</span>());<br>        <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>; i &lt; nums.<span class="hljs-built_in">size</span>() - <span class="hljs-number">1</span>; i++) &#123;<br>            <span class="hljs-keyword">if</span>(nums[i] == nums[i + <span class="hljs-number">1</span>]) &#123;<br>                <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;<br>            &#125;<br>        &#125;<br>        <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;<br><br>    &#125;<br>&#125;;<br></code></pre></td></tr></table></figure>
 <h3 id="性能分析-1">性能分析</h3>
 <p>时间复杂度：就是排序时间复杂度：<span
-class="math display">\[O(n*logn)\]</span>。</p>
+class="math inline">\(O(n*logn)\)</span>。</p>
 <p>空间复杂度：自己实现排序算法，空间复杂度为<span
-class="math display">\[O(1)\]</span>，使用默认排序算法，为<span
-class="math display">\[O(n)\]</span>。</p>
+class="math inline">\(O(1)\)</span>，使用默认排序算法，为<span
+class="math inline">\(O(n)\)</span>。</p>
 
             </div>
             <hr>

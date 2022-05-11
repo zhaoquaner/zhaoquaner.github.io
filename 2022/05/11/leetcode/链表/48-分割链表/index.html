@@ -25,7 +25,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://crayon-1302863897.cos.ap-beijing.myqcloud.com/image/image-20210530201524820.png">
 <meta property="article:published_time" content="2022-05-11T07:48:39.000Z">
-<meta property="article:modified_time" content="2022-05-11T07:18:00.960Z">
+<meta property="article:modified_time" content="2022-05-11T07:58:03.575Z">
 <meta property="article:author" content="ZhaoXin">
 <meta property="article:tag" content="算法题">
 <meta name="twitter:card" content="summary_large_image">
@@ -265,8 +265,8 @@ greater_head。代表比x小的节点链表和大于等于x的节点链表。</p
 <h3 id="算法实现">算法实现</h3>
 <figure class="highlight c++"><table><tr><td class="gutter"><div class="code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></div></td><td class="code"><pre><code class="hljs c++"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Solution</span> &#123;<br><span class="hljs-keyword">public</span>:<br>    <span class="hljs-function">ListNode* <span class="hljs-title">partition</span><span class="hljs-params">(ListNode* head, <span class="hljs-type">int</span> x)</span> </span>&#123;<br>        ListNode * less_head = <span class="hljs-keyword">new</span> <span class="hljs-built_in">ListNode</span>();<br>        ListNode * greater_head = <span class="hljs-keyword">new</span> <span class="hljs-built_in">ListNode</span>();<br>        ListNode * less = less_head;<br>        ListNode * great = greater_head;<br>        ListNode * cur = head;<br>        <span class="hljs-keyword">while</span> (cur != <span class="hljs-literal">nullptr</span>) &#123;<br>            ListNode * next = cur-&gt;next;<br>            <span class="hljs-keyword">if</span>(cur-&gt;val &lt; x) &#123;<br>                less-&gt;next = cur;<br>                less = less-&gt;next;<br>            &#125; <span class="hljs-keyword">else</span> &#123;<br>                great-&gt;next = cur;<br>                great = great-&gt;next;<br>            &#125;<br>            cur-&gt;next = <span class="hljs-literal">nullptr</span>;<br>            cur = next;<br>        &#125;<br>        less-&gt;next = greater_head-&gt;next;<br>        <span class="hljs-keyword">return</span> less_head-&gt;next;<br>    &#125;<br>&#125;;<br></code></pre></td></tr></table></figure>
 <h3 id="性能分析">性能分析</h3>
-<p>时间复杂度:<span class="math display">\[O(n)\]</span>。</p>
-<p>空间复杂度：<span class="math display">\[O(1)\]</span>。</p>
+<p>时间复杂度: <span class="math inline">\(O(n)\)</span>。</p>
+<p>空间复杂度: <span class="math inline">\(O(1)\)</span>。</p>
 <h3 id="另一种做法">另一种做法</h3>
 <h4 id="算法思想-1">算法思想</h4>
 <p>创建哑节点dummy，less指向所以小于x节点链表的尾节点，使用cur指针遍历链表，当cur的值小于x时，就将它添加到less后面，然后cur向后走一步。并且因为待添加节点要和后面节点断开，所以需要保持一个pre指针时时指向cur的上一个节点。</p>

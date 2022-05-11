@@ -25,7 +25,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://crayon-1302863897.cos.ap-beijing.myqcloud.com/image/image-20210516172454125.png">
 <meta property="article:published_time" content="2022-05-11T07:35:39.000Z">
-<meta property="article:modified_time" content="2022-05-11T07:17:35.156Z">
+<meta property="article:modified_time" content="2022-05-11T07:54:42.732Z">
 <meta property="article:author" content="ZhaoXin">
 <meta property="article:tag" content="算法题">
 <meta name="twitter:card" content="summary_large_image">
@@ -264,8 +264,8 @@
 <h3 id="算法实现">算法实现</h3>
 <figure class="highlight c++"><table><tr><td class="gutter"><div class="code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></div></td><td class="code"><pre><code class="hljs c++"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Solution</span> &#123;<br><span class="hljs-keyword">public</span>:<br>    <span class="hljs-function">ListNode* <span class="hljs-title">mergeInBetween</span><span class="hljs-params">(ListNode* list1, <span class="hljs-type">int</span> a, <span class="hljs-type">int</span> b, ListNode* list2)</span> </span>&#123;<br>        ListNode * dummy = <span class="hljs-keyword">new</span> <span class="hljs-built_in">ListNode</span>();<br>        dummy-&gt;next = list1;<br>        ListNode * a_pre = dummy;<br>        <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>; i &lt; a; i++) &#123;<br>            a_pre = a_pre-&gt;next;<br>        &#125;<br>        ListNode * b_node = a_pre;<br>        <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>; i &lt; b - a + <span class="hljs-number">1</span>; i++) &#123;<br>            b_node = b_node-&gt;next;<br>        &#125;<br>        ListNode * end = list2;<br>        <span class="hljs-keyword">while</span> (end-&gt;next) &#123;<br>            end = end-&gt;next;<br>        &#125;<br>        a_pre-&gt;next = list2;<br>        end-&gt;next = b_node-&gt;next;<br>        <span class="hljs-keyword">return</span> dummy-&gt;next;<br>    &#125;<br>&#125;;<br></code></pre></td></tr></table></figure>
 <h3 id="算法性能">算法性能</h3>
-<p>时间复杂度：<span class="math display">\[O(b + m)\]</span>。</p>
-<p>空间复杂度：<span class="math display">\[O(1)\]</span>。</p>
+<p>时间复杂度：<span class="math inline">\(O(b + m)\)</span>。</p>
+<p>空间复杂度：<span class="math inline">\(O(1)\)</span>。</p>
 <p>无参考做法。</p>
 
             </div>
