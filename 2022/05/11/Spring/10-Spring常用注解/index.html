@@ -26,8 +26,8 @@
 <meta property="article:published_time" content="2022-05-11T05:57:10.000Z">
 <meta property="article:modified_time" content="2022-05-11T08:59:37.991Z">
 <meta property="article:author" content="ZhaoXin">
-<meta property="article:tag" content="JavaWeb">
 <meta property="article:tag" content="后端">
+<meta property="article:tag" content="JavaWeb">
 <meta property="article:tag" content="Spring">
 <meta name="twitter:card" content="summary_large_image">
   
@@ -308,9 +308,9 @@ data-cites="Resource">@Resource</span></h2>
                   <div class="post-meta">
                     <i class="iconfont icon-tags"></i>
                     
-                      <a class="hover-with-bg" href="/tags/javaweb/">JavaWeb</a>
-                    
                       <a class="hover-with-bg" href="/tags/backend/">后端</a>
+                    
+                      <a class="hover-with-bg" href="/tags/javaweb/">JavaWeb</a>
                     
                       <a class="hover-with-bg" href="/tags/spring/">Spring</a>
                     
@@ -394,17 +394,6 @@ data-cites="Resource">@Resource</span></h2>
       "header", //加载头部（文章页头图等）
     ]
    })
-   document.addEventListener('pjax:complete', function (){
-    	$.getScript("/js/lazyload.js");
-	})
-	document.addEventListener('pjax:complete', function (){
-  		$.getScript("/js/main.js");
-  		$.getScript("/js/debouncer.js");
-	})
-		// 窗口监听load(加载、刷新)事件，执行函数
-	window.addEventListener('load',function(){
- 		$.getScript("/js/main.js");
-	})
 </script>
 
   <!-- SCRIPTS -->
