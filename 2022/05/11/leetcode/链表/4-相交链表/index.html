@@ -78,7 +78,7 @@
 </head>
 
 
-<body><!-- hexo injector body_begin start --><style>code {font-weight:400;}.post-content {font-weight:600;} #board {border-radius: 1.5rem;} #board-ctn {width:110%;margin-left:-5%;}</style><script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script><script src="https://cdn.bootcss.com/jquery.pjax/2.0.1/jquery.pjax.min.js"></script><script>$(document).pjax("a[target!=_blank]", "#container", {fragment:"#container", timeout:8000})</script><!-- hexo injector body_begin end -->
+<body><!-- hexo injector body_begin start --><style>code {font-weight:400;}.post-content {font-weight:600;} #board {border-radius: 1.5rem;} #board-ctn {width:110%;margin-left:-5%;}</style><!-- hexo injector body_begin end -->
   <header style="height: 70vh;">
     <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
   <div class="container">
@@ -387,7 +387,28 @@ class="line-block">这个算法也太浪漫了吧，错的人迟早会走散，�
 
   
 </footer>
-
+<script src="https://cdn.jsdelivr.net/npm/pjax@0.2.8/pjax.js"></script>
+<script>
+    // pjax
+    var pjax = new Pjax({
+    selectors: [
+      "title", //加载标题
+      "main", //加载主体框架部分
+      "header", //加载头部（文章页头图等）
+    ]
+   })
+   document.addEventListener('pjax:complete', function (){
+    	$.getScript("/js/lazyload.js");
+	})
+	document.addEventListener('pjax:complete', function (){
+  		$.getScript("/js/main.js");
+  		$.getScript("/js/debouncer.js");
+	})
+		// 窗口监听load(加载、刷新)事件，执行函数
+	window.addEventListener('load',function(){
+ 		$.getScript("/js/main.js");
+	})
+</script>
 
   <!-- SCRIPTS -->
   
