@@ -16,12 +16,12 @@
   <meta name="author" content="ZhaoXin">
   <meta name="keywords" content="博客">
   
-    <meta name="description" content="自己的做法 算法思想 写一个递归函数：constructTree。 功能：将输入的数组转化成一个最大二叉树 参数：数组nums，左边界left，右边界right 返回值：该二叉树的根节点 递归终止条件：left &gt; right。 递归函数具体实现： 找到该数组中最大元素，以该元素的值建立根节点，然后递归，传入该元素的左边数组和右边数组。 算法实现 1234567891">
+    <meta name="description" content="自己的做法算法思想写一个递归函数：constructTree。 功能：将输入的数组转化成一个最大二叉树 参数：数组nums，左边界left，右边界right 返回值：该二叉树的根节点 递归终止条件：left &gt; right。 递归函数具体实现： 找到该数组中最大元素，以该元素的值建立根节点，然后递归，传入该元素的左边数组和右边数组。 算法实现123456789101112131415161">
 <meta property="og:type" content="article">
 <meta property="og:title" content="69-最大二叉树">
 <meta property="og:url" content="https://zhaoquaner.github.io/2022/05/11/leetcode/%E6%A0%88/69-%E6%9C%80%E5%A4%A7%E4%BA%8C%E5%8F%89%E6%A0%91/index.html">
 <meta property="og:site_name" content="赵圈儿的博客">
-<meta property="og:description" content="自己的做法 算法思想 写一个递归函数：constructTree。 功能：将输入的数组转化成一个最大二叉树 参数：数组nums，左边界left，右边界right 返回值：该二叉树的根节点 递归终止条件：left &gt; right。 递归函数具体实现： 找到该数组中最大元素，以该元素的值建立根节点，然后递归，传入该元素的左边数组和右边数组。 算法实现 1234567891">
+<meta property="og:description" content="自己的做法算法思想写一个递归函数：constructTree。 功能：将输入的数组转化成一个最大二叉树 参数：数组nums，左边界left，右边界right 返回值：该二叉树的根节点 递归终止条件：left &gt; right。 递归函数具体实现： 找到该数组中最大元素，以该元素的值建立根节点，然后递归，传入该元素的左边数组和右边数组。 算法实现123456789101112131415161">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://crayon-1302863897.cos.ap-beijing.myqcloud.com/image/image-20210625200406778.png">
 <meta property="article:published_time" content="2022-05-11T08:09:39.000Z">
@@ -211,7 +211,7 @@
   
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      921 字
+      909 字
     </span>
   
 
@@ -254,26 +254,16 @@
             
             <div class="markdown-body">
               <p><img src="https://crayon-1302863897.cos.ap-beijing.myqcloud.com/image/image-20210625200406778.png" srcset="/img/loading.gif" lazyload alt="image-20210625200406778" style="zoom:50%;" /></p>
-<h2 id="自己的做法">自己的做法</h2>
-<h3 id="算法思想">算法思想</h3>
-<p>写一个递归函数：constructTree。</p>
+<h2 id="自己的做法"><a href="#自己的做法" class="headerlink" title="自己的做法"></a>自己的做法</h2><h3 id="算法思想"><a href="#算法思想" class="headerlink" title="算法思想"></a>算法思想</h3><p>写一个递归函数：constructTree。</p>
 <p>功能：将输入的数组转化成一个最大二叉树</p>
 <p>参数：数组nums，左边界left，右边界right</p>
 <p>返回值：该二叉树的根节点</p>
 <p>递归终止条件：left &gt; right。</p>
 <p>递归函数具体实现：</p>
 <p>找到该数组中最大元素，以该元素的值建立根节点，然后递归，传入该元素的左边数组和右边数组。</p>
-<h3 id="算法实现">算法实现</h3>
-<figure class="highlight reasonml"><table><tr><td class="gutter"><div class="code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></div></td><td class="code"><pre><code class="hljs reasonml"><span class="hljs-keyword">class</span> Solution &#123;<br>public:<br>    TreeNode* construct<span class="hljs-constructor">MaximumBinaryTree(<span class="hljs-params">vector</span>&lt;<span class="hljs-params">int</span>&gt;&amp; <span class="hljs-params">nums</span>)</span> &#123;<br>        return construct<span class="hljs-constructor">Tree(<span class="hljs-params">nums</span>, 0, <span class="hljs-params">nums</span>.<span class="hljs-params">size</span>()</span> - <span class="hljs-number">1</span>);<br>    &#125;<br><br>    TreeNode<span class="hljs-operator"> * </span>construct<span class="hljs-constructor">Tree(<span class="hljs-params">vector</span>&lt;<span class="hljs-params">int</span>&gt;&amp; <span class="hljs-params">nums</span>, <span class="hljs-params">int</span> <span class="hljs-params">left</span>, <span class="hljs-params">int</span> <span class="hljs-params">right</span>)</span> &#123;<br>        <span class="hljs-keyword">if</span>(left &gt; right) &#123;<br>            return nullptr;<br>        &#125;<br>        <span class="hljs-built_in">int</span> max_index = left;<br>        <span class="hljs-keyword">for</span>(<span class="hljs-built_in">int</span> i = left + <span class="hljs-number">1</span>; i &lt;= right; i++) &#123;<br>            <span class="hljs-keyword">if</span>(nums<span class="hljs-literal">[<span class="hljs-identifier">max_index</span>]</span> &lt; nums<span class="hljs-literal">[<span class="hljs-identifier">i</span>]</span>) &#123;<br>                max_index = i;<br>            &#125;<br>        &#125;<br>        TreeNode<span class="hljs-operator"> * </span>node = <span class="hljs-keyword">new</span> <span class="hljs-constructor">TreeNode(<span class="hljs-params">nums</span>[<span class="hljs-params">max_index</span>])</span>;<br>        node-&gt;left = construct<span class="hljs-constructor">Tree(<span class="hljs-params">nums</span>, <span class="hljs-params">left</span>, <span class="hljs-params">max_index</span> - 1)</span>;<br>        node-&gt;right = construct<span class="hljs-constructor">Tree(<span class="hljs-params">nums</span>, <span class="hljs-params">max_index</span> + 1, <span class="hljs-params">right</span>)</span>;<br>        return node;<br>    &#125;<br>&#125;;<br></code></pre></td></tr></table></figure>
-<h3 id="性能分析">性能分析</h3>
-<p>时间复杂度：<span
-class="math inline">\(O(n^2)\)</span>。一共被调用n次，每次找根节点时，都需要遍历当前索引范围内所有元素。总复杂度<span
-class="math inline">\(O(nlogn)\)</span>。最坏情况是，nums有序，每次都要遍历到最后一个结点，总复杂度为<span
-class="math inline">\(O(n^2)\)</span>。</p>
-<p>空间复杂度：<span
-class="math inline">\(O(n)\)</span>。平均情况，长度为n的数组递归调用深度为<span
-class="math inline">\(O(logn)\)</span>。最坏情况为<span
-class="math inline">\(O(n)\)</span>。</p>
+<h3 id="算法实现"><a href="#算法实现" class="headerlink" title="算法实现"></a>算法实现</h3><figure class="highlight reasonml"><table><tr><td class="gutter"><div class="code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></div></td><td class="code"><pre><code class="hljs reasonml"><span class="hljs-keyword">class</span> Solution &#123;<br>public:<br>    TreeNode* construct<span class="hljs-constructor">MaximumBinaryTree(<span class="hljs-params">vector</span>&lt;<span class="hljs-params">int</span>&gt;&amp; <span class="hljs-params">nums</span>)</span> &#123;<br>        return construct<span class="hljs-constructor">Tree(<span class="hljs-params">nums</span>, 0, <span class="hljs-params">nums</span>.<span class="hljs-params">size</span>()</span> - <span class="hljs-number">1</span>);<br>    &#125;<br><br>    TreeNode<span class="hljs-operator"> * </span>construct<span class="hljs-constructor">Tree(<span class="hljs-params">vector</span>&lt;<span class="hljs-params">int</span>&gt;&amp; <span class="hljs-params">nums</span>, <span class="hljs-params">int</span> <span class="hljs-params">left</span>, <span class="hljs-params">int</span> <span class="hljs-params">right</span>)</span> &#123;<br>        <span class="hljs-keyword">if</span>(left &gt; right) &#123;<br>            return nullptr;<br>        &#125;<br>        <span class="hljs-built_in">int</span> max_index = left;<br>        <span class="hljs-keyword">for</span>(<span class="hljs-built_in">int</span> i = left + <span class="hljs-number">1</span>; i &lt;= right; i++) &#123;<br>            <span class="hljs-keyword">if</span>(nums<span class="hljs-literal">[<span class="hljs-identifier">max_index</span>]</span> &lt; nums<span class="hljs-literal">[<span class="hljs-identifier">i</span>]</span>) &#123;<br>                max_index = i;<br>            &#125;<br>        &#125;<br>        TreeNode<span class="hljs-operator"> * </span>node = <span class="hljs-keyword">new</span> <span class="hljs-constructor">TreeNode(<span class="hljs-params">nums</span>[<span class="hljs-params">max_index</span>])</span>;<br>        node-&gt;left = construct<span class="hljs-constructor">Tree(<span class="hljs-params">nums</span>, <span class="hljs-params">left</span>, <span class="hljs-params">max_index</span> - 1)</span>;<br>        node-&gt;right = construct<span class="hljs-constructor">Tree(<span class="hljs-params">nums</span>, <span class="hljs-params">max_index</span> + 1, <span class="hljs-params">right</span>)</span>;<br>        return node;<br>    &#125;<br>&#125;;<br></code></pre></td></tr></table></figure>
+<h3 id="性能分析"><a href="#性能分析" class="headerlink" title="性能分析"></a>性能分析</h3><p>时间复杂度：$O(n^2)$。一共被调用n次，每次找根节点时，都需要遍历当前索引范围内所有元素。总复杂度$O(nlogn)$。最坏情况是，nums有序，每次都要遍历到最后一个结点，总复杂度为$O(n^2)$。</p>
+<p>空间复杂度：$O(n)$。平均情况，长度为n的数组递归调用深度为$O(logn)$。最坏情况为$O(n)$。</p>
 
             </div>
             <hr>
@@ -349,7 +339,7 @@ class="math inline">\(O(n)\)</span>。</p>
     
       <div class="col-lg-7 mx-auto nopadding-x-md">
         <div class="container custom mx-auto">
-          <link rel="stylesheet" href="/js/aplayer/APlayer.min.css"> <div id="aplayer" style="display:none"></div> <script src="/js/aplayer/APlayer.min.js"></script>
+          <link rel="stylesheet" href="/js/aplayer/APlayer.min.css"> <div id="aplayer" style="display:none"></div> <script src="/js/aplayer/APlayer.min.js"></script> <script src="https://cdn.bootcss.com/jquery.pjax/2.0.1/jquery.pjax.min.js"></script> <script> // 对所有链接跳转事件绑定pjax容器container $(document).pjax("a[target!=_blank]", "#container", {fragment:"#container", timeout:8000}) </script>
         </div>
       </div>
     

@@ -16,12 +16,12 @@
   <meta name="author" content="ZhaoXin">
   <meta name="keywords" content="博客">
   
-    <meta name="description" content="当Tomcat启动时，就会创建一个ServletContext对象，它代表着当前web站点，该网站所有Servlet共享一个ServletContext对象，所有Servlet对象之间可以通过ServletContext实现通讯。 ServletContext对象被称为域对象，或者全局作用域对象，可以把它理解为一个容器，我们把需要共享的数据放到这个容器中，需要对应数据的Servlet对象就从这个">
+    <meta name="description" content="当Tomcat启动时，就会创建一个ServletContext对象，它代表着当前web站点，该网站所有Servlet共享一个ServletContext对象，所有Servlet对象之间可以通过ServletContext实现通讯。 ServletContext对象被称为域对象，或者全局作用域对象，可以把它理解为一个容器，我们把需要共享的数据放到这个容器中，需要对应数据的Servlet对象就从这个容">
 <meta property="og:type" content="article">
 <meta property="og:title" content="7-ServletContext接口">
 <meta property="og:url" content="https://zhaoquaner.github.io/2022/05/11/JavaWeb/Servlet/8-ServletContext%E6%8E%A5%E5%8F%A3/index.html">
 <meta property="og:site_name" content="赵圈儿的博客">
-<meta property="og:description" content="当Tomcat启动时，就会创建一个ServletContext对象，它代表着当前web站点，该网站所有Servlet共享一个ServletContext对象，所有Servlet对象之间可以通过ServletContext实现通讯。 ServletContext对象被称为域对象，或者全局作用域对象，可以把它理解为一个容器，我们把需要共享的数据放到这个容器中，需要对应数据的Servlet对象就从这个">
+<meta property="og:description" content="当Tomcat启动时，就会创建一个ServletContext对象，它代表着当前web站点，该网站所有Servlet共享一个ServletContext对象，所有Servlet对象之间可以通过ServletContext实现通讯。 ServletContext对象被称为域对象，或者全局作用域对象，可以把它理解为一个容器，我们把需要共享的数据放到这个容器中，需要对应数据的Servlet对象就从这个容">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2022-05-11T05:41:39.000Z">
 <meta property="article:modified_time" content="2022-05-11T08:55:35.211Z">
@@ -254,20 +254,15 @@
             <div class="markdown-body">
               <p>当Tomcat启动时，就会创建一个ServletContext对象，它代表着当前web站点，该网站所有Servlet共享一个ServletContext对象，所有Servlet对象之间可以通过ServletContext实现通讯。</p>
 <p>ServletContext对象被称为域对象，或者全局作用域对象，可以把它理解为一个容器，我们把需要共享的数据放到这个容器中，需要对应数据的Servlet对象就从这个容器中拿。</p>
-<p>实现Servlet通讯要用ServletContext的<code>setAttribute(String name,
-Object
-obj)</code>方法，第一个参数为变量名，第二个参数为变量值；然后使用<code>servletContext.getAttribute(String
-name)</code>获取指定变量值，需要强制类型转换，例如：</p>
+<p>实现Servlet通讯要用ServletContext的<code>setAttribute(String name, Object obj)</code>方法，第一个参数为变量名，第二个参数为变量值；然后使用<code>servletContext.getAttribute(String name)</code>获取指定变量值，需要强制类型转换，例如：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><div class="code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></div></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">//第一个Servlet代码</span><br><span class="hljs-type">ServletContext</span> <span class="hljs-variable">servletContext</span> <span class="hljs-operator">=</span> <span class="hljs-built_in">this</span>.getServletContext();<br><span class="hljs-type">String</span> <span class="hljs-variable">value</span> <span class="hljs-operator">=</span> <span class="hljs-string">&quot;HAHAHAH&quot;</span>;<br>servletContext.setAttribute(<span class="hljs-string">&quot;Name&quot;</span>, value);<br><br><span class="hljs-comment">//第二个Servlet代码</span><br><span class="hljs-type">ServletContext</span> <span class="hljs-variable">servletContext</span> <span class="hljs-operator">=</span> <span class="hljs-built_in">this</span>.getServletContext();<br><span class="hljs-type">String</span> <span class="hljs-variable">value</span> <span class="hljs-operator">=</span> servletContext = (String)servletContext.getAttribute(<span class="hljs-string">&quot;name&quot;</span>);<br></code></pre></td></tr></table></figure>
-<h4 id="获取web站点配置的信息">获取web站点配置的信息</h4>
-<p>如果想要让所有Servlet都能够获取连接数据库的信息，不可能在web.xml给每个Servlet都配置，太麻烦，web.xml文件支持对整个站点进行配置参数信息，所有的Servlet都可以拿到该配置信息。</p>
-<p>例如： web.xml的内容：</p>
+<h4 id="获取web站点配置的信息"><a href="#获取web站点配置的信息" class="headerlink" title="获取web站点配置的信息"></a>获取web站点配置的信息</h4><p>如果想要让所有Servlet都能够获取连接数据库的信息，不可能在web.xml给每个Servlet都配置，太麻烦，web.xml文件支持对整个站点进行配置参数信息，所有的Servlet都可以拿到该配置信息。</p>
+<p>例如：<br>web.xml的内容：</p>
 <figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">context-param</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">param-name</span>&gt;</span>name<span class="hljs-tag">&lt;/<span class="hljs-name">param-name</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">param-value</span>&gt;</span>HAHAHA<span class="hljs-tag">&lt;/<span class="hljs-name">param-value</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">context-param</span>&gt;</span><br></code></pre></td></tr></table></figure>
 <p>Servlet的代码：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-type">ServletContext</span> <span class="hljs-variable">servletContext</span> <span class="hljs-operator">=</span> <span class="hljs-built_in">this</span>.getServletContext();<br><span class="hljs-type">String</span> <span class="hljs-variable">value</span> <span class="hljs-operator">=</span> servletContext.getInitParameter(<span class="hljs-string">&quot;name&quot;</span>);<br>System.out.println(value);<br></code></pre></td></tr></table></figure>
 <p>获取web.xml配置参数时，要使用getInitParameter(String name)方法。</p>
-<h4 id="servletcontext的生命周期">ServletContext的生命周期</h4>
-<ul>
+<h4 id="ServletContext的生命周期"><a href="#ServletContext的生命周期" class="headerlink" title="ServletContext的生命周期"></a>ServletContext的生命周期</h4><ul>
 <li>当Tomcat启动过程中，自动为当前网站在内存中创建一个ServletContext对象</li>
 <li>在Http服务器运行期间，一个网站只有一个ServletContext对象，并且一直处于存活状态</li>
 <li>当Http服务器准备关闭时，负责将当前网站中ServletContext对象进行销毁</li>
@@ -349,7 +344,7 @@ name)</code>获取指定变量值，需要强制类型转换，例如：</p>
     
       <div class="col-lg-7 mx-auto nopadding-x-md">
         <div class="container custom mx-auto">
-          <link rel="stylesheet" href="/js/aplayer/APlayer.min.css"> <div id="aplayer" style="display:none"></div> <script src="/js/aplayer/APlayer.min.js"></script>
+          <link rel="stylesheet" href="/js/aplayer/APlayer.min.css"> <div id="aplayer" style="display:none"></div> <script src="/js/aplayer/APlayer.min.js"></script> <script src="https://cdn.bootcss.com/jquery.pjax/2.0.1/jquery.pjax.min.js"></script> <script> // 对所有链接跳转事件绑定pjax容器container $(document).pjax("a[target!=_blank]", "#container", {fragment:"#container", timeout:8000}) </script>
         </div>
       </div>
     

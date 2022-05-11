@@ -16,19 +16,21 @@
   <meta name="author" content="ZhaoXin">
   <meta name="keywords" content="博客">
   
-    <meta name="description" content="什么是EL表达式 表达式语言(Expression Language, EL) ,EL表达式是用&quot;${}&quot; 括起来的脚本，用来更方便的读取对象。EL表达式主要用来读取数据，进行内容显示。 为什么使用EL 表达式 使用EL表达式，可以更简洁的读取对象中的属性，提交的参数、JavaBean、甚至集合。 例如在1.jsp中session设置了一个名为 name的属性 那么在2.jsp中间可以">
+    <meta name="description" content="什么是EL表达式表达式语言(Expression Language, EL) ,EL表达式是用”${}” 括起来的脚本，用来更方便的读取对象。EL表达式主要用来读取数据，进行内容显示。 为什么使用EL 表达式使用EL表达式，可以更简洁的读取对象中的属性，提交的参数、JavaBean、甚至集合。 例如在1.jsp中session设置了一个名为 name的属性 那么在2.jsp中间可以使用 $&amp;#12">
 <meta property="og:type" content="article">
 <meta property="og:title" content="EL表达式">
 <meta property="og:url" content="https://zhaoquaner.github.io/2022/05/11/JavaWeb/JSP/EL%E8%A1%A8%E8%BE%BE%E5%BC%8F/index.html">
 <meta property="og:site_name" content="赵圈儿的博客">
-<meta property="og:description" content="什么是EL表达式 表达式语言(Expression Language, EL) ,EL表达式是用&quot;${}&quot; 括起来的脚本，用来更方便的读取对象。EL表达式主要用来读取数据，进行内容显示。 为什么使用EL 表达式 使用EL表达式，可以更简洁的读取对象中的属性，提交的参数、JavaBean、甚至集合。 例如在1.jsp中session设置了一个名为 name的属性 那么在2.jsp中间可以">
+<meta property="og:description" content="什么是EL表达式表达式语言(Expression Language, EL) ,EL表达式是用”${}” 括起来的脚本，用来更方便的读取对象。EL表达式主要用来读取数据，进行内容显示。 为什么使用EL 表达式使用EL表达式，可以更简洁的读取对象中的属性，提交的参数、JavaBean、甚至集合。 例如在1.jsp中session设置了一个名为 name的属性 那么在2.jsp中间可以使用 $&amp;#12">
 <meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://crayon-1302863897.cos.ap-beijing.myqcloud.com/20200908100149.png">
 <meta property="article:published_time" content="2022-05-11T05:55:39.000Z">
 <meta property="article:modified_time" content="2022-05-11T08:55:13.145Z">
 <meta property="article:author" content="ZhaoXin">
 <meta property="article:tag" content="JavaWeb">
 <meta property="article:tag" content="JSP">
 <meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://crayon-1302863897.cos.ap-beijing.myqcloud.com/20200908100149.png">
   
   
   <title>EL表达式 - 赵圈儿的博客</title>
@@ -252,31 +254,22 @@
             <h1 style="display: none">EL表达式</h1>
             
             <div class="markdown-body">
-              <h2 id="什么是el表达式">什么是EL表达式</h2>
-<p>表达式语言(Expression Language, EL) ,EL表达式是用"${}"
-括起来的脚本，用来更方便的读取对象。EL表达式主要用来读取数据，进行内容显示。</p>
-<h2 id="为什么使用el-表达式">为什么使用EL 表达式</h2>
-<p>使用EL表达式，可以更简洁的读取对象中的属性，提交的参数、JavaBean、甚至集合。</p>
+              <h2 id="什么是EL表达式"><a href="#什么是EL表达式" class="headerlink" title="什么是EL表达式"></a>什么是EL表达式</h2><p>表达式语言(Expression Language, EL) ,EL表达式是用”${}” 括起来的脚本，用来更方便的读取对象。EL表达式主要用来读取数据，进行内容显示。</p>
+<h2 id="为什么使用EL-表达式"><a href="#为什么使用EL-表达式" class="headerlink" title="为什么使用EL 表达式"></a>为什么使用EL 表达式</h2><p>使用EL表达式，可以更简洁的读取对象中的属性，提交的参数、JavaBean、甚至集合。</p>
 <p>例如在1.jsp中session设置了一个名为 name的属性</p>
 <p>那么在2.jsp中间可以使用 <code>$&#123;name&#125;</code>来读取该参数。</p>
-<h2 id="el表达式作用">EL表达式作用</h2>
-<p>首先EL表达式语法为：</p>
+<h2 id="EL表达式作用"><a href="#EL表达式作用" class="headerlink" title="EL表达式作用"></a>EL表达式作用</h2><p>首先EL表达式语法为：</p>
 <p>${标识符}</p>
-<p><strong>EL表达式如果找不到相应的对象属性，返回的是一个空白字符串"",而不是null，这是EL表达式最大的特点。</strong></p>
-<h3 id="获取各类数据">获取各类数据</h3>
-<h4 id="获取域对象数据">获取域对象数据</h4>
-<p>在1.jsp中设置ServletContext属性(就是application)</p>
+<p><strong>EL表达式如果找不到相应的对象属性，返回的是一个空白字符串””,而不是null，这是EL表达式最大的特点。</strong></p>
+<h3 id="获取各类数据"><a href="#获取各类数据" class="headerlink" title="获取各类数据"></a>获取各类数据</h3><h4 id="获取域对象数据"><a href="#获取域对象数据" class="headerlink" title="获取域对象数据"></a>获取域对象数据</h4><p>在1.jsp中设置ServletContext属性(就是application)</p>
 <figure class="highlight jsp"><table><tr><td class="gutter"><div class="code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></div></td><td class="code"><pre><code class="hljs jsp">&lt;%<br><span class="hljs-comment">//向ServletContext设置⼀个属性</span><br>application.setAttribute(<span class="hljs-string">&quot;name&quot;</span>, <span class="hljs-string">&quot;aaa&quot;</span>);<br>System.out.println(<span class="hljs-string">&quot;向application设置了⼀个属性&quot;</span>);<br>%&gt;<br></code></pre></td></tr></table></figure>
 <p>在2.jsp中获取该属性</p>
 <figure class="highlight jsp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs jsp">&lt;%<br>	$&#123;name&#125;<br>%&gt;<br></code></pre></td></tr></table></figure>
-<p>之前讲ServletContext对象时讲过一个方法findAttribute(String
-name)，EL表达式语句执行时会调用该方法，用标识符作为关键词分别从page、request、session、application四个域中查找相应对象。</p>
+<p>之前讲ServletContext对象时讲过一个方法findAttribute(String name)，EL表达式语句执行时会调用该方法，用标识符作为关键词分别从page、request、session、application四个域中查找相应对象。</p>
 <p>查找顺序就是从小到大，上图所写顺序。</p>
-<h4 id="获取javabean的属性">获取JavaBean的属性</h4>
-<p>之前在JSP页面获取JavaBean属性需要先获取该对象，然后再访问该对象属性。使用EL表达式就很简单。</p>
+<h4 id="获取JavaBean的属性"><a href="#获取JavaBean的属性" class="headerlink" title="获取JavaBean的属性"></a>获取JavaBean的属性</h4><p>之前在JSP页面获取JavaBean属性需要先获取该对象，然后再访问该对象属性。使用EL表达式就很简单。</p>
 <p>例如在1.jsp中定义了一个person对象，那么在2.jsp中直接使用<code>$&#123;person.age&#125;</code>就可以访问person的age属性。</p>
-<h2 id="获取集合数据">获取集合数据</h2>
-<p>EL表达式可以方便读取Collection和Map集合的内容。</p>
+<h2 id="获取集合数据"><a href="#获取集合数据" class="headerlink" title="获取集合数据"></a>获取集合数据</h2><p>EL表达式可以方便读取Collection和Map集合的内容。</p>
 <p>例如，在1.jsp中设置session的属性，session属性的值为List集合，List集合装载Person对象</p>
 <figure class="highlight jsp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><code class="hljs jsp">&lt;%@ page contentType=<span class="hljs-string">&quot;text/html;charset=UTF-8&quot;</span> language=<span class="hljs-string">&quot;java&quot;</span> errorPage=<span class="hljs-string">&quot;error.jsp&quot;</span> %&gt;<br>&lt;html&gt;<br>&lt;head&gt;<br>    &lt;title&gt;我是页头&lt;/title&gt;<br>&lt;/head&gt;<br>&lt;body&gt;<br><br>&lt;%<br>    List&lt;Person&gt; list = <span class="hljs-keyword">new</span> <span class="hljs-title class_">ArrayList</span>&lt;&gt;();<br>    <span class="hljs-type">Person</span> <span class="hljs-variable">person1</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Person</span>();<br>    person1.setUserName(<span class="hljs-string">&quot;mike&quot;</span>);<br>    person1.setAge(<span class="hljs-number">25</span>);<br>    <span class="hljs-type">Person</span> <span class="hljs-variable">person2</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Person</span>();<br>    person2.setUserName(<span class="hljs-string">&quot;smith&quot;</span>);<br>    person2.setAge(<span class="hljs-number">55</span>);<br>    list.add(person1);<br>    list.add(person2);<br>    session.setAttribute(<span class="hljs-string">&quot;list&quot;</span>, list);<br>%&gt;<br>&lt;jsp:forward page=<span class="hljs-string">&quot;2.jsp&quot;</span>/&gt;&gt;<br><br>&lt;/body&gt;<br>&lt;/html&gt;<br></code></pre></td></tr></table></figure>
 <p>在2.jsp中使用EL表达式，读取list集合内容</p>
@@ -286,19 +279,12 @@ name)，EL表达式语句执行时会调用该方法，用标识符作为关键�
 <figure class="highlight jsp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><code class="hljs jsp">&lt;%@ page contentType=<span class="hljs-string">&quot;text/html;charset=UTF-8&quot;</span> language=<span class="hljs-string">&quot;java&quot;</span> errorPage=<span class="hljs-string">&quot;error.jsp&quot;</span> %&gt;<br>&lt;html&gt;<br>&lt;head&gt;<br>    &lt;title&gt;我是页头&lt;/title&gt;<br>&lt;/head&gt;<br>&lt;body&gt;<br><br>&lt;%<br>    Map&lt;String,Person&gt; map = <span class="hljs-keyword">new</span> <span class="hljs-title class_">HashMap</span>&lt;&gt;();<br>    <span class="hljs-type">Person</span> <span class="hljs-variable">person1</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Person</span>();<br>    person1.setUserName(<span class="hljs-string">&quot;mike&quot;</span>);<br>    person1.setAge(<span class="hljs-number">18</span>);<br>    <span class="hljs-type">Person</span> <span class="hljs-variable">person2</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Person</span>();<br>    person2.setUserName(<span class="hljs-string">&quot;smith&quot;</span>);<br>    person2.setAge(<span class="hljs-number">78</span>);<br>    map.put(<span class="hljs-string">&quot;aa&quot;</span>, person1);<br>    map.put(<span class="hljs-string">&quot;bb&quot;</span>, person2);<br>    session.setAttribute(<span class="hljs-string">&quot;map&quot;</span>, map);<br>%&gt;<br>&lt;jsp:forward page=<span class="hljs-string">&quot;2.jsp&quot;</span>/&gt;&gt;<br><br>&lt;/body&gt;<br>&lt;/html&gt;<br></code></pre></td></tr></table></figure>
 <p>在2.jsp中进行读取</p>
 <figure class="highlight jsp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs jsp">&lt;%@ page contentType=<span class="hljs-string">&quot;text/html;charset=UTF-8&quot;</span> language=<span class="hljs-string">&quot;java&quot;</span> %&gt;<br>&lt;html&gt;<br>&lt;head&gt;<br>    &lt;title&gt;我是页尾&lt;/title&gt;<br>&lt;/head&gt;<br>&lt;body&gt;<br>对象person1的用户名为：$&#123;map.aa.userName&#125;,年龄为：$&#123;map.aa.age&#125;&lt;br&gt;<br>对象person2的用户名为：$&#123;map.bb.userName&#125;,年龄为：$&#123;map.bb.age&#125;<br>&lt;/body&gt;<br>&lt;/html&gt;<br></code></pre></td></tr></table></figure>
-<p>如果Map集合存储键值不是字符串，而是一个数字，就不能使用"."号运算符了，可以这样：</p>
+<p>如果Map集合存储键值不是字符串，而是一个数字，就不能使用”.”号运算符了，可以这样：</p>
 <figure class="highlight jsp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs jsp">$&#123;map[<span class="hljs-string">&quot;1&quot;</span>].userName&#125;<br>$&#123;map[<span class="hljs-string">&quot;2&quot;</span>].userName&#125;<br></code></pre></td></tr></table></figure>
-<h2 id="el运算符">EL运算符</h2>
-<p>EL表达式支持简单运算符：加减乘除取模，逻辑运算符，empty运算符(判断是否为null)和三目运算符</p>
-<figure>
-<img
-src="https://crayon-1302863897.cos.ap-beijing.myqcloud.com/20200908100149.png" srcset="/img/loading.gif" lazyload
-alt="image-20200908093738083" />
-<figcaption aria-hidden="true">image-20200908093738083</figcaption>
-</figure>
-<h2 id="el表达式11个内置对象">EL表达式11个内置对象</h2>
-<p>EL表达式主要用来对内容显示，为了显示方便，EL表达式提供了11个内置对象。</p>
-<ol type="1">
+<h2 id="EL运算符"><a href="#EL运算符" class="headerlink" title="EL运算符"></a>EL运算符</h2><p>EL表达式支持简单运算符：加减乘除取模，逻辑运算符，empty运算符(判断是否为null)和三目运算符</p>
+<p><img src="https://crayon-1302863897.cos.ap-beijing.myqcloud.com/20200908100149.png" srcset="/img/loading.gif" lazyload alt="image-20200908093738083"></p>
+<h2 id="EL表达式11个内置对象"><a href="#EL表达式11个内置对象" class="headerlink" title="EL表达式11个内置对象"></a>EL表达式11个内置对象</h2><p>EL表达式主要用来对内容显示，为了显示方便，EL表达式提供了11个内置对象。</p>
+<ol>
 <li>pageContext：对应JSP页面的pageContext对象</li>
 <li>pageScope：代表page域中保存属性的Map对象</li>
 <li>requestScope：代表request域中保存属性的Map对象</li>
@@ -313,13 +299,12 @@ alt="image-20200908093738083" />
 </ol>
 <p>注意事项：</p>
 <ul>
-<li>测试headerValues时，如果头里面有“-”，例如Accept-Encoding，则要headValues["Accept-Encoding"]</li>
+<li>测试headerValues时，如果头里面有“-”，例如Accept-Encoding，则要headValues[“Accept-Encoding”]</li>
 <li>测试cookie时，例如<code>$&#123;cookie.key&#125;</code>取的是cooike对象，如果要访问cookie的名称和值，需要<code>$&#123;cookie.key.name&#125;</code>或者${cookie.key.value}</li>
 <li>测试initParam时，初始化参数要的web.xml中的配置Context的，仅仅是jsp的参数是获取不到的</li>
 <li>对于param和paramValues内置对象一般都是别的页面带数据来的，如表单、地址栏。</li>
 </ul>
-<h2 id="el表达式回显数据">EL表达式回显数据</h2>
-<p>EL表达式最大特点就是如果获取到的数据为null，输出空白字符串"",这个特点可以让我们数据回显。</p>
+<h2 id="EL表达式回显数据"><a href="#EL表达式回显数据" class="headerlink" title="EL表达式回显数据"></a>EL表达式回显数据</h2><p>EL表达式最大特点就是如果获取到的数据为null，输出空白字符串””,这个特点可以让我们数据回显。</p>
 <p>在1.jsp中模拟一下：</p>
 <figure class="highlight jsp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><code class="hljs jsp">&lt;%@ page contentType=<span class="hljs-string">&quot;text/html;charset=UTF-8&quot;</span> language=<span class="hljs-string">&quot;java&quot;</span> errorPage=<span class="hljs-string">&quot;error.jsp&quot;</span> %&gt;<br>&lt;html&gt;<br>&lt;head&gt;<br>    &lt;title&gt;我是页头&lt;/title&gt;<br>&lt;/head&gt;<br>&lt;body&gt;<br><br>&lt;%<br>    <span class="hljs-type">Person</span> <span class="hljs-variable">person</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Person</span>();<br>    person.setUserName(<span class="hljs-string">&quot;male&quot;</span>);<br>    <span class="hljs-comment">//回显数据</span><br>    request.setAttribute(<span class="hljs-string">&quot;person&quot;</span>, person);<br>%&gt;<br>&lt;input type=<span class="hljs-string">&quot;radio&quot;</span> name=<span class="hljs-string">&quot;sex&quot;</span> value=<span class="hljs-string">&quot;male&quot;</span> $&#123;person.userName==<span class="hljs-string">&#x27;male&#x27;</span> ? <span class="hljs-string">&#x27;checked&#x27;</span> : <span class="hljs-string">&#x27;&#x27;</span>&#125;&gt;女<br>&lt;input type=<span class="hljs-string">&quot;radio&quot;</span> name=<span class="hljs-string">&quot;sex&quot;</span> value=<span class="hljs-string">&quot;female&quot;</span> $&#123;person.userName==<span class="hljs-string">&#x27;female&#x27;</span> ? <span class="hljs-string">&#x27;checked&#x27;</span> : <span class="hljs-string">&#x27;&#x27;</span>&#125;&gt;男<br><br><br>&lt;/body&gt;<br>&lt;/html&gt;<br></code></pre></td></tr></table></figure>
 
@@ -399,7 +384,7 @@ alt="image-20200908093738083" />
     
       <div class="col-lg-7 mx-auto nopadding-x-md">
         <div class="container custom mx-auto">
-          <link rel="stylesheet" href="/js/aplayer/APlayer.min.css"> <div id="aplayer" style="display:none"></div> <script src="/js/aplayer/APlayer.min.js"></script>
+          <link rel="stylesheet" href="/js/aplayer/APlayer.min.css"> <div id="aplayer" style="display:none"></div> <script src="/js/aplayer/APlayer.min.js"></script> <script src="https://cdn.bootcss.com/jquery.pjax/2.0.1/jquery.pjax.min.js"></script> <script> // 对所有链接跳转事件绑定pjax容器container $(document).pjax("a[target!=_blank]", "#container", {fragment:"#container", timeout:8000}) </script>
         </div>
       </div>
     

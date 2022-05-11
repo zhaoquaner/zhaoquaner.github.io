@@ -16,12 +16,12 @@
   <meta name="author" content="ZhaoXin">
   <meta name="keywords" content="博客">
   
-    <meta name="description" content="通过JQuery遍历，可以从当前元素开始，在家族树向上移动(祖先)，向下移动(子孙)，水平移动(同胞)。这种移动被称为对DOM进行遍历。 JQuery提供了多种遍历方法。遍历方法中最大种类是树遍历。 祖先 通过遍历DOM树，可以查找该元素的父元素，后者叫祖先。 有三个方法：  parent() parents() parentsUntil()  parent()方法 该方法会">
+    <meta name="description" content="通过JQuery遍历，可以从当前元素开始，在家族树向上移动(祖先)，向下移动(子孙)，水平移动(同胞)。这种移动被称为对DOM进行遍历。 JQuery提供了多种遍历方法。遍历方法中最大种类是树遍历。 祖先通过遍历DOM树，可以查找该元素的父元素，后者叫祖先。 有三个方法：  parent() parents() parentsUntil()  parent()方法该方法会返回被选元素的直接父元素。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="4-JQuery遍历">
 <meta property="og:url" content="https://zhaoquaner.github.io/2022/05/11/JavaWeb/JQuery/4-JQuery%E9%81%8D%E5%8E%86/index.html">
 <meta property="og:site_name" content="赵圈儿的博客">
-<meta property="og:description" content="通过JQuery遍历，可以从当前元素开始，在家族树向上移动(祖先)，向下移动(子孙)，水平移动(同胞)。这种移动被称为对DOM进行遍历。 JQuery提供了多种遍历方法。遍历方法中最大种类是树遍历。 祖先 通过遍历DOM树，可以查找该元素的父元素，后者叫祖先。 有三个方法：  parent() parents() parentsUntil()  parent()方法 该方法会">
+<meta property="og:description" content="通过JQuery遍历，可以从当前元素开始，在家族树向上移动(祖先)，向下移动(子孙)，水平移动(同胞)。这种移动被称为对DOM进行遍历。 JQuery提供了多种遍历方法。遍历方法中最大种类是树遍历。 祖先通过遍历DOM树，可以查找该元素的父元素，后者叫祖先。 有三个方法：  parent() parents() parentsUntil()  parent()方法该方法会返回被选元素的直接父元素。">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2022-05-11T05:50:39.000Z">
 <meta property="article:modified_time" content="2022-05-11T08:55:05.672Z">
@@ -210,7 +210,7 @@
   
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      1.3k 字
+      1.4k 字
     </span>
   
 
@@ -254,43 +254,34 @@
             <div class="markdown-body">
               <p>通过JQuery遍历，可以从当前元素开始，在家族树向上移动(祖先)，向下移动(子孙)，水平移动(同胞)。这种移动被称为对DOM进行遍历。</p>
 <p>JQuery提供了多种遍历方法。遍历方法中最大种类是树遍历。</p>
-<h2 id="祖先">祖先</h2>
-<p>通过遍历DOM树，可以查找该元素的父元素，后者叫祖先。</p>
+<h2 id="祖先"><a href="#祖先" class="headerlink" title="祖先"></a>祖先</h2><p>通过遍历DOM树，可以查找该元素的父元素，后者叫祖先。</p>
 <p>有三个方法：</p>
 <ul>
 <li>parent()</li>
 <li>parents()</li>
 <li>parentsUntil()</li>
 </ul>
-<h3 id="parent方法">parent()方法</h3>
-<p>该方法会返回被选元素的直接父元素。</p>
+<h3 id="parent-方法"><a href="#parent-方法" class="headerlink" title="parent()方法"></a>parent()方法</h3><p>该方法会返回被选元素的直接父元素。</p>
 <p>该方法只会向上一级对DOM树进行遍历。</p>
-<h3 id="parents方法">parents()方法</h3>
-<p>该方法返回被选元素的所有祖先元素，它会一路向上直到文档的根元素html。</p>
+<h3 id="parents-方法"><a href="#parents-方法" class="headerlink" title="parents()方法"></a>parents()方法</h3><p>该方法返回被选元素的所有祖先元素，它会一路向上直到文档的根元素html。</p>
 <p>也可以使用可选的参数来过滤对祖先元素的搜索。</p>
-<p>例如：<code>$("span").parents("ul");</code>就选择了span元素的是ul元素的祖先</p>
-<h3 id="parantsuntil方法">parantsUntil()方法</h3>
-<p>该方法返回介于两个给定元素之间的所有祖先元素。</p>
-<p>例如：<code>$("span").parentsUntil("div");</code>返回了介于span和div元素之间，span的祖先元素，不包括div。</p>
-<h2 id="后代">后代</h2>
-<p>两个用于遍历DOM树的JQuery方法：</p>
+<p>例如：<code>$(&quot;span&quot;).parents(&quot;ul&quot;);</code>就选择了span元素的是ul元素的祖先</p>
+<h3 id="parantsUntil-方法"><a href="#parantsUntil-方法" class="headerlink" title="parantsUntil()方法"></a>parantsUntil()方法</h3><p>该方法返回介于两个给定元素之间的所有祖先元素。</p>
+<p>例如：<code>$(&quot;span&quot;).parentsUntil(&quot;div&quot;);</code>返回了介于span和div元素之间，span的祖先元素，不包括div。</p>
+<h2 id="后代"><a href="#后代" class="headerlink" title="后代"></a>后代</h2><p>两个用于遍历DOM树的JQuery方法：</p>
 <ul>
 <li>children()</li>
 <li>find()</li>
 </ul>
-<h3 id="children方法">children()方法</h3>
-<p>该方法会返回被选元素的<strong>所有</strong>直接子元素</p>
+<h3 id="children-方法"><a href="#children-方法" class="headerlink" title="children()方法"></a>children()方法</h3><p>该方法会返回被选元素的<strong>所有</strong>直接子元素</p>
 <p>该方法只会向下一级对DOM树进行遍历。</p>
-<p>也可以使用可选参数来过滤对子元素的搜索，例如：
-<code>$("div").children("p.1");</code></p>
+<p>也可以使用可选参数来过滤对子元素的搜索，例如： <code>$(&quot;div&quot;).children(&quot;p.1&quot;);</code></p>
 <p>返回类名为1的所有p元素，并且是div的直接子元素。</p>
-<h3 id="find方法">find()方法</h3>
-<p>该方法返回被选元素的所有后代元素，一路向下直到最后一个后代。</p>
+<h3 id="find-方法"><a href="#find-方法" class="headerlink" title="find()方法"></a>find()方法</h3><p>该方法返回被选元素的所有后代元素，一路向下直到最后一个后代。</p>
 <p>有一个参数。</p>
-<p>例如：想选择div后代中所有的span元素：<code>$("div").find("span");</code></p>
-<p>再例如：返回div所有的后代：<code>$("div").find("*");</code></p>
-<h2 id="同胞">同胞</h2>
-<p>同胞有相同的父元素，有以下几个方法可以进行水平遍历：</p>
+<p>例如：想选择div后代中所有的span元素：<code>$(&quot;div&quot;).find(&quot;span&quot;);</code></p>
+<p>再例如：返回div所有的后代：<code>$(&quot;div&quot;).find(&quot;*&quot;);</code></p>
+<h2 id="同胞"><a href="#同胞" class="headerlink" title="同胞"></a>同胞</h2><p>同胞有相同的父元素，有以下几个方法可以进行水平遍历：</p>
 <ul>
 <li>siblings()：返回被选元素的所有同胞元素，可以使用可选参数过滤</li>
 <li>next()：返回被选元素的下一个同胞元素</li>
@@ -298,26 +289,20 @@
 <li>nextUntil()：返回介于两个给定参数之间所有跟随的同胞元素，不包括给定元素</li>
 </ul>
 <p>prev()、prevAll()、prevUntil()与上面用法相同，但是方向相反。</p>
-<h2 id="过滤">过滤</h2>
-<p>有几个过滤方法，他们允许鉴于在一组元素的位置来选择特定元素。</p>
-<h3 id="first方法">first()方法</h3>
-<p>first()方法返回被选元素的首个元素。</p>
+<h2 id="过滤"><a href="#过滤" class="headerlink" title="过滤"></a>过滤</h2><p>有几个过滤方法，他们允许鉴于在一组元素的位置来选择特定元素。</p>
+<h3 id="first-方法"><a href="#first-方法" class="headerlink" title="first()方法"></a>first()方法</h3><p>first()方法返回被选元素的首个元素。</p>
 <p>例子：选取首个div元素内部的第一个p元素</p>
-<p><code>$("div p").first();</code></p>
-<h3 id="last方法">last方法</h3>
-<p>返回被选元素的最后一个元素。</p>
+<p><code>$(&quot;div p&quot;).first();</code></p>
+<h3 id="last方法"><a href="#last方法" class="headerlink" title="last方法"></a>last方法</h3><p>返回被选元素的最后一个元素。</p>
 <p>例子：选取首个div元素内部的最后一个p元素</p>
-<p><code>$("div p").last();</code></p>
-<h3 id="eq方法">eq()方法</h3>
-<p>该方法返回必选元素带有指定索引号的元素，索引号从0开始。</p>
+<p><code>$(&quot;div p&quot;).last();</code></p>
+<h3 id="eq-方法"><a href="#eq-方法" class="headerlink" title="eq()方法"></a>eq()方法</h3><p>该方法返回必选元素带有指定索引号的元素，索引号从0开始。</p>
 <p>例子：选取第二个p元素，索引号为1</p>
-<p><code>$("p").eq(1);</code></p>
-<h3 id="filter方法">filter()方法</h3>
-<p>该方法允许规定一个标准，不匹配这个标准的元素会被从集合中删除，匹配的元素会返回。</p>
+<p><code>$(&quot;p&quot;).eq(1);</code></p>
+<h3 id="filter-方法"><a href="#filter-方法" class="headerlink" title="filter()方法"></a>filter()方法</h3><p>该方法允许规定一个标准，不匹配这个标准的元素会被从集合中删除，匹配的元素会返回。</p>
 <p>例子：返回类名为“url”的所有p元素</p>
-<p><code>$("p").filter(".url");</code></p>
-<h3 id="not方法">not方法</h3>
-<p>该方法返回不匹配标准的所有元素，not方法和filter方法相反</p>
+<p><code>$(&quot;p&quot;).filter(&quot;.url&quot;);</code></p>
+<h3 id="not方法"><a href="#not方法" class="headerlink" title="not方法"></a>not方法</h3><p>该方法返回不匹配标准的所有元素，not方法和filter方法相反</p>
 
             </div>
             <hr>
@@ -395,7 +380,7 @@
     
       <div class="col-lg-7 mx-auto nopadding-x-md">
         <div class="container custom mx-auto">
-          <link rel="stylesheet" href="/js/aplayer/APlayer.min.css"> <div id="aplayer" style="display:none"></div> <script src="/js/aplayer/APlayer.min.js"></script>
+          <link rel="stylesheet" href="/js/aplayer/APlayer.min.css"> <div id="aplayer" style="display:none"></div> <script src="/js/aplayer/APlayer.min.js"></script> <script src="https://cdn.bootcss.com/jquery.pjax/2.0.1/jquery.pjax.min.js"></script> <script> // 对所有链接跳转事件绑定pjax容器container $(document).pjax("a[target!=_blank]", "#container", {fragment:"#container", timeout:8000}) </script>
         </div>
       </div>
     

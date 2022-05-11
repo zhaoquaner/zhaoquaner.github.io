@@ -16,12 +16,12 @@
   <meta name="author" content="ZhaoXin">
   <meta name="keywords" content="博客">
   
-    <meta name="description" content="当多个线程都需要修改同一个资源时，就可能出现错误，不同步的状态。需要使用同步机制使它们正确工作。使用关键词synchronized来进行同步。 同步代码块的语法格式为： synchronized(obj)｛ ​ 同步代码块 ｝ obj叫做同步监视器，线程要执行同步代码块之前必须要获得对同步监视器的锁定。即可以理解为对obj上锁。任何时刻，只能有一个线程拥有obj的锁。 应该使用两个或多">
+    <meta name="description" content="当多个线程都需要修改同一个资源时，就可能出现错误，不同步的状态。需要使用同步机制使它们正确工作。使用关键词synchronized来进行同步。 同步代码块的语法格式为： synchronized(obj)｛ ​            同步代码块 ｝ obj叫做同步监视器，线程要执行同步代码块之前必须要获得对同步监视器的锁定。即可以理解为对obj上锁。任何时刻，只能有一个线程拥有obj的锁。 应该使">
 <meta property="og:type" content="article">
 <meta property="og:title" content="线程同步">
 <meta property="og:url" content="https://zhaoquaner.github.io/2022/05/11/Java/%E5%A4%9A%E7%BA%BF%E7%A8%8B/%E7%BA%BF%E7%A8%8B%E5%90%8C%E6%AD%A5/index.html">
 <meta property="og:site_name" content="赵圈儿的博客">
-<meta property="og:description" content="当多个线程都需要修改同一个资源时，就可能出现错误，不同步的状态。需要使用同步机制使它们正确工作。使用关键词synchronized来进行同步。 同步代码块的语法格式为： synchronized(obj)｛ ​ 同步代码块 ｝ obj叫做同步监视器，线程要执行同步代码块之前必须要获得对同步监视器的锁定。即可以理解为对obj上锁。任何时刻，只能有一个线程拥有obj的锁。 应该使用两个或多">
+<meta property="og:description" content="当多个线程都需要修改同一个资源时，就可能出现错误，不同步的状态。需要使用同步机制使它们正确工作。使用关键词synchronized来进行同步。 同步代码块的语法格式为： synchronized(obj)｛ ​            同步代码块 ｝ obj叫做同步监视器，线程要执行同步代码块之前必须要获得对同步监视器的锁定。即可以理解为对obj上锁。任何时刻，只能有一个线程拥有obj的锁。 应该使">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2022-05-11T02:59:39.000Z">
 <meta property="article:modified_time" content="2022-05-11T08:53:07.588Z">
@@ -255,7 +255,7 @@
               <p>当多个线程都需要修改同一个资源时，就可能出现错误，不同步的状态。需要使用同步机制使它们正确工作。使用关键词synchronized来进行同步。</p>
 <p>同步代码块的语法格式为：</p>
 <p>synchronized(obj)｛</p>
-<p>​ 同步代码块</p>
+<p>​            同步代码块</p>
 <p>｝</p>
 <p>obj叫做同步监视器，线程要执行同步代码块之前必须要获得对同步监视器的锁定。即可以理解为对obj上锁。任何时刻，只能有一个线程拥有obj的锁。</p>
 <p>应该使用两个或多个线程共享的资源来作为同步监视器。</p>
@@ -270,16 +270,14 @@
 </ul>
 <p>上个例子可以使用同步方法来做：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">Main</span> &#123;<br><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">main</span><span class="hljs-params">(String[] args)</span> <span class="hljs-keyword">throws</span> InterruptedException &#123;<br><br>        <span class="hljs-type">Accout</span> <span class="hljs-variable">acc</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Accout</span>(<span class="hljs-string">&quot;123456w&quot;</span>, <span class="hljs-number">200</span>);<br><br>        <span class="hljs-type">Thread</span> <span class="hljs-variable">thread1</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">TakeMoney</span>(<span class="hljs-string">&quot;甲&quot;</span>, acc, <span class="hljs-number">200</span>);<br>        <span class="hljs-type">Thread</span> <span class="hljs-variable">thread2</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">TakeMoney</span>(<span class="hljs-string">&quot;乙&quot;</span>, acc, <span class="hljs-number">200</span>);<br><br>        thread1.start();<br>        thread2.start();<br><br>    &#125;<br><br>&#125;<br><br><span class="hljs-keyword">class</span> <span class="hljs-title class_">TakeMoney</span> <span class="hljs-keyword">extends</span> <span class="hljs-title class_">Thread</span> &#123;<br><br>    <span class="hljs-keyword">private</span> Accout accout;<br>    <span class="hljs-keyword">private</span> <span class="hljs-type">double</span> money;<br><br>    <span class="hljs-keyword">public</span> <span class="hljs-title function_">TakeMoney</span><span class="hljs-params">(String name, Accout accout, <span class="hljs-type">double</span> money)</span> &#123;<br>        <span class="hljs-built_in">super</span>(name);<br>        <span class="hljs-built_in">this</span>.accout = accout;<br>        <span class="hljs-built_in">this</span>.money = money;<br>    &#125;<br><br>    <span class="hljs-meta">@Override</span><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">run</span><span class="hljs-params">()</span> &#123;<br><br>        accout.takeMoney(<span class="hljs-built_in">this</span>, accout, money);<br>        <br>    &#125;<br>&#125;<br><br><span class="hljs-keyword">class</span> <span class="hljs-title class_">Accout</span> &#123;<br>    <br>    <span class="hljs-comment">//省略...</span><br>    <span class="hljs-comment">//使用同步方法来解决</span><br>        <span class="hljs-keyword">public</span> <span class="hljs-keyword">synchronized</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">takeMoney</span><span class="hljs-params">(Thread thread, Accout accout, <span class="hljs-type">double</span> money)</span> &#123;<br><br>        <span class="hljs-keyword">if</span> (accout.getBalance() &gt;= money) &#123;<br>            System.out.println(thread.getName() + <span class="hljs-string">&quot;取钱成功,取出&quot;</span> + money);<br>            accout.setBalance(accout.getBalance() - money);<br>            System.out.println(<span class="hljs-string">&quot;当前余额为：&quot;</span> + accout.getBalance());<br>        &#125; <span class="hljs-keyword">else</span> &#123;<br>            System.out.println(<span class="hljs-string">&quot;余额不足，取钱失败&quot;</span>);<br>        &#125;<br><br>    &#125;<br>    <br>&#125;<br></code></pre></td></tr></table></figure>
-<h2 id="释放同步监视器的锁定">释放同步监视器的锁定</h2>
-<p>任何线程进入同步代码块，同步方法之前，要获得同步监视器的锁定，然后线程会在几种情况释放该锁</p>
+<h2 id="释放同步监视器的锁定"><a href="#释放同步监视器的锁定" class="headerlink" title="释放同步监视器的锁定"></a>释放同步监视器的锁定</h2><p>任何线程进入同步代码块，同步方法之前，要获得同步监视器的锁定，然后线程会在几种情况释放该锁</p>
 <ul>
 <li>执行到方法、同步代码块结束，线程释放监视器</li>
 <li>在执行时遇到break、return终止该代码块</li>
 <li>在执行时遇到了未处理的Error或者Exception，导致异常结束</li>
 <li>当前线程执行时，程序执行了同步监视器对象的wait方法，当前线程暂停，并且释放监视器</li>
 </ul>
-<h2 id="同步锁">同步锁</h2>
-<p>Java提供了一种更强大的线程同步机制------通过显式定义同步锁对象来实现同步。这种机制下，同步锁使用Lock对象充当。</p>
+<h2 id="同步锁"><a href="#同步锁" class="headerlink" title="同步锁"></a>同步锁</h2><p>Java提供了一种更强大的线程同步机制———通过显式定义同步锁对象来实现同步。这种机制下，同步锁使用Lock对象充当。</p>
 <p>Lock是控制多个线程对共享资源进行访问的工具，线程开始访问共享资源时，应先获得Lock对象。</p>
 <p>在实现线程安全控制中，比较常用的是ReentrantLock(可重入锁)，使用该对象可以显式的加锁、释放锁，通常使用该锁的代码格式为：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">class</span> <span class="hljs-title class_">X</span> &#123;<br>	<span class="hljs-keyword">private</span> <span class="hljs-keyword">final</span> <span class="hljs-type">ReentrantLock</span> <span class="hljs-variable">lock</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">ReentrantLock</span>();<br>    <span class="hljs-comment">//定义需要保证线程安全的方法</span><br>    <br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">m</span><span class="hljs-params">()</span> &#123;<br>        lock.lock();<br>        <span class="hljs-keyword">try</span> &#123;<br>            <span class="hljs-comment">//需要保证线程安全的代码</span><br>        &#125; <span class="hljs-keyword">finally</span> &#123;<br>            <span class="hljs-comment">//即使遇到异常也能释放锁</span><br>    		lock.unlock();        <br>        &#125;<br>    &#125;<br>    <br>    <br>&#125;<br></code></pre></td></tr></table></figure>
@@ -288,8 +286,7 @@
 <p>同样可以实现线程安全</p>
 <p>使用Lock对象和使用synchronized方法类似，只不过一个是显式使用Lock对象，另一个是隐式使用当前对象作为同步监视器。</p>
 <p>ReentrantLock具有可重入性，意思是多个线程可以在已被加锁的ReentrantLock对象再次加锁，即可执行多次lock方法，ReentrantLock对象会维持一个计数器来追踪对lock对象的嵌套调用。线程在每次调用lock加锁后，必须调用unlock释放锁。</p>
-<h2 id="避免死锁的策略">避免死锁的策略</h2>
-<p>当两个或多个线程在互相等待对方释放同步监视器时就会发生死锁。Java没有检测，也不会解决死锁。需要人为干预避免死锁出现。</p>
+<h2 id="避免死锁的策略"><a href="#避免死锁的策略" class="headerlink" title="避免死锁的策略"></a>避免死锁的策略</h2><p>当两个或多个线程在互相等待对方释放同步监视器时就会发生死锁。Java没有检测，也不会解决死锁。需要人为干预避免死锁出现。</p>
 <p>可以使用几个方法来避免</p>
 <ul>
 <li>避免多次锁定，尽量避免同一个线程对多个同步监视器进行锁定</li>
@@ -374,7 +371,7 @@
     
       <div class="col-lg-7 mx-auto nopadding-x-md">
         <div class="container custom mx-auto">
-          <link rel="stylesheet" href="/js/aplayer/APlayer.min.css"> <div id="aplayer" style="display:none"></div> <script src="/js/aplayer/APlayer.min.js"></script>
+          <link rel="stylesheet" href="/js/aplayer/APlayer.min.css"> <div id="aplayer" style="display:none"></div> <script src="/js/aplayer/APlayer.min.js"></script> <script src="https://cdn.bootcss.com/jquery.pjax/2.0.1/jquery.pjax.min.js"></script> <script> // 对所有链接跳转事件绑定pjax容器container $(document).pjax("a[target!=_blank]", "#container", {fragment:"#container", timeout:8000}) </script>
         </div>
       </div>
     

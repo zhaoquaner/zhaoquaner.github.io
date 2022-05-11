@@ -16,12 +16,12 @@
   <meta name="author" content="ZhaoXin">
   <meta name="keywords" content="博客">
   
-    <meta name="description" content="resultType 该标签表示执行sql语句返回值的类型，使用java类型的全限定名称或者MyBatis定义的别名。但是推荐使用全限定名称。 注意：如果返回的是集合，那么应该设置为集合包含的元素，而不是集合本身。 resultType和resultMap不能同时使用。 MyBatis框架内部会调用对应类的构造方法来创建对象，使用setXXX方法给属性赋值。 Map Map数据类型可以">
+    <meta name="description" content="resultType该标签表示执行sql语句返回值的类型，使用java类型的全限定名称或者MyBatis定义的别名。但是推荐使用全限定名称。 注意：如果返回的是集合，那么应该设置为集合包含的元素，而不是集合本身。 resultType和resultMap不能同时使用。 MyBatis框架内部会调用对应类的构造方法来创建对象，使用setXXX方法给属性赋值。 MapMap数据类型可以作为sql查询的">
 <meta property="og:type" content="article">
 <meta property="og:title" content="5-输出结果">
 <meta property="og:url" content="https://zhaoquaner.github.io/2022/05/11/MyBatis/5-%E8%BE%93%E5%87%BA%E7%BB%93%E6%9E%9C/index.html">
 <meta property="og:site_name" content="赵圈儿的博客">
-<meta property="og:description" content="resultType 该标签表示执行sql语句返回值的类型，使用java类型的全限定名称或者MyBatis定义的别名。但是推荐使用全限定名称。 注意：如果返回的是集合，那么应该设置为集合包含的元素，而不是集合本身。 resultType和resultMap不能同时使用。 MyBatis框架内部会调用对应类的构造方法来创建对象，使用setXXX方法给属性赋值。 Map Map数据类型可以">
+<meta property="og:description" content="resultType该标签表示执行sql语句返回值的类型，使用java类型的全限定名称或者MyBatis定义的别名。但是推荐使用全限定名称。 注意：如果返回的是集合，那么应该设置为集合包含的元素，而不是集合本身。 resultType和resultMap不能同时使用。 MyBatis框架内部会调用对应类的构造方法来创建对象，使用setXXX方法给属性赋值。 MapMap数据类型可以作为sql查询的">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://crayon-1302863897.cos.ap-beijing.myqcloud.com/image/image-20201203182849126.png">
 <meta property="og:image" content="https://crayon-1302863897.cos.ap-beijing.myqcloud.com/image/image-20201203184113423.png">
@@ -215,7 +215,7 @@
   
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      3.6k 字
+      3.5k 字
     </span>
   
 
@@ -257,16 +257,13 @@
             <h1 style="display: none">5-输出结果</h1>
             
             <div class="markdown-body">
-              <h2 id="resulttype">resultType</h2>
-<p>该标签表示执行sql语句返回值的类型，使用java类型的全限定名称或者MyBatis定义的别名。但是推荐使用全限定名称。</p>
+              <h2 id="resultType"><a href="#resultType" class="headerlink" title="resultType"></a>resultType</h2><p>该标签表示执行sql语句返回值的类型，使用java类型的全限定名称或者MyBatis定义的别名。但是推荐使用全限定名称。</p>
 <p>注意：如果返回的是集合，那么应该设置为集合包含的元素，而不是集合本身。</p>
 <p>resultType和resultMap不能同时使用。</p>
 <p>MyBatis框架内部会调用对应类的构造方法来创建对象，使用setXXX方法给属性赋值。</p>
-<h2 id="map">Map</h2>
-<p>Map数据类型可以作为sql查询的返回值，推荐使用Map&lt;Object,
-Object&gt;。<strong>但是注意：Map如果作为接口返回值，sql语句的查询结果只能有一条记录，多于一条记录就会出现错误。</strong></p>
+<h2 id="Map"><a href="#Map" class="headerlink" title="Map"></a>Map</h2><p>Map数据类型可以作为sql查询的返回值，推荐使用Map<Object, Object>。<strong>但是注意：Map如果作为接口返回值，sql语句的查询结果只能有一条记录，多于一条记录就会出现错误。</strong></p>
 <p>其中，列名是Map的key，列值是Map的value。</p>
-<p>例子： DAO接口：</p>
+<p>例子：<br>DAO接口：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><div class="code-wrapper"><pre><span class="line">1</span><br></pre></div></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> HashMap&lt;Object, Object&gt; <span class="hljs-title function_">selectStudentById</span><span class="hljs-params">(Integer id)</span>;<br></code></pre></td></tr></table></figure>
 <p>映射文件：</p>
 <figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">select</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;selectStudentById&quot;</span> <span class="hljs-attr">resultType</span>=<span class="hljs-string">&quot;hashmap&quot;</span> &gt;</span><br>    select id, name, email, age from student where id = #&#123;studentId&#125;<br><span class="hljs-tag">&lt;/<span class="hljs-name">select</span>&gt;</span><br></code></pre></td></tr></table></figure>
@@ -275,19 +272,19 @@ Object&gt;。<strong>但是注意：Map如果作为接口返回值，sql语句�
 <p>运行结果：</p>
 <p><img src="https://crayon-1302863897.cos.ap-beijing.myqcloud.com/image/image-20201203182849126.png" srcset="/img/loading.gif" lazyload alt="image-20201203182849126" style="zoom:50%;" /></p>
 <p>但是如果查询结果超过一条，就会报错。</p>
-<h2 id="resultmap">resultMap</h2>
-<p>resultMap可以自定义sql的查询结果对应列值和java对象属性的映射关系。更灵活的把列值赋给指定属性。经常用在列名和Java对象属性名不一样的情况。</p>
-<h3 id="使用方法">使用方法</h3>
-<ol type="1">
+<h2 id="resultMap"><a href="#resultMap" class="headerlink" title="resultMap"></a>resultMap</h2><p>resultMap可以自定义sql的查询结果对应列值和java对象属性的映射关系。更灵活的把列值赋给指定属性。经常用在列名和Java对象属性名不一样的情况。</p>
+<h3 id="使用方法"><a href="#使用方法" class="headerlink" title="使用方法"></a>使用方法</h3><ol>
 <li><p>首先定义resultMap，指定列名和属性的对应关系。</p>
-<p>语法格式为：</p>
-<p><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">resultMap</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;&quot;</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;&quot;</span> &gt;</span><br>    <span class="hljs-comment">&lt;!--主键字段使用id--&gt;</span><br>	<span class="hljs-tag">&lt;<span class="hljs-name">id</span> <span class="hljs-attr">column</span>=<span class="hljs-string">&quot;&quot;</span> <span class="hljs-attr">property</span>=<span class="hljs-string">&quot;&quot;</span> /&gt;</span><br>    <span class="hljs-comment">&lt;!--非主键使用result--&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">result</span> <span class="hljs-attr">column</span>=<span class="hljs-string">&quot;&quot;</span> <span class="hljs-attr">property</span>=<span class="hljs-string">&quot;&quot;</span> /&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">result</span> <span class="hljs-attr">column</span>=<span class="hljs-string">&quot;&quot;</span> <span class="hljs-attr">property</span>=<span class="hljs-string">&quot;&quot;</span> /&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">result</span> <span class="hljs-attr">column</span>=<span class="hljs-string">&quot;&quot;</span> <span class="hljs-attr">property</span>=<span class="hljs-string">&quot;&quot;</span> /&gt;</span><br>    ...<br><span class="hljs-tag">&lt;/<span class="hljs-name">resultMap</span>&gt;</span><br><br></code></pre></td></tr></table></figure></p>
-<p>其中resultMap的id属性是自定义的唯一值，在操作数据库标签的resultMap使用，，如<select resultMap="resultMap的id值"></p>
-<p>type属性是期望转换成Java对象的全限定名称或别名。</p>
-<p>当列为主键使用id标签，非主键使用result字段，column是列名，property是属性名</p></li>
-<li><p>在操作数据库如<select>等标签中，把resultType替换成resultMap</p></li>
+<p> 语法格式为：</p>
+ <figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">resultMap</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;&quot;</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;&quot;</span> &gt;</span><br>    <span class="hljs-comment">&lt;!--主键字段使用id--&gt;</span><br>	<span class="hljs-tag">&lt;<span class="hljs-name">id</span> <span class="hljs-attr">column</span>=<span class="hljs-string">&quot;&quot;</span> <span class="hljs-attr">property</span>=<span class="hljs-string">&quot;&quot;</span> /&gt;</span><br>    <span class="hljs-comment">&lt;!--非主键使用result--&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">result</span> <span class="hljs-attr">column</span>=<span class="hljs-string">&quot;&quot;</span> <span class="hljs-attr">property</span>=<span class="hljs-string">&quot;&quot;</span> /&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">result</span> <span class="hljs-attr">column</span>=<span class="hljs-string">&quot;&quot;</span> <span class="hljs-attr">property</span>=<span class="hljs-string">&quot;&quot;</span> /&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">result</span> <span class="hljs-attr">column</span>=<span class="hljs-string">&quot;&quot;</span> <span class="hljs-attr">property</span>=<span class="hljs-string">&quot;&quot;</span> /&gt;</span><br>    ...<br><span class="hljs-tag">&lt;/<span class="hljs-name">resultMap</span>&gt;</span><br><br></code></pre></td></tr></table></figure>
+<p> 其中resultMap的id属性是自定义的唯一值，在操作数据库标签的resultMap使用，，如<select resultMap="resultMap的id值"></p>
+<p> type属性是期望转换成Java对象的全限定名称或别名。</p>
+<p> 当列为主键使用id标签，非主键使用result字段，column是列名，property是属性名</p>
+</li>
+<li><p>在操作数据库如<select>等标签中，把resultType替换成resultMap</p>
+</li>
 </ol>
-<p>例子： DAO接口定义方法：</p>
+<p>例子：<br>DAO接口定义方法：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> List&lt;Student&gt; <span class="hljs-title function_">selectStudents</span><span class="hljs-params">()</span>;<br></code></pre></td></tr></table></figure>
 <p>映射文件内容：</p>
 <figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">resultMap</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;student&quot;</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;org.example.domain.Student&quot;</span> &gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">id</span> <span class="hljs-attr">column</span>=<span class="hljs-string">&quot;id&quot;</span> <span class="hljs-attr">property</span>=<span class="hljs-string">&quot;id&quot;</span> /&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">result</span> <span class="hljs-attr">column</span>=<span class="hljs-string">&quot;name&quot;</span> <span class="hljs-attr">property</span>=<span class="hljs-string">&quot;name&quot;</span> /&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">result</span> <span class="hljs-attr">column</span>=<span class="hljs-string">&quot;email&quot;</span> <span class="hljs-attr">property</span>=<span class="hljs-string">&quot;email&quot;</span> /&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">result</span> <span class="hljs-attr">column</span>=<span class="hljs-string">&quot;age&quot;</span> <span class="hljs-attr">property</span>=<span class="hljs-string">&quot;age&quot;</span> /&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">resultMap</span>&gt;</span><br><br><span class="hljs-tag">&lt;<span class="hljs-name">select</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;selectStudents&quot;</span>  <span class="hljs-attr">resultMap</span>=<span class="hljs-string">&quot;student&quot;</span> &gt;</span><br>    select id, name, email, age from student;<br><span class="hljs-tag">&lt;/<span class="hljs-name">select</span>&gt;</span><br></code></pre></td></tr></table></figure>
@@ -295,21 +292,20 @@ Object&gt;。<strong>但是注意：Map如果作为接口返回值，sql语句�
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@Test</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">testSelectStudent</span><span class="hljs-params">()</span> <span class="hljs-keyword">throws</span> IOException &#123;<br>    <span class="hljs-type">SqlSession</span> <span class="hljs-variable">sqlSession</span> <span class="hljs-operator">=</span> MyBatisUtils.getSqlSession();<br>    <span class="hljs-type">StudentDao</span> <span class="hljs-variable">dao</span> <span class="hljs-operator">=</span> sqlSession.getMapper(StudentDao.class);<br>    List&lt;Student&gt; list = dao.selectStudents();<br>    <span class="hljs-keyword">for</span>(Student stu : list) &#123;<br>        System.out.println(stu);<br>    &#125;<br>    sqlSession.close();<br>&#125;<br></code></pre></td></tr></table></figure>
 <p>运行结果：</p>
 <p><img src="https://crayon-1302863897.cos.ap-beijing.myqcloud.com/image/image-20201203184113423.png" srcset="/img/loading.gif" lazyload alt="image-20201203184113423" style="zoom:50%;" /></p>
-<h2 id="列名和属性名不相同的处理方法">列名和属性名不相同的处理方法</h2>
-<ol type="1">
-<li><p>第一种方法就是使用之前讲的resultMap标签来定义。</p></li>
-<li><p>使用<code>select 列名 as
-列别名</code>，将列别名设为和属性名一致。</p>
-<p>例如：</p>
-<p>定义Java代码：</p>
-<p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">private</span> Integer stuId;<br><span class="hljs-keyword">private</span> String name;<br><span class="hljs-keyword">private</span> String email;<br><span class="hljs-keyword">private</span> Integer age;<br></code></pre></td></tr></table></figure></p>
-<p>映射文件中：</p>
-<p><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">select</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;selectStudents&quot;</span>  <span class="hljs-attr">resultType</span>=<span class="hljs-string">&quot;org.example.domain.Student&quot;</span> &gt;</span><br>    select id as StuId, name, email, age from student;<br><span class="hljs-tag">&lt;/<span class="hljs-name">select</span>&gt;</span><br></code></pre></td></tr></table></figure></p></li>
+<h2 id="列名和属性名不相同的处理方法"><a href="#列名和属性名不相同的处理方法" class="headerlink" title="列名和属性名不相同的处理方法"></a>列名和属性名不相同的处理方法</h2><ol>
+<li><p>第一种方法就是使用之前讲的resultMap标签来定义。</p>
+</li>
+<li><p>使用<code>select 列名 as 列别名</code>，将列别名设为和属性名一致。</p>
+<p> 例如：</p>
+<p> 定义Java代码：</p>
+ <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">private</span> Integer stuId;<br><span class="hljs-keyword">private</span> String name;<br><span class="hljs-keyword">private</span> String email;<br><span class="hljs-keyword">private</span> Integer age;<br></code></pre></td></tr></table></figure>
+<p> 映射文件中：</p>
+ <figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">select</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;selectStudents&quot;</span>  <span class="hljs-attr">resultType</span>=<span class="hljs-string">&quot;org.example.domain.Student&quot;</span> &gt;</span><br>    select id as StuId, name, email, age from student;<br><span class="hljs-tag">&lt;/<span class="hljs-name">select</span>&gt;</span><br></code></pre></td></tr></table></figure>
+</li>
 </ol>
-<h2 id="模糊查询">模糊查询</h2>
-<p>如果要进行模糊查询，使用Like，有两种方式。跟MyBatis没有关系。就是sql语句，使用"%"进行查询。</p>
-<p>一种是是在mapper文件中的sql语句中加入%，另一种就是调用方法传参数时加入"%"。</p>
-<p>例子： DAO接口方法：</p>
+<h2 id="模糊查询"><a href="#模糊查询" class="headerlink" title="模糊查询"></a>模糊查询</h2><p>如果要进行模糊查询，使用Like，有两种方式。跟MyBatis没有关系。就是sql语句，使用”%”进行查询。</p>
+<p>一种是是在mapper文件中的sql语句中加入%，另一种就是调用方法传参数时加入”%”。</p>
+<p>例子：<br>DAO接口方法：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> List&lt;Student&gt; <span class="hljs-title function_">selectStudentsByName</span><span class="hljs-params">(String name)</span>;<br></code></pre></td></tr></table></figure>
 <p>映射文件：</p>
 <figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">select</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;selectStudentsByName&quot;</span>  <span class="hljs-attr">resultType</span>=<span class="hljs-string">&quot;org.example.domain.Student&quot;</span> &gt;</span><br>    select id as StuId, name, email, age from student where name like #&#123;name&#125;<br><span class="hljs-tag">&lt;/<span class="hljs-name">select</span>&gt;</span><br></code></pre></td></tr></table></figure>
@@ -398,7 +394,7 @@ Object&gt;。<strong>但是注意：Map如果作为接口返回值，sql语句�
     
       <div class="col-lg-7 mx-auto nopadding-x-md">
         <div class="container custom mx-auto">
-          <link rel="stylesheet" href="/js/aplayer/APlayer.min.css"> <div id="aplayer" style="display:none"></div> <script src="/js/aplayer/APlayer.min.js"></script>
+          <link rel="stylesheet" href="/js/aplayer/APlayer.min.css"> <div id="aplayer" style="display:none"></div> <script src="/js/aplayer/APlayer.min.js"></script> <script src="https://cdn.bootcss.com/jquery.pjax/2.0.1/jquery.pjax.min.js"></script> <script> // 对所有链接跳转事件绑定pjax容器container $(document).pjax("a[target!=_blank]", "#container", {fragment:"#container", timeout:8000}) </script>
         </div>
       </div>
     
