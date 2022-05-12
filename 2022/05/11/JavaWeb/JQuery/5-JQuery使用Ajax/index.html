@@ -16,12 +16,12 @@
   <meta name="author" content="ZhaoXin">
   <meta name="keywords" content="博客">
   
-    <meta name="description" content="使用Jquery来发送异步请求。有几个常用的方法：load()、get()、post()等。 load方法JQuery的load方法是从服务器中加载数据，并把返回的数据放入到被选元素中。 语法：$(selector).load(url, data, callback) 参数：  url：规定希望加载的URL data：与请求一同发送的字符串键值对集合，格式为&amp;#123;key:value,...&amp;">
+    <meta name="description" content="使用Jquery来发送异步请求。有几个常用的方法：load()、get()、post()等。 load方法 JQuery的load方法是从服务器中加载数据，并把返回的数据放入到被选元素中。 语法： $(selector).load(url, data, callback) 参数：  url：规定希望加载的URL data：与请求一同发送的字符串键值对集合，格式为&amp;#123;key:v">
 <meta property="og:type" content="article">
 <meta property="og:title" content="5-JQuery使用Ajax">
 <meta property="og:url" content="https://zhaoquaner.github.io/2022/05/11/JavaWeb/JQuery/5-JQuery%E4%BD%BF%E7%94%A8Ajax/index.html">
 <meta property="og:site_name" content="赵圈儿的博客">
-<meta property="og:description" content="使用Jquery来发送异步请求。有几个常用的方法：load()、get()、post()等。 load方法JQuery的load方法是从服务器中加载数据，并把返回的数据放入到被选元素中。 语法：$(selector).load(url, data, callback) 参数：  url：规定希望加载的URL data：与请求一同发送的字符串键值对集合，格式为&amp;#123;key:value,...&amp;">
+<meta property="og:description" content="使用Jquery来发送异步请求。有几个常用的方法：load()、get()、post()等。 load方法 JQuery的load方法是从服务器中加载数据，并把返回的数据放入到被选元素中。 语法： $(selector).load(url, data, callback) 参数：  url：规定希望加载的URL data：与请求一同发送的字符串键值对集合，格式为&amp;#123;key:v">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://crayon-1302863897.cos.ap-beijing.myqcloud.com/image/image-20201216113930625.png">
 <meta property="og:image" content="https://crayon-1302863897.cos.ap-beijing.myqcloud.com/image/image-20201216115230833.png">
@@ -256,8 +256,9 @@
             
             <div class="markdown-body">
               <p>使用Jquery来发送异步请求。有几个常用的方法：<code>load()</code>、<code>get()</code>、<code>post()</code>等。</p>
-<h2 id="load方法"><a href="#load方法" class="headerlink" title="load方法"></a>load方法</h2><p>JQuery的load方法是从服务器中加载数据，并把返回的数据放入到被选元素中。</p>
-<p>语法：<br><code>$(selector).load(url, data, callback)</code></p>
+<h2 id="load方法">load方法</h2>
+<p>JQuery的load方法是从服务器中加载数据，并把返回的数据放入到被选元素中。</p>
+<p>语法： <code>$(selector).load(url, data, callback)</code></p>
 <p>参数：</p>
 <ul>
 <li>url：规定希望加载的URL</li>
@@ -270,36 +271,41 @@
 <li>statusTXT：调用的状态</li>
 <li>xhr：包含XMLHttpRequest对象</li>
 </ul>
-<h2 id="get方法"><a href="#get方法" class="headerlink" title="get方法"></a>get方法</h2><p>get方法通过GET请求给服务器发起请求。</p>
-<p>语法：<br><code>$(selector).get(url, data, success(response, status, xhr), dataType)</code></p>
+<h2 id="get方法">get方法</h2>
+<p>get方法通过GET请求给服务器发起请求。</p>
+<p>语法： <code>$(selector).get(url, data, success(response, status,
+xhr), dataType)</code></p>
 <p>参数：</p>
 <ul>
 <li>url：访问地址</li>
 <li>data：可选，连同请求发送到服务器的数据，键值对集合</li>
-<li>success：请求发送成功后运行的函数，额外的参数有：<ul>
+<li>success：请求发送成功后运行的函数，额外的参数有：
+<ul>
 <li>response：来自请求的结果数据</li>
 <li>status：请求状态</li>
 <li>xhr：XMLHttpRequest对象</li>
+</ul></li>
+<li>dataType：期望服务器返回的数据类型，如果不指定JQuery会智能判断，可能的类型
+<ul>
+<li>"xml"</li>
+<li>"html"</li>
+<li>"text"</li>
+<li>"script"</li>
+<li>"json"</li>
+<li>"jsonp"</li>
+</ul></li>
 </ul>
-</li>
-<li>dataType：期望服务器返回的数据类型，如果不指定JQuery会智能判断，可能的类型<ul>
-<li>“xml”</li>
-<li>“html”</li>
-<li>“text”</li>
-<li>“script”</li>
-<li>“json”</li>
-<li>“jsonp”</li>
-</ul>
-</li>
-</ul>
-<p>例子：<br>使用get方法发送一个异步请求。返回json数据。</p>
+<p>例子： 使用get方法发送一个异步请求。返回json数据。</p>
 <p>js代码：</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><div class="code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></div></td><td class="code"><pre><code class="hljs javascript">$.<span class="hljs-title function_">get</span>(<span class="hljs-string">&quot;some.do&quot;</span>, <span class="hljs-keyword">function</span> (<span class="hljs-params">data</span>) &#123;<br>    <span class="hljs-title function_">alert</span>(<span class="hljs-string">&quot;姓名:&quot;</span> + data.<span class="hljs-property">name</span> + <span class="hljs-string">&quot;, 年龄:&quot;</span> + data.<span class="hljs-property">age</span>);<br>&#125;)<br></code></pre></td></tr></table></figure>
 <p>控制器方法：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@RequestMapping(value = &quot;/some.do&quot;)</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">doSome</span><span class="hljs-params">(HttpServletResponse response)</span> <span class="hljs-keyword">throws</span> IOException &#123;<br>    <span class="hljs-type">Student</span> <span class="hljs-variable">student</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Student</span>(<span class="hljs-string">&quot;张三&quot;</span>, <span class="hljs-number">20</span>);<br>    <span class="hljs-type">ObjectMapper</span> <span class="hljs-variable">mapper</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">ObjectMapper</span>();<br>    <span class="hljs-type">String</span> <span class="hljs-variable">json</span> <span class="hljs-operator">=</span> mapper.writeValueAsString(student);<br>    response.setContentType(<span class="hljs-string">&quot;application/json;charset=utf-8&quot;</span>);<br>    <span class="hljs-type">PrintWriter</span> <span class="hljs-variable">pw</span> <span class="hljs-operator">=</span> response.getWriter();<br>    pw.println(json);<br><br>&#125;<br></code></pre></td></tr></table></figure>
-<p>输出：<br><img src="https://crayon-1302863897.cos.ap-beijing.myqcloud.com/image/image-20201216113930625.png" srcset="/img/loading.gif" lazyload alt="image-20201216113930625" style="zoom:50%;" /></p>
-<h2 id="post方法"><a href="#post方法" class="headerlink" title="post方法"></a>post方法</h2><p>和get方法，用法参数都一样，不讲解。</p>
-<h2 id="ajax方法"><a href="#ajax方法" class="headerlink" title="ajax方法"></a>ajax方法</h2><p>这个方法是JQuery的底层AJAX实现。其他所有的ajax方法，如刚才讲的get，post都是在这个方法的基础上，进行封装。</p>
+<p>输出：
+<img src="https://crayon-1302863897.cos.ap-beijing.myqcloud.com/image/image-20201216113930625.png" srcset="/img/loading.gif" lazyload alt="image-20201216113930625" style="zoom:50%;" /></p>
+<h2 id="post方法">post方法</h2>
+<p>和get方法，用法参数都一样，不讲解。</p>
+<h2 id="ajax方法">ajax方法</h2>
+<p>这个方法是JQuery的底层AJAX实现。其他所有的ajax方法，如刚才讲的get，post都是在这个方法的基础上，进行封装。</p>
 <p>可以调用该方法来设置关于异步请求的所有参数。</p>
 <p>该方法有一个键值对集合参数settings，在这个集合中设置异步请求配置。</p>
 <p>集合中常用参数：</p>
@@ -308,7 +314,7 @@
 <li>type：请求方式</li>
 <li>data：请求携带的参数，键值对集合</li>
 <li>dataType：期望返回的数据类型</li>
-<li>contentType：发送信息至服务器的内容编码类型，默认为”application/x-www-form-urlencoded”</li>
+<li>contentType：发送信息至服务器的内容编码类型，默认为"application/x-www-form-urlencoded"</li>
 <li>success：请求成功后的回调函数</li>
 <li>async：Boolean类型，默认值为true。即所有请求为异步请求。false为同步请求</li>
 <li>timeout：设置请求超时时间，单位为毫秒。此设置将覆盖全局设置</li>
@@ -316,7 +322,8 @@
 </ul>
 <p>例子：</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs javascript">$.<span class="hljs-title function_">ajax</span>(&#123;<br>    <span class="hljs-attr">url</span>:<span class="hljs-string">&quot;some.do&quot;</span>,<br>    <span class="hljs-attr">type</span>:<span class="hljs-string">&quot;get&quot;</span>,<br>    <span class="hljs-attr">dataType</span>:<span class="hljs-string">&quot;json&quot;</span>,<br>    <span class="hljs-attr">success</span>:<span class="hljs-keyword">function</span> (<span class="hljs-params">data</span>) &#123;<br>        <span class="hljs-title function_">alert</span>(data);<br>    &#125;<br>&#125;)<br></code></pre></td></tr></table></figure>
-<h2 id="其他方法"><a href="#其他方法" class="headerlink" title="其他方法"></a>其他方法</h2><p><img src="https://crayon-1302863897.cos.ap-beijing.myqcloud.com/image/image-20201216115230833.png" srcset="/img/loading.gif" lazyload alt="image-20201216115230833" style="zoom:80%;" /></p>
+<h2 id="其他方法">其他方法</h2>
+<p><img src="https://crayon-1302863897.cos.ap-beijing.myqcloud.com/image/image-20201216115230833.png" srcset="/img/loading.gif" lazyload alt="image-20201216115230833" style="zoom:80%;" /></p>
 
             </div>
             <hr>

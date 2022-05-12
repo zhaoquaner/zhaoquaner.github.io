@@ -16,12 +16,12 @@
   <meta name="author" content="ZhaoXin">
   <meta name="keywords" content="博客">
   
-    <meta name="description" content="List集合代表一个元素有序可以重复的集合，每个元素有对应的顺序索引，从0开始。 List接口作为Collection的子接口，可以使用Collection的所有方法，除此之外，List集合还增加一个根据索引操作集合元素的方法  void add(int index, Object element)：将元素插入到List集合的index处(index从0开始，例如插入第一个元素，index为0)">
+    <meta name="description" content="List集合代表一个元素有序可以重复的集合，每个元素有对应的顺序索引，从0开始。 List接口作为Collection的子接口，可以使用Collection的所有方法，除此之外，List集合还增加一个根据索引操作集合元素的方法  void add(int index, Object element)：将元素插入到List集合的index处(index从0开始，例如插入第一个元素，index">
 <meta property="og:type" content="article">
 <meta property="og:title" content="List集合">
 <meta property="og:url" content="https://zhaoquaner.github.io/2022/05/11/Java/%E9%9B%86%E5%90%88/List%E9%9B%86%E5%90%88/index.html">
 <meta property="og:site_name" content="赵圈儿的博客">
-<meta property="og:description" content="List集合代表一个元素有序可以重复的集合，每个元素有对应的顺序索引，从0开始。 List接口作为Collection的子接口，可以使用Collection的所有方法，除此之外，List集合还增加一个根据索引操作集合元素的方法  void add(int index, Object element)：将元素插入到List集合的index处(index从0开始，例如插入第一个元素，index为0)">
+<meta property="og:description" content="List集合代表一个元素有序可以重复的集合，每个元素有对应的顺序索引，从0开始。 List接口作为Collection的子接口，可以使用Collection的所有方法，除此之外，List集合还增加一个根据索引操作集合元素的方法  void add(int index, Object element)：将元素插入到List集合的index处(index从0开始，例如插入第一个元素，index">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2022-05-11T01:04:39.000Z">
 <meta property="article:modified_time" content="2022-05-11T08:53:30.686Z">
@@ -255,20 +255,29 @@
               <p>List集合代表一个元素有序可以重复的集合，每个元素有对应的顺序索引，从0开始。</p>
 <p>List接口作为Collection的子接口，可以使用Collection的所有方法，除此之外，List集合还增加一个根据索引操作集合元素的方法</p>
 <ul>
-<li><strong>void add(int index, Object element)</strong>：将元素插入到List集合的index处(index从0开始，例如插入第一个元素，index为0)</li>
-<li><strong>boolean addAll(int index, Collection c)</strong>：将集合c包含的所有元素都插入到List集合的index处</li>
+<li><strong>void add(int index, Object
+element)</strong>：将元素插入到List集合的index处(index从0开始，例如插入第一个元素，index为0)</li>
+<li><strong>boolean addAll(int index, Collection
+c)</strong>：将集合c包含的所有元素都插入到List集合的index处</li>
 <li><strong>Object get(int index)</strong>：返回集合index处的元素</li>
-<li><strong>int indexOf(Object o)</strong>：返回对象o在List集合第一次出现的位置索引</li>
-<li><strong>int lastIndexOf(Object o)</strong>：返回对象o在List集合中最后一次出现的位置索引</li>
-<li><strong>Object remove(int index)</strong>：删除并返回index索引处的元素</li>
-<li><strong>Object set(int index, Object element)</strong>：将List集合index位置处的元素替换成element对象，返回被替换的旧元素</li>
-<li><strong>List subList(int fromIndex, int toIndex)</strong>：返回从索引fromIndex(包括)到toIndex(不包括)处所有集合元素组成的子集合</li>
+<li><strong>int indexOf(Object
+o)</strong>：返回对象o在List集合第一次出现的位置索引</li>
+<li><strong>int lastIndexOf(Object
+o)</strong>：返回对象o在List集合中最后一次出现的位置索引</li>
+<li><strong>Object remove(int
+index)</strong>：删除并返回index索引处的元素</li>
+<li><strong>Object set(int index, Object
+element)</strong>：将List集合index位置处的元素替换成element对象，返回被替换的旧元素</li>
+<li><strong>List subList(int fromIndex, int
+toIndex)</strong>：返回从索引fromIndex(包括)到toIndex(不包括)处所有集合元素组成的子集合</li>
 </ul>
 <p>所有的List实现类都可以调用这些方法</p>
 <p>Java 8为List接口增加了两个新的默认方法</p>
 <ul>
-<li><strong>void replaceAll(UnaryOperator operator)</strong>：根据operator指定的计算规则重新设置List集合中的所有元素</li>
-<li><strong>void sort(Comparator c)</strong>：根据Comparator参数对List集合元素排序</li>
+<li><strong>void replaceAll(UnaryOperator
+operator)</strong>：根据operator指定的计算规则重新设置List集合中的所有元素</li>
+<li><strong>void sort(Comparator
+c)</strong>：根据Comparator参数对List集合元素排序</li>
 </ul>
 <p><strong>注意：使用indexOf、lastIndexOf和remove方法时，需要在集合中匹配和给定参数相同的元素，List集合判断相等的方式是只要equals方法返回true即可</strong>。</p>
 <p>sort方法需要一个Comparator对象来控制元素排序，可以用Lambda表达式；replaceAll方法需要一个UnaryOperator接口实现类，它也是一个函数式接口，可以使用Lambda表达式。</p>
@@ -276,19 +285,23 @@
 <figure class="highlight java"><table><tr><td class="gutter"><div class="code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></div></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">import</span> java.util.*;<br><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">ListTest3</span><br>&#123;<br>	<span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">main</span><span class="hljs-params">(String[] args)</span><br>	&#123;<br>		<span class="hljs-type">var</span> <span class="hljs-variable">books</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">ArrayList</span>();<br>		<span class="hljs-comment">// 向books集合中添加4个元素</span><br>		books.add(<span class="hljs-string">&quot;轻量级Java EE企业应用实战&quot;</span>);<br>		books.add(<span class="hljs-string">&quot;疯狂Java讲义&quot;</span>);<br>		books.add(<span class="hljs-string">&quot;疯狂Android讲义&quot;</span>);<br>		books.add(<span class="hljs-string">&quot;疯狂iOS讲义&quot;</span>);<br>		<span class="hljs-comment">// 使用目标类型为Comparator的Lambda表达式对List集合排序</span><br>        <span class="hljs-comment">//字符串越长，字符串越大</span><br>		books.sort((o1, o2) -&gt; ((String) o1).length() - ((String) o2).length());<br>		System.out.println(books);<br>		<span class="hljs-comment">// 使用目标类型为UnaryOperator的Lambda表达式来替换集合中所有元素</span><br>		<span class="hljs-comment">// 该Lambda表达式控制使用每个字符串的长度作为新的集合元素</span><br>		books.replaceAll(ele -&gt; ((String) ele).length());<br>		System.out.println(books); <span class="hljs-comment">// 输出[7, 8, 11, 16]</span><br>	&#125;<br>&#125;<br></code></pre></td></tr></table></figure>
 <p>List集合额外提供了一个listIterator方法，该方法返回一个ListIterator对象，ListIterator接口继承了Iterator接口，提供专门操作List的方法，ListIterator还增加了一个方法</p>
 <ul>
-<li><strong>boolean hasPrevious()</strong>：返回该迭代器关联的集合是否还有上一个元素</li>
+<li><strong>boolean
+hasPrevious()</strong>：返回该迭代器关联的集合是否还有上一个元素</li>
 <li><strong>Object previous()</strong>：返回该迭代器的上一个元素</li>
 <li><strong>void add(Object o)</strong>：在指定位置插入一个元素</li>
 </ul>
-<h2 id="ArrayList和Vector实现类"><a href="#ArrayList和Vector实现类" class="headerlink" title="ArrayList和Vector实现类"></a>ArrayList和Vector实现类</h2><p>ArrayList和Vector作为List接口的实现类，完全支持List接口所有的功能</p>
+<h2 id="arraylist和vector实现类">ArrayList和Vector实现类</h2>
+<p>ArrayList和Vector作为List接口的实现类，完全支持List接口所有的功能</p>
 <p>ArrayList和Vector实现类都是基于数组实现的List类，ArrayList和Vector封装了一个动态的、允许再分配的Object[]数组，</p>
 <p>ArrayList和Vector对象使用initialCapacity参数来设置该对象的长度，当向ArrayList或Vector-添加元素超过了数组长度后，它们的initialCapacity会自动增加。</p>
 <p>通常来说，我们无需关注initialCapacity，但是如果向ArrayList或Vector集合添加大量元素时，可以使用ensureCapacity方法一次性增加initialCapacity，可以减少重分配的次数，提高性能。</p>
 <p>如果开始就知道要存储多少元素，可以在创建时指定initialCapacity参数，<strong>如果不指定，默认长度为10。</strong></p>
 <p>ArrayList和Vector提供了两个方法来重分配Object[]数组</p>
 <ul>
-<li><strong>void ensureCapacity(int minCapacity)</strong>：将Object[]数组的大小增加，以确保它至少可以容纳由minCapacity参数指定的元素数。</li>
-<li><strong>void trimToSize()</strong>：调整Object[]数组长度为当前元素的个数</li>
+<li><strong>void ensureCapacity(int
+minCapacity)</strong>：将Object[]数组的大小增加，以确保它至少可以容纳由minCapacity参数指定的元素数。</li>
+<li><strong>void
+trimToSize()</strong>：调整Object[]数组长度为当前元素的个数</li>
 </ul>
 <p>ArrayList和Vector在用法上几乎完全相同，但是Vector是一个比较古老的集合，有一些很长的方法名，也有很多缺点，尽量少用Vector。</p>
 <p>除此之外，ArrayList和Vector的一个显著区别是ArrayList是线程不安全的，程序必须手动保证该集合的同步性，Vector是线程安全的。</p>
@@ -299,7 +312,9 @@
 <li>Object pop()：返回栈的第一个元素，并将该元素出栈</li>
 <li>void push(Object item)：将元素入栈</li>
 </ul>
-<h2 id="固定长度的List"><a href="#固定长度的List" class="headerlink" title="　固定长度的List"></a>　固定长度的List</h2><p>操作数组的工具类Arrays，该工具类提供了asList(Object … a)方法，该方法可以把一个数组或指定个数的对象转换为一个List集合，<strong>但是这个集合List即不是ArrayList实现类的实例，也不是Vector实现类的实例，而是Arrays的内部类ArrayList的实例。</strong></p>
+<p>##　固定长度的List</p>
+<p>操作数组的工具类Arrays，该工具类提供了asList(Object ...
+a)方法，该方法可以把一个数组或指定个数的对象转换为一个List集合，<strong>但是这个集合List即不是ArrayList实现类的实例，也不是Vector实现类的实例，而是Arrays的内部类ArrayList的实例。</strong></p>
 <p>Arrays.ArrayList是一个固定长度的List集合，程序只能遍历该集合的元素，不可以增加和删除</p>
 
             </div>

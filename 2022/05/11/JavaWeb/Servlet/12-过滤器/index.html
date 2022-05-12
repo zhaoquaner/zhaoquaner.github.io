@@ -16,23 +16,19 @@
   <meta name="author" content="ZhaoXin">
   <meta name="keywords" content="博客">
   
-    <meta name="description" content="介绍首先来看，过滤器在整个Ｗｅｂ流程的哪里：  从上面的图，我们可以看出来，当浏览器发送请求给服务器时，会先执行过滤器，再访问Web资源；服务器响应Response时，也会先执行过滤器，再发送请求资源给浏览器。 作用 拦截Http服务器，帮助Http服务器检测当前请求合法性 拦截Http服务器，对当前请求进行增强操作  例如，在没有过滤器时，如果要处理中文乱码情况，需要在每个Sevlet中都设定">
+    <meta name="description" content="##　介绍 首先来看，过滤器在整个Ｗｅｂ流程的哪里：   image-20200815085855245  从上面的图，我们可以看出来，当浏览器发送请求给服务器时，会先执行过滤器，再访问Web资源；服务器响应Response时，也会先执行过滤器，再发送请求资源给浏览器。 作用  拦截Http服务器，帮助Http服务器检测当前请求合法性 拦截Http服务器，对当前请求进行增强操作">
 <meta property="og:type" content="article">
 <meta property="og:title" content="11-过滤器">
 <meta property="og:url" content="https://zhaoquaner.github.io/2022/05/11/JavaWeb/Servlet/12-%E8%BF%87%E6%BB%A4%E5%99%A8/index.html">
 <meta property="og:site_name" content="赵圈儿的博客">
-<meta property="og:description" content="介绍首先来看，过滤器在整个Ｗｅｂ流程的哪里：  从上面的图，我们可以看出来，当浏览器发送请求给服务器时，会先执行过滤器，再访问Web资源；服务器响应Response时，也会先执行过滤器，再发送请求资源给浏览器。 作用 拦截Http服务器，帮助Http服务器检测当前请求合法性 拦截Http服务器，对当前请求进行增强操作  例如，在没有过滤器时，如果要处理中文乱码情况，需要在每个Sevlet中都设定">
+<meta property="og:description" content="##　介绍 首先来看，过滤器在整个Ｗｅｂ流程的哪里：   image-20200815085855245  从上面的图，我们可以看出来，当浏览器发送请求给服务器时，会先执行过滤器，再访问Web资源；服务器响应Response时，也会先执行过滤器，再发送请求资源给浏览器。 作用  拦截Http服务器，帮助Http服务器检测当前请求合法性 拦截Http服务器，对当前请求进行增强操作">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://crayon-1302863897.cos.ap-beijing.myqcloud.com/20200815085902.png">
-<meta property="og:image" content="https://crayon-1302863897.cos.ap-beijing.myqcloud.com/20200815143154.png">
-<meta property="og:image" content="https://crayon-1302863897.cos.ap-beijing.myqcloud.com/20200815144016.png">
 <meta property="article:published_time" content="2022-05-11T05:45:39.000Z">
 <meta property="article:modified_time" content="2022-05-11T08:55:51.285Z">
 <meta property="article:author" content="ZhaoXin">
 <meta property="article:tag" content="JavaWeb">
 <meta property="article:tag" content="Servlet">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://crayon-1302863897.cos.ap-beijing.myqcloud.com/20200815085902.png">
   
   
   <title>11-过滤器 - 赵圈儿的博客</title>
@@ -214,7 +210,7 @@
   
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      5k 字
+      4.9k 字
     </span>
   
 
@@ -256,37 +252,50 @@
             <h1 style="display: none">11-过滤器</h1>
             
             <div class="markdown-body">
-              <h2 id="介绍"><a href="#介绍" class="headerlink" title="　介绍"></a>　介绍</h2><p>首先来看，过滤器在整个Ｗｅｂ流程的哪里：</p>
-<p><img src="https://crayon-1302863897.cos.ap-beijing.myqcloud.com/20200815085902.png" srcset="/img/loading.gif" lazyload alt="image-20200815085855245"></p>
+              <p>##　介绍</p>
+<p>首先来看，过滤器在整个Ｗｅｂ流程的哪里：</p>
+<figure>
+<img
+src="https://crayon-1302863897.cos.ap-beijing.myqcloud.com/20200815085902.png" srcset="/img/loading.gif" lazyload
+alt="image-20200815085855245" />
+<figcaption aria-hidden="true">image-20200815085855245</figcaption>
+</figure>
 <p>从上面的图，我们可以看出来，当浏览器发送请求给服务器时，会先执行过滤器，再访问Web资源；服务器响应Response时，也会先执行过滤器，再发送请求资源给浏览器。</p>
-<h3 id="作用"><a href="#作用" class="headerlink" title="作用"></a>作用</h3><ul>
+<h3 id="作用">作用</h3>
+<ul>
 <li>拦截Http服务器，帮助Http服务器检测当前请求合法性</li>
 <li>拦截Http服务器，对当前请求进行增强操作</li>
 </ul>
 <p>例如，在没有过滤器时，如果要处理中文乱码情况，需要在每个Sevlet中都设定编码，但是这样，代码重复率很高；有了过滤器，情况就不一样了，只要在过滤器中指定了编码，那么就可以使全站的Web资源都是使用该编码。</p>
 <p>当然，过滤器的作用很多，还可以过滤一些敏感的字符串，权限验证(规定只有带Session或Cookie的浏览器才能访问web资源)等等。</p>
-<h3 id="Filter接口-过滤器接口"><a href="#Filter接口-过滤器接口" class="headerlink" title="Filter接口(过滤器接口)"></a>Filter接口(过滤器接口)</h3><ul>
+<h3 id="filter接口过滤器接口">Filter接口(过滤器接口)</h3>
+<ul>
 <li>来自于Sevlet规范下接口</li>
 <li>Filter接口实现类由开发人员提供，Http服务器不提供实现</li>
 </ul>
-<h4 id="Filter接口开发类步骤"><a href="#Filter接口开发类步骤" class="headerlink" title="Filter接口开发类步骤"></a>Filter接口开发类步骤</h4><ul>
+<h4 id="filter接口开发类步骤">Filter接口开发类步骤</h4>
+<ul>
 <li>创建一个Java类实现Filter接口</li>
 <li>重写Filter接口中的doFilter方法</li>
 <li>在web.xml文件中将过滤器接口实现类注册到Http服务器</li>
 </ul>
-<h2 id="Filter接口-API"><a href="#Filter接口-API" class="headerlink" title="Filter接口 API"></a>Filter接口 API</h2><p>Filter接口有三个方法</p>
+<h2 id="filter接口-api">Filter接口 API</h2>
+<p>Filter接口有三个方法</p>
 <ul>
 <li>void init(FilterConfig filterconfig)</li>
 <li>void destroy()</li>
-<li>void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain)</li>
+<li>void doFilter(ServletRequest servletRequest, ServletResponse
+servletResponse, FilterChain filterChain)</li>
 </ul>
 <p>前两个方法很好理解，它们只在Web服务器加载和销毁时被执行，且只会被执行一次。</p>
 <p>比较重要的是doFilter方法：有三个参数，前面两个参数和doGet，doPost方法参数一样，请求参数和响应参数，ServletRequest是HttpServletRequest的父接口。</p>
-<p>第三个参数FilterChain类型，也是一个接口，该接口只有一个方法：doFilter(ServletRequest var1, ServletResponse var2)。</p>
+<p>第三个参数FilterChain类型，也是一个接口，该接口只有一个方法：doFilter(ServletRequest
+var1, ServletResponse var2)。</p>
 <p>感觉有点糊涂了，怎么有一个doFilter方法。</p>
 <p>可以这样理解：过滤器不止一个，那么就需要管理这些过滤器，在Java中使用了链式结构，把所有的过滤器都放在了FilterChain中，如果符合条件，就执行下一个过滤器，一直到没有符合条件的过滤器，就执行目标资源。</p>
 <p>简单来说，FilterChain掌管着所有过滤器，执行完一个，由FilterChain去判断是否还有符合条件的下一个过滤器，如果有，继续执行下一个过滤器，没有，就执行目标资源。</p>
-<h2 id="一个简单的例子"><a href="#一个简单的例子" class="headerlink" title="一个简单的例子"></a>一个简单的例子</h2><p>首先写一个简单的过滤器：设置当浏览器访问timg.jpg图片资源时，如果年龄小于等于40，就可以访问，大于40，就不能访问，并输出提示信息。</p>
+<h2 id="一个简单的例子">一个简单的例子</h2>
+<p>首先写一个简单的过滤器：设置当浏览器访问timg.jpg图片资源时，如果年龄小于等于40，就可以访问，大于40，就不能访问，并输出提示信息。</p>
 <p>WebFilter代码：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><div class="code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></div></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">WebFilter</span> <span class="hljs-keyword">implements</span> <span class="hljs-title class_">Filter</span> &#123;<br><br>    <span class="hljs-meta">@Override</span><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">doFilter</span><span class="hljs-params">(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain)</span> <span class="hljs-keyword">throws</span> IOException, ServletException &#123;<br><br>        <span class="hljs-comment">//获得年龄参数</span><br>        <span class="hljs-type">String</span> <span class="hljs-variable">age</span> <span class="hljs-operator">=</span> servletRequest.getParameter(<span class="hljs-string">&quot;age&quot;</span>);<br><br>        <span class="hljs-keyword">if</span>(Integer.valueOf(age) &lt;= <span class="hljs-number">40</span>) &#123;<br>            filterChain.doFilter(servletRequest, servletResponse);<br>        &#125; <span class="hljs-keyword">else</span> &#123;<br>            <span class="hljs-comment">//如果年龄大于40，就输出提示信息，没执行filterChain.doFilter方法，就会直接返回给浏览器</span><br>            servletResponse.setContentType(<span class="hljs-string">&quot;text/html;charset=utf-8&quot;</span>);<br>            <span class="hljs-type">PrintWriter</span> <span class="hljs-variable">out</span> <span class="hljs-operator">=</span> servletResponse.getWriter();<br>            out.print(<span class="hljs-string">&quot;&lt;h1&gt;你不能查看此资源!&lt;h1&gt;&quot;</span>);<br>        &#125;<br><br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
 <p>然后需要在web.xml文件中进行注册：</p>
@@ -294,12 +303,9 @@
 <p>这个例子中，希望过滤器当浏览器访问timg.jpg文件时，进行拦截。</p>
 <p><strong>filter标签中有：</strong></p>
 <ul>
-<li><p><strong>filter-name：用于为过滤器设置一个名字</strong></p>
-</li>
-<li><p><strong>filter-class：是过滤器实现类的完整限定类名</strong></p>
-</li>
-<li><p><strong>init-param：该元素用于为过滤器指定初始化参数，它的子元素param-name指定参数名字，param-value指定参数的值，在过滤器中可以使用FilterConfig接口对象来访问初始化参数</strong></p>
-</li>
+<li><p><strong>filter-name：用于为过滤器设置一个名字</strong></p></li>
+<li><p><strong>filter-class：是过滤器实现类的完整限定类名</strong></p></li>
+<li><p><strong>init-param：该元素用于为过滤器指定初始化参数，它的子元素param-name指定参数名字，param-value指定参数的值，在过滤器中可以使用FilterConfig接口对象来访问初始化参数</strong></p></li>
 </ul>
 <p><strong>filter-mapping：是用来设置当浏览器访问哪些资源时，哪个过滤器需要进行拦截</strong></p>
 <p><strong>可以有两种方式来指定：Sevlet名称，资源访问的请求路径</strong></p>
@@ -308,49 +314,65 @@
 <li><strong>filter-name：写上需要使用的过滤器名字，该值必须是在filter中声明过的</strong></li>
 <li><strong>url-pattern：设置filter所拦截的请求路径</strong></li>
 <li><strong>servlet-name：指定过滤器所拦截的Servlet名称</strong></li>
-<li><strong>dispatcher：指定当用户以什么样的方式访问资源时，过滤器需要拦截，有四个可取值：REQUEST,INCLUDE,FORWORD,ERROR， 默认为REQUEST，用户可以设置多个<dispatcher>标签子元素来指定Filter对资源的多种调用方式进行拦截。</strong><ul>
+<li><strong>dispatcher：指定当用户以什么样的方式访问资源时，过滤器需要拦截，有四个可取值：REQUEST,INCLUDE,FORWORD,ERROR，
+默认为REQUEST，用户可以设置多个<dispatcher>标签子元素来指定Filter对资源的多种调用方式进行拦截。</strong>
+<ul>
 <li>REQUEST：当用户直接访问页面时，Web容器将会调用此过滤器。如果目标资源是通过RequestDispatcher的include()或forword方法访问时，那么该过滤器就不会被调用</li>
 <li>INCLUDE:如果目标资源是通过RequestDispatcher的include方法访问时，那么该过滤器将被调用，除此之外，该过滤器不会被调用</li>
 <li>FORWORD：如果该目标资源是通过RequestDispatcher的forword方法访问时，那么该过滤器将被调用，除此之外，该过滤器不会被调用。</li>
 <li>ERROR：如果目标资源使用过声明式异常处理机制被调用时，那么该过滤器将被调用，除此之外，过滤器不会被调用</li>
+</ul></li>
 </ul>
-</li>
-</ul>
-<h2 id="过滤器的执行顺序"><a href="#过滤器的执行顺序" class="headerlink" title="过滤器的执行顺序"></a>过滤器的执行顺序</h2><p>首先看一个测试:</p>
- <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">doFilter</span><span class="hljs-params">(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain)</span> <span class="hljs-keyword">throws</span> IOException, ServletException &#123;<br>    System.out.println(<span class="hljs-string">&quot;准备放行&quot;</span>);<br><br>    filterChain.doFilter(servletRequest, servletResponse);<br><br>    System.out.println(<span class="hljs-string">&quot;放行成功&quot;</span>);<br>&#125;<br></code></pre></td></tr></table></figure>
+<h2 id="过滤器的执行顺序">过滤器的执行顺序</h2>
+<p>首先看一个测试:</p>
+<p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">doFilter</span><span class="hljs-params">(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain)</span> <span class="hljs-keyword">throws</span> IOException, ServletException &#123;<br>    System.out.println(<span class="hljs-string">&quot;准备放行&quot;</span>);<br><br>    filterChain.doFilter(servletRequest, servletResponse);<br><br>    System.out.println(<span class="hljs-string">&quot;放行成功&quot;</span>);<br>&#125;<br></code></pre></td></tr></table></figure></p>
 <p>执行结果为：</p>
-<p><img src="https://crayon-1302863897.cos.ap-beijing.myqcloud.com/20200815143154.png" srcset="/img/loading.gif" lazyload alt="image-20200815143152988"></p>
-<p>完整的执行流程为：客户端发送请求给Http服务器，服务器执行过滤器，先打印”准备放行”，接着执行doFilter方法，服务器发现没有其他过滤器，就执行目标资源，执行完以后，再回到过滤器，继续执行代码，打印”放行成功”。</p>
+<figure>
+<img
+src="https://crayon-1302863897.cos.ap-beijing.myqcloud.com/20200815143154.png" srcset="/img/loading.gif" lazyload
+alt="image-20200815143152988" />
+<figcaption aria-hidden="true">image-20200815143152988</figcaption>
+</figure>
+<p>完整的执行流程为：客户端发送请求给Http服务器，服务器执行过滤器，先打印"准备放行"，接着执行doFilter方法，服务器发现没有其他过滤器，就执行目标资源，执行完以后，再回到过滤器，继续执行代码，打印"放行成功"。</p>
 <p>再看一个测试：</p>
 <p>有两个过滤器：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">//Filter1</span><br><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">Filter1</span> <span class="hljs-keyword">implements</span> <span class="hljs-title class_">Filter</span> &#123;<br><br>    <span class="hljs-meta">@Override</span><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">doFilter</span><span class="hljs-params">(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain)</span> <span class="hljs-keyword">throws</span> IOException, ServletException &#123;<br>        System.out.println(<span class="hljs-string">&quot;开始执行Filter1&quot;</span>);<br><br>        filterChain.doFilter(servletRequest, servletResponse);<br><br>        System.out.println(<span class="hljs-string">&quot;Filter1执行结束&quot;</span>);<br>    &#125;<br>&#125;<br><br><br><span class="hljs-comment">//Filter2</span><br><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">Filter2</span> <span class="hljs-keyword">implements</span> <span class="hljs-title class_">Filter</span> &#123;<br><br>    <span class="hljs-meta">@Override</span><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">doFilter</span><span class="hljs-params">(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain)</span> <span class="hljs-keyword">throws</span> IOException, ServletException &#123;<br><br>        System.out.println(<span class="hljs-string">&quot;开始执行Filter2&quot;</span>);<br><br>        filterChain.doFilter(servletRequest, servletResponse);<br><br>        System.out.println(<span class="hljs-string">&quot;Filter2执行结束&quot;</span>);<br><br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
 <p>测试的Servlet的doGet方法：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">protected</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">doGet</span><span class="hljs-params">(HttpServletRequest request, HttpServletResponse response)</span> <span class="hljs-keyword">throws</span> ServletException, IOException &#123;<br><br>    System.out.println(<span class="hljs-string">&quot;执行Servlet代码&quot;</span>);<br>&#125;<br></code></pre></td></tr></table></figure>
 <p>执行结果为：</p>
-<p><img src="https://crayon-1302863897.cos.ap-beijing.myqcloud.com/20200815144016.png" srcset="/img/loading.gif" lazyload alt="image-20200815144016042"></p>
+<figure>
+<img
+src="https://crayon-1302863897.cos.ap-beijing.myqcloud.com/20200815144016.png" srcset="/img/loading.gif" lazyload
+alt="image-20200815144016042" />
+<figcaption aria-hidden="true">image-20200815144016042</figcaption>
+</figure>
 <p>由该执行结果可知，执行顺序为：先执行Filter1，然后执行Filter1的doFilter方法，就转到下一个过滤器Filter2，等Filter2执行完后，再回到Filter1继续执行。</p>
 <p><strong>其中，过滤器之间的执行顺序是看在web.xml文件中mapping的先后顺序的，放在前面的先执行。</strong></p>
-<h2 id="Filter的简单应用"><a href="#Filter的简单应用" class="headerlink" title="Filter的简单应用"></a>Filter的简单应用</h2><p>filter有三种典型应用：</p>
+<h2 id="filter的简单应用">Filter的简单应用</h2>
+<p>filter有三种典型应用：</p>
 <ul>
 <li>可以在filter中根据条件来决定是否调用filterChain.doFilter()方法，即是否让目标资源继续执行</li>
-<li>在让目标资源执行之前，可以对request\response作预处理，再让目标资源执行</li>
+<li>在让目标资源执行之前，可以对request，再让目标资源执行</li>
 <li>在目标资源执行之后，可以捕获目标资源执行结果，从而实现一些特殊功能</li>
 </ul>
-<h2 id="过滤器拦截地址-url-pattern-格式"><a href="#过滤器拦截地址-url-pattern-格式" class="headerlink" title="过滤器拦截地址 url-pattern 格式"></a>过滤器拦截地址 url-pattern 格式</h2><p>在web.xml文件中，以下语法用来定义映射：</p>
+<h2 id="过滤器拦截地址-url-pattern-格式">过滤器拦截地址 url-pattern
+格式</h2>
+<p>在web.xml文件中，以下语法用来定义映射：</p>
 <ul>
-<li>以  “/“ 和  “/*” 结尾的是用来做路径映射</li>
-<li>以前缀  “*.” 开头的是用来做 拓展映射</li>
+<li>以 "/" 和 “/*” 结尾的是用来做路径映射</li>
+<li>以前缀 “*.” 开头的是用来做 拓展映射</li>
 <li>“/” 是用来定义default servlet映射的</li>
 <li>剩下的都是用来定义详细映射的，比如：/aa/bb/cc.jpg</li>
 </ul>
 <p>有几种情况：</p>
 <ul>
-<li>在调用某一具体文件时，拦截格式：<url-pattern>/img/test.jpg&lt;/url-pattern&gt;</li>
-<li>在调用某一文件下的资源文件时，拦截格式：<url-pattern>/img/*&lt;/url-pattern&gt;</li>
-<li>在调用任意文件夹下某种类型文件时，拦截格式：<url-pattern>*.jpg&lt;/url-pattern&gt;<!--注意，没有 “/”--></li>
-<li>在调用网站任意文件时，拦截格式：<url-pattern>/*&lt;/url-pattern&gt;</li>
+<li>在调用某一具体文件时，拦截格式：<url-pattern>/img/test.jpg</url-pattern></li>
+<li>在调用某一文件下的资源文件时，拦截格式：<url-pattern>/img/*</url-pattern></li>
+<li>在调用任意文件夹下某种类型文件时，拦截格式：<url-pattern>*.jpg</url-pattern><!--注意，没有 “/”--></li>
+<li>在调用网站任意文件时，拦截格式：<url-pattern>/*</url-pattern></li>
 </ul>
-<p><strong>注意：定义例如 “/*.action”是错误的，因为这既属于路径映射，又属于拓展映射，服务器无法分辨</strong></p>
+<p>**注意：定义例如
+“/*.action”是错误的，因为这既属于路径映射，又属于拓展映射，服务器无法分辨**</p>
 
             </div>
             <hr>

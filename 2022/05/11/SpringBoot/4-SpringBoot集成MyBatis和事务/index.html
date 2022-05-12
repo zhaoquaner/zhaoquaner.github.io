@@ -16,12 +16,12 @@
   <meta name="author" content="ZhaoXin">
   <meta name="keywords" content="博客">
   
-    <meta name="description" content="集成MyBatis集成MyBatis很简单：  添加依赖 配置文件中配置数据源 使用MyBatis逆向工程生成映射文件和实体类，DAO接口，并在接口类中添加注解@Mapper  添加依赖SpringBoot集成MyBatis，需要添加两个依赖：  SpringBoot中MyBatis的起步依赖，这个依赖在spring-boot-dependencies中没有，需要手动指定版本号。这是MyBatis">
+    <meta name="description" content="集成MyBatis 集成MyBatis很简单：  添加依赖 配置文件中配置数据源 使用MyBatis逆向工程生成映射文件和实体类，DAO接口，并在接口类中添加注解@Mapper  添加依赖 SpringBoot集成MyBatis，需要添加两个依赖：  SpringBoot中MyBatis的起步依赖，这个依赖在spring-boot-dependencies中没有，需要手动指定版">
 <meta property="og:type" content="article">
 <meta property="og:title" content="4-SpringBoot集成MyBatis和事务">
 <meta property="og:url" content="https://zhaoquaner.github.io/2022/05/11/SpringBoot/4-SpringBoot%E9%9B%86%E6%88%90MyBatis%E5%92%8C%E4%BA%8B%E5%8A%A1/index.html">
 <meta property="og:site_name" content="赵圈儿的博客">
-<meta property="og:description" content="集成MyBatis集成MyBatis很简单：  添加依赖 配置文件中配置数据源 使用MyBatis逆向工程生成映射文件和实体类，DAO接口，并在接口类中添加注解@Mapper  添加依赖SpringBoot集成MyBatis，需要添加两个依赖：  SpringBoot中MyBatis的起步依赖，这个依赖在spring-boot-dependencies中没有，需要手动指定版本号。这是MyBatis">
+<meta property="og:description" content="集成MyBatis 集成MyBatis很简单：  添加依赖 配置文件中配置数据源 使用MyBatis逆向工程生成映射文件和实体类，DAO接口，并在接口类中添加注解@Mapper  添加依赖 SpringBoot集成MyBatis，需要添加两个依赖：  SpringBoot中MyBatis的起步依赖，这个依赖在spring-boot-dependencies中没有，需要手动指定版">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2022-05-11T06:09:39.000Z">
 <meta property="article:modified_time" content="2022-05-11T09:01:03.177Z">
@@ -253,39 +253,49 @@
             <h1 style="display: none">4-SpringBoot集成MyBatis和事务</h1>
             
             <div class="markdown-body">
-              <h2 id="集成MyBatis"><a href="#集成MyBatis" class="headerlink" title="集成MyBatis"></a>集成MyBatis</h2><p>集成MyBatis很简单：</p>
-<ol>
+              <h2 id="集成mybatis">集成MyBatis</h2>
+<p>集成MyBatis很简单：</p>
+<ol type="1">
 <li>添加依赖</li>
 <li>配置文件中配置数据源</li>
 <li>使用MyBatis逆向工程生成映射文件和实体类，DAO接口，并在接口类中添加注解@Mapper</li>
 </ol>
-<h3 id="添加依赖"><a href="#添加依赖" class="headerlink" title="添加依赖"></a>添加依赖</h3><p>SpringBoot集成MyBatis，需要添加两个依赖：</p>
-<ol>
+<h3 id="添加依赖">添加依赖</h3>
+<p>SpringBoot集成MyBatis，需要添加两个依赖：</p>
+<ol type="1">
 <li>SpringBoot中MyBatis的起步依赖，这个依赖在spring-boot-dependencies中没有，需要手动指定版本号。这是MyBatis提供的依赖</li>
 <li>MYSQL驱动依赖，不需要指定版本号，spring-boot-dependencies中已经设置好了。</li>
 </ol>
 <figure class="highlight xml"><table><tr><td class="gutter"><div class="code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></div></td><td class="code"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>org.mybatis.spring.boot<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>mybatis-spring-boot-starter<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">version</span>&gt;</span>2.1.4<span class="hljs-tag">&lt;/<span class="hljs-name">version</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>mysql<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>mysql-connector-java<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span><br></code></pre></td></tr></table></figure>
-<h3 id="配置数据源"><a href="#配置数据源" class="headerlink" title="配置数据源"></a>配置数据源</h3><p>在application.properties配置文件中，配置数据源：</p>
+<h3 id="配置数据源">配置数据源</h3>
+<p>在application.properties配置文件中，配置数据源：</p>
 <figure class="highlight properties"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs properties"><span class="hljs-attr">spring.datasource.driver-class-name</span>=<span class="hljs-string">com.mysql.cj.jdbc.Driver</span><br><span class="hljs-attr">spring.datasource.url</span>=<span class="hljs-string">jdbc:mysql://localhost:3306/test</span><br><span class="hljs-attr">spring.datasource.username</span>=<span class="hljs-string">root</span><br><span class="hljs-attr">spring.datasource.password</span>=<span class="hljs-string"></span><br></code></pre></td></tr></table></figure>
 <p>在默认情况下，MyBatis的xml映射文件不会编译到target的class目录中，</p>
 <p>所以在pom文件中的build标签中，添加编译xml文件，配置resource标签。</p>
 <figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">resource</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">directory</span>&gt;</span>src/main/java<span class="hljs-tag">&lt;/<span class="hljs-name">directory</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">includes</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">include</span>&gt;</span>**/*.xml<span class="hljs-tag">&lt;/<span class="hljs-name">include</span>&gt;</span><br>    <span class="hljs-tag">&lt;/<span class="hljs-name">includes</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">resource</span>&gt;</span><br></code></pre></td></tr></table></figure>
-<p>​    </p>
-<h3 id="逆向工程生成DAO接口，映射文件和实体类"><a href="#逆向工程生成DAO接口，映射文件和实体类" class="headerlink" title="逆向工程生成DAO接口，映射文件和实体类"></a>逆向工程生成DAO接口，映射文件和实体类</h3><p>逆向工程需要配置GeneratorConfig.xml文件，具体详见MyBatis笔记。</p>
+<p>​</p>
+<h3
+id="逆向工程生成dao接口映射文件和实体类">逆向工程生成DAO接口，映射文件和实体类</h3>
+<p>逆向工程需要配置GeneratorConfig.xml文件，具体详见MyBatis笔记。</p>
 <p>在SSM项目中，有一个DAO组件扫描器注册在Spring配置文件中。</p>
 <p>在SpringBoot项目中，使用@Mapper注解即可，表示将该对象加入到Spring容器中。</p>
 <p>做完这三步，剩下就和SSM没什么区别了，正常使用。</p>
-<h3 id="DAO另一种开发方式"><a href="#DAO另一种开发方式" class="headerlink" title="DAO另一种开发方式"></a>DAO另一种开发方式</h3><p>可以去掉DAO接口类的@Mapper接口</p>
-<p>然后 运行的主类Application类上添加注解包扫描@MapperScan(basePackages=”com.example.demo.mapper”)</p>
+<h3 id="dao另一种开发方式">DAO另一种开发方式</h3>
+<p>可以去掉DAO接口类的@Mapper接口</p>
+<p>然后
+运行的主类Application类上添加注解包扫描@MapperScan(basePackages="com.example.demo.mapper")</p>
 <p>也可以去掉basePackages，直接写对应包路径。</p>
-<h3 id="将接口和映射文件分开"><a href="#将接口和映射文件分开" class="headerlink" title="将接口和映射文件分开"></a>将接口和映射文件分开</h3><p>因为SpringBoot不能自动编译接口映射的xml文件，需要在pom.xml文件中手动指定。所以也可以将映射文件直接放在resources目录下，即在resources目录下新建目录mapper存放映射文件。</p>
+<h3 id="将接口和映射文件分开">将接口和映射文件分开</h3>
+<p>因为SpringBoot不能自动编译接口映射的xml文件，需要在pom.xml文件中手动指定。所以也可以将映射文件直接放在resources目录下，即在resources目录下新建目录mapper存放映射文件。</p>
 <p>并在application.properties配置文件中，指定映射文件的位置，格式为：</p>
 <figure class="highlight properties"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs properties"><span class="hljs-attr">mybatis.mapper-locations</span>=<span class="hljs-string">classpath:mapper/*.xml</span><br></code></pre></td></tr></table></figure>
 <p>这个配置只有在接口和映射文件不在同一个包的情况下，才需要指定。</p>
-<h3 id="使用Druid数据池"><a href="#使用Druid数据池" class="headerlink" title="使用Druid数据池"></a>使用Druid数据池</h3><p>使用阿里的Druid，那么就首先的pom文件中引入druid的springboot起步依赖，druid-spring-boot-starter，然后在配置文件中加入：</p>
+<h3 id="使用druid数据池">使用Druid数据池</h3>
+<p>使用阿里的Druid，那么就首先的pom文件中引入druid的springboot起步依赖，druid-spring-boot-starter，然后在配置文件中加入：</p>
 <figure class="highlight properties"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs properties"><span class="hljs-attr">spring.datasource.type</span>=<span class="hljs-string">com.alibaba.druid.pool.DruidDataSource</span><br><span class="hljs-attr">spring.datasource.druid.url</span>=<span class="hljs-string">jdbc:mysql://localhost:3306/test</span><br><span class="hljs-attr">spring.datasource.druid.username</span>=<span class="hljs-string">root</span><br><span class="hljs-attr">spring.datasource.druid.password</span>=<span class="hljs-string"></span><br><span class="hljs-attr">spring.datasource.druid.max-active</span>=<span class="hljs-string">20</span><br></code></pre></td></tr></table></figure>
 <p>就可以正常使用了。</p>
-<h2 id="集成事务"><a href="#集成事务" class="headerlink" title="集成事务"></a>集成事务</h2><p>使用事务也非常简单。只需要在服务接口的继承类需要事务的方法上加上注解@Transactional。</p>
+<h2 id="集成事务">集成事务</h2>
+<p>使用事务也非常简单。只需要在服务接口的继承类需要事务的方法上加上注解@Transactional。</p>
 <p>就可以开启事务。</p>
 <p>例如：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@Service</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">StudentServiceImpl</span> <span class="hljs-keyword">implements</span> <span class="hljs-title class_">StudentService</span> &#123;<br><br>    <span class="hljs-meta">@Resource</span><br>    <span class="hljs-keyword">private</span> StudentMapper studentMapper;<br>    	<br>    <span class="hljs-meta">@Transactional</span><br>    <span class="hljs-meta">@Override</span><br>    <span class="hljs-keyword">public</span> Student <span class="hljs-title function_">queryStudentById</span><span class="hljs-params">(Integer id)</span> &#123;<br>        <span class="hljs-keyword">return</span> studentMapper.selectByPrimaryKey(id);<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
