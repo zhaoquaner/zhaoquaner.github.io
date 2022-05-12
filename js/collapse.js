@@ -21,7 +21,7 @@ function addLanguage() {
     var span = `<span>${lang}</span>`;
     // 折叠块包裹原来的内容
     var div = `<div class="collapse show" id="${id}">${hs[i].innerHTML}</div>`;
-    hs[i].innerHTML = btn + span + div;
+    hs[i].innerHTML = btn + div;
   }
 }
 
