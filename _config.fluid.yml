@@ -18,11 +18,11 @@
 
 # 用于浏览器标签的图标
 # Icon for browser tab
-favicon: /img/favicon.png
+favicon: https://crayon-1302863897.cos.ap-beijing.myqcloud.com/blog/blog_images/favicon.png
 
 # 用于苹果设备的图标
 # Icon for Apple touch
-apple_touch_icon: /img/favicon.png
+apple_touch_icon: https://crayon-1302863897.cos.ap-beijing.myqcloud.com/blog/blog_images/favicon.png
 
 # 浏览器标签页中的标题分隔符，效果： 文章名 - 站点名
 # Title separator in browser tab, eg: article - site
@@ -38,6 +38,11 @@ code:
   # 是否开启复制代码的按钮
   # Enable copy code button
   copy_btn: true
+
+  # 代码框显示代码语言
+  language: 
+    enable: true
+    default: "Text"
 
   # 代码高亮
   # Code highlight
@@ -58,17 +63,18 @@ code:
       # Select a style in the link
       # See: https://highlightjs.org/static/demo/
       style: "Github Gist"
-
+      style_dark: "Atom One Dark"
+      #Github Gist   Atom One Light
       # 是否根据 style 改变代码背景色（如果 style 是深色背景别忘了开启此项）
       # If true, the code background will change color based on the style (If style has a dark background, don't forget to true)
-      bg_color: false
+      # bg_color: false
 
     prismjs:
       # 在下方链接页面右侧的圆形按钮挑选 style 填入，也可以直接填入 css 链接
       # Select the style button on the right side of the link page, you can also set the CSS link
       # See: https://prismjs.com/
       style: "default"
-
+      # default
       # 设为 true 高亮将本地静态生成（并只支持部分 prismjs 插件），设为 false 高亮将在浏览器通过 js 生成
       # If true, it will be generated locally (but some prismjs plugins are not supported). If false, it will be generated via JS in the browser
       preprocess: true
@@ -83,7 +89,7 @@ fun_features:
 
     # 打印速度，数字越大越慢
     # Typing speed, the larger the number, the slower
-    typeSpeed: 60
+    typeSpeed: 30
 
     # 游标字符
     # Cursor character
@@ -92,6 +98,10 @@ fun_features:
     # 是否循环播放效果
     # If true, loop animation
     loop: false
+
+    # 支持指定页面下开启
+    # Options : home | post | tag | category | about |links | page |404
+    scope: []
 
 
   # 为文章内容中的标题添加锚图标
@@ -109,7 +119,7 @@ fun_features:
   # Progress bar when loading
   progressbar:
     enable: true
-    height_px: 3
+    height_px: 4
     color: "#29d"
     # See: https://github.com/rstacruz/nprogress
     options: { showSpinner: false, trickleSpeed: 100 }
@@ -195,6 +205,7 @@ color:
 # Font
 font:
   font_size: 20px
+  # 字体可设为 Butterfly或 xiawuwenkai(霞鹜文楷)
   font_family: "霞鹜文楷"
   letter_spacing: 0.02em
   code_font_size: 85%
@@ -202,12 +213,17 @@ font:
 # 指定自定义 .js 文件路径，支持列表；路径是相对 source 目录，如 /js/custom.js 对应存放目录 source/js/custom.js
 # Specify the path of your custom js file, support list. The path is relative to the source directory, such as `/js/custom.js` corresponding to the directory `source/js/custom.js`
 custom_js: 
-  - /js/music.js
+  - https://crayon-1302863897.cos.ap-beijing.myqcloud.com/blog/blog_js/music.js
+  - https://crayon-1302863897.cos.ap-beijing.myqcloud.com/blog/blog_js/collapse.js
   # - /js/jquery.min.js
 
 # 指定自定义 .css 文件路径，用法和 custom_js 相同
 # The usage is the same as custom_js
 custom_css: 
+  - https://crayon-1302863897.cos.ap-beijing.myqcloud.com/blog/css/collpase.css
+  - https://crayon-1302863897.cos.ap-beijing.myqcloud.com/blog/css/radius.css
+  - https://use.fontawesome.com/releases/v5.15.4/css/all.css
+  - /css/font.css
 
 # 自定义 <head> 节点中的 HTML 内容
 # Customize <head> HTML content
@@ -215,9 +231,9 @@ custom_head: ''
 
 # 自定义底部 HTML 内容（位于 footer 上方），注意不要和 `post: custom` 配置冲突
 # Customize the HTML content at the bottom (located above the footer), be careful not to conflict with `post: custom`
-custom_html: '<link rel="stylesheet" href="/js/aplayer/APlayer.min.css">
+custom_html: '<link rel="stylesheet" href="https://crayon-1302863897.cos.ap-beijing.myqcloud.com/blog/css/APlayer.min.css">
 <div id="aplayer" style="display:none"></div>
-<script src="/js/aplayer/APlayer.min.js"></script>'
+<script src="https://crayon-1302863897.cos.ap-beijing.myqcloud.com/blog/blog_js/APlayer.min.js"></script>'
 
 # 网页访问统计
 # Analysis of website visitors
@@ -263,7 +279,7 @@ web_analytics:  # 网页访问统计
     app_key: MpxSk6ED55Utq83yNrKAMI5c
     # REST API 服务器地址，国际版不填
     # Only the Chinese mainland users need to set
-    server_url:
+    server_url: https://bzk0jfep.lc-cn-n1-shared.com
     # 统计页面时获取路径的属性
     # Get the attribute of the page path during statistics
     path: window.location.pathname
@@ -312,12 +328,12 @@ navbar:
 
     # 模糊像素，只能为数字，数字越大模糊度越高
     # Number of blurred pixel. the larger the number, the higher the blur
-    px: 3
+    px: 5
 
     # 不透明度，数字越大透明度越低，注意透明过度可能看不清菜单字体
     # Ratio of opacity, 1.0 is completely opaque
     # available: 0 - 1.0
-    alpha: 0.7
+    alpha: 0.5
 
   # 导航栏菜单，可自行增减，key 用来关联 languages/*.yml，如不存在关联则显示 key 本身的值；icon 是 css class，可以省略；增加 name 可以强制显示指定名称
   # Navigation bar menu. `key` is used to associate languages/*.yml. If there is no association, the value of `key` itself will be displayed; if `icon` is a css class, it can be omitted; adding `name` can force the display of the specified name
@@ -345,7 +361,7 @@ search:
   # 搜索的范围
   # Search field
   # Options: post | page | all
-  field: all
+  field: post
 
   # 搜索是否扫描正文
   # If true, search will scan the post content
@@ -402,8 +418,10 @@ footer:
   # HTML of the first line of the footer, it is recommended to keep the Fluid link to promote this theme to more people
   content: '
     <i class="iconfont icon-copyright"></i>
-    <span>ZhaoXin, Built by </span>
+    <span>ZhaoXin, Built with </span>
     <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a>
+    <span> & </span>
+    <a href="https://hexo.fluid-dev.com/" target="_blank" rel="nofollow noopener"><span>Fluid</span></a>
   '
 
   #<i class="iconfont icon-love"></i>>
@@ -412,7 +430,7 @@ footer:
   # 展示网站的 PV、UV 统计数
   # Display website PV and UV statistics
   statistics:
-    enable: false
+    enable: true
 
     # 统计数据来源，使用 leancloud 需要设置 `web_analytics: leancloud` 中的参数；使用 busuanzi 不需要额外设置，但是有时不稳定，另外本地运行时 busuanzi 显示统计数据很大属于正常现象，部署后会正常
     # Data source. If use leancloud, you need to set the parameter in `web_analytics: leancloud`
@@ -445,8 +463,9 @@ footer:
 index:
   # 首页 Banner 头图，可以是相对路径或绝对路径，以下相同
   # Path of Banner image, can be a relative path or an absolute path, the same on other pages
-  banner_img: /img/index.jpg
-
+  banner_img: https://crayon-1302863897.cos.ap-beijing.myqcloud.com/blog/blog_images/index.jpg
+  # https://crayon-1302863897.cos.ap-beijing.myqcloud.com/blog/blog_images/index.jpg
+ 
   # 头图高度，屏幕百分比
   # Height ratio of banner image
   # Available: 0 - 100
@@ -464,7 +483,7 @@ index:
 
     # 为空则按 hexo config.subtitle 显示
     # If empty, text based on `subtitle` in hexo config
-    text: "自己的博客，自己做主。"
+    text: "Welcome to My Blog."
 
     # 通过 API 接口作为首页副标题的内容，必须返回的是 JSON 格式，如果请求失败则按 text 字段显示，该功能必须先开启 typing 打字机功能
     # Subtitle of the homepage through the API, must be returned a JSON. If the request fails, it will be displayed in `text` value. This feature must first enable the typing animation
@@ -517,7 +536,7 @@ index:
 # Post Page
 #---------------------------
 post:
-  banner_img: /img/article.png
+  banner_img: https://crayon-1302863897.cos.ap-beijing.myqcloud.com/blog/blog_images/article.png
   banner_img_height: 70
   banner_mask_alpha: 0.3
 
@@ -540,7 +559,8 @@ post:
       # 格式参照 ISO-8601 日期格式化
       # ISO-8601 date format
       # See: http://momentjs.cn/docs/#/parsing/string-format/
-      format: "YYYY/M/D H时m分"
+      # A 代表上午下午 YYYY代表4位数年份，M代表月份，D代表日期  H代表24小时时间，m代表分  "LL" 时间格式：2000年9月4日
+      format: "LL"
 
     # 字数统计
     # Word count
@@ -579,7 +599,7 @@ post:
 
     # 描述文字
     # Descriptive text before date
-    content: 本文最后更新于：
+    content: 最后更新于：
 
     # 是否使用相对时间表示，比如："3 天前"
     # If true, it will be a relative time, such as: "3 days ago"
@@ -593,26 +613,52 @@ post:
 
   # 文章右侧目录
   # Table of contents (TOC)
-  toc:
-    enable: false
+  toc: 
+    enable: true
+    # right | left 目录位置
+    placement: left
 
     # 目录会选择这些节点作为标题
     # TOC will select these nodes as headings
     headingSelector: "h1,h2,h3,h4,h5,h6"
     # 层级的折叠深度，0 是全部折叠，大于 0 后如果存在下级标题则默认展开
     # Collapse depth. If 0, all headings collapsed. If greater than 0, it will be expanded by default if there are sub headings
-    collapseDepth: 2
+    collapseDepth: 1
 
   # 版权声明，会显示在每篇文章的结尾
   # Copyright, will be displayed at the end of each post
   copyright:
-    enable: false
-    content: '本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！'
+    enable: true
 
+    # CreativeCommons license
+    # Options: BY | BY-SA | BY-ND | BY-NC | BY-NC-SA | BY-NC-ND
+    license: 'BY'
+
+    # 显示作者
+    author:
+      enable: false
+
+    # 显示发布日期
+    # Show post date
+    post_date:
+      enable: false
+      format: "LL"
+
+    # 显示更新日期
+    # Show update date
+    update_date:
+      enable: true
+      format: "LL"
+
+    
   # 文章底部上一篇下一篇功能
   # Link to previous/next post
   prev_next:
     enable: false
+
+  # 可以在文章页关联展示当前分类下文章
+  category_bar: 
+    enable: false  
 
   # 文章底部自定义区域（位于 footer 上方），支持 HTML，可插入赞赏码、公众号这类内容内容
   # Custom content at the bottom of the post page (located above the footer)
@@ -655,7 +701,7 @@ post:
   mermaid:
     # 开启后文章默认可用，自定义页面如需使用，需在 Front-matter 中指定 `mermaid: true`
     # If you want to use mermaid on the custom page, you need to set `mermaid: true` in Front-matter
-    enable: false
+    enable: true
 
     # 开启后，只有在文章 Front-matter 里指定 `mermaid: true` 才会在文章页启动公式转换，以便在页面不包含公式时提高加载速度
     # If true, only set `mermaid: true` in Front-matter will enable mermaid, to load faster when the page does not contain mermaid
@@ -818,7 +864,7 @@ cusdis:
 # Archive Page
 #---------------------------
 archive:
-  banner_img: /img/archive.png
+  banner_img: https://crayon-1302863897.cos.ap-beijing.myqcloud.com/blog/blog_images/archive.png
   banner_img_height: 60
   banner_mask_alpha: 0.3
   subtitle:
@@ -830,7 +876,7 @@ archive:
 #---------------------------
 category:
   enable: true
-  banner_img: /img/category.png
+  banner_img: https://crayon-1302863897.cos.ap-beijing.myqcloud.com/blog/blog_images/category.png
   banner_img_height: 60
   banner_mask_alpha: 0.3
   subtitle:
@@ -851,7 +897,7 @@ category:
 
   # 单个分类中折叠展示文章数的最大值，超过限制会显示 More，0 则不限制
   # The maximum number of posts in a single category. If the limit is exceeded, it will be displayed More. If 0 no limit
-  post_limit: 20
+  post_limit: 15
 
 
 #---------------------------
@@ -860,9 +906,9 @@ category:
 #---------------------------
 tag:
   enable: true
-  banner_img: /img/tags.png
+  banner_img: https://crayon-1302863897.cos.ap-beijing.myqcloud.com/blog/blog_images/tags.png
   banner_img_height: 80
-  banner_mask_alpha: 0.3
+  banner_mask_alpha: 0.4
   subtitle:
   tagcloud:
     min_font: 18
@@ -878,18 +924,18 @@ tag:
 #---------------------------
 about:
   enable: true
-  banner_img: /img/about.png
+  banner_img: https://crayon-1302863897.cos.ap-beijing.myqcloud.com/blog/blog_images/about.png
   banner_img_height: 60
   banner_mask_alpha: 0.3
   subtitle:
-  avatar: /img/avatar.png
+  avatar: https://crayon-1302863897.cos.ap-beijing.myqcloud.com/blog/blog_images/avatar.png
   name: "关于我"
   intro: "一个简短的自我介绍"
   # 更多图标可从 https://hexo.fluid-dev.com/docs/icon/ 查找，`class` 代表图标的 css class，添加 `qrcode` 后，图标不再是链接而是悬浮二维码
   # More icons can be found from https://hexo.fluid-dev.com/docs/en/icon/  `class` is the css class of the icon. If adding `qrcode`, The icon is no longer a link, but a hovering QR code
   icons:
     - { class: "iconfont icon-github-fill", link: "https://github.com/zhaoquaner", tip: "GitHub" }
-    # - { class: "iconfont icon-douban-fill", link: "https://douban.com", tip: "豆瓣" }
+    - { class: "iconfont icon-mail", link: "mailto:zx1522202417@163.com", tip: "邮箱" }
     # - { class: "iconfont icon-wechat-fill", qrcode: "/img/favicon.png" }
 
 
@@ -986,46 +1032,88 @@ static_prefix:
   internal_js: /js
   internal_css: /css
   internal_img: /img
-  internal_audio: /audio
+  internal_font: /font
 
-  anchor: https://cdn.jsdelivr.net/npm/anchor-js@4/
 
-  github_markdown: https://cdn.jsdelivr.net/npm/github-markdown-css@4/
+  anchor: https://lib.baomitu.com/anchor-js/4.3.1/
 
-  jquery: https://cdn.jsdelivr.net/npm/jquery@3/dist/
+  github_markdown: https://lib.baomitu.com/github-markdown-css/4.0.0/
 
-  bootstrap: https://cdn.jsdelivr.net/npm/bootstrap@4/dist/
+  jquery: https://lib.baomitu.com/jquery/3.6.0/
 
-  highlightjs: https://cdn.jsdelivr.net/npm/highlight.js@10/
+  bootstrap: https://lib.baomitu.com/twitter-bootstrap/4.6.1/
 
-  prismjs: https://cdn.jsdelivr.net/npm/prismjs@1/
+  prismjs: https://lib.baomitu.com/prism/1.26.0/
 
-  tocbot: https://cdn.jsdelivr.net/npm/tocbot@4/dist/
+  tocbot: https://lib.baomitu.com/tocbot/4.18.0/
 
-  typed: https://cdn.jsdelivr.net/npm/typed.js@2/lib/
+  typed: https://lib.baomitu.com/typed.js/2.0.12/
 
-  fancybox: https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/
+  fancybox: https://lib.baomitu.com/fancybox/3.5.7/
 
-  nprogress: https://cdn.jsdelivr.net/npm/nprogress@0/
+  nprogress: https://lib.baomitu.com/nprogress/0.2.0/
 
-  mathjax: https://cdn.jsdelivr.net/npm/mathjax@3/es5/
+  mathjax: https://lib.baomitu.com/mathjax/3.2.0/
 
-  katex: https://cdn.jsdelivr.net/npm/katex@0/dist/
+  katex: https://lib.baomitu.com/KaTeX/0.15.2/
 
   busuanzi: https://busuanzi.ibruce.info/busuanzi/2.3/
 
-  clipboard: https://cdn.jsdelivr.net/npm/clipboard@2/dist/
+  clipboard: https://lib.baomitu.com/clipboard.js/2.0.10/
 
-  mermaid: https://cdn.jsdelivr.net/npm/mermaid@8/dist/
+  mermaid: https://lib.baomitu.com/mermaid/8.13.10/
 
-  valine: https://cdn.jsdelivr.net/npm/valine@1/dist/
+  valine: https://lib.baomitu.com/valine/1.4.16/
 
-  waline: https://cdn.jsdelivr.net/npm/@waline/client@1/dist/
+  waline: https://lib.baomitu.com/waline/1.5.2/
 
-  gitalk: https://cdn.jsdelivr.net/npm/gitalk@1/dist/
+  gitalk: https://lib.baomitu.com/gitalk/1.7.2/
 
-  disqusjs: https://cdn.jsdelivr.net/npm/disqusjs@1/dist/
+  disqusjs: https://lib.baomitu.com/disqusjs/1.3.0/
 
-  twikoo: https://cdn.jsdelivr.net/npm/twikoo@1/dist/
+  twikoo: https://lib.baomitu.com/twikoo/1.4.17/
 
-  hint: https://cdn.jsdelivr.net/npm/hint.css@2/
+  hint: https://lib.baomitu.com/hint.css/2.7.0/
+
+
+  # anchor: https://cdn.jsdelivr.net/npm/anchor-js@4/
+
+  # github_markdown: https://cdn.jsdelivr.net/npm/github-markdown-css@4/
+
+  # jquery: https://cdn.jsdelivr.net/npm/jquery@3/dist/
+
+  # bootstrap: https://cdn.jsdelivr.net/npm/bootstrap@4/dist/
+
+  # highlightjs: https://cdn.jsdelivr.net/npm/highlight.js@10/
+
+  # prismjs: https://cdn.jsdelivr.net/npm/prismjs@1/
+
+  # tocbot: https://cdn.jsdelivr.net/npm/tocbot@4/dist/
+
+  # typed: https://cdn.jsdelivr.net/npm/typed.js@2/lib/
+
+  # fancybox: https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/
+
+  # nprogress: https://cdn.jsdelivr.net/npm/nprogress@0/
+
+  # mathjax: https://cdn.jsdelivr.net/npm/mathjax@3/es5/
+
+  # katex: https://cdn.jsdelivr.net/npm/katex@0/dist/
+
+  # busuanzi: https://busuanzi.ibruce.info/busuanzi/2.3/
+
+  # clipboard: https://cdn.jsdelivr.net/npm/clipboard@2/dist/
+
+  # mermaid: https://cdn.jsdelivr.net/npm/mermaid@8/dist/
+
+  # valine: https://cdn.jsdelivr.net/npm/valine@1/dist/
+
+  # waline: https://cdn.jsdelivr.net/npm/@waline/client@1/dist/
+
+  # gitalk: https://cdn.jsdelivr.net/npm/gitalk@1/dist/
+
+  # disqusjs: https://cdn.jsdelivr.net/npm/disqusjs@1/dist/
+
+  # twikoo: https://cdn.jsdelivr.net/npm/twikoo@1/dist/
+
+  # hint: https://cdn.jsdelivr.net/npm/hint.css@2/
