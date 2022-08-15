@@ -4,6 +4,44 @@
   
   
   <entry>
+    <title>2-Docker基础</title>
+    <link href="/2022/08/15/Docker/2-Docker%E5%9F%BA%E7%A1%80/"/>
+    <url>/2022/08/15/Docker/2-Docker%E5%9F%BA%E7%A1%80/</url>
+    
+    <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h1 id="2-docker基础"><a class="markdownIt-Anchor" href="#2-docker基础"></a> 2-Docker基础</h1><h2 id="帮助命令"><a class="markdownIt-Anchor" href="#帮助命令"></a> 帮助命令</h2><ul><li><code>docker version</code>：查看docker版本信息</li><li><code>docker info</code>：查看Docker系统信息</li><li><code>docker 命令 --help</code>：查看指定命令的用法</li></ul><h2 id="镜像常用命令"><a class="markdownIt-Anchor" href="#镜像常用命令"></a> 镜像常用命令</h2><ul><li><p><code>docker images</code>：查看所有已下载的镜像，与<code>docker image ls</code>等价</p><p>可选项：</p><ul><li><code>-a</code>：列出所有镜像</li><li><code>-q</code>：只显示镜像ID</li></ul></li><li><p><code>docker search 镜像名称</code>：搜索镜像</p></li><li><p><code>docker pull 镜像:tag</code>：从公开仓库拉取指定镜像，<strong>如果不加tag版本，默认拉取最新版本latest</strong></p></li><li><p><code>docker rmi 镜像名称/ID</code>：删除指定镜像，等同于<code>docker image rm 镜像名称/ID</code></p></li><li><p><code>docker image prune</code>：清理临时的，没有被使用的镜像文件，可用选项，<code>-a</code>：删除所有没有用的镜像，而不只是临时文件</p></li></ul><h2 id="容器常用命令"><a class="markdownIt-Anchor" href="#容器常用命令"></a> 容器常用命令</h2><ul><li><p><code>docker container ls</code>：查看所有容器，包括暂停、停止、正在运行的容器</p></li><li><p><code>docker ps</code>：查看正在运行的容器</p><p>可选项：</p><ul><li><code>-a</code>：列出所有容器，和<code>docker container ls</code>等价</li></ul></li></ul><h3 id="运行容器"><a class="markdownIt-Anchor" href="#运行容器"></a> 运行容器</h3><p><code>docker run [可选参数] image [command]</code>：使用镜像运行一个容器，其中[command]是运行容器后可执行的命令。</p><p>可选项：</p><ul><li><p><code>-d</code>：后台方式运行</p></li><li><p><code>-i</code>：交互式方式运行</p></li><li><p><code>-t</code>：终端，一般与<code>-i</code>配合使用</p></li><li><p><code>-p</code>：有两种用法，<code>-p 主机端口:容器端口</code>或<code>-p 容器端口</code>，前一种设置了主机端口和容器端口的映射</p></li><li><p><code>--name</code>：容器运行后，docker会设定一个名称，也可使用该选项设置自定义名称</p></li><li><p><code>-e</code>：环境配置，可以理解为配置环境变量</p></li></ul><h3 id="进入容器"><a class="markdownIt-Anchor" href="#进入容器"></a> 进入容器</h3><p>使用<code>-d</code>参数，容器会后台运行，有两种进入容器的方式。</p><ul><li><p><code>docker attach 容器ID</code>：该命令进入容器后，如果退出，<strong>容器会停止运行</strong></p></li><li><p><code>docker exec</code>：该命令退出容器时，不会导致容器退出</p><p>例：进入linux系统：<code>docker exec -it 容器ID /bin/bash</code></p></li></ul><p>并且<code>docker exec</code>进入容器后，会打开新的终端；而<code>docker attach</code>进入容器后，会进入当前正在执行的任务。</p><h3 id="退出容器"><a class="markdownIt-Anchor" href="#退出容器"></a> 退出容器</h3><p>在使用进入容器后，有两种方式退出容器。</p><ul><li><code>exit</code>：直接在终端输入<code>exit</code>退出容器，<strong>容器会停止运行并退出</strong></li><li><code>Ctrl + P + Q</code>：使用快捷键，<strong>这种方式只会退出容器，容器不会停止运行</strong></li></ul><h3 id="启动-停止容器"><a class="markdownIt-Anchor" href="#启动-停止容器"></a> 启动、停止容器</h3><p><code>docker stop 容器ID</code>：停止运行指定容器</p><p><code>docker kill 容器ID</code>：强制停止容器</p><p>可以使用<code>docker start 容器ID</code>重新运行该容器。</p><p>也可使用<code>docker restart 容器ID</code>重新运行。</p><h4 id="restart和start的区别"><a class="markdownIt-Anchor" href="#restart和start的区别"></a> <code>restart</code>和<code>start</code>的区别</h4><ul><li><code>start</code>：包含容器文件系统挂载的操作</li><li><code>restart</code>：不包含容器文件系统的卸载和挂载操作</li></ul><p><code>restart</code>是重启一个正在运行的容器，而<code>start</code>是重新运行已经停止的容器。</p><p>因此在对容器重启时，推荐使用<code>docker stop</code>和<code>docker start</code></p><h3 id="删除容器"><a class="markdownIt-Anchor" href="#删除容器"></a> 删除容器</h3><p><code>docker rm 容器ID</code>：删除指定容器，正在运行的容器无法删除</p><p>如果要删除所有容器，则可以使用：</p><p><code>docker rm -f $(docker ps -aq)</code>：先通过<code>docker ps -aq</code>查询所有容器ID，然后使用<code>docker rm -f</code>删除。</p><h2 id="其他常用命令"><a class="markdownIt-Anchor" href="#其他常用命令"></a> 其他常用命令</h2><h3 id="查看日志"><a class="markdownIt-Anchor" href="#查看日志"></a> 查看日志</h3><p><code>docker logs [可选参数] 容器名称/ID</code>：查看指定容器的运行日志</p><p>可选项：</p><ul><li><code>--details</code>：展示详细日志</li><li><code>-t</code>：展示时间戳</li><li><code>-f</code>：跟踪日志输出，即实时显示当前正在输出的日志</li><li><code>--tail string</code>：显示指定日志条数，string为日志条数，如查看十条日志<code>:--tail 10</code></li></ul><h3 id="查看容器内部运行进程"><a class="markdownIt-Anchor" href="#查看容器内部运行进程"></a> 查看容器内部运行进程</h3><p><code>docker top 容器ID</code></p><h3 id="查看容器元数据"><a class="markdownIt-Anchor" href="#查看容器元数据"></a> 查看容器元数据</h3><p><code>docker inspect 容器</code>：返回容器的配置信息</p><h3 id="容器内文件与主机文件相互拷贝"><a class="markdownIt-Anchor" href="#容器内文件与主机文件相互拷贝"></a> 容器内文件与主机文件相互拷贝</h3><p>容器内文件拷贝到主机：</p><p><code>docker cp 容器ID:文件路径 主机目录路径</code></p><p>只要该容器没有被删除，就可以拷贝。即使该容器停止。</p><p>将<code>容器ID:文件路径 主机目录路径</code>改为<code>主机文件路径 容器ID:容器内目录路径</code>就可将主机内文件拷贝到容器内。</p><h2 id="docker镜像原理"><a class="markdownIt-Anchor" href="#docker镜像原理"></a> Docker镜像原理</h2><blockquote><p>UnionFS(联合文件系统)</p></blockquote><p>UnionFS(联合文件系统)是一种分层、轻量级、高性能的文件系统。它支持对文件系统的修改作为一次提交来一层层的叠加。</p><p>Union文件系统是Docker镜像的基础，镜像可以通过分层来继承，基于基础镜像，可以制作各种类型的应用镜像。</p><p>特性：Union文件系统会以此同时加载多个文件系统，但从外面来看，只会看到一个文件系统，它会把各层文件系统联合加载，叠加起来，这样最终的文件系统会包含所有文件和目录。</p><blockquote><p>Docker镜像加载原理</p></blockquote><p>docker镜像是由一层一层的文件系统组成，使用的就是层级文件系统UnionFS.</p><p>镜像在下载时，也是一层一层进行下载，各层可以复用。</p><p>例如MySQL和Tomcat镜像都需要使用linux内核，那么如果下载了MySQL，那么在Tomcat镜像下载时，linux内核层不需要再下载，，直接复用下载MySQL时所下载的层即可。</p><p>bootfs(boot file system)主要包含bootloader和kernel，即启动加载器和内核，bootloader主要负责引导加载kernel，因此在Docker镜像的最底层是bootfs。</p><p>rootfs(root file system)在bootf之上，对于不同的Linux发行版，rootfs会有区别。</p><p>在Docker使用不同镜像时，共用宿主机系统的bootfs，因此启动加载速度会很快。也是层级文件系统的思想。</p><p>例如下载redis镜像</p><img src="images/image-20220815132009193-16605489489971.png" alt="image-20220815132009193" style="zoom:47%;" /><p>可以看到，镜像是分层下载的。</p><p>所有Docker镜像都基于一个基础镜像层，当进行修改或增加新的内容时，就会在当前镜像层之上，创建新的镜像层。</p><p>例如，基于Ubuntu系统创建一个新的镜像，这就是新镜像的第一次，如果在该镜像中添加Python包，则会创建第二层，以此类推。</p><p>Docker镜像都是只读的， 当使用镜像启动容器时，一个新的可写层被加载到镜像的顶层。这一层就是容器层。可以将之前的镜像层和新增加的容器层打包成一个新的镜像。</p><h3 id="docker-commit命令"><a class="markdownIt-Anchor" href="#docker-commit命令"></a> Docker commit命令</h3><p><code>docker commit</code>：从容器中创建一个新的镜像</p><p>语法：<code>docker commit [可选项] container [Repository:[TAG]]</code></p><p>可选项：</p><ul><li><code>-a</code>：指定提交的镜像作者</li><li><code>-c</code>：使用Dockerfile指令创建镜像</li><li><code>-m</code>：提交时的说明文字</li><li><code>-p</code>：在commit时，将容器暂停</li></ul><p>如果想要保存容器当前的运行状态，可使用该命令创建新的镜像。</p><p>例如，下载tomcat镜像后，webapps目录为空，可以将webapps.dist目录中文件拷贝到webapps中，然后将当前容器状态创建为一个新的镜像，可使用指令：</p><p><code>docker commit -a &quot;ZhaoXin&quot; -m &quot;add files to dir webapps&quot; 0771adb17da5 new_tomcat:1.0</code></p><p>仓库名称和标签可以自定义。</p><h2 id="docker数据卷"><a class="markdownIt-Anchor" href="#docker数据卷"></a> Docker数据卷</h2><h3 id="什么是容器卷"><a class="markdownIt-Anchor" href="#什么是容器卷"></a> 什么是容器卷</h3><p>数据卷可以实现宿主机和Docker容器之间的文件共享，<strong>也可以实现Docker容器间的文件共享</strong>。可以理解为目录的挂载。</p><h3 id="为什么要使用数据卷"><a class="markdownIt-Anchor" href="#为什么要使用数据卷"></a> 为什么要使用数据卷</h3><p>如果数据都在容器中，那么当容器删除后，数据就会丢失。因此需要使用数据卷进行数据持久化。</p><p>同时，有时候也需要将主机目录文件和容器目录文件进行同步。</p><h3 id="数据卷的使用"><a class="markdownIt-Anchor" href="#数据卷的使用"></a> 数据卷的使用</h3><p>使用数据卷后，对宿主机文件的修改会直接影响容器，而不需要将宿主机的文件复制到容器中。</p><p>如果运行tomcat时，想将宿主机中<code>/opt/apps</code>目录与容器中<code>webapps</code>做一个数据卷(实际就是建立两个目录之间的映射)，则指令为：</p><p><code>docker run -d -p 8080:8080  -v /opt/apps:/usr/local/tomcat/webapps tomcat:8.0-jre8</code></p><p>即在运行容器时使用<code>-v 宿主机目录:容器内目录</code>格式来建立数据卷。</p><h3 id="具名挂载和匿名挂载"><a class="markdownIt-Anchor" href="#具名挂载和匿名挂载"></a> 具名挂载和匿名挂载</h3><h4 id="具名挂载"><a class="markdownIt-Anchor" href="#具名挂载"></a> 具名挂载</h4><p>如果使用<code>docker -v</code>挂载目录时，没有写完整的主机路径。</p><p>例如<code>-v tomcat:/usr/local/tomcat/webapps</code>，即前面的主机路径并不是<code>/</code>开头的路径名。</p><p>那么Docker默认会在<code>/var/lib/docker/volumes</code>目录下，创建<code>tomcat</code>和<code>tomcat/_data</code>目录，然后将<code>_data</code>目录与容器内指定目录进行映射。</p><p>使用<code>docker volumes ls</code>查看时，<code>VOLUME NAME</code>为<code>tomcat</code>。</p><p>也就是说，如果没有指定宿主机路径，那么Docker默认使用<code>/var/lib/docker/volumes</code>目录。</p><h4 id="匿名挂载"><a class="markdownIt-Anchor" href="#匿名挂载"></a> 匿名挂载</h4><p>如果挂载命令为<code>-v /usr/local/tomcat/webapps</code>，即只写了容器挂载路径，此时为匿名挂载。</p><p>Docker会设定一个字符串为该卷名称，并在<code>/var/lib/docker/volumes</code>目录中创建文件夹，进行挂载。</p><p>综上，如果容器挂载路径冒号<code>:</code>前，不是完整的宿主机路径，那么会使用该名称作为卷名称，并在<code>/var/lib/docker/volumes</code>中创建文件夹，进行挂载；</p><p>如果只有容器挂载路径，那么Docker会自动创建一个字符串作为卷名称，并以该字符串作为名称在<code>/var/lib/docker/volumes</code>中创建文件夹，进行挂载。</p><p>因此，共有三种挂载方式：</p><ol><li><code>-v /宿主机路径:容器内路径</code>：指定路径挂载</li><li><code>-v 卷名:容器内路径</code>：具名挂载</li><li><code>-v 容器内路径</code>：匿名挂载</li></ol><h4 id="读写权限"><a class="markdownIt-Anchor" href="#读写权限"></a> 读写权限</h4><p>在挂载时，还可以改变读写权限。即<code>-v /主机路径:容器路径:ro/rw</code></p><ul><li><code>ro</code>：readonly，只读，设定该权限后，挂载的容器目录文件只能在主机中修改，在容器内无法修改</li><li><code>rw</code>：readwrite，可读可写</li></ul><h4 id="数据卷容器"><a class="markdownIt-Anchor" href="#数据卷容器"></a> 数据卷容器</h4><p>数据卷容器用来实现两个或多个容器之间的数据共享。</p><p>其中，共享数据的容器为父容器，也叫数据卷容器。</p><p>通过<code>--volumes-from</code>来实现。</p><p>例如多个mysql容器实现数据共享。</p><ol><li>首先运行MySQL主容器，运行命令<code>docker run -d -p 3306:3306 -v /etc/mysql/conf.d -v /var/lib/mysql -e MYSQL_ROOT_PASSWORD=123456 --name mysql01 mysql:8.0</code></li><li>再运行一个容器，并与主容器<code>mysql01</code>进行数据共享，运行命令<code>docker run -d -p 3307:3306 -e MYSQL_ROOT_PASSWORD=123456 --volumes-from mysql01 --name mysql02 mysql:8.0</code></li></ol><p>主容器<code>mysql01</code>匿名挂载了宿主机<code>/var/lib/docker/volumes</code>下的目录，然后容器<code>mysql02</code>使用<code>--volumes-from mysqlq01</code>与主容器进行数据共享。</p><p>也可以接着运行容器<code>mysql03</code>、<code>mysql04</code>等与主容器进行数据共享。</p><p>注意：<strong>这里所说的数据共享，并不是公用一个目录，而是数据备份。也就是说，即使删掉主容器，mysql的数据依然存在，只有所有容器均被删除，数据才会被删除。</strong></p><p>当然例子中主容器挂载到了宿主机，因此在这个例子中，即使所有容器都被删除，mysql中数据依然存在。</p>]]></content>
+    
+    
+    <categories>
+      
+      <category>Docker</category>
+      
+    </categories>
+    
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>1-Docker概述</title>
+    <link href="/2022/08/15/Docker/1-Docker%E6%A6%82%E8%BF%B0/"/>
+    <url>/2022/08/15/Docker/1-Docker%E6%A6%82%E8%BF%B0/</url>
+    
+    <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h1 id="1-docker简述"><a class="markdownIt-Anchor" href="#1-docker简述"></a> 1-Docker简述</h1><h2 id="docker是什么"><a class="markdownIt-Anchor" href="#docker是什么"></a> Docker是什么</h2><p>Docker是世界领先的软件容器平台。使用Go语言开发，对进程进行封装隔离，属于操作系统层面的虚拟化技术。由于隔离的进程独立于宿主机和其他隔离进程，因此也称为容器。</p><h3 id="容器是什么"><a class="markdownIt-Anchor" href="#容器是什么"></a> 容器是什么</h3><p><strong>容器就是将软件打包成标准化单元，以用于开发、交付和部署。</strong></p><ol><li>容器镜像是轻量的、可执行的独立软件包。</li><li>容器化软件适用于Linux和Windows的应用，在任何环境都能够始终如一的运行。</li><li>容器赋予了软件的独立性。</li></ol><p>通俗的来说，容器就是一个存放东西的地方，不同的容器之间互相隔离，互不干扰。一个容器内的程序运行好坏不会影响到其他的容器。</p><h2 id="linux容器"><a class="markdownIt-Anchor" href="#linux容器"></a> Linux容器</h2><p>Linux发展出了与虚拟机不同的一种虚拟化技术：Linux容器(Linux Containers，缩写为LXC)。</p><p>Linux容器并不模拟一个完整的操作系统，而是对进程进行隔离，或者简单来说是在正常进程的外面套了一个保护层，对于容器里面的进程来说，他接触到的资源都是虚拟的。</p><p>由于容器是进程级别的，相比虚拟机就有很多优势。</p><ol><li><p>启动快</p><p>容器里面的应用，是底层系统的一个进程，而不是虚拟机内部的进程，因此启动容器就相当于启动本机的一个进程，而不是启动完整的操作系统。</p></li><li><p>资源占用少</p><p>容器只占用需要的资源；而虚拟机是完整的操作系统，不可避免要占用所有资源。另外，多个容器可以共享资源，而虚拟机都是独享资源</p></li><li><p>体积小</p><p>容器只包含用到的组件，而虚拟机是整个操作系统的打包</p></li></ol><h3 id="docker思想"><a class="markdownIt-Anchor" href="#docker思想"></a> Docker思想</h3><ol><li>集装箱</li><li>标准化</li><li>隔离</li></ol><h3 id="为什么要使用docker"><a class="markdownIt-Anchor" href="#为什么要使用docker"></a> 为什么要使用Docker</h3><ol><li>一致的运行环境，Docker镜像提供了除内核外完整的运行环境，确保了应用运行环境的一致性</li><li>快速的启动时间</li><li>隔离性</li><li>弹性伸缩、快速扩展，善于处理集中爆发的服务器使用压力</li><li>迁移方便，可以轻易的将在一个平台上运行的应用，迁移到另一个平台</li><li>持续交付和部署</li></ol><h2 id="docker用途"><a class="markdownIt-Anchor" href="#docker用途"></a> Docker用途</h2><p>Docker主要用于三大类。</p><ol><li><strong>提供一次性的环境</strong>：例如，本地测试他人的软件、持续集成时候提供单元测试和构建的环境</li><li><strong>提供弹性的云服务</strong>：因为Docker容器可以随开随关，很适合动态扩容和缩容</li><li><strong>组建微服务架构</strong>：通过多个容器，一台机器可以跑多个服务，在本机就可以模拟出微服务架构</li></ol><h2 id="docker基本概念"><a class="markdownIt-Anchor" href="#docker基本概念"></a> Docker基本概念</h2><p>Docker中有三个重要的基本概念。</p><ul><li>镜像(Image)</li><li>容器(Container)</li><li>仓库(Repository)</li></ul><h3 id="镜像image"><a class="markdownIt-Anchor" href="#镜像image"></a> 镜像(Image)</h3><p>操作系统分为内核和用户空间。对于Linux而言，内核启动后，会挂载root文件系统，Docker镜像就相当于一个root文件系统。</p><p><strong>Docker镜像是一个特殊的文件系统，除了提供容器运行时所需的程序、库、资源、配置等文件，还包含了一些为运行时准备的配置参数。</strong></p><h3 id="容器container"><a class="markdownIt-Anchor" href="#容器container"></a> 容器(Container)</h3><p>镜像和容器的关系，就像是面向对象程序设计中的 类 和 实例的关系，即 <code>Class</code>和<code>Instance</code>。镜像是静态的定义，<strong>容器时镜像运行时的实体，容器可以被创建、启动、暂停、停止、删除等。</strong></p><p><strong>容器本身也是一个文件，称为容器文件。一旦容器生成，就会存在image文件和容器文件。并且关闭容器并不会删除容器文件，只是容器停止运行。需要使用<code>docker container rm</code>命令进行删除</strong></p><p>一个镜像可以创建多个容器。</p><h3 id="仓库repository"><a class="markdownIt-Anchor" href="#仓库repository"></a> 仓库(Repository)</h3><p>镜像构建完成后，可以在当前宿主机上运行，但是如果需要在其他服务器上使用这个镜像，<strong>我们就需要一个集中的存储、分发镜像的服务</strong>，Docker Registry就是这样一种服务。</p><p>一个Docker Registry可以包含多个仓库，每个仓库可以包含多个标签(Tag)，每个标签对应一个镜像。所以：仓库是Docker用来集中存放镜像文件的地方。</p><p>通常，一个仓库会包含同一个软件不同的镜像，而标签就用于对应软件的各个版本，可以使用<code>&lt;仓库名&gt;:&lt;标签&gt;</code>的格式来指定具体是这个软件哪个版本的镜像，如果没给出标签，使用latest作为默认标签。</p><p>其中，Docker Registry又分为公开服务和私有服务。</p><ul><li>公开服务是开发给用户使用，允许用户管理镜像的Registry服务。允许用户上传、下载公开的镜像。最常使用的Registry公开服务时Docker Hub，也是默认的Registry。</li><li>用户也可在本地搭建私有Docker Registry。</li></ul><p>最常用的Registry公开服务时官方的Docker Hub，拥有大量的高质量镜像。</p><p>Docker属于Client-Server架构，使用Docker时，需要先在本机上开启Docker服务，即Docker的守护进程Daemon，然后使用终端作为Docker的客户端进行操作Docker。</p>]]></content>
+    
+    
+    <categories>
+      
+      <category>Docker</category>
+      
+    </categories>
+    
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>Latex数学公式</title>
     <link href="/2022/07/17/tutorial/LaTeX%E6%95%B0%E5%AD%A6%E5%85%AC%E5%BC%8F/"/>
     <url>/2022/07/17/tutorial/LaTeX%E6%95%B0%E5%AD%A6%E5%85%AC%E5%BC%8F/</url>
@@ -1941,11 +1979,11 @@
     
     <tags>
       
+      <tag>后端</tag>
+      
       <tag>Redis</tag>
       
       <tag>缓存数据库</tag>
-      
-      <tag>后端</tag>
       
     </tags>
     
@@ -1974,11 +2012,11 @@
     
     <tags>
       
+      <tag>后端</tag>
+      
       <tag>Redis</tag>
       
       <tag>缓存数据库</tag>
-      
-      <tag>后端</tag>
       
     </tags>
     
@@ -2007,11 +2045,11 @@
     
     <tags>
       
+      <tag>后端</tag>
+      
       <tag>Redis</tag>
       
       <tag>缓存数据库</tag>
-      
-      <tag>后端</tag>
       
     </tags>
     
@@ -2040,11 +2078,11 @@
     
     <tags>
       
+      <tag>后端</tag>
+      
       <tag>Redis</tag>
       
       <tag>缓存数据库</tag>
-      
-      <tag>后端</tag>
       
     </tags>
     
@@ -2073,11 +2111,11 @@
     
     <tags>
       
+      <tag>后端</tag>
+      
       <tag>Redis</tag>
       
       <tag>缓存数据库</tag>
-      
-      <tag>后端</tag>
       
     </tags>
     
@@ -2106,11 +2144,11 @@
     
     <tags>
       
+      <tag>后端</tag>
+      
       <tag>Redis</tag>
       
       <tag>缓存数据库</tag>
-      
-      <tag>后端</tag>
       
     </tags>
     
@@ -2137,9 +2175,9 @@
     
     <tags>
       
-      <tag>后端</tag>
-      
       <tag>JavaWeb</tag>
+      
+      <tag>后端</tag>
       
       <tag>SpringBoot</tag>
       
@@ -2168,9 +2206,9 @@
     
     <tags>
       
-      <tag>后端</tag>
-      
       <tag>JavaWeb</tag>
+      
+      <tag>后端</tag>
       
       <tag>SpringBoot</tag>
       
@@ -2199,9 +2237,9 @@
     
     <tags>
       
-      <tag>后端</tag>
-      
       <tag>JavaWeb</tag>
+      
+      <tag>后端</tag>
       
       <tag>SpringBoot</tag>
       
@@ -2230,9 +2268,9 @@
     
     <tags>
       
-      <tag>后端</tag>
-      
       <tag>JavaWeb</tag>
+      
+      <tag>后端</tag>
       
       <tag>SpringBoot</tag>
       
@@ -2261,9 +2299,9 @@
     
     <tags>
       
-      <tag>后端</tag>
-      
       <tag>JavaWeb</tag>
+      
+      <tag>后端</tag>
       
       <tag>SpringBoot</tag>
       
@@ -2292,9 +2330,9 @@
     
     <tags>
       
-      <tag>后端</tag>
-      
       <tag>JavaWeb</tag>
+      
+      <tag>后端</tag>
       
       <tag>SpringBoot</tag>
       
@@ -2323,9 +2361,9 @@
     
     <tags>
       
-      <tag>后端</tag>
-      
       <tag>JavaWeb</tag>
+      
+      <tag>后端</tag>
       
       <tag>SpringBoot</tag>
       
@@ -2354,9 +2392,9 @@
     
     <tags>
       
-      <tag>后端</tag>
-      
       <tag>JavaWeb</tag>
+      
+      <tag>后端</tag>
       
       <tag>SpringBoot</tag>
       
@@ -2385,9 +2423,9 @@
     
     <tags>
       
-      <tag>后端</tag>
-      
       <tag>JavaWeb</tag>
+      
+      <tag>后端</tag>
       
       <tag>SpringBoot</tag>
       
@@ -2416,9 +2454,9 @@
     
     <tags>
       
-      <tag>后端</tag>
-      
       <tag>JavaWeb</tag>
+      
+      <tag>后端</tag>
       
       <tag>SpringBoot</tag>
       
@@ -2447,9 +2485,9 @@
     
     <tags>
       
-      <tag>后端</tag>
-      
       <tag>JavaWeb</tag>
+      
+      <tag>后端</tag>
       
       <tag>SpringBoot</tag>
       
@@ -2478,9 +2516,9 @@
     
     <tags>
       
-      <tag>后端</tag>
-      
       <tag>JavaWeb</tag>
+      
+      <tag>后端</tag>
       
       <tag>SpringBoot</tag>
       
@@ -2509,9 +2547,9 @@
     
     <tags>
       
-      <tag>后端</tag>
-      
       <tag>JavaWeb</tag>
+      
+      <tag>后端</tag>
       
       <tag>SpringMVC</tag>
       
@@ -2540,9 +2578,9 @@
     
     <tags>
       
-      <tag>后端</tag>
-      
       <tag>JavaWeb</tag>
+      
+      <tag>后端</tag>
       
       <tag>SpringMVC</tag>
       
@@ -2571,9 +2609,9 @@
     
     <tags>
       
-      <tag>后端</tag>
-      
       <tag>JavaWeb</tag>
+      
+      <tag>后端</tag>
       
       <tag>SpringMVC</tag>
       
@@ -2602,9 +2640,9 @@
     
     <tags>
       
-      <tag>后端</tag>
-      
       <tag>JavaWeb</tag>
+      
+      <tag>后端</tag>
       
       <tag>SpringMVC</tag>
       
@@ -2633,9 +2671,9 @@
     
     <tags>
       
-      <tag>后端</tag>
-      
       <tag>JavaWeb</tag>
+      
+      <tag>后端</tag>
       
       <tag>SpringMVC</tag>
       
@@ -2664,11 +2702,11 @@
     
     <tags>
       
-      <tag>后端</tag>
-      
       <tag>JavaWeb</tag>
       
       <tag>MyBatis</tag>
+      
+      <tag>后端</tag>
       
     </tags>
     
@@ -2695,11 +2733,11 @@
     
     <tags>
       
-      <tag>后端</tag>
-      
       <tag>JavaWeb</tag>
       
       <tag>MyBatis</tag>
+      
+      <tag>后端</tag>
       
     </tags>
     
@@ -2726,11 +2764,11 @@
     
     <tags>
       
-      <tag>后端</tag>
-      
       <tag>JavaWeb</tag>
       
       <tag>MyBatis</tag>
+      
+      <tag>后端</tag>
       
     </tags>
     
@@ -2757,11 +2795,11 @@
     
     <tags>
       
-      <tag>后端</tag>
-      
       <tag>JavaWeb</tag>
       
       <tag>MyBatis</tag>
+      
+      <tag>后端</tag>
       
     </tags>
     
@@ -2788,11 +2826,11 @@
     
     <tags>
       
-      <tag>后端</tag>
-      
       <tag>JavaWeb</tag>
       
       <tag>MyBatis</tag>
+      
+      <tag>后端</tag>
       
     </tags>
     
@@ -2819,11 +2857,11 @@
     
     <tags>
       
-      <tag>后端</tag>
-      
       <tag>JavaWeb</tag>
       
       <tag>MyBatis</tag>
+      
+      <tag>后端</tag>
       
     </tags>
     
@@ -2850,11 +2888,11 @@
     
     <tags>
       
-      <tag>后端</tag>
-      
       <tag>JavaWeb</tag>
       
       <tag>MyBatis</tag>
+      
+      <tag>后端</tag>
       
     </tags>
     
@@ -2881,11 +2919,11 @@
     
     <tags>
       
-      <tag>后端</tag>
-      
       <tag>JavaWeb</tag>
       
       <tag>MyBatis</tag>
+      
+      <tag>后端</tag>
       
     </tags>
     
@@ -2912,11 +2950,11 @@
     
     <tags>
       
-      <tag>后端</tag>
-      
       <tag>JavaWeb</tag>
       
       <tag>MyBatis</tag>
+      
+      <tag>后端</tag>
       
     </tags>
     
@@ -2943,11 +2981,11 @@
     
     <tags>
       
-      <tag>后端</tag>
-      
       <tag>JavaWeb</tag>
       
       <tag>MyBatis</tag>
+      
+      <tag>后端</tag>
       
     </tags>
     
@@ -2974,9 +3012,9 @@
     
     <tags>
       
-      <tag>后端</tag>
-      
       <tag>JavaWeb</tag>
+      
+      <tag>后端</tag>
       
       <tag>Spring</tag>
       
@@ -3005,9 +3043,9 @@
     
     <tags>
       
-      <tag>后端</tag>
-      
       <tag>JavaWeb</tag>
+      
+      <tag>后端</tag>
       
       <tag>Spring</tag>
       
@@ -3036,9 +3074,9 @@
     
     <tags>
       
-      <tag>后端</tag>
-      
       <tag>JavaWeb</tag>
+      
+      <tag>后端</tag>
       
       <tag>Spring</tag>
       
@@ -3067,9 +3105,9 @@
     
     <tags>
       
-      <tag>后端</tag>
-      
       <tag>JavaWeb</tag>
+      
+      <tag>后端</tag>
       
       <tag>Spring</tag>
       
@@ -3098,9 +3136,9 @@
     
     <tags>
       
-      <tag>后端</tag>
-      
       <tag>JavaWeb</tag>
+      
+      <tag>后端</tag>
       
       <tag>Spring</tag>
       
@@ -3129,9 +3167,9 @@
     
     <tags>
       
-      <tag>后端</tag>
-      
       <tag>JavaWeb</tag>
+      
+      <tag>后端</tag>
       
       <tag>Spring</tag>
       
@@ -3160,9 +3198,9 @@
     
     <tags>
       
-      <tag>后端</tag>
-      
       <tag>JavaWeb</tag>
+      
+      <tag>后端</tag>
       
       <tag>Spring</tag>
       
@@ -3191,9 +3229,9 @@
     
     <tags>
       
-      <tag>后端</tag>
-      
       <tag>JavaWeb</tag>
+      
+      <tag>后端</tag>
       
       <tag>Spring</tag>
       
@@ -3222,9 +3260,9 @@
     
     <tags>
       
-      <tag>后端</tag>
-      
       <tag>JavaWeb</tag>
+      
+      <tag>后端</tag>
       
       <tag>Spring</tag>
       
@@ -3253,9 +3291,9 @@
     
     <tags>
       
-      <tag>后端</tag>
-      
       <tag>JavaWeb</tag>
+      
+      <tag>后端</tag>
       
       <tag>Spring</tag>
       
